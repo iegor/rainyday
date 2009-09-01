@@ -1,0 +1,208 @@
+# ChangeLog for kde-base/knetwalk
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/kde-base/knetwalk/ChangeLog,v 1.51 2009/08/04 00:46:36 wired Exp $
+
+*knetwalk-4.3.0 (04 Aug 2009)
+
+  04 Aug 2009; Alex Alexander <wired@gentoo.org> +knetwalk-4.3.0.ebuild:
+  Version bump
+
+  12 Jul 2009; Raúl Porcel <armin76@gentoo.org> knetwalk-3.5.10.ebuild:
+  alpha/ia64/sparc stable wrt #271889
+
+  08 Jul 2009; Alexey Shvetsov <alexxy@gentoo.org> knetwalk-3.5.10.ebuild:
+  Add ~mips keywords
+
+  18 Jun 2009; Jeroen Roovers <jer@gentoo.org> knetwalk-3.5.10.ebuild:
+  Stable for HPPA (bug #271889).
+
+  14 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.2.3.ebuild:
+  Drop KDE 4.2.3
+
+  06 Jun 2009; Markus Meier <maekke@gentoo.org> knetwalk-3.5.10.ebuild:
+  amd64/x86 stable, bug #271889
+
+  05 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> knetwalk-4.2.4.ebuild:
+  Fix accidently added keywords
+
+*knetwalk-4.2.4 (04 Jun 2009)
+
+  04 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> +knetwalk-4.2.4.ebuild:
+  Version bump
+
+  03 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.2.2.ebuild:
+  Drop KDE 4.2.2
+
+  03 Jun 2009; Brent Baude <ranger@gentoo.org> knetwalk-3.5.10.ebuild:
+  Marking knetwalk-3.5.10 ppc64 stable for bug 271889
+
+  31 May 2009; nixnut <nixnut@gentoo.org> knetwalk-3.5.10.ebuild:
+  ppc stable #271889
+
+*knetwalk-4.2.3 (06 May 2009)
+
+  06 May 2009; Tomas Chvatal <scarabeus@gentoo.org> +knetwalk-4.2.3.ebuild:
+  Version bump
+
+  17 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> knetwalk-4.2.2:
+  Restore ~hppa keywords
+
+  16 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.2.1.ebuild:
+  Drop KDE 4.2.1
+
+*knetwalk-4.2.2 (11 Apr 2009)
+
+  11 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> +knetwalk-4.2.2.ebuild:
+  Add KDE 4.2.2
+
+  11 Apr 2009; Raúl Porcel <armin76@gentoo.org> knetwalk-4.2.1.ebuild:
+  Add ~alpha/~ia64 wrt #260777
+
+  08 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.2.0.ebuild:
+  Drop KDE 4.2.0
+
+*knetwalk-4.2.1 (04 Mar 2009)
+
+  04 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> +knetwalk-4.2.1.ebuild:
+  Bump KDE 4.2.1
+
+  17 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.1.4.ebuild:
+  Drop KDE 4.1.4
+
+  01 Feb 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  knetwalk-4.2.0.ebuild:
+  Restored ~ppc and ~ppc64 keywords to KDE-4.2.0
+
+*knetwalk-4.2.0 (27 Jan 2009)
+
+  27 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> +knetwalk-4.2.0.ebuild:
+  Bump KDE-4.2.0
+
+  14 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> -knetwalk-4.1.2.ebuild,
+  -knetwalk-4.1.3.ebuild:
+  Drop KDE 4.1.2 and 4.1.3
+
+*knetwalk-4.1.4 (13 Jan 2009)
+
+  13 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> +knetwalk-4.1.4.ebuild:
+  Bump to 4.1.4
+
+  15 Nov 2008; Mike Frysinger <vapier@gentoo.org> knetwalk-4.1.3.ebuild:
+  Add ppc/ppc64 love #244306.
+
+*knetwalk-4.1.3 (08 Nov 2008)
+
+  08 Nov 2008; Tomas Chvatal <scarabeus@gentoo.org> +knetwalk-4.1.3.ebuild:
+  Version bump.
+
+  21 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  -knetwalk-4.0.4.ebuild, -knetwalk-4.0.5.ebuild:
+  Removing KDE-4.0.X packages now that 4.1.2 was put in the tree.
+
+*knetwalk-4.1.2 (02 Oct 2008)
+
+  02 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +knetwalk-4.1.2.ebuild:
+  Add kde-4.1.2 into the tree from the kde-testing overlay.
+
+*knetwalk-3.5.10 (13 Sep 2008)
+
+  13 Sep 2008; Carsten Lohrke <carlo@gentoo.org> +knetwalk-3.5.10.ebuild:
+  Version bump.
+
+  07 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org>
+  -knetwalk-3.5.8.ebuild, -knetwalk-4.0.2.ebuild, -knetwalk-4.0.3.ebuild:
+  Removed old versions.
+
+*knetwalk-4.0.5 (05 Jun 2008)
+
+  05 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org>
+  +knetwalk-4.0.5.ebuild:
+  Added the KDE 4.0.5 version of knetwalk.
+
+  18 May 2008; Markus Meier <maekke@gentoo.org> knetwalk-3.5.9.ebuild:
+  amd64/x86 stable, bug #221063
+
+*knetwalk-4.0.4 (15 May 2008)
+
+  15 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> +knetwalk-4.0.4.ebuild:
+  Added KDE 4.0.4 version of knetwalk. Thanks to Jorge Manuel B. S. Vicetto.
+
+  14 May 2008; Markus Rothe <corsair@gentoo.org> knetwalk-3.5.9.ebuild:
+  Stable on ppc64; bug #221063
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> knetwalk-3.5.9.ebuild:
+  Stable for HPPA (bug #221063).
+
+  12 May 2008; Brent Baude <ranger@gentoo.org> knetwalk-3.5.9.ebuild:
+  Marking knetwalk-3.5.9 ppc stable for bug 221063
+
+  12 May 2008; Raúl Porcel <armin76@gentoo.org> knetwalk-3.5.9.ebuild:
+  alpha/ia64/sparc stable wrt #221063
+
+*knetwalk-4.0.3 (03 Apr 2008)
+
+  03 Apr 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +knetwalk-4.0.3.ebuild:
+  Version bump to KDE 4.0.3. This is still not intended for mainstream so DO
+  NOT KEYWORD IT without talking to the KDE herd first.
+
+  20 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org> -knetwalk-4.0.1.ebuild:
+  Old.
+
+*knetwalk-4.0.2 (10 Mar 2008)
+
+  10 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +knetwalk-4.0.2.ebuild:
+  Version bump to KDE 4.0.2
+
+  04 Mar 2008; Jeroen Roovers <jer@gentoo.org> knetwalk-3.5.8.ebuild,
+  knetwalk-3.5.9.ebuild, knetwalk-4.0.1.ebuild:
+  Keyword split KDE for HPPA.
+
+*knetwalk-3.5.9 (20 Feb 2008)
+
+  20 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +knetwalk-3.5.9.ebuild:
+  Version bump to KDE 3.5.9.
+
+  16 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> -knetwalk-4.0.0.ebuild:
+  Spring cleaning
+
+*knetwalk-4.0.1 (06 Feb 2008)
+
+  06 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +knetwalk-4.0.1.ebuild:
+  Version bump to KDE 4.0.1.
+
+  31 Jan 2008; Brent Baude <ranger@gentoo.org> knetwalk-3.5.8.ebuild:
+  Marking knetwalk-3.5.8 ppc for bug 207634
+
+  30 Jan 2008; Brent Baude <ranger@gentoo.org> knetwalk-3.5.8.ebuild:
+  Marking knetwalk-3.5.8 ppc64 for bug 207634
+
+  30 Jan 2008; Christian Faulhammer <opfer@gentoo.org>
+  knetwalk-3.5.8.ebuild:
+  stable x86, bug 207634
+
+  29 Jan 2008; Raúl Porcel <armin76@gentoo.org> ChangeLog:
+  alpha/ia64/sparc stable wrt #207634
+
+  29 Jan 2008; Raúl Porcel <armin76@gentoo.org> knetwalk-3.5.8.ebuild:
+  alpha/ia64/sparc stable wrt #207634
+
+  28 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  knetwalk-3.5.8.ebuild:
+  Marked stable on amd64 as per bug 207634.
+
+*knetwalk-4.0.0 (17 Jan 2008)
+
+  17 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> +knetwalk-4.0.0.ebuild:
+  Added KDE 4.0.0's knetwalk.
+
+*knetwalk-3.5.8 (16 Dec 2007)
+
+  16 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org> +metadata.xml,
+  +knetwalk-3.5.8.ebuild:
+  New ebuild for knetwalk as per bug 201613.
+
