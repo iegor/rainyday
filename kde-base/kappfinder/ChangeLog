@@ -1,6 +1,27 @@
 # ChangeLog for kde-base/kappfinder
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kappfinder/ChangeLog,v 1.127 2009/08/03 23:54:29 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kappfinder/ChangeLog,v 1.132 2009/10/12 20:05:02 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kappfinder-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  kappfinder-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kappfinder-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*kappfinder-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kappfinder-4.3.2.ebuild:
+  Version bump
+
+*kappfinder-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +kappfinder-4.3.1.ebuild:
+  Version bump
 
 *kappfinder-4.3.0 (03 Aug 2009)
 

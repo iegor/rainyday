@@ -1,6 +1,34 @@
 # ChangeLog for kde-base/kdesdk-scripts
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdesdk-scripts/ChangeLog,v 1.108 2009/08/25 14:51:38 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdesdk-scripts/ChangeLog,v 1.114 2009/10/12 20:58:55 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org>
+  -kdesdk-scripts-3.5.9.ebuild, -kdesdk-scripts-3.5.9-r1.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  kdesdk-scripts-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  -kdesdk-scripts-4.3.0.ebuild, -kdesdk-scripts-4.3.0-r1.ebuild:
+  Drop KDE 4.3.0
+
+*kdesdk-scripts-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  +kdesdk-scripts-4.3.2.ebuild:
+  Version bump
+
+  05 Sep 2009; Markus Meier <maekke@gentoo.org>
+  kdesdk-scripts-3.5.10-r1.ebuild:
+  amd64 stable, bug #271889
+
+*kdesdk-scripts-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +kdesdk-scripts-4.3.1.ebuild:
+  Version bump
 
   25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   kdesdk-scripts-3.5.10-r1.ebuild:

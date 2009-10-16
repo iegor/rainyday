@@ -1,6 +1,25 @@
 # ChangeLog for kde-base/kdf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdf/ChangeLog,v 1.118 2009/08/04 00:26:23 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdf/ChangeLog,v 1.123 2009/10/12 21:02:46 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kdf-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kdf-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdf-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*kdf-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdf-4.3.2.ebuild:
+  Version bump
+
+*kdf-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org> +kdf-4.3.1.ebuild:
+  Version bump
 
 *kdf-4.3.0 (04 Aug 2009)
 

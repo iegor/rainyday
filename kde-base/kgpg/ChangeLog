@@ -1,6 +1,28 @@
 # ChangeLog for kde-base/kgpg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kgpg/ChangeLog,v 1.127 2009/08/04 00:33:55 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kgpg/ChangeLog,v 1.133 2009/10/13 17:03:04 ssuominen Exp $
+
+  13 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kgpg-3.5.10.ebuild:
+  Remove built_with_use wrt #286719, thanks to Bartosz Szreder for patch.
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kgpg-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kgpg-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kgpg-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*kgpg-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kgpg-4.3.2.ebuild:
+  Version bump
+
+*kgpg-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org> +kgpg-4.3.1.ebuild:
+  Version bump
 
 *kgpg-4.3.0 (04 Aug 2009)
 

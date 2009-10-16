@@ -1,6 +1,29 @@
 # ChangeLog for kde-base/kfind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kfind/ChangeLog,v 1.129 2009/08/04 00:30:39 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kfind/ChangeLog,v 1.135 2009/10/12 21:09:54 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kfind-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kfind-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kfind-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*kfind-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kfind-4.3.2.ebuild:
+  Version bump
+
+  15 Sep 2009; Jonathan Callen <abcd@gentoo.org> kfind-4.3.0.ebuild,
+  kfind-4.3.1.ebuild:
+  Add missing dep on libkonq. (Bug #285056)
+
+*kfind-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org> +kfind-4.3.1.ebuild:
+  Version bump
 
 *kfind-4.3.0 (04 Aug 2009)
 

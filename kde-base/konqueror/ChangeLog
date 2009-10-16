@@ -1,6 +1,32 @@
 # ChangeLog for kde-base/konqueror
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/konqueror/ChangeLog,v 1.150 2009/08/07 16:26:40 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/konqueror/ChangeLog,v 1.156 2009/10/13 00:57:10 abcd Exp $
+
+  13 Oct 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/Gentoo_Bugzilla.desktop, -files/Gentoo_Forums.desktop:
+  Clean out old files
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -konqueror-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  konqueror-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  -konqueror-4.3.0-r1.ebuild:
+  Drop KDE 4.3.0
+
+*konqueror-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +konqueror-4.3.2.ebuild:
+  Version bump
+
+*konqueror-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +konqueror-4.3.1.ebuild:
+  Version bump
 
 *konqueror-4.3.0-r1 (07 Aug 2009)
 

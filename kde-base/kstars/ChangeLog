@@ -1,6 +1,33 @@
 # ChangeLog for kde-base/kstars
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kstars/ChangeLog,v 1.131 2009/08/04 04:39:50 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kstars/ChangeLog,v 1.138 2009/10/12 22:27:35 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kstars-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kstars-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kstars-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*kstars-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kstars-4.3.2.ebuild:
+  Version bump
+
+  07 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> kstars-4.3.1.ebuild:
+  Add indi to IUSE.
+
+  07 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> kstars-4.3.1.ebuild,
+  metadata.xml:
+  Enable indi useflag now when we have libindi up-to-date in main tree.
+
+*kstars-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +kstars-4.3.1.ebuild:
+  Version bump
 
   04 Aug 2009; Alex Alexander <wired@gentoo.org> ChangeLog:
   manifest update (upstream tarball changed)

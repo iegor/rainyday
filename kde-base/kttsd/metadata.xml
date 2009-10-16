@@ -3,8 +3,6 @@
 <pkgmetadata>
 <use>
 	<flag name="akode">Support for the aKode audio-decoding frame-work.</flag>
-	<flag name="ktts">Enable KDE Text To Speech modules</flag>
-	<flag name="phonon">Enable support for the KDE multimedia API</flag>
 </use>
 <herd>kde</herd>
 </pkgmetadata>

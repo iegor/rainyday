@@ -1,6 +1,26 @@
 # ChangeLog for kde-base/cervisia
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/cervisia/ChangeLog,v 1.120 2009/08/03 23:42:11 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/cervisia/ChangeLog,v 1.125 2009/10/12 19:53:04 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -cervisia-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> cervisia-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -cervisia-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*cervisia-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +cervisia-4.3.2.ebuild:
+  Version bump
+
+*cervisia-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +cervisia-4.3.1.ebuild:
+  Version bump
 
   03 Aug 2009; Alex Alexander <wired@gentoo.org> cervisia-4.3.0.ebuild:
   4.3 keywords update

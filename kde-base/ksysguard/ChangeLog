@@ -1,6 +1,28 @@
 # ChangeLog for kde-base/ksysguard
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/ksysguard/ChangeLog,v 1.144 2009/08/04 04:40:50 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/ksysguard/ChangeLog,v 1.149 2009/10/12 22:30:08 abcd Exp $
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -ksysguard-3.5.9.ebuild,
+  -ksysguard-3.5.9-r1.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  ksysguard-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -ksysguard-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*ksysguard-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +ksysguard-4.3.2.ebuild:
+  Version bump
+
+*ksysguard-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +ksysguard-4.3.1.ebuild:
+  Version bump
 
   04 Aug 2009; Alex Alexander <wired@gentoo.org> ChangeLog:
   manifest update (upstream tarball changed)

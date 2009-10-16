@@ -1,6 +1,32 @@
 # ChangeLog for kde-base/akregator
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/akregator/ChangeLog,v 1.130 2009/08/03 23:40:46 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/akregator/ChangeLog,v 1.136 2009/10/13 00:03:37 abcd Exp $
+
+  13 Oct 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/akregator-3.5.9-customcolors.patch:
+  Clean out old patches
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -akregator-3.5.9.ebuild,
+  -akregator-3.5.9-r1.ebuild:
+  KDE 3.5.9 removal
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  akregator-4.3.1.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -akregator-4.3.0.ebuild:
+  Drop KDE 4.3.0
+
+*akregator-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +akregator-4.3.2.ebuild:
+  Version bump
+
+*akregator-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +akregator-4.3.1.ebuild:
+  Version bump
 
   03 Aug 2009; Alex Alexander <wired@gentoo.org> akregator-4.3.0.ebuild:
   4.3 keywords update
