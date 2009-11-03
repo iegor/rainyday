@@ -1,6 +1,13 @@
 # ChangeLog for app-office/karbon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/karbon/ChangeLog,v 1.96 2009/08/12 10:12:31 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/karbon/ChangeLog,v 1.98 2009/11/01 09:13:12 abcd Exp $
+
+  01 Nov 2009; Jonathan Callen <abcd@gentoo.org> -karbon-1.6.2.ebuild,
+  -files/karbon-1.6.2+gcc-4.3.patch:
+  Drop old version
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking karbon-1.6.3_p20090204 ppc64 stable for bug 276008
 
   12 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -karbon-2.0.0.ebuild,
   -karbon-2.0.1.ebuild:
