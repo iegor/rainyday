@@ -1,6 +1,32 @@
 # ChangeLog for dev-python/PyQt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt/ChangeLog,v 1.120 2009/06/16 17:58:42 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt/ChangeLog,v 1.129 2009/10/18 14:45:55 armin76 Exp $
+
+  18 Oct 2009; Raúl Porcel <armin76@gentoo.org> PyQt-3.18.1.ebuild:
+  alpha/ia64/sparc stable wrt #284707
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> PyQt-3.18.1.ebuild:
+  Stable for HPPA (bug #284707).
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> PyQt-3.18.1.ebuild:
+  ppc stable #284707
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> PyQt-3.18.1.ebuild:
+  amd64 stable, bug #284707
+
+  16 Sep 2009; Jesus Rivero <neurogeek@gentoo.org> PyQt-3.18.1.ebuild:
+  Fixed RDEPEND (QScintilla)
+
+  16 Sep 2009; Christian Faulhammer <fauli@gentoo.org> PyQt-3.18.1.ebuild:
+  stable x86, bug 284707
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/python_2.5_build_fix.patch:
+  Remove unused patch.
+
+  05 Sep 2009; Patrick Lauer <patrick@gentoo.org> -PyQt-3.18.ebuild,
+  -PyQt-3.18-r1.ebuild:
+  Remove old
 
   16 Jun 2009; Markos Chandras <hwoarang@gentoo.org> PyQt-3.18.1.ebuild:
   Raise sip dependency to 4.8.1

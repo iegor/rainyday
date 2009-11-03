@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt/PyQt-3.18.1.ebuild,v 1.2 2009/06/16 17:58:42 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt/PyQt-3.18.1.ebuild,v 1.8 2009/10/18 14:41:15 armin76 Exp $
 
 EAPI="2"
 inherit distutils
@@ -14,12 +14,12 @@ SRC_URI="http://www.riverbankcomputing.com/static/Downloads/PyQt3/${MY_P}.tar.gz
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="alpha amd64 hppa ia64 ppc ~ppc64 sparc x86 ~x86-fbsd"
 IUSE="debug doc examples"
 
 RDEPEND="x11-libs/qt:3
 	>=dev-python/sip-4.8.1
-	>=x11-libs/qscintilla-2.4[python]"
+	>=x11-libs/qscintilla-2.3[python]"
 DEPEND="${RDEPEND}
 	sys-devel/libtool"
 
