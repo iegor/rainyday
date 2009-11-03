@@ -16,7 +16,6 @@
       on DAAP browsing.
     </flag>
     <flag name="ifp">Enable support for iRiver devices access through libifp</flag>
-    <flag name="mp3tunes">Enable mp3tunes integration</flag>
     <flag name="mp4">
       Build the TagLib plugin for writing tags in Mp4 container files
       (m4a). Please note that by enabling this USE flag, the resulting
