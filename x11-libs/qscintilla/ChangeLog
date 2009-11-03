@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qscintilla/ChangeLog,v 1.26 2009/06/09 19:00:02 hwoarang Exp $
 
+  03 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qscintilla-1.5.1.ebuild,
+  -qscintilla-1.7.1.ebuild, -qscintilla-2.1-r1.ebuild,
+  -qscintilla-2.2.ebuild, -qscintilla-2.3.ebuild, -qscintilla-2.3.2.ebuild:
+  Remove old cruft. Keep only latest stable.
+
 *qscintilla-2.4 (09 Jun 2009)
 
   09 Jun 2009; Markos Chandras <hwoarang@gentoo.org> +qscintilla-2.4.ebuild,
