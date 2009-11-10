@@ -1,11 +1,41 @@
 # ChangeLog for x11-libs/qscintilla
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qscintilla/ChangeLog,v 1.26 2009/06/09 19:00:02 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qscintilla/ChangeLog,v 1.36 2009/11/09 10:53:36 abcd Exp $
 
-  03 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qscintilla-1.5.1.ebuild,
+  09 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/qscintilla-2.1-qt.patch, -files/qscintilla-2.1-qt4.patch:
+  Drop unneeded patches
+
+  05 Nov 2009; Ben de Groot <yngwin@gentoo.org> +qscintilla-1.7.1.ebuild:
+  Also restoring 1.7.1 for hppa.
+
+  04 Nov 2009; Ben de Groot <yngwin@gentoo.org> +qscintilla-1.5.1.ebuild:
+  Temporarily restoring 1.5.1 for stable dev-db/tora-1 users.
+
+  04 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qscintilla-1.5.1.ebuild,
   -qscintilla-1.7.1.ebuild, -qscintilla-2.1-r1.ebuild,
-  -qscintilla-2.2.ebuild, -qscintilla-2.3.ebuild, -qscintilla-2.3.2.ebuild:
-  Remove old cruft. Keep only latest stable.
+  -qscintilla-2.2.ebuild, -qscintilla-2.3.ebuild:
+  Remove old cruft
+
+  18 Oct 2009; Raúl Porcel <armin76@gentoo.org> qscintilla-2.4.ebuild:
+  alpha/ia64/sparc stable wrt #284707
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> qscintilla-2.4.ebuild:
+  Stable for HPPA (bug #284707).
+
+  06 Oct 2009; Dominik Kapusta <ayoy@gentoo.org> qscintilla-2.1-r1.ebuild,
+  qscintilla-2.2.ebuild, qscintilla-2.3.ebuild:
+  Removed alternative dependency on Qt metapackage
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> qscintilla-2.4.ebuild:
+  ppc stable #284707
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> qscintilla-2.4.ebuild:
+  amd64 stable, bug #284707
+
+  22 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  qscintilla-2.4.ebuild:
+  stable x86, bug 284707
 
 *qscintilla-2.4 (09 Jun 2009)
 
