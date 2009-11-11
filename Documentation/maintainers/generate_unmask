@@ -1,0 +1,9 @@
+#!/bin/bash
+# This is meant to be run in kde-sunset/Documentation/maintainers/
+rm ../package.unmask/kde-3.5 2> /dev/null
+find ../../ -iname "*ebuild" | 
+	while read i; 
+	do 
+		Z=`echo $i | cut -d"/" -f3,5`; 
+		echo "=${Z/.ebuild}" >> ../package.unmask/kde-3.5;
+	done
