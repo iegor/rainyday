@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/SoQt/SoQt-1.4.1.ebuild,v 1.4 2009/08/23 19:02:15 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/SoQt/SoQt-1.4.1.ebuild,v 1.6 2009/10/29 11:02:54 fauli Exp $
 
 EAPI="2"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.coin3d.org/"
 
 SLOT="0"
 LICENSE="|| ( GPL-2 PEL )"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 x86"
 IUSE="doc qt4"
 
 RDEPEND=">=media-libs/coin-2.4.4
@@ -37,7 +37,7 @@ src_configure() {
 		export CONFIG_QTLIBS="$(pkg-config --libs QtGui)"
 	fi
 
-	append-ldflags -Wl,--no-as-needed
+	append-ldflags $(no-as-needed)
 
 	econf --with-coin --disable-html-help $(use_enable doc html) htmldir=/usr/share/doc/${PF}/html
 }

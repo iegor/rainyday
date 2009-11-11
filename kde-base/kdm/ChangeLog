@@ -1,6 +1,27 @@
 # ChangeLog for kde-base/kdm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/ChangeLog,v 1.183 2009/10/13 00:53:29 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/ChangeLog,v 1.189 2009/11/08 23:34:43 alexxy Exp $
+
+  08 Nov 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.3.2.ebuild:
+  Drop KDE 4.3.2
+
+  08 Nov 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.4-r1.ebuild:
+  Drop KDE 4.2.4
+
+*kdm-4.3.3 (02 Nov 2009)
+
+  02 Nov 2009; Alex Alexander <wired@gentoo.org> +kdm-4.3.3.ebuild:
+  Version bump
+
+  01 Nov 2009; Jonathan Callen <abcd@gentoo.org> -kdm-4.2.4.ebuild,
+  -kdm-4.3.1.ebuild, -kdm-4.3.1-r1.ebuild:
+  Drop old revisions
+
+  23 Oct 2009; Jonathan Callen <abcd@gentoo.org> kdm-3.5.10.ebuild:
+  Make "make install" die on failure
+
+  18 Oct 2009; Markus Meier <maekke@gentoo.org> kdm-4.3.1-r2.ebuild:
+  x86 stable, bug #287697
 
   13 Oct 2009; Jonathan Callen <abcd@gentoo.org>
   -files/kdm-3.5.7-bsd-shutdown.patch,

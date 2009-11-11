@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/kdevelop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/ChangeLog,v 1.185 2009/07/21 01:33:46 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/ChangeLog,v 1.187 2009/09/27 14:57:18 ranger Exp $
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> kdevelop-3.5.4-r1.ebuild:
+  Marking kdevelop-3.5.4-r1 ppc64 for bug 272563
+
+*kdevelop-3.9.95 (29 Aug 2009)
+
+  29 Aug 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +kdevelop-3.9.95.ebuild:
+  Version bump, also fixes bug 275165
 
   21 Jul 2009; Tiago Cunha <tcunha@gentoo.org> kdevelop-3.5.4-r1.ebuild:
   stable sparc, bug 272563

@@ -1,6 +1,38 @@
 # ChangeLog for kde-misc/filelight
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/filelight/ChangeLog,v 1.33 2009/08/26 14:59:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/filelight/ChangeLog,v 1.40 2009/11/10 02:30:08 fauli Exp $
+
+  10 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  filelight-1.9_rc3.ebuild:
+  stable x86, bug 290415
+
+  02 Nov 2009; Jonathan Callen <abcd@gentoo.org> filelight-1.9_rc3.ebuild:
+  Drop ~x86-fbsd on 1.9_rc3, as KDE-4 isn't keyworded yet on that arch
+
+  24 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  filelight-1.9_rc3.ebuild:
+  amd64 stable wrt #290415
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> filelight-1.9_rc3.ebuild:
+  Set KDE_MINIMAL to unbreak hppa, ppc, and ppc64
+
+*filelight-1.9_rc3 (10 Oct 2009)
+
+  10 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -filelight-1.9_rc2.ebuild, +filelight-1.9_rc3.ebuild:
+  Version bump. Remove old.
+
+*filelight-1.0-r2 (28 Sep 2009)
+
+  28 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -filelight-1.0-r1.ebuild, +filelight-1.0-r2.ebuild:
+  Change SLOT from 0 to 3.5.
+
+*filelight-1.9_rc2 (28 Sep 2009)
+
+  28 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +filelight-1.9_rc2.ebuild:
+  Version bump (from kde-overlay).
 
   25 Aug 2009; Raúl Porcel <armin76@gentoo.org> filelight-1.0-r1.ebuild:
   sparc stable wrt #278150

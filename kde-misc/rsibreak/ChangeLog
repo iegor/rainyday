@@ -1,6 +1,19 @@
 # ChangeLog for kde-misc/rsibreak
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/rsibreak/ChangeLog,v 1.30 2008/11/01 07:35:35 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/kde-misc/rsibreak/ChangeLog,v 1.33 2009/10/28 12:56:45 ssuominen Exp $
+
+  28 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> rsibreak-0.10.ebuild:
+  amd64 stable wrt #290873
+
+*rsibreak-0.10 (14 Oct 2009)
+*rsibreak-0.8.0-r1 (14 Oct 2009)
+
+  14 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +rsibreak-0.8.0-r1.ebuild, +rsibreak-0.10.ebuild:
+  Version bump wrt #263631, thanks to Dennis Schridde for ebuild.
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> rsibreak-0.7.0.ebuild:
+  QA fix: make PATCHES an array
 
   01 Nov 2008; Robin H. Johnson <robbat2@gentoo.org> Manifest:
   Fix manifest breakage.

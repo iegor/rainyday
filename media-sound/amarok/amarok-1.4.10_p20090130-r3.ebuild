@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/amarok-1.4.10_p20090130-r3.ebuild,v 1.4 2009/08/15 18:18:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/amarok-1.4.10_p20090130-r3.ebuild,v 1.8 2009/11/07 00:39:24 ssuominen Exp $
 
 EAPI="2"
 
@@ -31,8 +31,8 @@ HOMEPAGE="http://amarok.kde.org/"
 LICENSE="GPL-2"
 
 SLOT="3.5"
-KEYWORDS="amd64 ~ppc ~ppc64 ~sparc x86 ~x86-fbsd"
-IUSE="mp4 kde mysql +amazon opengl postgres
+KEYWORDS="amd64 ppc ppc64 sparc x86 ~x86-fbsd"
+IUSE="mp4 mysql +amazon opengl postgres
 visualization ipod ifp real njb mtp musicbrainz daap
 python"
 # kde: enables compilation of the konqueror sidebar plugin
@@ -45,7 +45,6 @@ RDEPEND="
 	>=media-libs/xine-lib-1.1.2_pre20060328-r8
 	ifp? ( media-libs/libifp )
 	ipod? ( >=media-libs/libgpod-0.5.2 )
-	kde? ( kde-base/konqueror:3.5 )
 	mp4? ( media-libs/libmp4v2 )
 	mtp? ( >=media-libs/libmtp-0.3.0 )
 	musicbrainz? ( media-libs/tunepimp )

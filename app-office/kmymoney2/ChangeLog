@@ -1,6 +1,31 @@
 # ChangeLog for app-office/kmymoney2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/kmymoney2/ChangeLog,v 1.80 2009/08/19 16:10:48 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/kmymoney2/ChangeLog,v 1.85 2009/11/10 02:14:15 fauli Exp $
+
+  10 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  kmymoney2-1.0.2.ebuild:
+  stable x86, bug 292584
+
+  09 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
+  kmymoney2-1.0.2.ebuild:
+  Remove USE arts and rename USE sqlite3 to sqlite.
+
+*kmymoney2-1.0.2 (05 Oct 2009)
+
+  05 Oct 2009; Timo Gurr <tgurr@gentoo.org> -kmymoney2-1.0.1.ebuild,
+  +kmymoney2-1.0.2.ebuild:
+  Version bump, remove old.
+
+*kmymoney2-1.0.1 (13 Sep 2009)
+
+  13 Sep 2009; Timo Gurr <tgurr@gentoo.org> -kmymoney2-0.9.3.ebuild,
+  -kmymoney2-1.0.0.ebuild, +kmymoney2-1.0.1.ebuild:
+  Version bump, remove old.
+
+  07 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/0.8.8-gcc4.3.patch, kmymoney2-0.8.8.ebuild, kmymoney2-1.0.0.ebuild:
+  Add gcc4.3 patch to 0.8.8. Fix crypt dep in 1.0.0. Per bugs #264525 and
+  #283118.
 
 *kmymoney2-1.0.0 (19 Aug 2009)
 

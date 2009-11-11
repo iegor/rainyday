@@ -1,6 +1,33 @@
 # ChangeLog for media-sound/amarok
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/ChangeLog,v 1.337 2009/08/15 18:18:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/ChangeLog,v 1.344 2009/11/09 18:18:36 fauli Exp $
+
+  09 Nov 2009; Christian Faulhammer <fauli@gentoo.org> amarok-2.2.0.ebuild:
+  stable x86, bug 290483
+
+  07 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
+  amarok-1.4.10_p20090130-r3.ebuild:
+  Remove kde-base/konqueror:3.5 support.
+
+  26 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> amarok-2.2.0.ebuild:
+  amd64 stable wrt #290483
+
+  10 Oct 2009; Raúl Porcel <armin76@gentoo.org>
+  amarok-1.4.10_p20090130-r3.ebuild:
+  sparc stable wrt #280797
+
+*amarok-2.2.0 (02 Oct 2009)
+
+  02 Oct 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +amarok-2.2.0.ebuild, metadata.xml:
+  Bumped amarok to version 2.2.0.
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org>
+  amarok-1.4.10_p20090130-r3.ebuild:
+  Marking amarok-1.4.10_p20090130-r3 ppc64 for bug 280797
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> amarok-1.4.10_p20090130-r3.ebuild:
+  ppc stable #280797
 
   15 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
   amarok-1.4.10_p20090130-r3.ebuild, +files/amarok-libmp4v2-2.patch:
