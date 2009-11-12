@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kpdf/ChangeLog,v 1.173 2009/10/12 22:05:13 abcd Exp $
 
+  12 Nov 2009; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +kpdf-3.5.10-r2.ebuild, +files/kpdf-3.5.10-xpdf-3.02pl4.patch:
+  Fix kpdf security issues, #290470
+
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kpdf-3.5.9.ebuild:
   KDE 3.5.9 removal
 
