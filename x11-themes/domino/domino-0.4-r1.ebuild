@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/domino/domino-0.4-r1.ebuild,v 1.1 2008/11/07 23:51:43 scarabeus Exp $
 
@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86 ~x86-fbsd"
 IUSE=""
 EXTRA_ECONF="--prefix=/usr/kde/3.5/"
 
-RDEPEND="|| ( =kde-base/kwin-3.5* =kde-base/kdebase-3.5* )"
+RDEPEND="=kde-base/kwin-3.5*"
 need-kde 3.5
 
 PATCHES=( "${FILESDIR}/${P}-fbsd.patch" )

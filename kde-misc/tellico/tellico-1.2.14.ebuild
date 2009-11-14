@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/tellico/tellico-1.2.14.ebuild,v 1.6 2008/06/30 20:00:19 nixnut Exp $
 
@@ -19,8 +19,11 @@ IUSE="calendar cddb yaz"
 
 RDEPEND=">=dev-libs/libxml2-2.6
 	>=dev-libs/libxslt-1.0.19
-	cddb?  ( || ( =kde-base/libkcddb-3.5* =kde-base/kdemultimedia-3.5* ) )
-	calendar? ( || ( ( =kde-base/ktnef-3.5* =kde-base/libkcal-3.5* ) =kde-base/kdepim-3.5* ) )
+	cddb?  ( =kde-base/libkcddb-3.5* )
+	calendar? (
+		=kde-base/ktnef-3.5*
+		=kde-base/libkcal-3.5*
+	)
 	media-libs/taglib
 	yaz? ( dev-libs/yaz )"
 

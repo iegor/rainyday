@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/yakuake/yakuake-2.8.ebuild,v 1.6 2008/02/18 23:08:03 ingmar Exp $
 
@@ -18,8 +18,7 @@ SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="|| ( =kde-base/konsole-3.5*
-	=kde-base/kdebase-3.5* )"
+DEPEND="=kde-base/konsole-3.5*"
 RDEPEND=""
 
 RDEPEND="${DEPEND}"

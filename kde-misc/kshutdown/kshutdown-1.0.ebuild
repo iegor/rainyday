@@ -14,7 +14,8 @@ KEYWORDS="~amd64 ppc ~x86"
 SLOT="0"
 
 RDEPEND="
-	|| ( =kde-base/kdebase-3.5*
-		( =kde-base/kdesu-3.5* =kde-base/kcontrol-3.5* =kde-base/kdialog-3.5* ) )"
+	=kde-base/kdesu-3.5*
+	=kde-base/kcontrol-3.5*
+	=kde-base/kdialog-3.5*"
 
 need-kde 3.4

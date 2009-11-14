@@ -18,7 +18,7 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="|| ( kde-base/kcontrol:3.5 kde-base/kdebase:3.5 )
+RDEPEND="kde-base/kcontrol:3.5
 	>=app-backup/rdiff-backup-1.0.1-r1"
 
 need-kde 3.5

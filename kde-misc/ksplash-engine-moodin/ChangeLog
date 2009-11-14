@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/ksplash-engine-moodin/ChangeLog,v 1.11 2009/10/12 07:18:48 abcd Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  ksplash-engine-moodin-0.4.2.ebuild, ksplash-engine-moodin-0.4.2-r1.ebuild:
+  Remove monolithic deps
+
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org>
   ksplash-engine-moodin-0.4.2-r1.ebuild:
   QA fix: make PATCHES an array

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-im/sim/sim-9999.ebuild,v 1.3 2008/05/11 13:24:42 pva Exp $
 
-EAPI="1"
+EAPI="2"
 
 inherit cmake-utils kde-functions eutils flag-o-matic subversion
 
@@ -22,8 +22,8 @@ IUSE="debug gpg +jabber kde msn +oscar sms spell ssl weather yahoo livejournal"
 # inside /etc/portage/env/net-im/sim to disable transparent plugin.
 
 # kdebase-data provides the icon "licq.png"
-RDEPEND="kde? ( kde-base/kdelibs:3.5
-				|| ( kde-base/kdebase-data:3.5 kde-base/kdebase:3.5 ) )
+RDEPEND="kde? ( kde-base/kdelibs:3.5[spell=]
+				kde-base/kdebase-data:3.5 )
 		!kde? ( spell? ( app-text/aspell ) )
 		x11-libs/qt:3
 		ssl? ( dev-libs/openssl )
@@ -40,25 +40,6 @@ DEPEND="${RDEPEND}
 		x11-proto/scrnsaverproto"
 
 pkg_setup() {
-	if use kde; then
-		if use spell; then
-			if ! built_with_use "kde-base/kdelibs:3.5" spell; then
-				ewarn "kde-base/kdelibs were merged without spell in USE."
-				ewarn "Thus spelling will not work in sim. Please, either"
-				ewarn "reemerge kde-base/kdelibs with spell in USE or emerge"
-				ewarn 'sim with USE="-spell" to avoid this message.'
-				ebeep
-			fi
-		else
-			if built_with_use "kde-base/kdelibs:3.5" spell; then
-				ewarn 'kde-base/kdelibs were merged with spell in USE.'
-				ewarn 'Thus spelling will work in sim. Please, either'
-				ewarn 'reemerge kde-base/kdelibs without spell in USE or emerge'
-				ewarn 'sim with USE="spell" to avoid this message.'
-				ebeep
-			fi
-		fi
-	fi
 	if ! use jabber && ! use livejournal && ! use msn && ! use oscar && ! use yahoo; then
 		eerror "Sim requires at least one instant messaging protocol to be"
 		eerror "activated. The available protocols are:"
@@ -67,7 +48,7 @@ pkg_setup() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	if use kde; then
 		set-kdedir 3
 	fi
@@ -87,7 +68,7 @@ src_compile() {
 				-DENABLE_PLUGIN_UPDATE:BOOL=Off
 				${SIMCMAKEOPTS}"
 
-	cmake-utils_src_compile
+	cmake-utils_src_configure
 }
 
 src_install() {

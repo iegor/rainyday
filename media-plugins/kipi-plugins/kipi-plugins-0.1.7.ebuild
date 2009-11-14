@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 ppc sparc x86"
 IUSE="calendar opengl gphoto2 ipod tiff"
 
-DEPEND="calendar? ( || ( kde-base/libkcal:3.5 kde-base/kdepim:3.5 ) )
+DEPEND="calendar? ( kde-base/libkcal:3.5 )
 		>=media-libs/libkipi-0.1.5
 		>=media-libs/libkexiv2-0.1.5
 		>=media-libs/libkdcraw-0.1.4

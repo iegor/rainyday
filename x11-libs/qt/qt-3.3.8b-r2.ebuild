@@ -365,7 +365,7 @@ pkg_postinst() {
 	elog "occurs you should recompile the packages providing these plugins,"
 	elog "and you should also make sure that Qt and its plugins were compiled with the"
 	elog "same version of GCC.  Packages that may need to be rebuilt are, for instance,"
-	elog "kde-base/kdelibs, kde-base/kdeartwork and kde-base/kdeartwork-styles."
+	elog "kde-base/kdelibs and kde-base/kdeartwork-styles."
 	elog "See http://doc.trolltech.com/3.3/plugins-howto.html for more infos."
 	echo
 }

@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/kdevelop-3.5.2-r1.ebuild,v 1.7 2008/09/04 05:00:11 jer Exp $
 
@@ -19,10 +19,10 @@ IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python rub
 
 DEPEND="sys-devel/gdb
 	>=sys-libs/db-4.1
-	cvs? ( || ( =kde-base/cervisia-3.5* =kde-base/kdesdk-3.5* ) )"
+	cvs? ( =kde-base/cervisia-3.5* )"
 
 RDEPEND="${DEPEND}
-	subversion? ( || ( =kde-base/kdesdk-kioslaves-3.5* =kde-base/kdesdk-3.5* ) )"
+	subversion? ( =kde-base/kdesdk-kioslaves-3.5* )"
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
@@ -32,16 +32,6 @@ need-kde 3.5
 #MAKEOPTS="${MAKEOPTS} -j1"
 
 PATCHES=( "${WORKDIR}/kdevelop-3.5.2-post-rev823459.diff" )
-
-pkg_setup() {
-	if use subversion && \
-		has_version =kde-base/kdesdk-3.5* && \
-		! built_with_use =kde-base/kdesdk-3.5* subversion; then
-		eerror "To build this package with USE=subversion"
-		eerror "=kde-base/kdesdk-3.5* must be built with USE=subversion too."
-		die "Please rebuild =kde-base/kdesdk-3.5* with USE=subversion."
-	fi
-}
 
 src_unpack() {
 	kde_src_unpack
@@ -97,7 +87,6 @@ pkg_postinst() {
 	elog "almost complete list. All these packages can be emerged after kdevelop."
 	elog
 	elog "=kde-base/konsole-3.5*:    (RECOMMENDED) embed konsole kpart in kdevelop ide"
-	elog "OR =kde-base/kdebase-3.5*: (RECOMMENDED) embed konsole kpart in kdevelop ide"
 	elog "dev-util/kdbg:             (RECOMMENDED) kde frontend to gdb"
 	elog "dev-util/valgrind:         (RECOMMENDED) integrates valgrind (memory debugger) commands"
 	elog "=kde-base/kompare-3.5*:    (RECOMMENDED) show differences between files"

@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kblogger/kblogger-0.7_beta3.ebuild,v 1.1 2008/03/01 14:39:10 ingmar Exp $
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="|| ( =kde-base/kdebase-3.5* =kde-base/kicker-3.5* )"
+DEPEND="=kde-base/kicker-3.5*"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P/_/}"

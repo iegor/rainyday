@@ -27,7 +27,7 @@ DEPEND="${COMMONDEPEND}
 	dev-util/cmake"
 # the little gnome_apps.png...
 RDEPEND="${COMMONDEPEND}
-	|| ( kde-base/kdebase-data:3.5 kde-base/kdebase:3.5 )"
+	kde-base/kdebase-data:3.5"
 need-kde 3.5
 
 # Set slot after the need-kde. Fixes bug #78455.

@@ -33,7 +33,7 @@ LANGS_DOC="da es et it pt ru sv"
 pkg_postinst() {
 	kde_pkg_postinst
 
-	if ! has_version kde-base/konsole && ! has_version kde-base/kdebase; then
+	if ! has_version kde-base/konsole; then
 		echo
 		elog "If you want to be able to use Konsole from inside ${PN}, please emerge"
 		elog "kde-base/konsole:3.5"

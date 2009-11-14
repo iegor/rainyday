@@ -20,6 +20,6 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="|| ( kde-base/kate:3.5 kde-base/kdebase:3.5 )"
+DEPEND="kde-base/kate:3.5"
 
 need-kde 3.5

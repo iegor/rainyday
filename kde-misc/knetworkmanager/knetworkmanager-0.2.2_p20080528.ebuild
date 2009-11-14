@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/knetworkmanager/knetworkmanager-0.2.2_p20080528.ebuild,v 1.1 2008/06/24 17:55:41 rbu Exp $
 
@@ -25,7 +25,7 @@ DEPEND="net-misc/networkmanager
 	cisco?   ( <net-misc/networkmanager-vpnc-0.7.0 )
 	openvpn? ( <net-misc/networkmanager-openvpn-0.3.3 )
 	pptp?    ( <net-misc/networkmanager-pptp-0.7.0 )
-	dialup? ( || ( =kde-base/kppp-3.5* =kde-base/kdenetwork-3.5* ) )"
+	dialup? ( =kde-base/kppp-3.5* )"
 
 RDEPEND="${DEPEND}"
 DEPEND="${DEPEND}

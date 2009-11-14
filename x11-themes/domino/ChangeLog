@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/domino
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/domino/ChangeLog,v 1.8 2008/11/07 23:51:43 scarabeus Exp $
+
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> domino-0.4.ebuild,
+  domino-0.4-r1.ebuild:
+  Remove monolithic deps
 
 *domino-0.4-r1 (07 Nov 2008)
 

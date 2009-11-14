@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kvkbd/kvkbd-0.5.ebuild,v 1.1 2008/10/13 18:50:16 yngwin Exp $
+
+EAPI=1
 
 ARTS_REQUIRED="never"
 inherit kde
@@ -16,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="|| ( kde-base/kate kde-base/kdebase )"
+DEPEND="kde-base/kate:3.5"
 RDEPEND="${DEPEND}"
 
 need-kde 3.5

@@ -17,7 +17,7 @@ KEYWORDS="amd64 ~ppc ~sparc x86"
 IUSE="arts"
 
 DEPEND="sci-mathematics/octave
-	|| ( kde-base/konsole:3.5 kde-base/kdebase:3.5 )"
+	kde-base/konsole:3.5"
 
 S="${WORKDIR}"/${PN}3-${PV}
 

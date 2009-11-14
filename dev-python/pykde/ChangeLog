@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pykde
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pykde/ChangeLog,v 1.40 2008/12/15 04:14:11 neurogeek Exp $
+
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> pykde-3.16.2.ebuild:
+  Remove monolithic deps
 
   15 Dec 2008; Jesus Rivero <neurogeek@gentoo.org> pykde-3.16.2.ebuild:
   Updated dep versions wrt bug #250457

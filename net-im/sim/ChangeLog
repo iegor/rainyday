@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-im/sim/ChangeLog,v 1.99 2009/10/27 14:40:30 pva Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> sim-9999.ebuild:
+  Remove monolithic deps
+
   28 Oct 2009; Peter Volkov <pva@gentoo.org> +sim-9999.ebuild,
   +metadata.xml:
   net-im/sim-9999, svn ebuild moved from the tree to preserve kde support in

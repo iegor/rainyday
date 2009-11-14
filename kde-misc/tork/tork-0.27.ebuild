@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/tork/tork-0.27.ebuild,v 1.4 2008/12/07 00:31:06 patrick Exp $
 
@@ -19,7 +19,7 @@ DEPEND="dev-libs/openssl
 	>=dev-libs/geoip-1.4.0
 	gnutls? ( >=net-libs/gnutls-2.2.2 )
 	!gnutls? ( >=dev-libs/openssl-0.9.8g )
-	|| ( =kde-base/libkonq-3.5* =kde-base/kdebase-3.5* )"
+	=kde-base/libkonq-3.5*"
 
 RDEPEND="${DEPEND}
 	>=net-misc/tor-0.1.2.14

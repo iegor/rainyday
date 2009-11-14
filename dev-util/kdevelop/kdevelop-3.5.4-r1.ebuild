@@ -22,10 +22,10 @@ IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python rub
 DEPEND="!<dev-util/kdevelop-3.5.4-r1
 	sys-devel/gdb
 	>=sys-libs/db-4.1
-	cvs? ( || ( kde-base/cervisia:3.5 kde-base/kdesdk:3.5 ) )"
+	cvs? ( kde-base/cervisia:3.5 )"
 
 RDEPEND="${DEPEND}
-	subversion? ( || ( kde-base/kdesdk-kioslaves:3.5 kde-base/kdesdk:3.5[subversion] ) )"
+	subversion? ( kde-base/kdesdk-kioslaves:3.5 )"
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
@@ -97,10 +97,10 @@ pkg_postinst() {
 	elog "kdevelop can use a wide range of apps for extra functionality. This is an"
 	elog "almost complete list. All these packages can be emerged after kdevelop."
 	elog
-	elog "kde-base/konsole:3.5:    (RECOMMENDED) embed konsole kpart in kdevelop ide"
+	elog "kde-base/konsole:3.5:      (RECOMMENDED) embed konsole kpart in kdevelop ide"
 	elog "dev-util/kdbg:             (RECOMMENDED) kde frontend to gdb"
 	elog "dev-util/valgrind:         (RECOMMENDED) integrates valgrind (memory debugger) commands"
-	elog "kde-base/kompare:3.5:    (RECOMMENDED) show differences between files"
+	elog "kde-base/kompare:3.5:      (RECOMMENDED) show differences between files"
 	elog "media-gfx/graphviz:        (RECOMMENDED) support the new graphical classbrowser"
 	elog "dev-java/ant:              support projects using the ant build tool"
 	elog "dev-util/ctags:            faster and more powerful code browsing logic"

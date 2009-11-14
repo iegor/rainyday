@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
-DEPEND="|| ( =kde-base/kcontrol-3.5* =kde-base/kdebase-3.5* )"
+DEPEND="=kde-base/kcontrol-3.5*"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-0.11-sandbox.patch"

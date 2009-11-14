@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/knetworkmanager/ChangeLog,v 1.10 2009/11/02 09:19:49 abcd Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  knetworkmanager-0.2.2_p20080528.ebuild:
+  Remove monolithic deps
+
   02 Nov 2009; Jonathan Callen <abcd@gentoo.org>
   -knetworkmanager-0.2.1_pre20071119.ebuild,
   -knetworkmanager-0.2.1_p20071228.ebuild,

@@ -36,8 +36,8 @@ DEPEND=">=dev-db/sqlite-3.5.9:3
 
 RDEPEND="${DEPEND}
 	!${CATEGORY}/${PN}:0
-	|| ( ( kde-base/kgamma:3.5 kde-base/kamera:3.5 )
-		kde-base/kdegraphics:3.5 )"
+	kde-base/kgamma:3.5
+	kde-base/kamera:3.5"
 
 need-kde 3.5
 

@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/kbandwidth
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/kbandwidth/ChangeLog,v 1.15 2008/02/19 01:57:51 ingmar Exp $
+
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> kbandwidth-1.0.4-r1.ebuild:
+  Remove monolithic deps
 
   19 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org>
   kbandwidth-1.0.4-r1.ebuild:

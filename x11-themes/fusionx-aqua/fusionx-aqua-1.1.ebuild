@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/fusionx-aqua/fusionx-aqua-1.1.ebuild,v 1.20 2008/02/19 02:09:45 ingmar Exp $
 
@@ -14,8 +14,8 @@ SLOT="0"
 KEYWORDS="alpha amd64 ia64 ppc sparc x86 ~x86-fbsd"
 IUSE=""
 
-RDEPEND="|| ( =kde-base/kwin-3.5* =kde-base/kdebase-3.5* )
-	|| ( =kde-base/kdeartwork-kwin-styles-3.5* =kde-base/kdeartwork-3.5* )"
+RDEPEND="=kde-base/kwin-3.5*
+	=kde-base/kdeartwork-kwin-styles-3.5*"
 DEPEND=""
 
 RESTRICT="binchecks strip"

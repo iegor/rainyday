@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/koverartist/ChangeLog,v 1.34 2009/10/25 23:23:48 abcd Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> koverartist-0.5-r1.ebuild:
+  Remove monolithic deps
+
   25 Oct 2009; Jonathan Callen <abcd@gentoo.org> koverartist-0.5-r1.ebuild,
   -files/koverartist-0.5-gcc43.patch:
   Drop unneeded file, move blocker to RDEPEND

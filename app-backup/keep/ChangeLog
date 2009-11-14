@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-backup/keep/ChangeLog,v 1.7 2009/10/25 20:12:38 tove Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> keep-0.4.0-r1.ebuild:
+  Remove monolithic deps
+
   25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
   Remove drizzt from metadata.xml (#149111)
 

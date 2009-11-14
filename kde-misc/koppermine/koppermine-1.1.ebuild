@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/koppermine/koppermine-1.1.ebuild,v 1.4 2008/02/19 00:19:58 ingmar Exp $
 
@@ -14,8 +14,7 @@ KEYWORDS="~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="
-	|| ( =kde-base/kdebase-3.5*
-		( =kde-base/kcontrol-3.5* =kde-base/kdialog-3.5* ) )"
+RDEPEND="=kde-base/kcontrol-3.5*
+	=kde-base/kdialog-3.5*"
 
 need-kde 3

@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/alloy/ChangeLog,v 1.29 2009/11/03 04:05:47 abcd Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> alloy-0.5.2.ebuild,
+  alloy-0.5.3.ebuild:
+  Remove monolithic deps
+
   03 Nov 2009; Jonathan Callen <abcd@gentoo.org> alloy-0.5.3.ebuild:
   Update kde-base/ deps so KDE 4 doesn't satisfy it
 

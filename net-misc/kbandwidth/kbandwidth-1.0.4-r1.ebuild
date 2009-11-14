@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/kbandwidth/kbandwidth-1.0.4-r1.ebuild,v 1.5 2008/02/19 01:57:51 ingmar Exp $
 
@@ -14,7 +14,7 @@ KEYWORDS="alpha amd64 ppc ~sparc x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="|| ( =kde-base/kdebase-3.5* =kde-base/kicker-3.5* )"
+RDEPEND="=kde-base/kicker-3.5*"
 
 need-kde 3.5
 

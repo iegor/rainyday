@@ -17,7 +17,7 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 ppc x86"
 IUSE="bindist"
 
-DEPEND="|| ( kde-base/konqueror:3.5 kde-base/kdebase:3.5 )"
+DEPEND="kde-base/konqueror:3.5"
 RDEPEND="${DEPEND}
 	bindist? ( <net-fs/samba-3.2.0_pre2 )
 	!bindist? ( net-fs/samba )

@@ -15,7 +15,7 @@ IUSE=""
 
 DEPEND="dev-libs/openssl
 	>=dev-libs/geoip-1.4.0
-	|| ( =kde-base/kdebase-3.5* =kde-base/libkonq-3.5* )"
+	=kde-base/libkonq-3.5*"
 
 RDEPEND="${DEPEND}
 	>=net-misc/tor-0.1.2.14

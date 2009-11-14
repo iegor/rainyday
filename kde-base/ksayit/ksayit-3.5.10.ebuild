@@ -10,16 +10,7 @@ KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86"
 IUSE=""
 
 DEPEND=">=kde-base/kttsd-${PV}:${SLOT}
-	|| ( >=kde-base/kdemultimedia-arts-${PV}:${SLOT} >=kde-base/kdemultimedia-${PV}:${SLOT} )"
-
-pkg_setup() {
-	kde_pkg_setup
-
-	if has_version kde-base/kdemultimedia:${SLOT} && ! built_with_use kde-base/kdemultimedia:${SLOT} arts ; then
-		eerror "You have \"arts\" USE flag enabled, but kde-base/kdemultimedia:${SLOT} was built with this flag disabled."
-		die "Reinstall kde-base/kdemultimedia:${SLOT} with USE=\"arts\""
-	fi
-}
+	>=kde-base/kdemultimedia-arts-${PV}:${SLOT}"
 
 src_compile() {
 	myconf="--enable-ksayit-audio-plugins"

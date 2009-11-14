@@ -1,6 +1,9 @@
 # ChangeLog for kde-misc/koppermine
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/koppermine/ChangeLog,v 1.3 2008/02/19 00:19:58 ingmar Exp $
+
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> koppermine-1.1.ebuild:
+  Remove monolithic deps
 
   18 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org> koppermine-1.1.ebuild:
   Update kde-base/* dependencies so that KDE 4 doesn't satisfy it. bug 206571.

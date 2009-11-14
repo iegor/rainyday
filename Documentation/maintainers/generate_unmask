@@ -2,9 +2,9 @@
 # This is meant to be run in kde-sunset/Documentation/maintainers/
 cd "$(dirname "$0")"
 rm ../package.unmask/kde-3.5 2> /dev/null
-find ../../ -iname "*ebuild" | sort | 
-	while read i; 
-	do 
-		Z=`echo $i | cut -d"/" -f3,5`; 
+find ../../ -iname "*ebuild" | sort |
+	while read i;
+	do
+		Z=`echo $i | cut -d"/" -f3,5`;
 		echo "=${Z/.ebuild}" >> ../package.unmask/kde-3.5;
 	done

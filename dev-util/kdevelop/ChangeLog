@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/ChangeLog,v 1.187 2009/09/27 14:57:18 ranger Exp $
 
+  14 Nov 2009; Jonathan Callen <abcd@gentoo.org> kdevelop-3.5.2-r1.ebuild,
+  kdevelop-3.5.4-r1.ebuild:
+  Remove monolithic deps
+
   27 Sep 2009; Brent Baude <ranger@gentoo.org> kdevelop-3.5.4-r1.ebuild:
   Marking kdevelop-3.5.4-r1 ppc64 for bug 272563
 

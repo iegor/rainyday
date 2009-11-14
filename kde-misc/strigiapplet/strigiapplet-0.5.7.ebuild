@@ -16,7 +16,7 @@ IUSE=""
 DEPEND="<app-misc/strigi-9999
 		>=media-libs/libextractor-0.5.15"
 RDEPEND="${DEPEND}
-		|| ( =kde-base/kdebase-3.5* =kde-base/kicker-3.5* )"
+		=kde-base/kicker-3.5*"
 
 need-kde 3.5
 

@@ -13,5 +13,5 @@ LICENSE="GPL-2"
 KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="|| ( =kde-base/kwin-3.5* =kde-base/kdebase-3.5* )"
+DEPEND="=kde-base/kwin-3.5*"
 need-kde 3.5

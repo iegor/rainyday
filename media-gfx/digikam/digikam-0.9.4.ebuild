@@ -30,8 +30,8 @@ DEPEND=">=media-libs/libgphoto2-2.2
 	!media-plugins/digikamimageplugins"
 
 RDEPEND="${DEPEND}
-	|| ( ( =kde-base/kgamma-3.5* =kde-base/kamera-3.5* )
-		=kde-base/kdegraphics-3.5* )"
+	=kde-base/kgamma-3.5*
+	=kde-base/kamera-3.5*"
 
 need-kde 3.5
 

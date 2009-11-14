@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="arts"
 
-DEPEND="|| ( =kde-base/kdebase-3.5* =kde-base/ksplashml-3.5* )"
+DEPEND="=kde-base/ksplashml-3.5*"
 
 need-kde 3.5
 

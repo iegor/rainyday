@@ -18,8 +18,10 @@ KEYWORDS="amd64 ppc sparc x86"
 IUSE="cddb"
 
 RDEPEND="!app-cdr/kover
-	cddb?  ( || ( ( kde-base/libkcddb:3.5 kde-base/kdemultimedia-kioslaves:3.5 )
-			kde-base/kdemultimedia:3.5 ) )"
+	cddb? (
+		kde-base/libkcddb:3.5
+		kde-base/kdemultimedia-kioslaves:3.5
+	)"
 need-kde 3.5
 
 S="${WORKDIR}/${PN}"
