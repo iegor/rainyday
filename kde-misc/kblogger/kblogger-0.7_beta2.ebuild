@@ -20,6 +20,8 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P/_/}"
 
+need-kde 3.5
+
 src_unpack() {
 	kde_src_unpack
 	rm -f "${S}"/configure

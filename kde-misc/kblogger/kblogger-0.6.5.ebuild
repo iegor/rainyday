@@ -19,6 +19,8 @@ IUSE=""
 DEPEND="=kde-base/kicker-3.5*"
 RDEPEND="${DEPEND}"
 
+need-kde 3.5
+
 src_unpack() {
 	kde_src_unpack
 	rm -f "${S}/configure"
