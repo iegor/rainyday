@@ -1,40 +1,38 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/skkfep/skkfep-0.87-r1.ebuild,v 1.1 2008/11/01 02:46:54 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/kplayer/kplayer-0.6.3.ebuild,v 1.5 2009/10/13 08:54:42 ssuominen Exp $
 
-inherit eutils toolchain-funcs
+inherit kde
 
-DESCRIPTION="A SKK-like Japanese input method for console"
-HOMEPAGE="http://homepage2.nifty.com/aito/soft.html"
-#SRC_URI="http://homepage2.nifty.com/aito/skkfep/${P}.tar.gz"
+DESCRIPTION="KPlayer is a KDE media player based on mplayer."
+HOMEPAGE="http://kplayer.sourceforge.net/"
 SRC_URI="mirror://sourceforge/kplayer/${P}.tar.bz2"
 
-LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
+LICENSE="GPL-3"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
-RDEPEND="sys-libs/ncurses"
-DEPEND="${RDEPEND}
-	>=sys-apps/sed-4
-	sys-apps/gawk"
-RDEPEND="${RDEPEND}
-	app-i18n/skk-jisyo"
+RDEPEND=">=media-video/mplayer-1.0_rc1"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-gentoo.patch"
+DEPEND="${RDEPEND}"
+
+LANGS="br ca cs cy da de el en_GB es et fi fr ga gl he hu it ja nb nl pa pl
+pt_BR pt ru sr@Latn sr sv tr zh_CN"
+
+for X in ${LANGS} ; do
+	IUSE="${IUSE} linguas_${X}"
+done
+
+need-kde 3.5
+
+PATCHES=( "${FILESDIR}/kplayer-0.6.3-desktop-entry.diff" )
+
+src_unpack () {
+	kde_src_unpack
+	cd "${WORKDIR}/${P}/po"
+	for X in ${LANGS} ; do
+		use linguas_${X} || rm -f "${X}."*
+	done
+	rm -f "${S}/configure"
 }
-
-src_compile() {
-	emake CC="$(tc-getCC)" OPTIMIZE="${CFLAGS}" || die
-}
-
-src_install() {
-	dobin skkfep escmode || die
-	doman skkfep.1
-
-	dodoc README HISTORY TODO
-}
-

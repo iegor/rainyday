@@ -2,6 +2,37 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/kplayer/ChangeLog,v 1.40 2009/10/18 18:25:21 maekke Exp $
 
+  18 Oct 2009; Markus Meier <maekke@gentoo.org> kplayer-0.7.ebuild:
+  x86 stable, bug #288837
+
+  13 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kplayer-0.7.ebuild:
+  amd64 stable wrt #288837
+
+  06 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> kplayer-0.7.ebuild:
+  Preparation for new eclass. Unprefixing misc apps.
+
+  27 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org> kplayer-0.7.ebuild:
+  Update deps to block old kplayer with -kdeprefix. Per bug #259868.
+
+  11 Feb 2009; Theo Chatzimichos <tampakrap@gentoo.org> kplayer-0.7.ebuild:
+  small fixes
+
+*kplayer-0.7 (11 Feb 2009)
+
+  11 Feb 2009; Theo Chatzimichos <tampakrap@gentoo.org> +kplayer-0.7.ebuild:
+  initial import of the KDE4 version
+
+  12 Jan 2008; Carsten Lohrke <carlo@gentoo.org>
+  +files/kplayer-0.6.3-desktop-entry.diff, kplayer-0.6.3.ebuild:
+  Fix desktop entry.
+
+  10 Aug 2007; Raúl Porcel <armin76@gentoo.org> kplayer-0.6.3.ebuild:
+  Back to ~arch, went stright to stable
+
+  09 Aug 2007; Tobias Heinlein <keytoaster@gentoo.org> kplayer-0.6.3.ebuild:
+  Fixing LICENSE, kplayer-0.6.3 and later is licensed under the GPL version 3
+  or later
+
 *kplayer-0.6.3 (09 Aug 2007)
 
   09 Aug 2007; Tobias Heinlein <keytoaster@gentoo.org>
