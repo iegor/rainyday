@@ -12,7 +12,9 @@ SRC_URI="${SRC_URI}
 DESCRIPTION="Synchronize Data with KDE"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 IUSE=""
-DEPEND=">=app-pda/libopensync-0.36
+
+# See #262397 about libopensync dependency -- MvG
+DEPEND="=app-pda/libopensync-0.36*
 	>=kde-base/kontact-${PV}:${SLOT}
 	>=kde-base/libkcal-${PV}:${SLOT}"
 
