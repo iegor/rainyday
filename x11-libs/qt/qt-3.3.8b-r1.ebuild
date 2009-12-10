@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-3.3.8b-r1.ebuild,v 1.8 2009/08/02 21:54:28 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-3.3.8b-r1.ebuild,v 1.9 2009/12/03 18:25:47 yngwin Exp $
 
 # *** Please remember to update qt3.eclass when revbumping this ***
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs
 
 SRCTYPE="free"
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework."
-HOMEPAGE="http://www.trolltech.com/"
+HOMEPAGE="http://qt.nokia.com/"
 
 IMMQT_P="qt-x11-immodule-unified-qt3.3.8-20070321-gentoo"
 
@@ -366,7 +366,7 @@ pkg_postinst() {
 	elog "occurs you should recompile the packages providing these plugins,"
 	elog "and you should also make sure that Qt and its plugins were compiled with the"
 	elog "same version of GCC.  Packages that may need to be rebuilt are, for instance,"
-	elog "kde-base/kdelibs and kde-base/kdeartwork-styles."
+	elog "kde-base/kdelibs, kde-base/kdeartwork and kde-base/kdeartwork-styles."
 	elog "See http://doc.trolltech.com/3.3/plugins-howto.html for more infos."
 	echo
 }
