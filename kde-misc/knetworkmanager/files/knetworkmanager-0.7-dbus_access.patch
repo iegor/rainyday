@@ -1,0 +1,23 @@
+diff -u -r knetworkmanager/knetworkmanager-0.7/knetworkmanager.conf knetworkmanager.orig/knetworkmanager-0.7/knetworkmanager.conf
+--- knetworkmanager/knetworkmanager-0.7/knetworkmanager.conf	2010-01-16 00:02:56.000000000 +0000
++++ knetworkmanager.orig/knetworkmanager-0.7/knetworkmanager.conf	2010-01-16 02:44:53.000000000 +0000
+@@ -29,6 +29,19 @@
+ 		<deny send_destination="org.freedesktop.NetworkManagerUserSettings"
+ 		      send_interface="org.freedesktop.NetworkManagerSettings.Connection.Secrets"/>
+ 	</policy>
++        <policy group="plugdev">
++		<allow own="org.freedesktop.NetworkManagerUserSettings"/>
++
++		<allow send_destination="org.freedesktop.NetworkManagerUserSettings"
++		       send_interface="org.freedesktop.NetworkManagerSettings"/>
++
++		<allow send_destination="org.freedesktop.NetworkManagerUserSettings"
++		       send_interface="org.freedesktop.NetworkManagerSettings.Connection"/>
++
++		<!-- Only root can get secrets -->
++		<deny send_destination="org.freedesktop.NetworkManagerUserSettings"
++		      send_interface="org.freedesktop.NetworkManagerSettings.Connection.Secrets"/>
++	</policy>
+ 	<policy context="default">
+ 		<deny own="org.freedesktop.NetworkManagerUserSettings"/>
+ 

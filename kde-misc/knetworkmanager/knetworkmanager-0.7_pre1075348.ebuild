@@ -1,24 +1,24 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/knetworkmanager/knetworkmanager-0.2.2_p20080528.ebuild,v 1.1 2008/06/24 17:55:41 rbu Exp $
 
 inherit kde eutils
 
-MY_PV="${PV}"
-MY_P=${PN}-${MY_PV}
-
 DESCRIPTION="A KDE frontend for NetworkManager"
 HOMEPAGE="http://en.opensuse.org/Projects/KNetworkManager"
 LICENSE="GPL-2"
-#SRC_URI="ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/network/${P}.tar.bz2"
-SRC_URI="mirror://gentoo/${MY_P}.tar.bz2"
-KEYWORDS="~amd64 ~ppc ~x86"
+SRC_URI="http://www.thel.ro/kde-sunset/${P}.tar.bz2"
+KEYWORDS="~x86"
 
 IUSE="cisco openvpn pptp dialup"
 
+need-kde 3.5
+
+SLOT="0"
+
 DEPEND="net-misc/networkmanager
 	=kde-base/kdelibs-3.5*
-	>=dev-libs/dbus-qt3-old-0.70
+	dev-libs/dbus-qt3-old:0.9
 	sys-apps/hal
 	net-wireless/wireless-tools
 	>=dev-libs/libnl-1.1
@@ -31,24 +31,17 @@ RDEPEND="${DEPEND}"
 DEPEND="${DEPEND}
 	>=sys-kernel/linux-headers-2.6.19"
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${PN}"
 
 pkg_setup() {
 	kde_pkg_setup
-
-	if has_version "<sys-apps/dbus-0.9" && ! built_with_use sys-apps/dbus qt3 ; then
-		echo
-		eerror "You must rebuild sys-apps/dbus with USE=\"qt3\" or use a newer version of dbus"
-		die "sys-apps/dbus not built with qt3 bindings"
-	fi
 }
 
 src_unpack() {
 	kde_src_unpack
 	cd "${S}"
-
-	epatch "${FILESDIR}/${PN}-0.2-pam_console-fix.patch"
-	epatch "${FILESDIR}/${PN}-0.2.1-fixbuild_u64-hschaa-01.patch"
+	epatch "${FILESDIR}"/${PN}-0.7-dbus_access.patch
+	epatch "${FILESDIR}"/${PN}-0.7-no_blank_psk.patch
 }
 
 src_compile() {
@@ -69,5 +62,5 @@ src_install() {
 	set-kdedir
 	rm -rf "${D}/${KDEDIR}/etc"
 	insinto /etc/dbus-1/system.d/
-	doins knetworkmanager/knetworkmanager.conf
+	doins ${PN}-0.7/knetworkmanager.conf
 }

@@ -1,6 +1,18 @@
 # ChangeLog for kde-misc/knetworkmanager
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/knetworkmanager/ChangeLog,v 1.10 2009/11/02 09:19:49 abcd Exp $
+
+*knetworkmanager-0.7_pre1075348 (16 Jan 2010)
+
+  16 Jan 2010; Serghei Amelian <serghei@gentoo.org>
+  -files/knetworkmanager-0.2.1-fixbuild_u64-hschaa-01.patch,
+  -knetworkmanager-0.2.2_p20080528.ebuild,
+  -files/knetworkmanager-0.2-pam_console-fix.patch,
+  +knetworkmanager-0.7_pre1075348.ebuild,
+  +files/knetworkmanager-0.7-dbus_access.patch,
+  +files/knetworkmanager-0.7-no_blank_psk.patch:
+  Added [kde-misc/knetworkmanager-0.7] and dropped old
+  [kde-misc/knetworkmanager-0.2.x]
 
   14 Nov 2009; Jonathan Callen <abcd@gentoo.org>
   knetworkmanager-0.2.2_p20080528.ebuild:
