@@ -1,0 +1,18 @@
+diff -u -r kdepim-3.5.10.orig/kioslaves/imap4/imapparser.cc kdepim-3.5.10/kioslaves/imap4/imapparser.cc
+--- kdepim-3.5.10.orig/kioslaves/imap4/imapparser.cc	2008-08-19 18:15:48.000000000 +0000
++++ kdepim-3.5.10/kioslaves/imap4/imapparser.cc	2010-01-16 23:47:28.981048819 +0000
+@@ -277,11 +277,10 @@
+   }
+   cmd = sendCommand (new imapCommand ("AUTHENTICATE", firstCommand.latin1()));
+ 
+-  while ( true )
+-  {
++  int pl = 0;
++  while ( pl != -1 && !cmd->isComplete () ) {
+     //read the next line
+-    while (parseLoop() == 0) ;
+-    if ( cmd->isComplete() ) break;
++    while ( ( pl = parseLoop() ) == 0);
+ 
+     if (!continuation.isEmpty())
+     {

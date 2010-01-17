@@ -1,6 +1,14 @@
 # ChangeLog for kde-base/kdepim-kioslaves
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-kioslaves/ChangeLog,v 1.112 2009/10/12 20:52:26 abcd Exp $
+
+*kdepim-kioslaves-3.5.10-r1 (17 Jan 2010)
+
+  17 Jan 2010; Serghei Amelian <serghei@gentoo.org>
+  +kdepim-kioslaves-3.5.10-r1.ebuild,
+  +files/kdepim-kioslaves-3.5.10-kio_imap4_fix_infinite_loop.patch:
+  Fixed infinite loop in kio_imap4
+  [http://bugs.kde.org/show_bug.cgi?id=77862]
 
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org>
   -kdepim-kioslaves-3.5.9.ebuild:
