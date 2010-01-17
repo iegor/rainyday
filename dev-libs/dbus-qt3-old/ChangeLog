@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/dbus-qt3-old
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-qt3-old/ChangeLog,v 1.15 2009/01/13 15:24:14 cardoe Exp $
+
+  17 Jan 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  dbus-qt3-old-0.70.ebuild:
+  Block unslotted version.
 
 *dbus-qt3-old-0.9 (16 Jan 2010)
 
