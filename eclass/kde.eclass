@@ -329,6 +329,59 @@ export WHICH="which"
 EOF
 					fi
 
+					# Make build succeed with >=autoconf-2.65, see http://tinyurl.com/yc4nbhq
+					if [[ -f admin/acinclude.m4.in ]] && \
+						[[ ! -f ${T}/acinclude.m4.in ]]; then
+						cp admin/acinclude.m4.in "${T}"
+						einfo "Patching admin/acinclude.m4.in"
+						patch -f --ignore-whitespace admin/acinclude.m4.in <<'EOF'
+--- admin/acinclude.m4.in
++++ admin/acinclude.m4.in
+@@ -3081,6 +3081,13 @@
+ fi
+ ])
+
++AC_DEFUN([GENTOO_DUMMY_CFLAGS],
++[
++  dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
++  CFLAGS=" $CFLAGS"
++])
++AC_BEFORE([GENTOO_DUMMY_CFLAGS],[AC_PROG_CC])
++
+ AC_DEFUN([AC_CHECK_COMPILERS],
+ [
+   AC_ARG_ENABLE(debug,
+@@ -3141,12 +3148,10 @@
+	 [kde_use_profiling="no"]
+   )
+
+-  dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
+-  CFLAGS=" $CFLAGS"
+-
+-  AC_PROG_CC
++  AC_REQUIRE([GENTOO_DUMMY_CFLAGS])
++  AC_REQUIRE([AC_PROG_CC])
+
+-  AC_PROG_CPP
++  AC_REQUIRE([AC_PROG_CPP])
+
+   if test "$GCC" = "yes"; then
+	 if test "$kde_use_debug_code" != "no"; then
+@@ -3176,7 +3181,7 @@
+
+   CXXFLAGS=" $CXXFLAGS"
+
+-  AC_PROG_CXX
++  AC_REQUIRE([AC_PROG_CXX])
+
+   KDE_CHECK_FOR_BAD_COMPILER
+
+EOF
+						if [[ $? != 0 ]]; then
+							ewarn "Failed to patch admin/acinclude.m4.in"
+							cp "${T}/acinclude.m4.in" admin/acinclude.m4.in
+						fi
+					fi
 					for x in Makefile.cvs admin/Makefile.common; do
 						if [[ -f "$x" && -z "$makefile" ]]; then makefile="$x"; fi
 					done
