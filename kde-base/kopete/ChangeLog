@@ -1,6 +1,12 @@
 # ChangeLog for kde-base/kopete
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/ChangeLog,v 1.218 2009/10/12 23:58:47 abcd Exp $
+
+*kopete-3.5.10-r5 (21 Jan 2010)
+
+  21 Jan 2010; Serghei Amelian <serghei@gentoo.org>
+  +kopete-3.5.10-r5.ebuild:
+  Yahoo protocol back on track. First attempt.
 
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org>
   -files/kopete-3.5.9-icq-protocol-change.patch, -kopete-3.5.10-r3.ebuild:
