@@ -51,7 +51,7 @@ RDEPEND="
 	media-libs/libart_lgpl
 	net-dns/libidn
 	>=sys-apps/portage-2.1.2.11
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	x11-libs/libXext
 	>=x11-libs/qt-3.3.3:3
 	acl? (

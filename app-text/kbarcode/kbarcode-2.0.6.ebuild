@@ -23,7 +23,7 @@ DEPEND=">=app-text/barcode-0.98
 
 RDEPEND=">=app-text/barcode-0.98
 	dev-libs/libpcre
-	virtual/ghostscript"
+	app-text/ghostscript-gpl"
 
 need-kde 3.5
 

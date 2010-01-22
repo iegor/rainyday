@@ -24,7 +24,7 @@ DEPEND="x11-libs/qt:3
 	cairo? ( >=x11-libs/cairo-1.0 )"
 
 RDEPEND="${DEPEND}
-	virtual/ghostscript"
+	app-text/ghostscript-gpl"
 
 pkg_setup() {
 	if use cairo && ! built_with_use 'x11-libs/cairo' 'X' ; then

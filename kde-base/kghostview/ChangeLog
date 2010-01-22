@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kghostview/ChangeLog,v 1.99 2009/10/12 21:13:37 abcd Exp $
 
+  22 Jan 2010; Roman v. Gemmeren <strowi@hasnoname.de>:
+  changed virtual/ghostview to app-text/ghostview-gpl
+
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kghostview-3.5.9.ebuild:
   KDE 3.5.9 removal
 

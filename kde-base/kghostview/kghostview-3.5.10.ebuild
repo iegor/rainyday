@@ -10,16 +10,14 @@ DESCRIPTION="KDE: Viewer for PostScript (.ps, .eps) and Portable Document Format
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE=""
 # /Should/ also rdepend on kdeprint. Since kdeprint rdepends on kghostview for previews, we'd had a conflict, so we can't.
-RDEPEND="virtual/ghostscript"
+RDEPEND="app-text/ghostscript-gpl"
 KMEXTRA="kfile-plugins/ps"
 
 pkg_setup() {
 	kde_pkg_setup
-	for ghostscript in app-text/ghostscript-{gnu,esp,afpl}; do
-		if has_version ${ghostscript} && ! built_with_use ${ghostscript} X; then
-			eerror "This package requires ${ghostscript} compiled with X11 support."
-			eerror "Please reemerge ${ghostscript} with USE=\"X\"."
-			die "Please reemerge ${ghostscript} with USE=\"X\"."
-		fi
-	done
+	if has_version ghostscript-gpl && ! built_with_use ${ghostscript} X; then
+		eerror "This package requires ${ghostscript} compiled with X11 support."
+		eerror "Please reemerge ${ghostscript} with USE=\"X\"."
+		die "Please reemerge ${ghostscript} with USE=\"X\"."
+	fi
 }

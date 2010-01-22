@@ -28,7 +28,7 @@ DEPEND="x11-libs/qt:3
 	cairo? ( >=x11-libs/cairo-1.4.10[X,svg] )"
 
 RDEPEND="${DEPEND}
-	virtual/ghostscript"
+	app-text/ghostscript-gpl"
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-cheaders.diff" || die
