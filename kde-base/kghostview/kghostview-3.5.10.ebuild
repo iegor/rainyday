@@ -8,16 +8,18 @@ inherit kde-meta eutils
 
 DESCRIPTION="KDE: Viewer for PostScript (.ps, .eps) and Portable Document Format (.pdf) files"
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE=""
-# /Should/ also rdepend on kdeprint. Since kdeprint rdepends on kghostview for previews, we'd had a conflict, so we can't.
+IUSE="X"
+# /Should/
+ also rdepend on kdeprint. Since kdeprint rdepends on kghostview for previews, we'd had a conflict, so we can't.
 RDEPEND="app-text/ghostscript-gpl"
 KMEXTRA="kfile-plugins/ps"
 
 pkg_setup() {
 	kde_pkg_setup
-	if has_version ghostscript-gpl && ! built_with_use ${ghostscript} X; then
-		eerror "This package requires ${ghostscript} compiled with X11 support."
-		eerror "Please reemerge ${ghostscript} with USE=\"X\"."
-		die "Please reemerge ${ghostscript} with USE=\"X\"."
-	fi
+		if ! built_with_use app-text/ghostscript-gpl X; then
+                        eerror "This package requires ${ghostscript} compiled with X11 support."
+                        eerror "Please reemerge ${ghostscript} with USE=\"X\"."
+                        die "Please reemerge ${ghostscript} with USE=\"X\"."
+                fi
+
 }
