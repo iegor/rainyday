@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/ChangeLog,v 1.344 2009/11/09 18:18:36 fauli Exp $
 
+  23 Jan 2010; Roman v. Gemmeren <strowi@hasnoname.de> amarok-1.4.10_p20090130-r3.ebuild
+  reverted previous change because of changes in base.eclass + kde-sunset commit #08ea9a8
+
   14 Jan 2010; Roman v. Gemmeren <strowi@hasnoname.de> amarok-1.4.10_p20090130-r3.ebuild
   removed EAPI="2", because PATCHES wouldn't be applied
 
