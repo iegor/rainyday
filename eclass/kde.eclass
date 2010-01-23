@@ -169,7 +169,7 @@ kde_src_unpack() {
 				fi
 			done
 		fi
-		[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
+		[[ -n ${PATCHES[@]} ]] && base_src_prepare
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
 		# step by step transparently as defined in the ebuild.
