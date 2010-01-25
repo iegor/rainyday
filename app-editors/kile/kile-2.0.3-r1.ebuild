@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/kile/kile-2.0.3-r1.ebuild,v 1.10 2009/10/25 22:55:51 abcd Exp $
 
-EAPI="1"
+EAPI="2"
 
 ARTS_REQUIRED="never"
 
