@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+cd "$(dirname "$0")"/../..
+
+# Clone poppler dir from main portage tree
+rm -r app-text/poppler
+cp -r "${PORTDIR:-/usr/portage}/app-text/poppler" app-text/
+
+# Make adjustments to ebuilds
+sed -i \
+    -e 's/^\(IUSE=.*\) qt4/\1 qt3 qt4/' \
+    -e 's/-DWITH_Qt3=OFF/$(cmake-utils_use_with qt3)/' \
+    -e 's/^\([ \t]*\)\(qt4? ( x11-libs\/qt-core:4\)/\1qt3? ( >=x11-libs\/qt-3.3:3 )\n\1\2/' \
+    app-text/poppler/*.ebuild
+
+# Drop all unmodified ebuilds, e.g. for older versions without qt4 USE flag
+for i in app-text/poppler/*.ebuild; do
+    cmp -s "$i" "${PORTDIR:-/usr/portage}/$i" && rm $i
+done
+
+# Redigest and show difference
+ebuild $(ls -1 app-text/poppler/*.ebuild | tail -n1) digest
+diff -ur "${PORTDIR:-/usr/portage}/app-text/poppler" app-text/poppler
+Documentation/maintainers/generate_unmask

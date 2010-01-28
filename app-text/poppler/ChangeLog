@@ -1,12 +1,16 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.206 2010/01/24 22:20:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.208 2010/01/26 23:13:46 yngwin Exp $
 
-  25 Jan 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
-  +poppler-0.12.3-r2.ebuild,
-  +files/poppler-0.12.3-cmake-disable-tests.patch,
-  +files/poppler-0.12.3-fix-headers-installation.patch, +metadata.xml:
-  Import from main portage tree, added qt3 USE flag.
+*poppler-0.12.3-r3 (26 Jan 2010)
+
+  26 Jan 2010; Ben de Groot <yngwin@gentoo.org> +poppler-0.12.3-r3.ebuild,
+  +files/poppler-0.12.3-gdk.patch:
+  Add patch to fix gdk feature detection. Fixes bug 302332.
+
+  26 Jan 2010; Ben de Groot <yngwin@gentoo.org> -poppler-0.10.4.ebuild,
+  -poppler-0.10.5.ebuild:
+  Remove obsoleted versions.
 
 *poppler-0.12.3-r2 (24 Jan 2010)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.12.3-r2.ebuild,v 1.1 2010/01/24 22:20:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.12.3-r3.ebuild,v 1.1 2010/01/26 23:13:46 yngwin Exp $
 
 EAPI="2"
 
@@ -41,6 +41,7 @@ RDEPEND="${COMMON_DEPEND}
 src_prepare() {
 	epatch "${FILESDIR}/${P}-cmake-disable-tests.patch"
 	epatch "${FILESDIR}/${P}-fix-headers-installation.patch"
+	epatch "${FILESDIR}/${P}-gdk.patch"
 }
 
 src_configure() {
