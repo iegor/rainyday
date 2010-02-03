@@ -25,7 +25,7 @@ IUSE="debug elibc_FreeBSD"
 if [[ ${CATEGORY} == "kde-base" ]]; then
 	if [[ ${PV##*.} -lt 10 ]] ; then
 		# Keep old ebuilds as is
-	        IUSE="${IUSE} kdeenablefinal"
+		IUSE="${IUSE} kdeenablefinal"
 	else
 		# Don't use --enable-final anymore. Does only cause problems for users and
 		# as an unwelcome extra invalid bug reports, without any reasonable benefit.
@@ -169,7 +169,6 @@ kde_src_unpack() {
 				fi
 			done
 		fi
-		[[ -n ${PATCHES[@]} ]] && base_src_prepare
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
 		# step by step transparently as defined in the ebuild.
@@ -227,13 +226,6 @@ kde_src_unpack() {
 		ln -s "${WORKDIR}/admin" "${KDE_S}/admin" || die "Unable to symlink the new admin/ directory"
 		eend 0
 	fi
-}
-
-# dull function for keep working eapi2 and later
-kde_src_prepare() {
-	:
-	# prevent the patches applied twice; we cant repatch src_unpack onto two
-	# functions (unpack and prepare)
 }
 
 # @FUNCTION: kde_src_configure
@@ -603,5 +595,5 @@ kde_pkg_postrm() {
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
-	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
+	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
 esac
