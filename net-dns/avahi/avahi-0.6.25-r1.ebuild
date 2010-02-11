@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.25.ebuild,v 1.5 2010/01/03 15:23:37 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.25-r1.ebuild,v 1.1 2010/02/09 14:02:58 flameeyes Exp $
 
-EAPI="1"
+EAPI=2
 
 inherit eutils mono python multilib autotools flag-o-matic
 
@@ -27,15 +27,7 @@ RDEPEND=">=dev-libs/libdaemon-0.11-r1
 	)
 	dbus? (
 		>=sys-apps/dbus-0.30
-		python? (
-			|| (
-				dev-python/dbus-python
-				(
-					<sys-apps/dbus-0.90
-					>=sys-apps/dbus-0.30
-				)
-			)
-		)
+		python? ( dev-python/dbus-python )
 	)
 	mono? (
 		>=dev-lang/mono-1.1.10
@@ -44,7 +36,7 @@ RDEPEND=">=dev-libs/libdaemon-0.11-r1
 	howl-compat? ( !net-misc/howl )
 	mdnsresponder-compat? ( !net-misc/mDNSResponder )
 	python? (
-		>=virtual/python-2.4
+		>=dev-lang/python-2.4[gdbm]
 		gtk? ( >=dev-python/pygtk-2 )
 	)
 	bookmarks? (
@@ -61,16 +53,6 @@ DEPEND="${RDEPEND}
 	)"
 
 pkg_setup() {
-	if use python && ! built_with_use dev-lang/python gdbm
-	then
-		die "For python support you need dev-lang/python compiled with gdbm support!"
-	fi
-
-	if use python && use dbus && ! has_version dev-python/dbus-python && ! built_with_use sys-apps/dbus python
-	then
-		die "For python and dbus support you need sys-apps/dbus compiled with python support or dev-python/dbus-python!"
-	fi
-
 	if ( use mdnsresponder-compat || use howl-compat || use mono ) && ! use dbus
 	then
 		die "For *-compat or mono support you also need to enable the dbus USE flag!"
@@ -99,10 +81,7 @@ pkg_preinst() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	use ipv6 && sed -i -e s/use-ipv6=no/use-ipv6=yes/ avahi-daemon/avahi-daemon.conf
 
 	sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" doxygen_to_devhelp.xsl
@@ -115,7 +94,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	use sh && replace-flags -O? -O0
 
 	local myconf=""
@@ -156,6 +135,9 @@ src_compile() {
 		$(use_enable gdbm) \
 		${myconf} \
 		|| die "econf failed"
+}
+
+src_compile() {
 	emake || die "emake failed"
 
 	use doc && emake avahi.devhelp

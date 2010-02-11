@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Revert changes made in avahi-0.6.25.ebuild CVS revision 1.4. See also
+# http://sources.gentoo.org/net-dns/avahi/avahi-0.6.25.ebuild?r1=1.3&r2=1.4
+
+set -e
+cd "$(dirname "$0")"/../..
+
+# Clone avahi dir from main portage tree
+rm -r net-dns/avahi
+cp -r "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/
+
+# Make adjustments to ebuilds
+sed -i \
+    -e 's/^\(IUSE=.*\) qt4/\1 qt3 qt4/' \
+    -e 's/--disable-qt3/$(use_enable qt3)/' \
+    -e 's/^\([ \t]*\)\(qt4? ( x11-libs\/qt-core:4\)/\1qt3? ( x11-libs\/qt:3 )\n\1\2/' \
+    net-dns/avahi/*.ebuild
+
+# Drop all unmodified ebuilds, e.g. for older versions without qt4 USE flag
+for i in net-dns/avahi/*.ebuild; do
+    cmp -s "$i" "${PORTDIR:-/usr/portage}/$i" && rm $i
+done
+
+# Redigest and show difference
+ebuild $(ls -1 net-dns/avahi/*.ebuild | tail -n1) digest
+diff -ur "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/avahi
+Documentation/maintainers/generate_unmask
