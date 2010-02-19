@@ -174,7 +174,6 @@ kde_src_unpack() {
 		case ${EAPI:-0} in
 			0|1) 
 				if [[ -n ${PATCHES} ]]; then
-					ewarn "QA: PATCHES variable is not supported in EAPI ${EAPI:-0}. Please, fix you ebuild."
 					[[ -d "${KDE_S}" ]] || base_src_prepare	
 				fi
 			;;
