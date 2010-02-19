@@ -169,6 +169,16 @@ kde_src_unpack() {
 				fi
 			done
 		fi
+
+		# Check for PATCHES in EAPI=0|1
+		case ${EAPI:-0} in
+			0|1) 
+				if [[ -n ${PATCHES} ]]; then
+					ewarn "QA: PATCHES variable is not supported in EAPI ${EAPI:-0}. Please, fix you ebuild."
+					[[ -d "${KDE_S}" ]] || base_src_prepare	
+				fi
+			;;
+		esac
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
 		# step by step transparently as defined in the ebuild.
@@ -226,12 +236,6 @@ kde_src_unpack() {
 		ln -s "${WORKDIR}/admin" "${KDE_S}/admin" || die "Unable to symlink the new admin/ directory"
 		eend 0
 	fi
-
-	case ${EAPI:-0} in
-		0|1) 
-			[[ -n ${PATCHES} ]] && base_src_prepare 
-		;;
-	esac
 }
 
 # @FUNCTION: kde_src_configure
