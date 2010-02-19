@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kicker/kicker-3.5.10.ebuild,v 1.5 2009/07/12 11:32:31 armin76 Exp $
 
 KMNAME=kdebase
-EAPI="1"
+EAPI="2"
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}

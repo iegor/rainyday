@@ -4,7 +4,7 @@
 
 KMNAME=kdepim
 KMMODULE=kresources
-EAPI="1"
+EAPI="2"
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}
