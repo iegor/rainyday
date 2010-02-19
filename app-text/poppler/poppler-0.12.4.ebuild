@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.12.3-r4.ebuild,v 1.2 2010/02/09 23:41:01 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.12.4.ebuild,v 1.1 2010/02/18 01:41:25 yngwin Exp $
 
 EAPI="2"
 
@@ -38,12 +38,15 @@ RDEPEND="${COMMON_DEPEND}
 	!app-text/poppler-utils
 	cjk? ( >=app-text/poppler-data-0.2.1 )"
 
+DOCS="AUTHORS ChangeLog NEWS README README-XPDF TODO"
+
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-cmake-disable-tests.patch
-	epatch "${FILESDIR}"/${P}-fix-headers-installation.patch
-	epatch "${FILESDIR}"/${P}-gdk.patch
-	epatch "${FILESDIR}"/${P}-darwin-gtk-link.patch
-	epatch "${FILESDIR}"/${P}-cairo-image-downscale.patch #303817
+	epatch "${FILESDIR}"/${PN}-0.12.3-cmake-disable-tests.patch
+	epatch "${FILESDIR}"/${PN}-0.12.3-fix-headers-installation.patch
+	epatch "${FILESDIR}"/${PN}-0.12.3-gdk.patch
+	epatch "${FILESDIR}"/${PN}-0.12.3-darwin-gtk-link.patch
+	epatch "${FILESDIR}"/${P}-config.patch  #304407
+	epatch "${FILESDIR}"/${PN}-0.12.3-cairo-downscale.patch  #303817
 }
 
 src_configure() {
@@ -77,4 +80,10 @@ src_install() {
 		insinto /usr/share/gtk-doc/html/poppler
 		doins -r "${S}"/glib/reference/html/* || die 'failed to install API documentation'
 	fi
+}
+
+pkg_postinst() {
+	ewarn 'After upgrading app-text/poppler you may need to reinstall packages'
+	ewarn 'depending on it. If you have gentoolkit installed, you can find those'
+	ewarn 'with `equery d poppler`.'
 }
