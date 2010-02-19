@@ -226,6 +226,12 @@ kde_src_unpack() {
 		ln -s "${WORKDIR}/admin" "${KDE_S}/admin" || die "Unable to symlink the new admin/ directory"
 		eend 0
 	fi
+
+	case ${EAPI:-0} in
+		0|1) 
+			[[ -n ${PATCHES} ]] && base_src_prepare 
+		;;
+	esac
 }
 
 # @FUNCTION: kde_src_configure
