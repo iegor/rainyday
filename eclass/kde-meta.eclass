@@ -374,13 +374,6 @@ kde-meta_src_unpack() {
 	done
 }
 
-# dull function for keep working eapi2 and later
-kde-meta_src_prepare() {
-	:
-	# prevent the patches applied twice; we cant repatch src_unpack onto
-	# two functions (unpack and prepare)
-}
-
 # @FUNCTION: kde-meta_src_configure
 # @DESCRIPTION:
 # Configure stub for eapi 2
@@ -451,5 +444,5 @@ kde-meta_src_install() {
 }
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install;;
-	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install;;
+	2) EXPORT_FUNCTIONS src_unpack src_configure src_compile src_install;;
 esac
