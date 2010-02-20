@@ -144,37 +144,37 @@ kde_src_unpack() {
 	local PATCHDIR="${WORKDIR}/patches/"
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 
-		# Unpack first and deal with KDE patches after examing possible patch sets.
-		# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
-		# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
-		[[ -d "${KDE_S}" ]] || unpack ${A}
-		if [[ -d "${PATCHDIR}" ]] ; then
-			local packages p f
-			if is-parent-package ${CATEGORY}/${PN} ; then
-				packages="$(get-child-packages ${CATEGORY}/${PN})"
-				packages="${packages//${CATEGORY}\//} ${PN}"
-			else
-				packages="${PN}"
-			fi
-			if [[ -n ${PATCHES[@]} && $(declare -p PATCHES) != 'declare -a '* ]]; then
-				PATCHES=(${PATCHES})
-			fi
-			for p in ${packages}; do
-				for f in "${PATCHDIR}"/${p}-${PV}-*{diff,patch}; do
+	# Unpack first and deal with KDE patches after examing possible patch sets.
+	# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
+	# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
+	[[ -d "${KDE_S}" ]] || unpack ${A}
+	if [[ -d "${PATCHDIR}" ]] ; then
+		local packages p f
+		if is-parent-package ${CATEGORY}/${PN} ; then
+			packages="$(get-child-packages ${CATEGORY}/${PN})"
+			packages="${packages//${CATEGORY}\//} ${PN}"
+		else
+			packages="${PN}"
+		fi
+		if [[ -n ${PATCHES[@]} && $(declare -p PATCHES) != 'declare -a '* ]]; then
+			PATCHES=(${PATCHES})
+		fi
+		for p in ${packages}; do
+			for f in "${PATCHDIR}"/${p}-${PV}-*{diff,patch}; do
+				[[ -e ${f} ]] && PATCHES+=("${f}")
+			done
+			if [[ -n "${KDEBASE}" ]]; then
+				for f in "${PATCHDIR}"/${p}-${SLOT}-*{diff,patch}; do
 					[[ -e ${f} ]] && PATCHES+=("${f}")
 				done
-				if [[ -n "${KDEBASE}" ]]; then
-					for f in "${PATCHDIR}"/${p}-${SLOT}-*{diff,patch}; do
-						[[ -e ${f} ]] && PATCHES+=("${f}")
-					done
-				fi
-			done
-		fi
+			fi
+		done
+	fi
 
-		# Apply PATCHES in EAPI=0|1
-		case ${EAPI:-0} in
-			0|1) base_src_prepare ;;
-		esac
+	# Apply PATCHES in EAPI=0|1
+	case ${EAPI:-0} in
+		0|1) base_src_prepare ;;
+	esac
 
 	# if extragear-like packaging is enabled, set the translations and the
 	# documentation depending on LINGUAS settings
