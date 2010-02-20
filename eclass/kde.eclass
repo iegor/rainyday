@@ -131,23 +131,33 @@ kde_pkg_setup() {
 
 # @FUNCTION: kde_src_unpack
 # @DESCRIPTION:
-# This function unpacks the sources and patches it. The patches need to be named
+# This function unpacks the sources.
+# For EAPI 0 and 1 it allso runs kde_src_prepare.
+kde_src_unpack() {
+	debug-print-function $FUNCNAME "$@"
+	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
+	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
+	# Don't use base_src_unpack, as that will call base_src_prepare
+	# in the wrong place
+	[[ -d "${KDE_S}" ]] || unpack ${A}
+	case ${EAPI:-0} in
+		0|1) kde_src_prepare ;;
+	esac
+}
+
+# @FUNCTION: kde_src_prepare
+# @DESCRIPTION:
+# This function patches the sources. The patches need to be named
 # $PN-$PV-*{diff,patch}
 #
 # This function also handles the linguas if extragear-like packaging is enabled.
 # (See USE_KEG_PACKAGING)
-kde_src_unpack() {
-	debug-print-function $FUNCNAME "$@"
-
-	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
-
+kde_src_prepare() {
 	local PATCHDIR="${WORKDIR}/patches/"
-	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 
 	# Unpack first and deal with KDE patches after examing possible patch sets.
 	# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
 	# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
-	[[ -d "${KDE_S}" ]] || unpack ${A}
 	if [[ -d "${PATCHDIR}" ]] ; then
 		local packages p f
 		if is-parent-package ${CATEGORY}/${PN} ; then
@@ -171,10 +181,7 @@ kde_src_unpack() {
 		done
 	fi
 
-	# Apply PATCHES in EAPI=0|1
-	case ${EAPI:-0} in
-		0|1) base_src_prepare ;;
-	esac
+	base_src_prepare
 
 	# if extragear-like packaging is enabled, set the translations and the
 	# documentation depending on LINGUAS settings
@@ -596,5 +603,5 @@ kde_pkg_postrm() {
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
-	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
+	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
 esac
