@@ -146,7 +146,7 @@ kde_src_unpack() {
 		# Unpack first and deal with KDE patches after examing possible patch sets.
 		# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
 		# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
-		[[ -d "${KDE_S}" ]] || base_src_unpack unpack
+		[[ -d "${KDE_S}" ]] || unpack ${A}
 		if [[ -d "${PATCHDIR}" ]] ; then
 			local packages p f
 			if is-parent-package ${CATEGORY}/${PN} ; then
@@ -170,13 +170,9 @@ kde_src_unpack() {
 			done
 		fi
 
-		# Check for PATCHES in EAPI=0|1
+		# Apply PATCHES in EAPI=0|1
 		case ${EAPI:-0} in
-			0|1) 
-				if [[ -n ${PATCHES} ]]; then
-					[[ -d "${KDE_S}" ]] || base_src_prepare	
-				fi
-			;;
+			0|1) base_src_prepare ;;
 		esac
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
