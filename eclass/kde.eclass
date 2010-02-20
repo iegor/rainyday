@@ -142,7 +142,8 @@ kde_src_unpack() {
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
 
 	local PATCHDIR="${WORKDIR}/patches/"
-	if [[ -z "$@" ]] ; then
+	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
+
 		# Unpack first and deal with KDE patches after examing possible patch sets.
 		# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
 		# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
@@ -174,11 +175,6 @@ kde_src_unpack() {
 		case ${EAPI:-0} in
 			0|1) base_src_prepare ;;
 		esac
-	else
-		# Call base_src_unpack, which has sections, to do unpacking and patching
-		# step by step transparently as defined in the ebuild.
-		base_src_unpack "$@"
-	fi
 
 	# if extragear-like packaging is enabled, set the translations and the
 	# documentation depending on LINGUAS settings
