@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit cmake-utils
+inherit cmake-utils qt3
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="http://poppler.freedesktop.org/"
