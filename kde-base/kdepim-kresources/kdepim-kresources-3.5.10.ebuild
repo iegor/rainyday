@@ -4,7 +4,7 @@
 
 KMNAME=kdepim
 KMMODULE=kresources
-EAPI="1"
+EAPI="2"
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}
@@ -50,13 +50,13 @@ KMCOMPILEONLY="
 
 PATCHES=( "${WORKDIR}/patches/kdepim-kresources-3.5_use-installed-kode.diff" )
 
-src_compile() {
+src_configure() {
 	export DO_NOT_COMPILE="knotes libkcal"
+	kde-meta_src_configure
+}
 
-	kde-meta_src_compile myconf configure
-
-	cd knotes/; make libknotesresources.la
+src_compile() {
+	cd knotes/; make libknotesresources.la || die
 	cd "${S}"/libkcal/libical/src/libical ; emake ical.h
-
-	kde-meta_src_compile make
+	kde-meta_src_compile
 }
