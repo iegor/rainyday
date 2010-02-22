@@ -153,6 +153,7 @@ kde_src_unpack() {
 # This function also handles the linguas if extragear-like packaging is enabled.
 # (See USE_KEG_PACKAGING)
 kde_src_prepare() {
+	debug-print-function $FUNCNAME "$@"
 	local PATCHDIR="${WORKDIR}/patches/"
 
 	# Unpack first and deal with KDE patches after examing possible patch sets.
