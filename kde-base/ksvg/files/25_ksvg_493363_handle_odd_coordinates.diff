@@ -1,0 +1,19 @@
+Sun Aug  3 18:26:12 BST 2008  Steve Cotton <steve@s.cotton.clara.co.uk>
+  * 493363 Check that there are an even number of elements in KSVG::SVGAnimatedPointsImpl::parsePoints
+diff -rN -u old-kdegraphics-3.5.9/ksvg/impl/SVGAnimatedPointsImpl.cc new-kdegraphics-3.5.9/ksvg/impl/SVGAnimatedPointsImpl.cc
+--- old-kdegraphics-3.5.9/ksvg/impl/SVGAnimatedPointsImpl.cc	2008-08-03 18:30:36.000000000 +0100
++++ new-kdegraphics-3.5.9/ksvg/impl/SVGAnimatedPointsImpl.cc	2008-08-03 18:30:37.000000000 +0100
+@@ -79,6 +79,12 @@
+ 	_points = _points.simplifyWhiteSpace();
+ 
+ 	QStringList pointList = QStringList::split(' ', _points);
++
++	/* The list is of (x,y) pairs, so it must have an even
++	 * number of elements. */
++	if (pointList.count() % 2)
++		return;
++
+ 	for(QStringList::Iterator it = pointList.begin(); it != pointList.end(); it++)
+ 	{
+ 		SVGPointImpl *point = SVGSVGElementImpl::createSVGPoint();
+

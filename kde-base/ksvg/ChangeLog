@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/ksvg/ChangeLog,v 1.98 2009/10/12 22:29:19 abcd Exp $
 
+  23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/25_ksvg_493363_handle_odd_coordinates.diff, ksvg-3.5.10-r1.ebuild,
+  +files/fix-CVE-2009-0945.diff, +files/fix-CVE-2009-1709.diff:
+  Apply security patches from debian kdegraphics_3.5.9-3+lenny2.diff
+
 *ksvg-3.5.10-r1 (23 Feb 2010)
 
   23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>

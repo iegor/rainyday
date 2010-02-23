@@ -17,7 +17,9 @@ DEPEND=">=media-libs/freetype-2.3
 	dev-libs/fribidi"
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/${KMNAME}_${PN}-r983306.patch" )
+PATCHES=( "${FILESDIR}/25_ksvg_493363_handle_odd_coordinates.diff"
+	"${FILESDIR}/fix-CVE-2009-0945.diff"
+	"${FILESDIR}/fix-CVE-2009-1709.diff" )
 
 src_unpack() {
 	kde-meta_src_unpack
