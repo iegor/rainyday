@@ -1,0 +1,325 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r938036.
+Only looking at subdirectory kdepim/libkholidays here.
+Logs since r849627 of the branch but this might be wrong.
+
+r862013 | djarvie
+Give correct name to Japanese holiday file, so that it is displayed as "Japan"
+  M holidays/Makefile.am
+  D holidays/holiday_ja
+  A holidays/holiday_jp
+r868723 | winterz
+backport SVN commit 868721 by winterz:
+  M holidays/holiday_ar
+r896102 | winterz
+backport SVN commit 896098 by winterz:
+  M holidays/holiday_ru
+r910721 | winterz
+backport SVN commit 910718 by winterz:
+  M holidays/holiday_pl
+r938036 | cgiboudeaux
+svn backport r938035 Fix swedish holidays. Patch by Bengt Ahlgren.
+  M holidays/holiday_se
+
+
+Index: holidays/holiday_ja
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_ja	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/holiday_ja	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -1,80 +0,0 @@
+-:
+-: Japanese holiday file. Copy to ~/.holiday
+-: Author: Toyohiro Asukai <toyohiro@ksmplus.com>
+-: Last modified on Nov 16 2004
+-:
+-: National Holidays. (English Messages)
+-:small "New Year's Day" weekend on 1/1
+-:small "Coming of Age" weekend on second monday in january
+-:small "National Foundation Day" weekend on 2/11
+-:small "Vernal Equinox Day" weekend on 3/20/2005
+-:small "Vernal Equinox Day" weekend on 3/21/2006
+-:small "Vernal Equinox Day" weekend on 3/21/2007
+-:small "Vernal Equinox Day" weekend on 3/20/2008
+-:small "Vernal Equinox Day" weekend on 3/20/2009
+-:small "Vernal Equinox Day" weekend on 3/21/2010
+-:small "Greenery Day" weekend on 4/29
+-:small "Constitution Day" weekend on 5/3
+-:small "Holiday" weekend on 5/4
+-:small "Children's Day" weekend on 5/5
+-:small "Oceans' Day" weekend on third monday in july
+-:small "Respect for Senior Citizens Day" weekend on third monday in september
+-:small "Autumnal Equinox Day" weekend on 9/23
+-:small "Sports Day" weekend on second monday in october
+-:small "Culture Day" weekend on 11/3
+-:small "Labor Thanksgiving Day" weekend on 11/23
+-:small "The Emperor's Birthday" weekend on 12/23
+-
+-: National Holidays. (Japanese and English messages)
+-small "元旦(New Year's Day)" weekend on 1/1
+-small "成人の日(Coming of Age)" weekend on second monday in january
+-small "建国記念日(National Foundation Day)" weekend on 2/11
+-small "春分の日(Vernal Equinox Day)" weekend on 3/20/2005
+-small "春分の日(Vernal Equinox Day)" weekend on 3/21/2006
+-small "春分の日(Vernal Equinox Day)" weekend on 3/21/2007
+-small "春分の日(Vernal Equinox Day)" weekend on 3/20/2008
+-small "春分の日(Vernal Equinox Day)" weekend on 3/20/2009
+-small "春分の日(Vernal Equinox Day)" weekend on 3/21/2010
+-small "みどりの日(Greenery Day)" weekend on 4/29
+-small "憲法記念日(Constitution Day)" weekend on 5/3
+-small "休日(Holiday)" weekend on 5/4
+-small "こどもの日(Children's Day)" weekend on 5/5
+-small "海の日(Oceans' Day)" weekend on third monday in july
+-small "敬老の日(Respect for Senior Citizens Day)" weekend on third monday in september
+-small "秋分の日(Autumnal Equinox Day)" weekend on 9/23
+-small "体育の日(Sports Day)" weekend on second monday in october
+-small "文化の日(Culture Day)" weekend on 11/3
+-small "勤労感謝の日(Labor Thanksgiving Day)" weekend on 11/23
+-small "天皇誕生日(The Emperor's Birthday)" weekend on 12/23
+-
+-: If a "National Holiday" is on Sunday,the following day
+-: shall be a substitute holiday.
+-:small "Substitute holiday" weekend on 3/21/2005
+-:small "Substitute holiday" weekend on 1/2/2006
+-:small "Substitute holiday" weekend on 2/12/2007
+-:small "Substitute holiday" weekend on 4/30/2007
+-:small "Substitute holiday" weekend on 9/24/2007
+-:small "Substitute holiday" weekend on 12/24/2007
+-:small "Substitute holiday" weekend on 11/24/2008
+-:small "Substitute holiday" weekend on 3/22/2010
+-
+-small "振替休日(Substitute holiday)" weekend on 3/21/2005
+-small "振替休日(Substitute holiday)" weekend on 1/2/2006
+-small "振替休日(Substitute holiday)" weekend on 2/12/2007
+-small "振替休日(Substitute holiday)" weekend on 4/30/2007
+-small "振替休日(Substitute holiday)" weekend on 9/24/2007
+-small "振替休日(Substitute holiday)" weekend on 12/24/2007
+-small "振替休日(Substitute holiday)" weekend on 11/24/2008
+-small "振替休日(Substitute holiday)" weekend on 3/22/2010
+-
+-
+-: Japanese Events , not National Holidays.
+-:small "St. Valentine's Day" on february 14
+-:small "Girls' Festival" on march 3
+-:small "Buddha's Birthday" on april 8
+-:small "May Day" on may 1
+-:small "Boys' Festival" on may 5
+-:small "Mother's Day" on second sunday in may
+-:small "Father's Day" on third sunday in june
+-:small "Festival of the Weaver Star" on july 7
+-:small "Christmas" on december 25
+Index: holidays/holiday_jp
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_jp	 (.../tags/KDE/3.5.10)	(revision 0)
++++ kdepim/libkholidays/holidays/holiday_jp	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -0,0 +1,80 @@
++:
++: Japanese holiday file. Copy to ~/.holiday
++: Author: Toyohiro Asukai <toyohiro@ksmplus.com>
++: Last modified on Nov 16 2004
++:
++: National Holidays. (English Messages)
++:small "New Year's Day" weekend on 1/1
++:small "Coming of Age" weekend on second monday in january
++:small "National Foundation Day" weekend on 2/11
++:small "Vernal Equinox Day" weekend on 3/20/2005
++:small "Vernal Equinox Day" weekend on 3/21/2006
++:small "Vernal Equinox Day" weekend on 3/21/2007
++:small "Vernal Equinox Day" weekend on 3/20/2008
++:small "Vernal Equinox Day" weekend on 3/20/2009
++:small "Vernal Equinox Day" weekend on 3/21/2010
++:small "Greenery Day" weekend on 4/29
++:small "Constitution Day" weekend on 5/3
++:small "Holiday" weekend on 5/4
++:small "Children's Day" weekend on 5/5
++:small "Oceans' Day" weekend on third monday in july
++:small "Respect for Senior Citizens Day" weekend on third monday in september
++:small "Autumnal Equinox Day" weekend on 9/23
++:small "Sports Day" weekend on second monday in october
++:small "Culture Day" weekend on 11/3
++:small "Labor Thanksgiving Day" weekend on 11/23
++:small "The Emperor's Birthday" weekend on 12/23
++
++: National Holidays. (Japanese and English messages)
++small "元旦(New Year's Day)" weekend on 1/1
++small "成人の日(Coming of Age)" weekend on second monday in january
++small "建国記念日(National Foundation Day)" weekend on 2/11
++small "春分の日(Vernal Equinox Day)" weekend on 3/20/2005
++small "春分の日(Vernal Equinox Day)" weekend on 3/21/2006
++small "春分の日(Vernal Equinox Day)" weekend on 3/21/2007
++small "春分の日(Vernal Equinox Day)" weekend on 3/20/2008
++small "春分の日(Vernal Equinox Day)" weekend on 3/20/2009
++small "春分の日(Vernal Equinox Day)" weekend on 3/21/2010
++small "みどりの日(Greenery Day)" weekend on 4/29
++small "憲法記念日(Constitution Day)" weekend on 5/3
++small "休日(Holiday)" weekend on 5/4
++small "こどもの日(Children's Day)" weekend on 5/5
++small "海の日(Oceans' Day)" weekend on third monday in july
++small "敬老の日(Respect for Senior Citizens Day)" weekend on third monday in september
++small "秋分の日(Autumnal Equinox Day)" weekend on 9/23
++small "体育の日(Sports Day)" weekend on second monday in october
++small "文化の日(Culture Day)" weekend on 11/3
++small "勤労感謝の日(Labor Thanksgiving Day)" weekend on 11/23
++small "天皇誕生日(The Emperor's Birthday)" weekend on 12/23
++
++: If a "National Holiday" is on Sunday,the following day
++: shall be a substitute holiday.
++:small "Substitute holiday" weekend on 3/21/2005
++:small "Substitute holiday" weekend on 1/2/2006
++:small "Substitute holiday" weekend on 2/12/2007
++:small "Substitute holiday" weekend on 4/30/2007
++:small "Substitute holiday" weekend on 9/24/2007
++:small "Substitute holiday" weekend on 12/24/2007
++:small "Substitute holiday" weekend on 11/24/2008
++:small "Substitute holiday" weekend on 3/22/2010
++
++small "振替休日(Substitute holiday)" weekend on 3/21/2005
++small "振替休日(Substitute holiday)" weekend on 1/2/2006
++small "振替休日(Substitute holiday)" weekend on 2/12/2007
++small "振替休日(Substitute holiday)" weekend on 4/30/2007
++small "振替休日(Substitute holiday)" weekend on 9/24/2007
++small "振替休日(Substitute holiday)" weekend on 12/24/2007
++small "振替休日(Substitute holiday)" weekend on 11/24/2008
++small "振替休日(Substitute holiday)" weekend on 3/22/2010
++
++
++: Japanese Events , not National Holidays.
++:small "St. Valentine's Day" on february 14
++:small "Girls' Festival" on march 3
++:small "Buddha's Birthday" on april 8
++:small "May Day" on may 1
++:small "Boys' Festival" on may 5
++:small "Mother's Day" on second sunday in may
++:small "Father's Day" on third sunday in june
++:small "Festival of the Weaver Star" on july 7
++:small "Christmas" on december 25
+
+Property changes on: holidays/holiday_jp
+___________________________________________________________________
+Added: svn:keywords
+   + Author Date Id Revision
+Added: svn:mergeinfo
+
+Index: holidays/holiday_pl
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_pl	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/holiday_pl	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -2,36 +2,37 @@
+ : sob kwi 10 15:47:14 CEST 1999
+ : by Krzysztof P. Jasiutowicz <kpjas@promail.pl>
+ :
+-
+-small      "Nowy Rok"              on 1.1.
+-small      "Trzech Króli"          weekend on 6.1.
+-: small      "Śledzik"             on easter minus 47 days
++small      "Nowy Rok"              weekend on 1.1.
++small      "Trzech Króli"          on 6.1.
++small      "Dzień Babci"           on 21.1.
++small      "Dzień Dziadka"         on 22.1.
++: small      "Śledzik"               on easter minus 47 days
+ small      "Popielec"              on easter minus 46 days
++small      "Wielki Piątek"         on easter minus  2 days
+ small      "Dzień Kobiet"          on 8.3.
+-small      "Wielki Piątek"         weekend on easter minus  2 days
++small      "Niedziela Palmowa"     on easter minus 7 days
+ small      "Wielkanoc"             weekend on easter length 2 days
+ small      "Lany Poniedziałek"     weekend on easter plus 1 day
+-small      "Niedziela Palmowa"     on easter minus 7 days
+ small      "Zielone Świątki"       weekend on easter plus 49 days
+-small      "Boże Ciało"            on easter plus 60 days
+-small      "Wniebowzięcie NMP"     on 15.8
+-small      "Święto Pracy"          on 1.5.
+-small      "Święto Konstytucji"    on 3.5.
+-small      "Wszystkich Świętych"   on 1.11.
++small      "Boże Ciało"            weekend on easter plus 60 days
++small      "Święto Pracy"          weekend on 1.5.
++small      "Dzień Flagi"           on 2.5.
++small      "Święto Konstytucji"    weekend on 3.5.
++small      "Wniebowzięcie NMP"     weekend on 15.8.
++small      "Wszystkich Świętych"   weekend on 1.11.
+ small      "Zaduszki"              on 2.11.
+-small      "Święto Niepodległości" on 11.11.
++small      "Święto Niepodległości" weekend on 11.11.
+ small      "Wigilia"               on 24.12.
+-small      "Boże Narodzenie"       on 25.12. length 2 days
++small      "Boże Narodzenie"       weekend on 25.12. length 2 days
+ small      "Sylwester"             on 31.12.
+ 
+-small      "Dzień Babci"           weekend on 21.1.
+-small      "Dzień Dziadka"         weekend on 22.1.
+-small black  "Andrzejki"           on 30.11.
++
++small black  "Walentynki"          on 14.2.
+ small black  "Dzień Matki"         on 26.5.
++small black  "Dzień Dziecka"       on 1.6.
+ small black  "Dzień Ojca"          on 23.6.
+-small black  "Dzień Dziecka"       on 1.6.
+-small black  "Św. Mikołaj"         on  6.12.
+-small black  "Walentynki"          on 14.2.
++small black  "Andrzejki"           on 30.11.
++small black  "Św. Mikołaj"         on 6.12.
+ 
+ 
+ "Początek wiosny" on march 21
+Index: holidays/holiday_ru
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_ru	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/holiday_ru	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -106,6 +106,6 @@
+ blue 	"День Конституции Российской Федерации" on 12.12
+ blue 	"День Ракетных войск стратегического назначения" on 17.12
+ blue 	"День работника органов безопасности Российской Федерации" on 20.12
+-blue 	"День энергетика" on third sunday in december
++blue   "День энергетика" on 22.12
+ blue 	"День взятия крепости Измаил (1790 год)" on 24.12
+ blue 	"День спасателя Российской Федерации" on 27.12
+Index: holidays/holiday_ar
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_ar	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/holiday_ar	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -7,6 +7,7 @@
+ : Related national laws
+ : http://www.uncu.edu.ar/contenido/skins/unc/download/Ley%2023555.pdf
+ : http://www.uncu.edu.ar/contenido/skins/unc/download/Ley%2024445.pdf
++: http://www.puntoprofesional.com/P/0650/LEY_26416.HTM
+ :
+ : Author: Daniel Vega <dv5a@dc.uba.ar>
+ 
+@@ -22,9 +23,8 @@
+ small "Día de Manuel Belgrano" weekend on third monday in june
+ small "Día de la Independencia" weekend on 7/9
+ small "Día de San Martín" weekend on third monday in august
+-small "Día de la Raza" weekend on (([10/12] == [friday  after ([10/11])] || [10/12] == [thursday  after ([10/11])]) ? [monday after  ([10/12])] : 
+-                                  (([10/12] == [tuesday after ([10/11])] || [10/12] == [wednesday after ([10/11])]) ? [monday before ([10/12])] :
+-                                    [10/12]))
++small "Día de la Raza" weekend on  (([10/12] == [tuesday after ([10/11])] || [10/12] == [wednesday after ([10/11])]) ? [monday before ([10/12])] :
++                                    [monday after  ([10/11])])
+ small "Inmaculada Concepción de María" weekend on 12/8
+ small "Navidad" weekend on 12/25
+ 
+Index: holidays/holiday_se
+===================================================================
+--- kdepim/libkholidays/holidays/holiday_se	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/holiday_se	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -23,8 +23,8 @@
+ :Before 2005
+ :black "Nationaldagen" black on 6.6
+ weekend "Nationaldagen" weekend on 6.6
+-black "Midsommarafton" black on friday before 26.6
+-weekend "Midsommardagen" weekend on saturday before 27.6
++black "Midsommarafton" black on friday before 25.6
++weekend "Midsommardagen" weekend on saturday before 26.6
+ blue "Vintertid" on last sunday in october
+ weekend "Alla helgons dag" weekend on first sunday in november minus 1
+ black "1. Advent" on sunday before 24.12 minus 21 days
+Index: holidays/Makefile.am
+===================================================================
+--- kdepim/libkholidays/holidays/Makefile.am	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkholidays/holidays/Makefile.am	 (.../branches/KDE/3.5)	(revision 938036)
+@@ -8,7 +8,7 @@
+                 holiday_ch holiday_cz holiday_de holiday_dk holiday_ee \
+                 holiday_es holiday_fi holiday_fr holiday_frswiss holiday_gb \
+                 holiday_gr holiday_gt \
+-                holiday_hu holiday_is holiday_il holiday_it holiday_ja \
++                holiday_hu holiday_is holiday_il holiday_it holiday_jp \
+                 holiday_lt holiday_mx \
+                 holiday_nl \
+                 holiday_no holiday_nz holiday_pl holiday_pt holiday_py \

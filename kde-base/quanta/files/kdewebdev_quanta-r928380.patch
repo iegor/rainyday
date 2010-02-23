@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r928380.
+Only looking at subdirectory kdewebdev/quanta here.
+Logs since r849627 of the branch but this might be wrong.
+
+r928380 | amantia
+Add special case for webdav. Patch based on the one attached to the br, thank you!
+  M project/projectupload.cpp
+
+
+Index: project/projectupload.cpp
+===================================================================
+--- kdewebdev/quanta/project/projectupload.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/quanta/project/projectupload.cpp	 (.../branches/KDE/3.5)	(revision 928380)
+@@ -375,7 +375,7 @@
+     buttonUpload->setEnabled(false);
+     KURL u = *baseUrl;
+     u.setPath(u.protocol() == "file" ? "/" : "");
+-    if (QExtFileInfo::exists(u, false, this))
++    if (QExtFileInfo::exists(u, false, this) || (u.protocol() == "webdav" && QExtFileInfo::exists(*baseUrl, false, this)))
+     {
+       upload();
+       return;

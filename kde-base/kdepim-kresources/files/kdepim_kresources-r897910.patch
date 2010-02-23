@@ -1,0 +1,58 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r897910.
+Only looking at subdirectory kdepim/kresources here.
+Logs since r849627 of the branch but this might be wrong.
+
+r851969 | scripty
+SVN_SILENT made messages (.desktop file)
+  M scalix/kabc/scalix.desktop
+  M scalix/kcal/scalix.desktop
+  M scalix/knotes/scalix.desktop
+r897910 | scripty
+SVN_SILENT made messages (.desktop file)
+  M scalix/kcal/scalix.desktop
+
+
+Index: scalix/kabc/scalix.desktop
+===================================================================
+--- kdepim/kresources/scalix/kabc/scalix.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kresources/scalix/kabc/scalix.desktop	 (.../branches/KDE/3.5)	(revision 897910)
+@@ -5,6 +5,7 @@
+ Name[da]=Adressebog på Scalix-server via KMail
+ Name[de]=Adressbuch auf einem Scalix-Server via KMail
+ Name[el]=Βιβλίο διευθύνσεων σε εξυπηρετητή Scalix μέσω του KMail
++Name[es]=Libreta de direcciones en servidor Scalix por medio de KMail
+ Name[et]=Aadressiraamat Scalix-serveris (KMaili vahendusel)
+ Name[fr]=Carnet d'adresses sur serveur Scalix via KMail
+ Name[is]=Vistfangaskrá á Scalix-þjóni gegnum KMail
+Index: scalix/knotes/scalix.desktop
+===================================================================
+--- kdepim/kresources/scalix/knotes/scalix.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kresources/scalix/knotes/scalix.desktop	 (.../branches/KDE/3.5)	(revision 897910)
+@@ -5,6 +5,7 @@
+ Name[da]=Noter på Scalix-server via KMail
+ Name[de]=Notizen auf einem Scalix-Server via KMail
+ Name[el]=Σημειώσεις σε εξυπηρετητή Scalix μέσω του KMail
++Name[es]=Notas en servidor Scalix por medio de KMail
+ Name[et]=Kalender Scalix-serveris (KMaili vahendusel)
+ Name[fr]=Notes sur serveur Scalix via KMail
+ Name[is]=Minnismiðar á Scalix-þjóni gegnum KMail
+Index: scalix/kcal/scalix.desktop
+===================================================================
+--- kdepim/kresources/scalix/kcal/scalix.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kresources/scalix/kcal/scalix.desktop	 (.../branches/KDE/3.5)	(revision 897910)
+@@ -5,6 +5,7 @@
+ Name[da]=Kalender på Scalix-server via KMail
+ Name[de]=Kalender auf einem Scalix-Server via KMail
+ Name[el]=Ημερολόγιο σε εξυπηρετητή Scalix μέσω του KMail
++Name[es]=Calendario en servidor Scalix por medio de KMail
+ Name[et]=Kalender Scalix-serveris (KMaili vahendusel)
+ Name[fr]=Agenda sur serveur Scalix via KMail
+ Name[is]=Dagatal á Scalix-þjóni gegnum KMail
+@@ -14,6 +15,7 @@
+ Name[nds]=Kalenner op Scalix-Server över KMail
+ Name[nl]=Agenda op Scalix-server via KMail
+ Name[pl]=Kalendarz na serwerze Scalix za pośrednictwem KMaila
++Name[pt_BR]=Calendário em Servidor Scalix via KMail
+ Name[ru]=Календарь на сервере Scalix через KMail
+ Name[sk]=Kalendár na Scalix serveri pomocou KMail
+ Name[sr]=Календар на Scalix серверу преко KMail-а

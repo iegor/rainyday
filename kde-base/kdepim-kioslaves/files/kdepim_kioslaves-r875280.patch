@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r875280.
+Only looking at subdirectory kdepim/kioslaves here.
+Logs since r849627 of the branch but this might be wrong.
+
+r875280 | kloecker
+Merging revision 875279 from trunk: Fix recognition of Cyrus < 2.3.11. Patch by Martin Fahrendorf.
+  M sieve/sieve.cpp
+
+
+Index: sieve/sieve.cpp
+===================================================================
+--- kdepim/kioslaves/sieve/sieve.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kioslaves/sieve/sieve.cpp	 (.../branches/KDE/3.5)	(revision 875280)
+@@ -1290,7 +1290,7 @@
+     const int minor = regExp.cap( 2 ).toInt();
+     const int patch = regExp.cap( 3 ).toInt();
+     const QString vendor = regExp.cap( 4 );
+-    if ( major < 2 || (major == 2 && (minor < 3 || (major == 3 && patch < 11))) || (vendor == "-kolab-nocaps") ) {
++    if ( major < 2 || (major == 2 && (minor < 3 || (minor == 3 && patch < 11))) || (vendor == "-kolab-nocaps") ) {
+       ksDebug() << k_funcinfo << "Enabling compat mode for Cyrus < 2.3.11 or Cyrus marked as \"kolab-nocaps\"" << endl;
+       return true;
+     }

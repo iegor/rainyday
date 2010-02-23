@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r871250.
+Only looking at subdirectory kdebase/kwin here.
+Logs since r849627 of the branch but this might be wrong.
+
+r871250 | lunakl
+r867241 Just create the _MOTIF_WM_INFO atom, without using it at all. This helps a broken check in rxvt-unicode....
+  M atoms.cpp
+
+
+Index: atoms.cpp
+===================================================================
+--- kdebase/kwin/atoms.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kwin/atoms.cpp	 (.../branches/KDE/3.5)	(revision 871250)
+@@ -85,6 +85,8 @@
+     Atom fake;
+     atoms[n] = &fake;
+     names[n++] = (char *) "_DT_SM_WINDOW_INFO";
++    atoms[n] = &fake;
++    names[n++] = (char *) "_MOTIF_WM_INFO"; // #172028
+     
+     atoms[n] = &xdnd_aware;
+     names[n++] = (char*) "XdndAware";

@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r860376.
+Only looking at subdirectory kdepim/libkcal here.
+Logs since r849627 of the branch but this might be wrong.
+
+r860376 | djarvie
+Backport of revision 859714, 859717 by Kevin Krammer
+  M incidence.cpp
+
+
+Index: incidence.cpp
+===================================================================
+--- kdepim/libkcal/incidence.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/libkcal/incidence.cpp	 (.../branches/KDE/3.5)	(revision 860376)
+@@ -107,6 +107,8 @@
+ 
+ Incidence& Incidence::operator=( const Incidence &i )
+ {
++  if ( &i == this )
++    return *this;
+   IncidenceBase::operator=( i );
+   mRevision = i.mRevision;
+   mCreated = i.mCreated;

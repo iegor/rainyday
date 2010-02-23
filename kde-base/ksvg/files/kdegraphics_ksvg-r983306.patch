@@ -1,0 +1,26 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r983306.
+Only looking at subdirectory kdegraphics/ksvg here.
+Logs since r849627 of the branch but this might be wrong.
+
+r983306 | mueller
+fix use after free error (CVE-2009-1709)
+  M impl/SVGList.h
+
+
+Index: impl/SVGList.h
+===================================================================
+--- kdegraphics/ksvg/impl/SVGList.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdegraphics/ksvg/impl/SVGList.h	 (.../branches/KDE/3.5)	(revision 983306)
+@@ -94,7 +94,11 @@
+ 
+ 	T *insertItemBefore(T *newItem, unsigned int index)
+ 	{
+-		m_impl.insert(index, newItem);
++		if (index < m_vector.size()) {
++			m_vector.insert(index, newItem);
++		} else {
++			m_vector.append(newItem);
++		}
+ 		return newItem;
+ 	}
+ 

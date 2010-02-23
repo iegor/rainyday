@@ -1,0 +1,191 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r886802.
+Only looking at subdirectory kdepim/kabc here.
+Logs since r849627 of the branch but this might be wrong.
+
+r856958 | tokoe
+BugFix: Add helper application, that migrates the old distribution lists from KDE 3.5.8 to the new distribution...
+  M Makefile.am
+  A kabcdistlistupdater
+  A kabcdistlistupdater/Makefile.am
+  A kabcdistlistupdater/kabcdistlistupdater.cpp
+  A kabcdistlistupdater/kabcdistlistupdater.desktop
+r857667 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r859339 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r861733 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r862838 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r866496 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r869452 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r875659 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+r886802 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kabcdistlistupdater/kabcdistlistupdater.desktop
+
+
+Index: kabcdistlistupdater/kabcdistlistupdater.cpp
+===================================================================
+--- kdepim/kabc/kabcdistlistupdater/kabcdistlistupdater.cpp	 (.../tags/KDE/3.5.10)	(revision 0)
++++ kdepim/kabc/kabcdistlistupdater/kabcdistlistupdater.cpp	 (.../branches/KDE/3.5)	(revision 886802)
+@@ -0,0 +1,95 @@
++/*
++    This file is part of libkabc.
++    Copyright (c) 2008 Tobias Koenig <tokoe@kde.org>
++
++    This library is free software; you can redistribute it and/or
++    modify it under the terms of the GNU Library General Public
++    License as published by the Free Software Foundation; either
++    version 2 of the License, or (at your option) any later version.
++
++    This library is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++    Library General Public License for more details.
++
++    You should have received a copy of the GNU Library General Public License
++    along with this library; see the file COPYING.LIB.  If not, write to
++    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
++    Boston, MA 02110-1301, USA.
++*/
++
++#include <kaboutdata.h>
++#include <kapplication.h>
++#include <kcmdlineargs.h>
++#include <ksimpleconfig.h>
++#include <kdebug.h>
++#include <kglobal.h>
++#include <klocale.h>
++#include <kstandarddirs.h>
++
++#include <kabc/stdaddressbook.h>
++#include <libkdepim/distributionlist.h>
++
++static const KCmdLineOptions options[] =
++{
++  { "disable-autostart", "Disable automatic startup on login", 0 },
++  KCmdLineLastOption
++};
++
++void convertDistributionLists()
++{
++  KSimpleConfig cfg( locateLocal( "data", "kabc/distlists" ) );
++  const QMap<QString, QString> entryMap = cfg.entryMap( "DistributionLists" );
++
++  if ( entryMap.isEmpty() ) // nothing to convert
++    return;
++
++  QMapConstIterator<QString, QString> it;
++  for ( it = entryMap.begin(); it != entryMap.end(); ++it ) {
++    const QString listName = it.key();
++    const QStringList entries = QStringList::split( ',', it.data(), true );
++
++    KPIM::DistributionList distList;
++    distList.setUid( KApplication::randomString( 10 ) );
++    distList.setName( listName );
++
++    if ( entries.count() > 1 ) {
++      for ( uint i = 0; i < entries.count(); i += 2 ) {
++        const QString uid = entries[ i ];
++        const QString preferredEMail = entries[ i + 1 ];
++
++        distList.insertEntry( uid, preferredEMail );
++      }
++    }
++
++    KABC::StdAddressBook::self()->insertAddressee( distList );
++  }
++
++  KABC::StdAddressBook::self()->save();
++}
++
++int main( int argc, char **argv )
++{
++  KApplication::disableAutoDcopRegistration();
++
++  KAboutData aboutData( "kabcdistlistupdater", "Converter tool for distribution lists", "0.1" );
++  aboutData.addAuthor( "Tobias Koenig", 0, "tokoe@kde.org" );
++
++  KCmdLineArgs::init( argc, argv, &aboutData );
++  KCmdLineArgs::addCmdLineOptions( options );
++
++  KApplication app( false, false );
++
++  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
++
++  if ( args->isSet( "disable-autostart" ) ) {
++    kdDebug() << "Disable autostart." << endl;
++
++    KConfig *config = app.config();
++    config->setGroup( "Startup" );
++    config->writeEntry( "EnableAutostart", false );
++  }
++
++  convertDistributionLists();
++}
++
+Index: kabcdistlistupdater/Makefile.am
+===================================================================
+--- kdepim/kabc/kabcdistlistupdater/Makefile.am	 (.../tags/KDE/3.5.10)	(revision 0)
++++ kdepim/kabc/kabcdistlistupdater/Makefile.am	 (.../branches/KDE/3.5)	(revision 886802)
+@@ -0,0 +1,12 @@
++INCLUDES = -I$(includedir)/kabc -I$(top_srcdir) $(all_includes)
++
++METASOURCES = AUTO
++
++bin_PROGRAMS = kabcdistlistupdater
++
++kabcdistlistupdater_LDFLAGS = $(all_libraries) $(KDE_RPATH)
++kabcdistlistupdater_LDADD = $(LIB_KABC) $(top_builddir)/libkdepim/libkdepim.la
++kabcdistlistupdater_SOURCES = kabcdistlistupdater.cpp
++
++autostart_DATA = kabcdistlistupdater.desktop
++autostartdir = $(datadir)/autostart
+Index: kabcdistlistupdater/kabcdistlistupdater.desktop
+===================================================================
+--- kdepim/kabc/kabcdistlistupdater/kabcdistlistupdater.desktop	 (.../tags/KDE/3.5.10)	(revision 0)
++++ kdepim/kabc/kabcdistlistupdater/kabcdistlistupdater.desktop	 (.../branches/KDE/3.5)	(revision 886802)
+@@ -0,0 +1,21 @@
++# KDE Config File
++[Desktop Entry]
++Name=kabcdistlistupdater
++Name[nl]=kabcdistlijstbijwerker
++Exec=kabcdistlistupdater --disable-autostart
++Icon=misc
++Type=Application
++Comment=Tool to update the old distribution lists to the new ones.
++Comment[ca]=Eina per actualitzar les llistes de distribució antigues a les noves.
++Comment[es]=Herramienta para actualizar las antiguas listas de distribución al nuevo formato.
++Comment[et]=Tööriist vanade postiloendite uuendamiseks uue vormi kohaselt.
++Comment[nds]=Warktüüch, dat ole Verdeellisten to niege opfrischt
++Comment[nl]=Hulpmiddel om de oude distributielijsten bij te werken tot de nieuwe.
++Comment[sk]=Nástroj na aktualizáciu starých ditribučných zoznamov na nové.
++Comment[sr]=Алат за ажурирање старих дистрибуционих листи новима.
++Comment[sr@Latn]=Алат за ажурирање старих дистрибуционих листи новима.
++Comment[sv]=Verktyg för att uppdatera gamla distributionslistor till nya.
++Terminal=false
++NoDisplay=true
++X-KDE-autostart-condition=kabcdistlistupdaterrc:Startup:EnableAutostart:true
++OnlyShowIn=KDE;
+Index: Makefile.am
+===================================================================
+--- kdepim/kabc/Makefile.am	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kabc/Makefile.am	 (.../branches/KDE/3.5)	(revision 886802)
+@@ -1 +1,5 @@
+-SUBDIRS = kabc2mutt
++if compile_newdistrlists
++KABCDISTLISTUPDATER=kabcdistlistupdater
++endif
++
++SUBDIRS = kabc2mutt $(KABCDISTLISTUPDATER)

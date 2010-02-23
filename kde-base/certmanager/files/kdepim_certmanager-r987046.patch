@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r987046.
+Only looking at subdirectory kdepim/certmanager here.
+Logs since r849627 of the branch but this might be wrong.
+
+r987046 | winterz
+use GgpME::initializeLibrary(), per Marc. MERGE: e35 CCBUG: 195905 CCMAIL: mutz@kde.org
+  M lib/backends/qgpgme/qgpgmebackend.cpp
+
+
+Index: lib/backends/qgpgme/qgpgmebackend.cpp
+===================================================================
+--- kdepim/certmanager/lib/backends/qgpgme/qgpgmebackend.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/certmanager/lib/backends/qgpgme/qgpgmebackend.cpp	 (.../branches/KDE/3.5)	(revision 987046)
+@@ -54,7 +54,7 @@
+     mOpenPGPProtocol( 0 ),
+     mSMIMEProtocol( 0 )
+ {
+-
++  GpgME::initializeLibrary();
+ }
+ 
+ Kleo::QGpgMEBackend::~QGpgMEBackend() {

@@ -1,0 +1,26 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r894668.
+Only looking at subdirectory kdeutils/kcalc here.
+Logs since r849627 of the branch but this might be wrong.
+
+r894668 | brandybuck
+copy from display, not knumber value
+  M kcalcdisplay.cpp
+
+
+Index: kcalcdisplay.cpp
+===================================================================
+--- kdeutils/kcalc/kcalcdisplay.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeutils/kcalc/kcalcdisplay.cpp	 (.../branches/KDE/3.5)	(revision 894668)
+@@ -102,11 +102,7 @@
+ 
+ void KCalcDisplay::slotCopy(void)
+ {
+-	QString txt;
+-	if (_num_base != NB_DECIMAL)
+-		txt = QLabel::text();
+-	else
+-		txt = _display_amount.toQString();
++	QString txt = QLabel::text();
+ 	if (_num_base == NB_HEX)
+ 		txt.prepend( "0x" );
+ 	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);

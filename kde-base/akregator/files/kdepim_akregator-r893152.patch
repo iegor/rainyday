@@ -1,0 +1,36 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r893152.
+Only looking at subdirectory kdepim/akregator here.
+Logs since r849627 of the branch but this might be wrong.
+
+r893152 | scripty
+SVN_SILENT made messages (.desktop file)
+  M src/akregator_plugin.desktop
+  M src/mk4storage/akregator_mk4storage_plugin.desktop
+
+
+Index: src/mk4storage/akregator_mk4storage_plugin.desktop
+===================================================================
+--- kdepim/akregator/src/mk4storage/akregator_mk4storage_plugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/akregator/src/mk4storage/akregator_mk4storage_plugin.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -83,7 +83,7 @@
+ Comment[nn]=Programtillegg til Akregator
+ Comment[pl]=Wtyczka dla Akregatora
+ Comment[pt]='Plugin' para o Akregator
+-Comment[pt_BR]=Plugin para o Akregator
++Comment[pt_BR]=Plug-in para o Akregator
+ Comment[ru]=Модуль Akregator
+ Comment[se]=Lassemoduvla Akregatorii
+ Comment[sk]=Modul pre Akregator
+Index: src/akregator_plugin.desktop
+===================================================================
+--- kdepim/akregator/src/akregator_plugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/akregator/src/akregator_plugin.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -39,7 +39,7 @@
+ Comment[nn]=Programtillegg til Akregator
+ Comment[pl]=Wtyczka dla Akregatora
+ Comment[pt]='Plugin' para o Akregator
+-Comment[pt_BR]=Plugin para o Akregator
++Comment[pt_BR]=Plug-in para o Akregator
+ Comment[ru]=Модуль Akregator
+ Comment[se]=Lassemoduvla Akregatorii
+ Comment[sk]=Modul pre Akregator

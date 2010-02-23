@@ -1,0 +1,21 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r960293.
+Only looking at subdirectory kdesdk/poxml here.
+Logs since r849627 of the branch but this might be wrong.
+
+r960293 | coolo
+backport r928182 - fix compile with gcc 4.4
+  M antlr/antlr/CharScanner.hpp
+
+
+Index: antlr/antlr/CharScanner.hpp
+===================================================================
+--- kdesdk/poxml/antlr/antlr/CharScanner.hpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdesdk/poxml/antlr/antlr/CharScanner.hpp	 (.../branches/KDE/3.5)	(revision 960293)
+@@ -42,6 +42,7 @@
+ #include "antlr/BitSet.hpp"
+ #include "antlr/LexerSharedInputState.hpp"
+ #include <map>
++#include <cstdio>
+ 
+ ANTLR_BEGIN_NAMESPACE(antlr)
+ 

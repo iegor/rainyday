@@ -1,0 +1,29 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r865133.
+Only looking at subdirectory kdeutils/ark here.
+Logs since r849627 of the branch but this might be wrong.
+
+r865133 | gokcen
+Fix dangling else ambiguity. Patch by Fatih Aşıcı.
+  M arkwidget.cpp
+
+
+Index: arkwidget.cpp
+===================================================================
+--- kdeutils/ark/arkwidget.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeutils/ark/arkwidget.cpp	 (.../branches/KDE/3.5)	(revision 865133)
+@@ -566,11 +566,15 @@
+ 
+         // TODO: remote Archives should be handled by createArchive
+         if ( archive.isLocalFile() )
++        {
+             if ( !createArchive( archive.path() ) )
+                  return false;
++        }
+         else
++        {
+             if ( !createArchive( tmpDir() + archive.fileName() ) )
+                  return false;
++        }
+     return true;
+ 
+     }

@@ -1,0 +1,53 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r904512.
+Only looking at subdirectory kdebase/l10n here.
+Logs since r849627 of the branch but this might be wrong.
+
+r875066 | quique
+SVN_SILENT Fix Ecuador's name in KDE 3.5
+  M ec/entry.desktop
+r882043 | jferrer
+Added catalan default date format
+  M es/entry.desktop
+r904512 | ozan
+Currency has switched back to TL from 01 January 2009
+  M tr/entry.desktop
+
+
+Index: tr/entry.desktop
+===================================================================
+--- kdebase/l10n/tr/entry.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/l10n/tr/entry.desktop	 (.../branches/KDE/3.5)	(revision 904512)
+@@ -83,7 +83,7 @@
+ Languages=tr
+ DecimalSymbol=,
+ ThousandsSeparator=.
+-CurrencySymbol=YTL
++CurrencySymbol=TL
+ MonetaryDecimalSymbol=,
+ MonetaryThousandsSeparator=.
+ PositiveSign=
+Index: ec/entry.desktop
+===================================================================
+--- kdebase/l10n/ec/entry.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/l10n/ec/entry.desktop	 (.../branches/KDE/3.5)	(revision 904512)
+@@ -1,5 +1,5 @@
+ [KCM Locale]
+-Name=Equador
++Name=Ecuador
+ Name[af]=Ewenaar
+ Name[ar]=الإكوادور
+ Name[az]=Ekvator
+Index: es/entry.desktop
+===================================================================
+--- kdebase/l10n/es/entry.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/l10n/es/entry.desktop	 (.../branches/KDE/3.5)	(revision 904512)
+@@ -94,7 +94,8 @@
+ NegativeMonetarySignPosition=1
+ DateFormat[es]=%A, %e de %B de %Y
+ DateFormat[eu]=%a, %Yeko %bren %da
+-DareFormat[gl]=%A, %e de %B de %Y
++DateFormat[gl]=%A, %e de %B de %Y
++DateFormat[ca]=%A, %e %B %Y
+ DateFormat[eo]=%A, la %ea de %B %Y
+ DateFormatShort=%d-%m-%y
+ TimeFormat=%H:%M:%S

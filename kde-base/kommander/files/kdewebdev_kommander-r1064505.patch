@@ -1,0 +1,3559 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r1064505.
+Only looking at subdirectory kdewebdev/kommander here.
+Logs since r849627 of the branch but this might be wrong.
+
+r928097 | sequitur
+added scroll to anchor
+  M widgets/textbrowser.cpp
+r928098 | sequitur
+added slot for two QString arguments - useful for working with links in text browsers
+  M widgets/scriptobject.cpp
+  M widgets/scriptobject.h
+r928100 | sequitur
+added execute function - should have been there
+  M widgets/aboutdialog.cpp
+  M widgets/aboutdialog.h
+r928742 | sequitur
+back ported the new parser features from HEAD new += for text and numbers new { } for loops and if statements
+  M widget/parsenode.h
+  M widget/parser.cpp
+  M widget/parserdata.cpp
+r929242 | sequitur
+added Kommander 4 run for test plugins broken
+  M editor/mainwindow.cpp
+  M editor/mainwindow.h
+  M editor/mainwindowactions.cpp
+r937110 | sequitur
+must have used the same number for popupList - fixed
+  M widgets/combobox.cpp
+r940263 | sequitur
+added context menu
+  M widgets/execbutton.cpp
+  M widgets/execbutton.h
+r948426 | sequitur
+resolved conflict with setSelection and slot version to enable calling slot with script
+  M widgets/textedit.cpp
+r948876 | sequitur
+added missing functionality to text edit
+  M widgets/textedit.cpp
+r948893 | sequitur
+added sort function - need to port to KDE4
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+  M widget/functionlib.cpp
+r949924 | sequitur
+get the column click and also make sort default to by row
+  M widgets/table.cpp
+  M widgets/table.h
+r953415 | sequitur
+added curly brace support for switch statement
+  M widget/parser.cpp
+r953923 | sequitur
+background color experiment
+  M widgets/groupbox.cpp
+r954055 | sequitur
+background color experimentation
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+  M widgets/buttongroup.cpp
+  M widgets/checkbox.cpp
+  M widgets/combobox.cpp
+  M widgets/execbutton.cpp
+  M widgets/groupbox.cpp
+  M widgets/label.cpp
+  M widgets/lineedit.cpp
+  M widgets/listbox.cpp
+  M widgets/radiobutton.cpp
+  M widgets/slider.cpp
+  M widgets/spinboxint.cpp
+  M widgets/statusbar.cpp
+  M widgets/table.cpp
+  M widgets/textedit.cpp
+  M widgets/treewidget.cpp
+r954153 | sequitur
+additional saftey to prevent crashes
+  M widgets/table.cpp
+r955115 | sequitur
+remove paranoid testing - ended up with race condition on insert causing new data not to be accepted
+  M widgets/table.cpp
+r955138 | sequitur
+I was in error - these were not the problem This can't hurt and might prevent crashes
+  M widgets/table.cpp
+r955530 | sequitur
+New string functions - will port to KDE4 shortly
+  M editor/kommander-new.xml
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+  M widget/functionlib.cpp
+r960939 | sequitur
+currentItem returns -1 if not selected to distinguish from index 0
+  M widgets/treewidget.cpp
+r961967 | sequitur
+focus event enhancements
+  M widgets/dialog.cpp
+  M widgets/lineedit.cpp
+  M widgets/lineedit.h
+  M widgets/spinboxint.cpp
+  M widgets/spinboxint.h
+r961982 | sequitur
+enable for loop to count backwards
+  M widget/parser.cpp
+r962222 | sequitur
+fix bug I introduced causing crash on find with no result
+  M widgets/treewidget.cpp
+  M widgets/treewidget.h
+r962228 | sequitur
+fix bug I introduced causing crash on find with no result
+  M widgets/treewidget.cpp
+r965108 | sequitur
+geometry and bar color
+  M widgets/progressbar.cpp
+r965171 | sequitur
+fix current item crash
+  M widgets/treewidget.cpp
+r966349 | sequitur
+fix error - only allowed 5 parameters for valueDouble
+  M widget/functionlib.cpp
+r966616 | sequitur
+fix error - only allowed 5 parameters for valueDouble
+  M widget/functionlib.cpp
+r966941 | sequitur
+detect state when used as toggle
+  M widgets/execbutton.cpp
+r971580 | sequitur
+added geometry to widgets not having it got popup menu on button working
+  M widgets/buttongroup.cpp
+  M widgets/checkbox.cpp
+  M widgets/execbutton.cpp
+  M widgets/groupbox.cpp
+  M widgets/label.cpp
+  M widgets/radiobutton.cpp
+  M widgets/spinboxint.cpp
+  M widgets/toolbox.cpp
+r971581 | sequitur
+added -=, ++ and -- operators
+  M widget/parsenode.h
+  M widget/parser.cpp
+  M widget/parserdata.cpp
+r971711 | sequitur
+handle notify click
+  M widgets/textbrowser.cpp
+r982424 | sequitur
+improved tab handling
+  M widgets/tabwidget.cpp
+r982479 | sequitur
+enable hiding tabs
+  M widgets/tabwidget.cpp
+r982492 | sequitur
+function conflicts
+  M widgets/combobox.cpp
+  M widgets/tabwidget.cpp
+r982537 | sequitur
+add call by name functionality for tabs
+  M widgets/tabwidget.cpp
+r982874 | sequitur
+fixed bug in focus out event - oops!
+  M widgets/buttongroup.cpp
+  M widgets/lineedit.cpp
+r985587 | sequitur
+multi line comments
+  M widget/parser.cpp
+r985588 | sequitur
+multi line comments
+  M editor/kommander-new.xml
+r986578 | sequitur
+enable "else if" as well as elseif
+  M widget/parser.cpp
+  M widget/parser.h
+r987319 | sequitur
+arrays now work with +=, -=, ++ and --
+  M widget/parser.cpp
+r987510 | sequitur
+rudimentary 2D array support
+  M widget/parsenode.h
+  M widget/parser.cpp
+  M widget/parser.h
+  M widget/parserdata.cpp
+r1017933 | sequitur
+add context menu
+  M widgets/pixmaplabel.cpp
+  M widgets/pixmaplabel.h
+r1023998 | sequitur
+setButtonText added setText had been taken over to set widget text which is okay, but left this issue
+  M widgets/execbutton.cpp
+r1029373 | sequitur
+tools for modified widget
+  M widgets/lineedit.cpp
+  M widgets/textedit.cpp
+r1029374 | sequitur
+tools for modified widget
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+r1029563 | sequitur
+added node manipulation features
+  M widgets/treewidget.cpp
+r1029918 | sequitur
+
+  M widgets/popupmenu.cpp
+r1032474 | sequitur
+
+  M plugin/specials.h
+  M widget/functionlib.cpp
+  M widget/parsenode.cpp
+  M widget/parser.cpp
+r1032479 | sequitur
+added matrix clear
+  M plugin/specialinformation.cpp
+r1032567 | sequitur
+new matrix functionality
+  M editor/kommander-new.xml
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+  M widget/functionlib.cpp
+  M widget/parser.cpp
+r1032569 | sequitur
+removed qDebug
+  M widget/parser.cpp
+r1032991 | sequitur
+new Matrix functionality
+  M widget/functionlib.cpp
+  M widget/parser.cpp
+  M widget/parser.h
+r1032992 | sequitur
+new Matrix functionality
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+r1033317 | sequitur
+oops
+  M plugin/specialinformation.cpp
+r1034030 | sequitur
+new Matrix functionality
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+r1034032 | sequitur
+new Matrix functionality
+  M widget/functionlib.cpp
+  M widget/parser.cpp
+  M widget/parser.h
+r1034035 | sequitur
+new Matrix functionality
+  M editor/kommander-new.xml
+r1034036 | sequitur
+new Matrix functionality
+  M plugin/specialinformation.cpp
+r1034040 | sequitur
+new Matrix functionality
+  M factory/kommanderversion.h
+r1034312 | sequitur
+enhanced row and column heading to and from string
+  M plugin/specialinformation.cpp
+  M widget/functionlib.cpp
+r1034872 | sequitur
+allow add row to create new matrix
+  M widget/functionlib.cpp
+r1035237 | sequitur
+added find row
+  M widget/functionlib.cpp
+r1035238 | sequitur
+added find row
+  M editor/kommander-new.xml
+r1035239 | sequitur
+added find row
+  M plugin/specialinformation.cpp
+  M plugin/specials.h
+r1035469 | sequitur
+ehnanced foreach to handle matrix with both keys
+  M editor/kommander-new.xml
+  M widget/functionlib.cpp
+  M widget/parsenode.h
+  M widget/parser.cpp
+  M widget/parserdata.cpp
+r1035715 | sequitur
+discern matrix and array in foreach with like names
+  M widget/parser.cpp
+r1035873 | sequitur
+now handles irregular matrices gracefully
+  M widget/functionlib.cpp
+r1036150 | sequitur
+fixed array remove bug
+  M widget/functionlib.cpp
+r1036282 | sequitur
+added set tab label text
+  M widgets/tabwidget.cpp
+r1036284 | sequitur
+added set tab label text
+  M factory/kommanderversion.h
+r1036870 | sequitur
+return true when dialogs clicked
+  M plugin/specialinformation.cpp
+  M widget/functionlib.cpp
+r1043999 | sequitur
+mixed matrix_rowToArray and added iteration to matrix find in column
+  M factory/kommanderversion.h
+  M plugin/specialinformation.cpp
+  M widget/functionlib.cpp
+r1064505 | sequitur
+fix error in matrix_fromString row indexing
+  M widget/functionlib.cpp
+
+
+Index: widget/parser.h
+===================================================================
+--- kdewebdev/kommander/widget/parser.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/parser.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -68,6 +68,16 @@
+   void unsetArray(const QString& name, const QString& key = QString::null);
+   // array value 
+   ParseNode arrayValue(const QString& name, const QString& key) const;
++  // access 2D array 
++  const QMap<QString, QMap<QString, ParseNode> >& matrix(const QString& name) const;
++  // check if this is name of a 2D array
++  bool isMatrix(const QString& name) const;
++  // set array key
++  void setMatrix(const QString& name, const QString& keyr, const QString& keyc, ParseNode value);
++  // unset array key or whole array
++  void unsetMatrix(const QString& name, const QString& keyr = QString::null, const QString& keyc = QString::null);
++  // array value 
++  ParseNode matrixValue(const QString& name, const QString& keyr, const QString& keyc) const;
+   // get associated widget
+   KommanderWidget* currentWidget() const;
+ 
+@@ -133,6 +143,8 @@
+   void insertNode(ParseNode p, int line);
+   // next item to be parsed
+   ParseNode next() const;
++  // next is Else or Else && If?
++  bool nextElseIf();
+   // check if next item is keyword k, if so - go further, if no, set error
+   bool tryKeyword(Parse::Keyword k, Parse::Mode mode = Parse::Execute);
+   // check if next item is a variable, if so, return its name
+@@ -169,12 +181,16 @@
+   QMap<QString, ParseNode> m_variables;
+   // arrays
+   QMap<QString, QMap<QString, ParseNode> > m_arrays;
++  // 2D arrays
++  QMap<QString, QMap<QString, QMap<QString, ParseNode> > > m_matrices;
+   // Kommander 
+   KommanderWidget* m_widget;
+   // global variables
+   static QMap<QString, ParseNode> m_globalVariables;
+   // global arrays
+   static QMap<QString, QMap<QString, ParseNode> > m_globalArrays;
++  // global 2D arrays
++  static QMap<QString, QMap<QString, QMap<QString, ParseNode> > > m_globalMatrices;
+ };
+ 
+ #endif
+Index: widget/functionlib.cpp
+===================================================================
+--- kdewebdev/kommander/widget/functionlib.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/functionlib.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -80,6 +80,18 @@
+     params.count() == 3 ? params[2].toInt() : params[0].toString().length());
+ }
+ 
++static ParseNode f_stringCount(Parser*, const ParameterList& params)
++{
++  int c = 0;
++  int s = 0;
++  while (params[0].toString().find(params[1].toString(), s) > -1)
++  {
++    s = params[0].toString().find(params[1].toString(), s) + 1;
++    c++;
++  }
++  return c;
++}
++
+ static ParseNode f_stringLeft(Parser*, const ParameterList& params)
+ {
+   return params[0].toString().left(params[1].toInt());
+@@ -120,6 +132,44 @@
+   return params[0].toString().isEmpty();
+ }
+ 
++static ParseNode f_stringSort(Parser*, const ParameterList& params)
++{
++  if (params.count() == 2 ) 
++  {
++    QStringList tmplst = QStringList::split(params[1].toString(), params[0].toString());
++    tmplst.sort();
++    return tmplst.join(params[1].toString());
++  } 
++  else 
++  {
++    QStringList tmplst = QStringList::split("\n", params[0].toString());
++    tmplst.sort();
++    return tmplst.join("\n");
++  }
++}
++static ParseNode f_stringTrim(Parser*, const ParameterList& params)
++{
++  return params[0].toString().stripWhiteSpace();
++}
++
++static ParseNode f_stringPadLeft(Parser*, const ParameterList& params)
++{
++  if (params.count() == 2 ) 
++    return params[0].toString().rightJustify(params[1].toInt(), ' ', false);
++  QString s = params[2].toString();
++  QChar ch = s.at(0);
++  return params[0].toString().rightJustify(params[1].toInt(), ch, false);
++}
++
++static ParseNode f_stringPadRight(Parser*, const ParameterList& params)
++{
++  if (params.count() == 2 ) 
++    return params[0].toString().leftJustify(params[1].toInt(), ' ', false);
++  QString s = params[2].toString();
++  QChar ch = s.at(0);
++  return params[0].toString().leftJustify(params[1].toInt(), ch, false);
++}
++
+ static ParseNode f_stringSection(Parser*, const ParameterList& params)
+ {
+   return params[0].toString().section(params[1].toString(), params[2].toInt(), 
+@@ -553,7 +603,7 @@
+ 
+ static ParseNode f_arrayRemove(Parser* P, const ParameterList& params)
+ {
+-  if (!P->isArray(params[0].toString()))
++  if (P->isArray(params[0].toString()))
+     P->unsetArray(params[0].toString(), params[1].toString());
+   return ParseNode();
+ }
+@@ -697,6 +747,429 @@
+   return ParseNode();
+ }
+ 
++static ParseNode f_arrayFlipCopy(Parser* P, const ParameterList& params) 
++{
++  QString name = params[0].toString();
++  if (!P->isArray(name))
++    return ParseNode();
++  QString arr = params[1].toString();
++  const QMap<QString, ParseNode> A = P->array(name);
++  for (QMapConstIterator<QString, ParseNode> It = A.begin(); It != A.end(); ++It )
++  {
++    P->setArray(arr, (*It).toString(), It.key() );
++  }
++  return ParseNode();
++}
++
++/*********** matrix (2D array) functions ********/
++static ParseNode f_matrixClear(Parser* P, const ParameterList& params)
++{
++  P->unsetMatrix(params[0].toString());
++  return ParseNode();
++}
++
++static ParseNode f_matrixToString(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  QString matrix;
++  QString colhead;
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  int r = 0;
++  int c = 0;
++  int frow = 0;
++  int fcol = 0;
++  if (params.count() >= 1)
++    frow = params[1].toInt(); //row headings
++  if (params.count() >= 2)
++    fcol = params[2].toInt(); //col headings
++  QString tmp;
++  typedef QMap<int, QString> col_map;
++  col_map col_head;
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1 )
++  {
++    const QMap<QString, ParseNode> B = It1.data();
++    for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++    {
++      bool colfound = false;
++      for (QMapConstIterator<int, QString> It3 = col_head.begin(); It3 != col_head.end(); ++It3 )
++      {
++        if (It2.key() == (*It3))
++        {
++          colfound = true;
++          break;
++        }
++      }
++      if (!colfound)
++      {
++        col_head[c] = It2.key();
++        if (c > 0)
++          colhead.append("\t");
++        colhead.append(It2.key());
++        c++;
++      }
++    }
++  }
++  if (fcol && frow)
++    colhead.prepend("\t");
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1)
++  {
++    if (r > 0 )
++      matrix.append("\n");
++    if (frow) //add row keys
++    {
++      tmp = It1.key();
++      matrix.append(tmp+"\t");
++    }
++    c = 0;
++    const QMap<int, QString> B = col_head;
++    for (QMapConstIterator<int, QString> It2 = B.begin(); It2 != B.end(); ++It2 )
++    {
++      if (c > 0)
++        matrix.append("\t");
++      matrix.append(P->matrixValue(name, It1.key(), (*It2) ).toString());
++      c++;
++    }
++    r++;
++  }
++  if (fcol)
++    matrix.prepend(colhead+"\n");
++  return matrix;
++}
++
++static ParseNode f_matrixFromString(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  QStringList rows = QStringList::split("\n", params[1].toString());
++  int r = 0;
++  int frow = 0;
++  int fcol = 0;
++  QString rkey;
++  QMap<int, QString> colhead;
++  if (params.count() > 1)
++    frow = params[2].toInt(); //row headings
++  if (params.count() > 2)
++    fcol = params[3].toInt(); //col headings
++  for (QStringList::Iterator itr = rows.begin(); itr != rows.end(); ++itr ) 
++  {
++    int c = 0;
++    QString ckey;
++    QStringList cols = QStringList::split("\t", (*itr), true);
++    for (QStringList::Iterator itc = cols.begin(); itc != cols.end(); ++itc )
++    {
++      QString val = (*itc).stripWhiteSpace();
++      if (frow)
++      {
++        if (c == 0 && !val.isEmpty())
++        {
++          rkey = val;
++        }
++      }
++      else if (fcol)
++        rkey = QString::number(r-1);
++      else
++        rkey = QString::number(r);
++      if (fcol && r == 0 && c >= 0)
++      {
++        if (!val.isEmpty())
++          colhead[c] = val;
++        else
++          colhead[c] = QString::number(c);
++      }
++      if (!val.isEmpty() && !(c == 0 && frow) && !(r == 0 && fcol))
++      {
++        if (fcol)
++          ckey = colhead[c];
++        else
++          ckey = QString::number(c);
++        P->setMatrix(name, rkey, ckey, val);
++      }
++      c++;
++    }
++    r++;
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixRows(Parser* P, const ParameterList& params)
++{
++  if (P->isMatrix(params[0].toString()))
++    return (uint)(P->matrix(params[0].toString()).count());
++  else
++    return (uint)0;
++  
++}
++
++static ParseNode f_matrixRowKeys(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  QString matrix;
++  QString tmp;
++  QString separator = "\t";
++  if (params.count() == 2)
++    separator = params[1].toString();
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  int r = 0;
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1)
++  {
++    if (r > 0 )
++      matrix.append(separator);
++    tmp = It1.key();
++    matrix.append(tmp);
++    r++;
++  }
++  return matrix;
++}
++
++static ParseNode f_matrixFindRow(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  QString col = params[1].toString();
++  QString val = params[2].toString();
++  QString tmp;
++  int i = 0;
++  int find;
++  if (params.count() == 4)
++    find = params[3].toInt();
++  else
++    find = 0;
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It = A.begin(); It != A.end(); ++It)
++  {
++    if (val == P->matrixValue(name, It.key(), col).toString())
++    {
++      if (find == i)
++        return It.key();
++      i++;
++    }
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixCols(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (P->isMatrix(name))
++  {
++    typedef QMap<int, QString> col_map;
++    col_map col_head;
++    uint cols = 0;
++    const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++    for (QMapConstIterator<QString, QMap<QString, ParseNode> > It = A.begin(); It != A.end(); ++It)
++    {
++      const QMap<QString, ParseNode> B = It.data();
++      for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++      {
++        bool colfound = false;
++        for (QMapConstIterator<int, QString> It3 = col_head.begin(); It3 != col_head.end(); ++It3 )
++        {
++          if (It2.key() == (*It3))
++          {
++            colfound = true;
++            break;
++          }
++        }
++        if (!colfound)
++        {
++          col_head[cols] = It2.key();
++          cols++;
++        }
++      }
++    }
++    return (uint)cols;
++  }
++  else
++    return (uint)0;
++}
++
++static ParseNode f_matrixColumnKeys(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  QString matrix;
++  QString tmp;
++  QString separator = "\t";
++  if (params.count() == 2)
++    separator = params[1].toString();
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  QStringList colnames;
++  int c =0;
++  
++  typedef QMap<int, QString> col_map;
++  col_map col_head;
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1 )
++  {
++    const QMap<QString, ParseNode> B = It1.data();
++    for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++    {
++      bool colfound = false;
++      for (QMapConstIterator<int, QString> It3 = col_head.begin(); It3 != col_head.end(); ++It3 )
++      {
++        if (It2.key() == (*It3))
++        {
++          colfound = true;
++          break;
++        }
++      }
++      if (!colfound)
++      {
++        col_head[c] = It2.key();
++        if (c > 0)
++          matrix.append(separator);
++        matrix.append(It2.key());
++        c++;
++      }
++    }
++  }
++  return matrix;
++}
++
++static ParseNode f_matrixRowToArray(Parser* P, const ParameterList& params)
++{
++  QString mtr = params[0].toString();
++  if (P->isMatrix(mtr))
++  {
++    const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(mtr);
++    int i = 0;
++    int rclear = 1;
++    int ridx = 1;
++    if (params.count() > 2)
++      rclear = params[3].toInt();
++    if (params.count() > 3)
++      ridx = params[4].toInt();
++    QString arr = params[2].toString();
++    if (rclear)
++      P->unsetArray(arr);
++    for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1)
++    {
++      if (It1.key() == params[1].toString() ) 
++      {
++        const QMap<QString, ParseNode> B = It1.data();
++        for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++        {
++          if (ridx)
++            P->setArray(arr, QString::number(i), (*It2));
++          else
++            P->setArray(arr, It2.key(), (*It2));
++          i++;
++        }
++      }
++    }
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixColumnToArray(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (P->isMatrix(name))
++  {
++    const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++    for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1)
++    {
++      const QMap<QString, ParseNode> B = It1.data();
++      for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++      {
++        if (It2.key() == params[1].toString() ) 
++        {
++          P->setArray(params[2].toString(), It1.key(), (*It2));
++        }
++      }
++    }
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixColumnToIndexedArray(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (P->isMatrix(name))
++  {
++    const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++    int i = 0;
++    for (QMapConstIterator<QString, QMap<QString, ParseNode> > It1 = A.begin(); It1 != A.end(); ++It1)
++    {
++      const QMap<QString, ParseNode> B = It1.data();
++      for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++      {
++        if (It2.key() == params[1].toString() ) 
++        {
++          P->setArray(params[2].toString(), QString::number(i), (*It2));
++          i++;
++        }
++      }
++    }
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixAddRow(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  QString rowkey = params[1].toString();
++  QStringList rows = QStringList::split("\n", params[2].toString());
++  for (QStringList::Iterator itr = rows.begin(); itr != rows.end(); ++itr ) 
++  {
++    QStringList cols = QStringList::split("\t", (*itr));
++    if (cols.count() != 2 )
++      continue;
++    QStringList::Iterator itc = cols.begin();
++    QString rkey = (*itc).stripWhiteSpace();
++    ++itc;
++    QString rval = (*itc).stripWhiteSpace();
++    if (!rkey.isEmpty() && !rval.isEmpty())
++      P->setMatrix(name, rowkey, rkey, rval);
++  }
++  return ParseNode();
++}
++
++static ParseNode f_matrixRemoveRow(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  QString rowkey = params[1].toString();
++  int found = 0;
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  if (A.contains(rowkey))
++  {
++    P->unsetMatrix(name, rowkey);
++    found = 1;
++  }
++  return QString::number(found);
++}
++/*
++static ParseNode f_matrixAddColumn(Parser* P, const ParameterList& params)
++{
++}
++*/
++static ParseNode f_matrixRemoveColumn(Parser* P, const ParameterList& params)
++{
++  QString name = params[0].toString();
++  QString colkey = params[1].toString();
++  if (!P->isMatrix(name))
++    return ParseNode();
++  int found = 0;
++  const QMap<QString, QMap<QString, ParseNode> > A = P->matrix(name);
++  for (QMapConstIterator<QString, QMap<QString, ParseNode> > It = A.begin(); It != A.end(); ++It)
++  {
++    if (A[It.key()].contains(colkey))
++      found = 1;
++    P->unsetMatrix(name, It.key(), colkey);
++  }
++  return QString::number(found);
++}
++/*
++static ParseNode f_matrixIndexedCopy(Parser* P, const ParameterList& params)
++{
++}
++*/
+ /********** input functions *********************/
+ static ParseNode f_inputColor(Parser*, const ParameterList& params)
+ {
+@@ -793,7 +1266,7 @@
+   if (params.count() > 1)
+     caption = params[1].toString();
+   KMessageBox::information(0, text, caption);
+-  return ParseNode();
++  return 1;
+ }
+ 
+ static ParseNode f_message_error(Parser*, const ParameterList& params)
+@@ -804,7 +1277,7 @@
+   if (params.count() > 1)
+     caption = params[1].toString();
+   KMessageBox::error(0, text, caption);
+-  return ParseNode();
++  return 1;
+ }
+ 
+ static ParseNode f_message_warning(Parser*, const ParameterList& params)
+@@ -915,6 +1388,7 @@
+   registerFunction("str_find", Function(&f_stringFind, ValueInt, ValueString, ValueString, ValueInt, 2));
+   registerFunction("str_findrev", Function(&f_stringFindRev, ValueInt, ValueString, ValueString, ValueInt, 2));
+   registerFunction("str_left", Function(&f_stringLeft, ValueString, ValueString, ValueInt));
++  registerFunction("str_count", Function(&f_stringCount, ValueInt, ValueString, ValueString));
+   registerFunction("str_right", Function(&f_stringRight, ValueString, ValueString, ValueInt));
+   registerFunction("str_mid", Function(&f_stringMid, ValueString, ValueString, ValueInt, ValueInt, 2));
+   registerFunction("str_remove", Function(&f_stringRemove, ValueString, ValueString, ValueString));
+@@ -928,6 +1402,10 @@
+   registerFunction("str_toint", Function(&f_stringToInt, ValueString, ValueInt, 1));
+   registerFunction("str_todouble", Function(&f_stringToDouble, ValueString, ValueDouble, 1));
+   registerFunction("str_round", Function(&f_stringRound, ValueInt, ValueDouble, ValueInt, 2));
++  registerFunction("str_sort", Function(&f_stringSort, ValueString, ValueString, ValueString, 1, 2));
++  registerFunction("str_trim", Function(&f_stringTrim, ValueString, ValueString, 1));
++  registerFunction("str_padLeft", Function(&f_stringPadLeft, ValueString, ValueInt, ValueString, ValueString, 1, 2));
++  registerFunction("str_padRight", Function(&f_stringPadRight, ValueString, ValueInt, ValueString, ValueString, 1, 2));
+   registerFunction("return", Function(&f_return, ValueNone, ValueString, 1, 1));
+   registerFunction("debug", Function(&f_debug, ValueNone, ValueString, 1, 100));
+   registerFunction("echo", Function(&f_echo, ValueNone, ValueString, 1, 100));
+@@ -963,19 +1441,35 @@
+   registerFunction("array_indexedRemoveElements", Function(&f_arrayIndexedRemoveElements, ValueNone, ValueString, ValueInt, ValueInt, 2 , 3));
+   registerFunction("array_indexedInsertElements", Function(&f_arrayIndexedInsertElements, ValueNone, ValueString, ValueInt, ValueString, ValueString, 3, 4));
+   registerFunction("array_remove", Function(&f_arrayRemove, ValueNone, ValueString, ValueString));
++  registerFunction("matrix_fromString", Function(&f_matrixFromString, ValueNone, ValueString, ValueString, ValueInt, ValueInt, 2, 4));
++  registerFunction("matrix_toString", Function(&f_matrixToString, ValueNone, ValueString, ValueInt, ValueInt, 1, 3));
++  registerFunction("matrix_clear", Function(&f_matrixClear, ValueNone, ValueString));
++  registerFunction("matrix_rows", Function(&f_matrixRows, ValueInt, ValueString));
++  registerFunction("matrix_columns", Function(&f_matrixCols, ValueInt, ValueString));
++  registerFunction("matrix_rowToArray", Function(&f_matrixRowToArray, ValueNone, ValueString, ValueInt, ValueString, ValueInt, ValueInt, 3, 5));
++  registerFunction("matrix_columnToArray", Function(&f_matrixColumnToArray, ValueNone, ValueString, ValueString, ValueString, 3, 3));
++  registerFunction("matrix_columnToIndexedArray", Function(&f_matrixColumnToIndexedArray, ValueNone, ValueString, ValueString, ValueString, 3, 3));
++  registerFunction("array_flipCopy", Function(&f_arrayFlipCopy, ValueNone, ValueString, ValueString, 2, 2));
++  registerFunction("matrix_rowKeys", Function(&f_matrixRowKeys, ValueString, ValueString, ValueString, 1, 2));
++  registerFunction("matrix_columnKeys", Function(&f_matrixColumnKeys, ValueString, ValueString, ValueString, 1, 2));
++  registerFunction("matrix_addRow", Function(&f_matrixAddRow, ValueNone, ValueString, ValueString, ValueString, 3, 3));
++  registerFunction("matrix_removeRow", Function(&f_matrixRemoveRow, ValueInt, ValueString, ValueString, 2, 2));
++  registerFunction("matrix_removeColumn", Function(&f_matrixRemoveColumn, ValueInt, ValueString, ValueString, 2, 2));
++  registerFunction("matrix_findRow", Function(&f_matrixFindRow, ValueString, ValueString, ValueString, ValueString, 3, 4));
++  
+   registerFunction("input_color", Function(&f_inputColor, ValueString, ValueString, 0));
+   registerFunction("input_text", Function(&f_inputText, ValueString, ValueString, ValueString, ValueString, 2));
+   registerFunction("input_password", Function(&f_inputPassword, ValueString, ValueString, ValueString, 1));
+   registerFunction("input_value", Function(&f_inputValue, ValueInt, ValueString, ValueString, ValueInt, ValueInt, 
+-                   ValueInt, ValueInt, 5));
++                   ValueInt, ValueInt, 6));
+   registerFunction("input_double", Function(&f_inputValueDouble, ValueDouble, ValueString, ValueString, ValueDouble, ValueDouble, 
+-                   ValueDouble, ValueDouble, 5));
++                   ValueDouble, ValueDouble, 6));
+   registerFunction("input_openfile", Function(&f_inputOpenFile, ValueString, ValueString, ValueString, ValueString, 0));
+   registerFunction("input_openfiles", Function(&f_inputOpenFiles, ValueString, ValueString, ValueString, ValueString, 0));
+   registerFunction("input_savefile", Function(&f_inputSaveFile, ValueString, ValueString, ValueString, ValueString, 0));
+   registerFunction("input_directory", Function(&f_inputDirectory, ValueString, ValueString, ValueString, 0));
+-  registerFunction("message_info", Function(&f_message_info, ValueNone, ValueString, ValueString, 1));
+-  registerFunction("message_error", Function(&f_message_error, ValueNone, ValueString, ValueString, 1));
++  registerFunction("message_info", Function(&f_message_info, ValueInt, ValueString, ValueString, 1));
++  registerFunction("message_error", Function(&f_message_error, ValueInt, ValueString, ValueString, 1));
+   registerFunction("message_warning", Function(&f_message_warning, ValueInt, ValueString, ValueString, 
+                    ValueString, ValueString, ValueString, 1));
+   registerFunction("message_question", Function(&f_message_question, ValueInt, ValueString, ValueString, 
+Index: widget/parsenode.cpp
+===================================================================
+--- kdewebdev/kommander/widget/parsenode.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/parsenode.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -120,11 +120,21 @@
+   return type() == ValueKeyword && keyword() == Variable;
+ }
+ 
++bool ParseNode::isArray() const
++{
++  return type() == ValueKeyword && keyword() == Array;
++}
++
+ QString ParseNode::variableName() const
+ {
+   return isVariable() ? m_string : QString();
+ }
+ 
++QString ParseNode::arrayName() const
++{
++  return isArray() ? m_string : QString();
++}
++
+ QString ParseNode::errorMessage() const
+ {
+   return isValid() ? QString() : m_string;
+@@ -228,6 +238,13 @@
+   m_string = name;
+ }
+ 
++void ParseNode::setArray(const QString& name)
++{
++  m_type = ValueKeyword;
++  m_keyword = Array;
++  m_string = name;
++}
++
+ bool ParseNode::isValue() const
+ {
+   return m_type <= ValueValue;
+Index: widget/parsenode.h
+===================================================================
+--- kdewebdev/kommander/widget/parsenode.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/parsenode.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -23,8 +23,8 @@
+ {
+   enum Keyword {For, To, Step, End, While, Do, Foreach, In, If, Then, Else, Elseif, Endif, Switch, Case, 
+     Break, Continue, Exit, Dot, Semicolon, Comma, Assign, Less, LessEqual, Greater, GreaterEqual, Equal, NotEqual, 
+-    Not, And, Or, False, True, LeftParenthesis, RightParenthesis, LeftBracket, RightBracket,
+-    Plus, Minus, Multiply, Divide, Mod, LastRealKeyword = Mod, Variable, Invalid};
++    Not, And, Or, False, True, LeftParenthesis, RightParenthesis, LeftBracket, DoubleBracket, RightBracket, LeftCurlyBrace, RightCurlyBrace, PlusEqual, MinusEqual, Increment, Decrement,
++    Plus, Minus, Multiply, Divide, Mod, LastRealKeyword = Mod, Variable, Invalid, Array, Matrix, ArrKeyVal};
+ 
+   enum KeywordGroup {GroupComparison, GroupAdd, GroupMultiply, GroupMisc};
+   enum ValueType {ValueString, ValueInt, ValueDouble, ValueValue = ValueDouble, ValueKeyword,
+@@ -74,8 +74,12 @@
+   bool isKeyword(Parse::Keyword k) const;
+   /* Check if current value is a variable */
+   bool isVariable() const;
++  /* Check if current value is an Array */
++  bool isArray() const;
+   /* Return the name of variable */
+   QString variableName() const;
++  /* Return the name of array */
++  QString arrayName() const;
+   /* Return error message if applicable */
+   QString errorMessage() const;
+   /* Calculate common type for two nodes */
+@@ -100,6 +104,8 @@
+   void setValue(const QString& s);
+   /* set value as variable */
+   void setVariable(const QString& name);
++  /* set value as array */
++  void setArray(const QString& name);
+   /* check if it is correct value */
+   bool isValue() const;
+   /* for setting some context information, f. e. for bug reporting */
+Index: widget/parserdata.cpp
+===================================================================
+--- kdewebdev/kommander/widget/parserdata.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/parserdata.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -59,6 +59,8 @@
+   m_keywords["else"] =  Else;
+   m_keywords["elseif"] =  Elseif;
+   m_keywords["endif"] =  Endif;
++  m_keywords["{"] = LeftCurlyBrace;
++  m_keywords["}"] = RightCurlyBrace;
+   m_keywords["switch"] =  Switch;
+   m_keywords["case"] =  Case;
+   m_keywords["while"] =  While;
+@@ -90,13 +92,19 @@
+   m_keywords["("] =  LeftParenthesis;
+   m_keywords[")"] =  RightParenthesis;
+   m_keywords["["] =  LeftBracket;
++  m_keywords["]["] =  DoubleBracket;
+   m_keywords["]"] =  RightBracket;
+   m_keywords["+"] = Plus;
+   m_keywords["-"] = Minus;
+   m_keywords["*"] = Multiply;
+   m_keywords["/"] = Divide;
+   m_keywords["%"] = Mod;
++  m_keywords["+="] = PlusEqual;
++  m_keywords["-="] = MinusEqual;
++  m_keywords["++"] = Increment;
++  m_keywords["--"] = Decrement;
+   m_keywords["mod"] = Mod;
++  m_keywords["with"] = ArrKeyVal;
+   
+   m_groups[Less] = GroupComparison;
+   m_groups[LessEqual] = GroupComparison;
+Index: widget/parser.cpp
+===================================================================
+--- kdewebdev/kommander/widget/parser.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widget/parser.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -99,6 +99,15 @@
+     {
+       while (start < s.length() && s[start] != '\n')
+         start++;
++    }                               // enable /* */ block comments
++    else if (s[start] == '/' && start < s.length() +1 && s[start+1] == '*')
++    {
++      start += 2;
++      while (start < s.length() +1 && !(s[start] == '*' && s[start+1] == '/'))
++      {
++        start++;
++      }
++      start += 2;
+     }                              // special keyword: <>
+     else if (m_data->stringToKeyword(s.mid(start, 2)) <= LastRealKeyword)
+     {
+@@ -194,10 +203,12 @@
+     }
+   return p;
+ }
+-
++//attempting to allow assign or copy of array, so far with no joy
+ ParseNode Parser::parseValue(Mode mode)
+ {
+   ParseNode p = next();
++  //QString p2 = QString(p.toString());
++  //qDebug("parseValue p2 = "+p2);
+   if (isFunction())
+     return parseFunction(mode);
+   else if (isWidget())
+@@ -207,6 +218,13 @@
+     if (tryKeyword(LeftBracket, CheckOnly))
+     {
+       QString index = parseValue(mode).toString();
++      if (tryKeyword(DoubleBracket, CheckOnly)) 
++      {//2D array "matrix"
++        QString index2 = parseValue(mode).toString();
++        tryKeyword(RightBracket);
++        QString arr = p.variableName();
++        return matrixValue(arr, index, index2);
++      }
+       tryKeyword(RightBracket);
+       QString arr = p.variableName();
+       return arrayValue(arr, index);
+@@ -242,6 +260,11 @@
+     return ParseNode(0);
+   else if (tryKeyword(True, CheckOnly))
+     return ParseNode(1);
++/*  else if (isArray(p2))
++  {
++    qDebug("returning array fpr p2");
++    return p2;
++  }*/
+   else if (p.isKeyword())
+     setError(i18n("Expected value"));
+   else // single value
+@@ -411,6 +434,7 @@
+ {
+   int pos = m_start;
+   QString name = next().variableName();
++  //qDebug("Parsing function: "+name);
+   Function f = m_data->function(name);
+   m_start++;
+   ParameterList params;
+@@ -484,21 +508,189 @@
+ ParseNode Parser::parseAssignment(Mode mode)
+ {
+   QString var = nextVariable();
++  //qDebug("var = "+var+" Pos:"+QString::number(m_start));
+   if (tryKeyword(LeftBracket, CheckOnly))
+   {
+     QString index = parseValue(mode).toString();
+-    tryKeyword(RightBracket);
+-    tryKeyword(Assign);
++    if (tryKeyword(DoubleBracket, CheckOnly)) 
++    {//2D array "matrix"
++      ParseNode p1 = next(); //move along...
++      QString index2 = parseValue(mode).toString();
++      tryKeyword(RightBracket);
++      p1 = next();
++      ParseNode p2 = matrixValue(var, index, index2);
++      if (p1.isKeyword(PlusEqual))
++      {
++        tryKeyword(PlusEqual);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++        {
++          if (p2.type() == ValueString)
++            p = QString(p2.toString() + p.toString());
++          else if (p2.type() == ValueDouble)
++            p = p2.toDouble() + p.toDouble();
++          else
++          p = p2.toInt() + p.toInt();
++          setMatrix(var, index, index2, p);
++        }
++      }
++      else if (p1.isKeyword(MinusEqual))
++      {
++        tryKeyword(MinusEqual);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++        {
++          if (p2.type() == ValueDouble)
++            p = p2.toDouble() - p.toDouble();
++          else
++            p = p2.toInt() - p.toInt();
++          setMatrix(var, index, index2, p);
++        }
++      }
++      else if (p1.isKeyword(Increment))
++      {
++        tryKeyword(Increment);
++        if (mode == Execute)
++        {
++          p2 = p2.toInt() + 1;
++          setMatrix(var, index, index2, p2);
++        }
++      }
++      else if (p1.isKeyword(Decrement))
++      {
++        tryKeyword(Decrement);
++        if (mode == Execute)
++        {
++          p2 = p2.toInt() - 1;
++          setMatrix(var, index, index2, p2);
++        }
++      }
++      else
++      {
++        tryKeyword(Assign);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++          setMatrix(var, index, index2, p);
++      }
++    }
++    else
++    {
++      tryKeyword(RightBracket);
++      ParseNode p1 = next();
++      // seems awkward and pedantic but array values are now handled like variables
++      // for special assign with oparator
++      ParseNode p2 = arrayValue(var, index);
++      if (p1.isKeyword(PlusEqual))
++      {
++        tryKeyword(PlusEqual);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++        {
++          if (p2.type() == ValueString)
++            p = QString(p2.toString() + p.toString());
++          else if (p2.type() == ValueDouble)
++            p = p2.toDouble() + p.toDouble();
++          else
++          p = p2.toInt() + p.toInt();
++          setArray(var, index, p);
++        }
++      }
++      else if (p1.isKeyword(MinusEqual))
++      {
++        tryKeyword(MinusEqual);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++        {
++          if (p2.type() == ValueDouble)
++            p = p2.toDouble() - p.toDouble();
++          else
++            p = p2.toInt() - p.toInt();
++          setArray(var, index, p);
++        }
++      }
++      else if (p1.isKeyword(Increment))
++      {
++        tryKeyword(Increment);
++        if (mode == Execute)
++        {
++          p2 = p2.toInt() + 1;
++          setArray(var, index, p2);
++        }
++      }
++      else if (p1.isKeyword(Decrement))
++      {
++        tryKeyword(Decrement);
++        if (mode == Execute)
++        {
++          p2 = p2.toInt() - 1;
++          setArray(var, index, p2);
++        }
++      }
++      else
++      {
++        tryKeyword(Assign);
++        ParseNode p = parseExpression(mode);
++        if (mode == Execute)
++          setArray(var, index, p);
++      }
++    }
++  }
++  else if (tryKeyword(Assign, CheckOnly))
++  {
+     ParseNode p = parseExpression(mode);
+     if (mode == Execute)
+-      setArray(var, index, p);
++    {
++      setVariable(var, p);
++    }
+   }
+-  else if (tryKeyword(Assign, CheckOnly))
++  else if (tryKeyword(PlusEqual, CheckOnly))
+   {
+     ParseNode p = parseExpression(mode);
+     if (mode == Execute)
++    {
++      ParseNode p2 = variable(var);
++      if (p2.type() == ValueString)
++        p = QString(p2.toString() + p.toString());
++      else if (p2.type() == ValueDouble)
++        p = p2.toDouble() + p.toDouble();
++      else
++        p = p2.toInt() + p.toInt();
+       setVariable(var, p);
++    }
+   }
++  else if (tryKeyword(MinusEqual, CheckOnly))
++  {
++    ParseNode p = parseExpression(mode);
++    if (mode == Execute)
++    {
++      ParseNode p2 = variable(var);
++      if (p2.type() == ValueDouble)
++        p = p2.toDouble() - p.toDouble();
++      else
++        p = p2.toInt() - p.toInt();
++      setVariable(var, p);
++    }
++  }
++  else if (tryKeyword(Increment, CheckOnly))
++  {
++    //ParseNode p = parseExpression(mode);
++    if (mode == Execute)
++    {
++      ParseNode p = variable(var);
++      p = p.toInt() + 1;
++      setVariable(var, p);
++    }
++  }
++  else if (tryKeyword(Decrement, CheckOnly))
++  {
++    //ParseNode p = parseExpression(mode);
++    if (mode == Execute)
++    {
++      ParseNode p = variable(var);
++      p = p.toInt() - 1;
++      setVariable(var, p);
++    }
++  }
+   else if (tryKeyword(Dot, CheckOnly))
+   {
+     QString value = variable(var).toString();
+@@ -529,11 +721,14 @@
+   ParseNode p = next();
+   Flow flow = FlowStandard;
+   bool matched = false;
++  bool thenFound = false;
+   do {
+     m_start++;
+     Mode m = matched ? CheckOnly : mode;
+     p = parseCondition(m);
+-    tryKeyword(Then);
++    thenFound = tryKeyword(Then, CheckOnly);
++    if (!thenFound)
++      tryKeyword(LeftCurlyBrace);
+     bool condition = !matched && p.toBool();
+     if (condition)
+     {
+@@ -544,29 +739,52 @@
+     else 
+       parseBlock(CheckOnly);
+     matched = matched || p.toBool();
+-  } while (next().isKeyword(Elseif));
++    if (!thenFound)
++      tryKeyword(RightCurlyBrace);
++  } while (nextElseIf() == true);
++  bool braceFound = false;
+   if (tryKeyword(Else, CheckOnly))
+   {
++    braceFound = tryKeyword(LeftCurlyBrace, CheckOnly);
+     if (!matched)
+       flow = parseBlock(mode);
+     else
+       parseBlock(CheckOnly);
+   }
++  if (braceFound)
++    tryKeyword(RightCurlyBrace);
++  if (thenFound)
+   tryKeyword(Endif);
+   return flow;
+ }
+ 
++bool Parser::nextElseIf()
++{
++  ParseNode p1 = next();
++  if (p1.isKeyword(Elseif))
++    return true;
++  else 
++  {
++    ParseNode p2 = next();
++    if (p1.isKeyword(Else) && p2.isKeyword(If) )
++      return true;
++  }
++  return false;
++}
++
+ Parse::Flow Parser::parseWhile(Mode mode)
+ {
+   m_start++;
+   int start = m_start;
+   bool running = true;
+   Parse::Flow flow = FlowStandard;
++  bool doFound = false;
+   while (running)
+   {
+     m_start = start;
+     ParseNode p = parseCondition(mode);
+-    if (!tryKeyword(Do))
++    doFound = tryKeyword(Do, CheckOnly);
++    if (!doFound && !tryKeyword(LeftCurlyBrace))
+       break;
+     running = p.toBool();
+     flow = parseBlock(running ? mode : CheckOnly);
+@@ -575,7 +793,10 @@
+   }
+   if (flow != FlowExit)
+   {
+-    tryKeyword(End);
++    if (doFound)
++      tryKeyword(End);
++    else
++      tryKeyword(RightCurlyBrace);
+     return FlowStandard;
+   }
+   else 
+@@ -593,10 +814,13 @@
+   int step = 1;
+   if (tryKeyword(Step, CheckOnly))
+     step = parseExpression(mode).toInt();
+-  tryKeyword(Do);
++
++  bool doFound = tryKeyword(Do, CheckOnly);
++  if (!doFound)
++    tryKeyword(LeftCurlyBrace);
+   int block = m_start;
+   Parse::Flow flow = FlowStandard;
+-  if (end >= start)
++  if (end >= start && step > 0)
+   {
+     for (int i = start; i <= end; i+=step)
+     {
+@@ -606,11 +830,24 @@
+       if (flow == FlowBreak || flow == FlowExit)
+         break;
+     }
++  } else if (end <= start && step < 0)
++  {
++    for (int i = start; i >= end; i+=step)
++    {
++      m_start = block;
++      setVariable(var, ParseNode(i));
++      flow = parseBlock(mode);
++      if (flow == FlowBreak || flow == FlowExit)
++        break;
++    }
+   } else
+     parseBlock(Parse::CheckOnly);
+   if (flow != FlowExit)
+   {
+-    tryKeyword(End);
++    if (doFound)
++      tryKeyword(End);
++    else
++      tryKeyword(RightCurlyBrace);
+     return FlowStandard;
+   }
+   else 
+@@ -621,12 +858,22 @@
+ {
+   m_start++;
+   QString var = nextVariable();
++  QString var2 = "";
++  bool matrixfound = tryKeyword(ArrKeyVal, CheckOnly);
++  if (matrixfound == true)
++  {
++    m_start--;
++    tryKeyword(ArrKeyVal);
++    var2 = nextVariable();
++  }
+   tryKeyword(In);
+   QString arr = nextVariable();
+-  tryKeyword(Do);
++  bool doFound = tryKeyword(Do, CheckOnly);
++  if (!doFound)
++    tryKeyword(LeftCurlyBrace);
+   int start = m_start;
+   Parse::Flow flow = FlowStandard;
+-  if (isArray(arr) && array(arr).count())
++  if (isArray(arr) && array(arr).count() && !matrixfound)
+   {
+     const QMap<QString, ParseNode> A = array(arr);
+     for (QMapConstIterator<QString, ParseNode> It = A.begin(); It != A.end(); ++It)
+@@ -638,11 +885,41 @@
+         break;
+     }
+   }
++  else if  (isMatrix(arr) && matrix(arr).count() )
++  {
++    const QMap<QString, QMap<QString, ParseNode> > A = matrix(arr);
++    for (QMapConstIterator<QString, QMap<QString, ParseNode> > It = A.begin(); It != A.end(); ++It)
++    {
++      m_start = start;
++      setVariable(var, It.key());
++      if (matrixfound == true)
++      {
++        const QMap<QString, ParseNode> B = It.data();
++        for (QMapConstIterator<QString, ParseNode> It2 = B.begin(); It2 != B.end(); ++It2 )
++        {
++          m_start = start;
++          setVariable(var2, It2.key());
++          flow = parseBlock(mode);
++          if (flow == FlowBreak || flow == FlowExit)
++            break;
++        }
++      }
++      else
++      {
++        flow = parseBlock(mode);
++        if (flow == FlowBreak || flow == FlowExit)
++          break;
++      }
++    }
++  }
+   else 
+     parseBlock(CheckOnly);
+   if (flow != FlowExit)
+   {
+-    tryKeyword(End);
++    if (doFound)
++      tryKeyword(End);
++    else
++      tryKeyword(RightCurlyBrace);
+     return FlowStandard;
+   }
+   else 
+@@ -655,6 +932,8 @@
+   QString var = nextVariable();
+   ParseNode caseValue = variable(var);
+   bool executed = false;
++  bool braceFound = false;
++  braceFound = tryKeyword(LeftCurlyBrace, CheckOnly);
+   tryKeyword(Semicolon, CheckOnly);
+   while (tryKeyword(Case, CheckOnly))
+   {
+@@ -666,12 +945,17 @@
+   }
+   if (tryKeyword(Else, CheckOnly))
+     parseBlock(executed ? CheckOnly : mode);
+-  tryKeyword(End);
++  if (!braceFound)
++    tryKeyword(End);
++  else
++    tryKeyword(RightCurlyBrace);
+ }
+ 
+ Flow Parser::parseCommand(Mode mode)
+ {
+   ParseNode p = next();
++  QString p2 = p.toString();
++  //qDebug("Parsing command: "+p2);
+   if (next().isKeyword(If))
+     return parseIf(mode);
+   else if (next().isKeyword(While))
+@@ -740,7 +1024,7 @@
+     if (k == Dot)
+       setError(i18n("Expected '%1'<br><br>Possible cause of the error is having a variable with the same name as a widget").arg(m_data->keywordToString(k)));
+     else
+-     setError(i18n("Expected '%1'").arg(m_data->keywordToString(k)));
++     setError(i18n("Expected '%1' got '%2'.").arg(m_data->keywordToString(k)).arg(next().toString()));
+   }
+   return false;
+ }
+@@ -886,8 +1170,68 @@
+     return m_arrays[name].contains(key) ? m_arrays[name][key] : ParseNode();
+ }
+ 
++// 2D arrays "Matrix"
++const QMap<QString, QMap<QString, ParseNode> >& Parser::matrix(const QString& name) const
++{
++  if (isGlobal(name))
++    return m_globalMatrices[name];
++  else
++    return m_matrices[name];
++}
+ 
++bool Parser::isMatrix(const QString& name) const
++{
++  return m_matrices.contains(name) || m_globalMatrices.contains(name);
++}
+ 
++void Parser::setMatrix(const QString& name, const QString& keyr, const QString& keyc, ParseNode value)
++{
++  if (isGlobal(name))
++    m_globalMatrices[name][keyr][keyc] = value;
++  else
++    m_matrices[name][keyr][keyc] = value;
++}
++
++void Parser::unsetMatrix(const QString& name, const QString& keyr, const QString& keyc)
++{
++  if (isGlobal(name))
++  {
++    if (keyr.isNull())
++      m_globalMatrices.remove(name);
++    else if (isMatrix(name))
++    {
++      if (keyc.isNull())
++        m_globalMatrices[name].remove(keyr);
++      else
++        m_globalMatrices[name][keyr].remove(keyc);
++    }
++  }
++  else
++  {
++    if (keyr.isNull())
++      m_matrices.remove(name);
++    else if (isMatrix(name))
++    {
++      if (keyc.isNull())
++        m_matrices[name].remove(keyr);
++      else
++        m_matrices[name][keyr].remove(keyc);
++    }
++  }
++}
++
++ParseNode Parser::matrixValue(const QString& name, const QString& keyr, const QString& keyc) const
++{
++  if (!isMatrix(name))
++    return ParseNode();
++  if (isGlobal(name))
++    return m_globalMatrices[name].contains(keyr) && m_globalMatrices[name][keyr].contains(keyc) ? m_globalMatrices[name][keyr][keyc] : ParseNode();
++  else
++    return m_matrices[name].contains(keyr) && m_matrices[name][keyr].contains(keyc) ? m_matrices[name][keyr][keyc] : ParseNode();
++}
++
++
++
+ KommanderWidget* Parser::currentWidget() const
+ {
+   return m_widget;
+@@ -895,5 +1239,5 @@
+ 
+ QMap<QString, ParseNode> Parser::m_globalVariables;
+ QMap<QString, QMap<QString, ParseNode> > Parser::m_globalArrays;
++QMap<QString, QMap<QString, QMap<QString, ParseNode> > > Parser::m_globalMatrices;
+ 
+-
+Index: editor/mainwindow.cpp
+===================================================================
+--- kdewebdev/kommander/editor/mainwindow.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/editor/mainwindow.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -463,6 +463,70 @@
+ }
+ 
+ 
++void MainWindow::runForm4()
++{
++  if (previewing)
++  {
++    KMessageBox::information(this, i18n("There is a dialog already running."), i18n("Run"));
++    return;
++  }
++  FormWindow* form = activeForm();
++  if (!form || !form->formFile())
++    return;
++
++  QObjectList *editors = queryList("AssocTextEditor");
++  QObjectListIt it(*editors);
++  QObject *editor;
++
++  while ((editor = it.current()) != 0L) 
++  {
++    ++it;
++    static_cast<AssocTextEditor*>(editor)->save();
++  }
++  delete editors;  
++
++  if (form->formFile()->hasTempFileName())
++  {
++    if (!form->formFile()->saveAs())
++      return;
++  }
++
++  m_fileName = form->formFile()->fileName();
++  m_backupName = m_fileName + ".running";
++  m_modified = form->formFile()->isModified();
++    
++  bool readOnlyFile = !QFileInfo(m_fileName).isWritable();
++  struct stat statbuf;
++  ::stat(m_fileName.local8Bit(), &statbuf);
++  if (!readOnlyFile && !KIO::NetAccess::file_copy(KURL::fromPathOrURL(m_fileName), KURL::fromPathOrURL(m_backupName), statbuf.st_mode, true))
++  {
++    KMessageBox::error(this, i18n("<qt>Cannot create temporary file <i>%1</i>.</qt>").arg(m_backupName));
++    return;
++  }
++  form->formFile()->setFileName(m_fileName);  
++  if (!readOnlyFile || m_modified)
++    form->formFile()->setModified(true);
++  if (form->formFile()->save(false))
++  {
++    if (!readOnlyFile && !KIO::NetAccess::file_copy(KURL::fromPathOrURL(m_fileName), KURL::fromPathOrURL(m_fileName + ".backup"), statbuf.st_mode, true))
++    {
++      KMessageBox::error(this, i18n("<qt>Cannot create backup file <i>%1</i>.</qt>").arg(m_fileName + ".backup"));
++    }
++    ::chmod(m_fileName.local8Bit(), S_IRWXU);
++    KProcess* process = new KProcess;
++    process->setUseShell(true);
++    (*process) << "kommander" << QString("\"%1\"").arg(form->formFile()->fileName());
++    connect(process, SIGNAL(receivedStdout(KProcess*, char*, int)), messageLog,
++            SLOT(receivedStdout(KProcess*, char*, int)));
++    connect(process, SIGNAL(receivedStderr(KProcess*, char*, int)), messageLog,
++            SLOT(receivedStderr(KProcess*, char*, int)));
++    connect(process, SIGNAL(processExited(KProcess*)), SLOT(closeRunningForm(KProcess*)));  
++    messageLog->clear(MessageLog::All);
++    previewing = process->start(KProcess::NotifyOnExit, KProcess::AllOutput);
++  }
++}
++
++
+ void MainWindow::closeRunningForm(KProcess* process)
+ {
+   previewing = false;
+Index: editor/mainwindow.h
+===================================================================
+--- kdewebdev/kommander/editor/mainwindow.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/editor/mainwindow.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -191,6 +191,7 @@
+     void configureEditor();
+ 
+     void runForm();
++    void runForm4();
+     
+ private slots:
+     void activeWindowChanged( QWidget *w );
+Index: editor/kommander-new.xml
+===================================================================
+--- kdewebdev/kommander/editor/kommander-new.xml	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/editor/kommander-new.xml	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -116,8 +116,28 @@
+       <item>array_indexedRemoveElements</item>
+       <item>array_indexedInsertElements</item>
+       <item>array_indexedToString</item>
++      <item>array_flipCopy</item>
+     </list>
+     
++    <list name="kmdrmatrix">
++      <item>matrix_fromString</item>
++      <item>matrix_toString</item>
++      <item>matrix_clear</item>
++      <item>matrix_rows</item>
++      <item>matrix_columnToArray</item>
++      <item>matrix_columnToIndexedArray</item>
++      <item>matrix_rowToArray</item>
++      <item>matrix_columns</item>
++      <item>matrix_rowKeys</item>
++      <item>matrix_columnKeys</item>
++      <item>matrix_removeRow</item>
++      <item>matrix_removeColumn</item>
++      <item>matrix_addRow</item>
++      <item>matrix_findRow</item>
++      <!--<item>matrix_addColumn</item>
++      <item>matrix_indexedCopy</item>-->
++    </list>
++    
+     <list name="kmdrstring">
+       <item>str_length</item>
+       <item>str_contains</item>
+@@ -138,6 +158,11 @@
+       <item>str_toint</item>
+       <item>str_todouble</item>
+       <item>str_round</item>
++      <item>str_sort</item>
++      <item>str_trim</item>
++      <item>str_padLeft</item>
++      <item>str_padRight</item>
++      <item>str_count</item>
+     </list>
+     
+     <list name="kmdrfile">
+@@ -171,6 +196,7 @@
+     <list name="keywords">
+       <item> else </item>
+       <item> for </item>
++      <item> to </item>
+       <item> function </item>
+       <item> in </item>
+       <item> select </item>
+@@ -186,6 +212,12 @@
+       <item> break </item>
+       <item> continue </item>
+       <item> exit </item>
++      <item> switch </item>
++      <item> and </item>
++      <item> or </item>
++      <item> not </item>
++      <item> step </item>
++      <item> with </item>
+     </list>
+     
+     <list name="booleans">
+@@ -202,6 +234,7 @@
+       <!-- FindAll tries to interpret everything -->
+       <context attribute="Normal Text" lineEndContext="#stay" name="FindAll">
+       	<IncludeRules context="FindComments" />
++        <IncludeRules context="FindBlockComments" />
+       	<IncludeRules context="FindCommands" />
+ 	    <IncludeRules context="FindStrings" />
+ 	    <IncludeRules context="FindSubstitutions" />      
+@@ -213,6 +246,13 @@
+         <Detect2Chars attribute="Comment" context="Comment" char="/" char1="/" firstNonSpace="true"/>
+ 	    <RegExpr attribute="Normal Text" context="Comment" String="[\s;](?=/)" />
+       </context>
++      <!-- FindBlockComments consumes comments to end of block -->
++      <context attribute="Normal Text" lineEndContext="#stay" name="FindBlockComments">
++        <Detect2Chars attribute="Comment" context="twolinecomment" char="/" char1="&#42;" beginRegion="Comment" />
++      </context>
++      <context name="twolinecomment" attribute="Comment" lineEndContext="#stay">
++        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment" />
++      </context>
+       
+       <context attribute="Comment" lineEndContext="#pop" name="Comment">
+ 	     <IncludeRules context="##Alerts" />
+@@ -239,6 +279,7 @@
+         <RegExpr attribute="Keyword" context="#stay" String="\belseif&noword;" beginRegion="if" endRegion="if"/>
+         <RegExpr attribute="Keyword" context="#stay" String="\belse&noword;"  beginRegion="if" endRegion="if"/>
+         <RegExpr attribute="Keyword" context="#stay" String="\bendif&noword;" endRegion="if"/>
++        <RegExpr attribute="Keyword" context="#stay" String="\}&eos;" endRegion="group"/>
+       	<!-- handle case as a special case -->
+         <RegExpr attribute="Keyword" context="Case" String="\bcase&noword;" beginRegion="case" />
+         <!-- handle command line options -->
+@@ -256,6 +297,7 @@
+         <RegExpr attribute="KmdrMethod" context="DetectKmdrMethod" String="kmdrfunctions\(" />        
+         <keyword attribute="DCOPMethod" context="#stay" String="kmdrfunctions" />  
+         <keyword attribute="KmdrArray" context="#stay" String="kmdrarray" />      
++        <keyword attribute="KmdrMatrix" context="#stay" String="kmdrmatrix" />      
+         <keyword attribute="KmdrString" context="#stay" String="kmdrstring" />        
+         <keyword attribute="KmdrFile" context="#stay" String="kmdrfile" />        
+         <keyword attribute="KmdrInput" context="#stay" String="kmdrinput" />        
+@@ -273,6 +315,8 @@
+         <DetectChar attribute="Normal Text" context="#pop" char=")" lookAhead="true"/>
+         <DetectChar attribute="Normal Text" context="#pop" char="[" lookAhead="true"/>
+         <DetectChar attribute="Normal Text" context="#pop" char="]" lookAhead="true"/>
++        <DetectChar attribute="Normal Text" context="#pop" char="{" lookAhead="true"/>
++        <DetectChar attribute="Normal Text" context="#pop" char="}" lookAhead="true"/>
+         <DetectChar attribute="KmdrMethod" context="DetectKmdrMethod" char="." lookAhead="true"/>
+         <RegExpr attribute="Normal Text" context="#pop" String="[\s\=\;\+\-\*\/\%]+" />
+      
+@@ -296,18 +340,18 @@
+       <context attribute="Normal Text" lineEndContext="#stay" name="FindStrings">
+ 	<DetectChar attribute="String SingleQ" context="StringSQ" char="'" />
+ 	<DetectChar attribute="String DoubleQ" context="StringDQ" char="&quot;" />
+-	<Detect2Chars attribute="String SingleQ" context="StringEsc" char="$" char1="'" />
+-	<Detect2Chars attribute="String Transl." context="StringDQ" char="$" char1="&quot;" />
++  <!-- <Detect2Chars attribute="String SingleQ" context="StringEsc" char="$" char1="'" /> -->
++  <!-- <Detect2Chars attribute="String Transl." context="StringDQ" char="$" char1="&quot;" /> -->
+       </context>
+             
+       <!-- FindSubstitutions goes after anything starting with $ and ` and their escapes -->
+       <context attribute="Normal Text" lineEndContext="#stay" name="FindSubstitutions">
+-	<RegExpr attribute="Variable" context="#stay" String="\$[*@#?$!_0-9-]" />
++        <!-- <RegExpr attribute="Variable" context="#stay" String="\$[*@#?$!_0-9-]" />
+ 	<RegExpr attribute="Variable" context="Subscript" String="\$&varname;\[" />
+ 	<RegExpr attribute="Variable" context="#stay" String="\$&varname;" />
+ 	<RegExpr attribute="Variable" context="#stay" String="\$\{[*@#?$!_0-9-]\}" />
+ 	<RegExpr attribute="Variable" context="#stay" String="\$\{#&varname;\}" />
+-	<RegExpr attribute="Variable" context="#stay" String="\$\{!&varname;\*?\}" />
++  <RegExpr attribute="Variable" context="#stay" String="\$\{!&varname;\*?\}" />-->
+ 	<RegExpr attribute="Variable" context="VarBrace" String="\$\{&varname;" />
+ 	<RegExpr attribute="Variable" context="VarBrace" String="\$\{[*@#?$!_0-9-](?=[:#%/])" />
+ 	<StringDetect attribute="Variable" context="ExprDblParenSubst" String="$((" beginRegion="expression" />
+@@ -527,6 +571,7 @@
+       <itemData name="DCOPMethod" defStyleNum="dsKeyword" italic="1" color="#21E52B" />
+       <itemData name="KmdrString" defStyleNum="dsKeyword" italic="1" color="#D0D000" />
+       <itemData name="KmdrArray" defStyleNum="dsKeyword" italic="1" color="#C0C0FF" />
++      <itemData name="KmdrMatrix" defStyleNum="dsKeyword" italic="1" color="#5050AA" />
+       <itemData name="KmdrFile" defStyleNum="dsKeyword" italic="1" color="#FF0000" />
+       <itemData name="KmdrInput" defStyleNum="dsKeyword" italic="1" color="#FF8000" />
+       <itemData name="KmdrMessage" defStyleNum="dsKeyword" italic="1" color="#800000" />
+@@ -535,6 +580,7 @@
+   <general>
+     <comments>
+       <comment name="singleLine" start="//"/>
++      <comment name="multiLine" start="/*" end="*/" />
+     </comments>
+     <keywords casesensitive="1" weakDeliminator="^%#[]$._{}:-" additionalDeliminator="`."/>
+   </general>
+Index: editor/mainwindowactions.cpp
+===================================================================
+--- kdewebdev/kommander/editor/mainwindowactions.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/editor/mainwindowactions.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -476,6 +476,14 @@
+   connect(this, SIGNAL(hasActiveForm(bool)), a, SLOT(setEnabled(bool)));
+   a->plug(fileTb);
+   a->plug(menu);
++  // add KDE4 executor
++
++  KAction* b = new KAction(i18n("Run Dialog K4"), "launch", CTRL + SHIFT  + Qt::Key_R,
++                           this, SLOT(runForm4()), actionCollection(), "run4");
++  b->setToolTip(i18n("Executes dialog in KDE4"));
++  b->setWhatsThis(whatsThisFrom("Run|Run dialog"));
++  connect(this, SIGNAL(hasActiveForm(bool)), b, SLOT(setEnabled(bool)));
++  b->plug(menu);
+ }
+ 
+ void MainWindow::setupWindowActions()
+Index: plugin/specialinformation.cpp
+===================================================================
+--- kdewebdev/kommander/plugin/specialinformation.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/plugin/specialinformation.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -379,6 +379,12 @@
+      i18n("Return the widget's geometry as <i>x y w h</i>. This is useful for positioning a created widget."), 1);
+   insertInternal(DCOP::hasFocus, "hasFocus(QString widget)", 
+      i18n("Returns true if the widget has focus."), 1);
++  insertInternal(DCOP::getBackgroundColor, "getBackgroundColor(QString widget)", 
++      i18n("Gets the widget's background color."), 1);
++  insertInternal(DCOP::setBackgroundColor, "setBackgroundColor(QString widget, QString Color)", 
++      i18n("Sets the widget's background color. Colors can be by name, like blue, or in hex like #0000ff for blue. Use the color dialog or a color picker if unsure."), 2);
++  insertInternal(DCOP::isModified, "isModified(QString widget)",
++      i18n("See if widget has been modified."), 1);
+ 
+   insertGroup(Group::Slots, i18n("Slots"), "");
+ 
+@@ -442,7 +448,9 @@
+      i18n("Connects the signal of sender with the slot of the receiver"), 4);
+   insertInternal(Kommander::disconnect, "disconnect(QString sender, QString signal, QString receiver, QString slot)",
+      i18n("Disconnects the signal of sender from the slot of the receiver"), 4);
+-
++/*  insertInternal(Kommander::switchInternal, "switch(QString Variable)",
++     i18n("Can use can use <br>switch var<br>case 1<br> //code<br>else<br> //code<br>end<p>also can use the form of <br>switch var {<br>case 1; //code<br>else; code<br>}<p> semicolons are optional in place of returns. Currently switch does not parse value from arrays.") );
++*/
+   insertInternal(Kommander::exit, "exit", 
+      i18n("Exits script execution and returns"), 0);
+   insertInternal(Kommander::Break, "break", 
+@@ -480,7 +488,38 @@
+     i18n( "Remove keyNum elements starting with keyStart from an indexed array and reindex the array. If keyNum is not specified, remove only the keyStart element."), 2, 3);
+   insertInternal(Array::indexedInsertElements, "indexedInsertElements(QString array, int key, QString string, QString separator)", 
+     i18n( "Insert the elements from string starting at key and reindex the array. Use the separator to separate the elements from the string. The separator's default value is '\\t'."), 3, 4);
++  insertInternal(Array::flipCopy, "flipCopy(QString Array, QString Copy)",
++    i18n("Create a flipped copy of the array where the keys and values switch places. NOTE: If the values are not unique they will be overwritten as keys! Set the name of the array to copy to and go. Useful with combos and lists were you have an index, a key and a value for data purposes."), 2, 2);
+ 
++  insertGroup(Group::Matrix, "Matrix", "matrix");
++  insertInternal(Matrix::fromString, "fromString(QString matrix, QString String, bool With-Row-Keys, bool With-Col-Keys)", 
++    i18n("Create a 2D array with zero based integer keys. Rows seperated with returns or \\n and columns with tabs or \\t. You can then read and alter values with \"name[0][1]\".<br><b>NOTE: Watch keys!</b> The row and column keys when set to true will read respectively the first row and first column as headings. If for instance you set one where there is no column or row heading to read it will read data, and if the data is not unique you will have missing columns or rows as well as addressing not working."), 2, 4);
++  insertInternal(Matrix::toString, "toString(QString matrix, bool RowHeadings, bool ColHeadings)",
++    i18n("Convert 2D array to string, optionaly with row and column headings. If written without values set it will default to no headings."), 1, 3);
++  insertInternal(Matrix::rows, "rows(QString matrix)",
++    i18n("Return the number of rows in the matrix"), 1);
++  insertInternal(Matrix::columns, "columns(QString matrix)",
++    i18n("Return the number of columns in the matrix"), 1);
++  insertInternal(Matrix::clear, "clear(QString matrix)",
++    i18n("Clear the entire matrix"), 1);
++  insertInternal(Matrix::rowToArray, "rowToArray(QString matrix, QString Row, QString Array, bool Clear-First, bool Indexed)",
++    i18n("Convert row to array. Useful break out rows of data to work with. If you want to avoid spurious data Clear-First will wipe the array before filling it. If you choose indexed it will use a zero based index. Otherwise it will use the column keys."), 3, 5);
++  insertInternal(Matrix::columnToArray, "columnToArray(QString matrix, QString Column, QString Array)",
++    i18n("Copy a column of a Matrix to an array and optionally clear array first to avoid spurious data in loops"), 3);
++  insertInternal(Matrix::columnToIndexedArray, "columnToIndexedArray(QString matrix, QString Column, QString Array)",
++    i18n("Copy a column of a Matrix to an indexed array"), 3);
++  insertInternal(Matrix::rowKeys, "rowKeys(QString Matrix, QString Seperator)",
++    i18n("Return the row keys from the matrix. Separator defaults to [tab] \"\\t\" if left empty"), 1, 2);
++  insertInternal(Matrix::columnKeys, "columnKeys(QString Matrix, QString Seperator)",
++    i18n("Return the column keys from the matrix. Separator defaults to [tab] \"\\t\" if left empty"), 1, 2);
++  insertInternal(Matrix::addRow, "addRow(QString Matrix, QString RowKey, QString data)",
++    i18n("Add a row to the matrix. Specifiy the row key and format the data as column key [tab] column value on each line using key\\tval\\nkey\\tval format"), 3);
++  insertInternal(Matrix::removeRow, "removeRow(QString Matrix, QString RowKey)",
++    i18n("Remove a row from the matrix by key name. Returns true if key is found."), 2);
++  insertInternal(Matrix::removeColumn, "removeColumn(QString Matrix, QString ColKey)",
++    i18n("Remove a column from the matrix by key name. Returns true if key is found."), 2);
++  insertInternal(Matrix::findRow, "findRow(QString Matrix, QString Col-Key, QString Col-Value, int Iteration)",
++    i18n("Find the row key that matches a column value. Use this for unique key searches. Iteration may be omitted and the default is to return the first instance. In a loop it will return sequential finds until there are no more, in which case it returns null."), 3, 4);
+ 
+   insertGroup(Group::String, "String", "str");
+   insert(String::length, "length(QString string)", 
+@@ -490,7 +529,9 @@
+   insert(String::find, "find(QString string, QString sought, int index)", 
+     i18n("Returns the position of a substring in the string, or -1 if it is not found."), 2);
+   insert(String::findRev, "findRev(QString string, QString sought, int index)", 
+-         i18n("Returns the position of a substring in the string, or -1 if it is not found. String is searched backwards"), 2);
++    i18n("Returns the position of a substring in the string, or -1 if it is not found. String is searched backwards"), 2);
++  insertInternal(String::count, "count(QString String, QString substring)",
++    i18n("Returns the count of a given substring in the given string."), 2);
+   insert(String::left, "left(QString string, int n)", 
+     i18n("Returns the first <i>n</i> chars of the string."), 2);
+   insert(String::right, "right(QString string, int n)", 
+@@ -518,6 +559,14 @@
+     i18n("Returns the given string with %1, %2, %3 replaced with <i>arg1</i>, <i>arg2</i>, <i>arg3</i> accordingly."), 2);
+   insert(String::round, "round(QString Number, int Digits)", 
+     i18n("Round a floating point number by x digits."), 2);
++  insertInternal(String::sort, "sort(QString String, QString Separator)", 
++    i18n("Sort a string list. Only first paramter is required. Default separator is a newline."), 1, 2);
++  insertInternal(String::trim, "trim(QString String)", 
++    i18n("Strips white space from beginning and end of string."), 1);
++  insertInternal(String::padLeft, "padLeft(QString String, int Length, QString Pad)", 
++    i18n("Pads the string to the total length indicated. if no pad character is given spaces will be used. Try this with 0 on integer sequences and read them with str_toint."), 1, 2);
++  insertInternal(String::padRight, "padRight(QString String, int Length, QString Pad)", 
++    i18n("Pads the string to the total length indicated. if no pad character is given spaces will be used."), 1, 2);
+ 
+   insertInternal(String::toInt, "toint(QString string, QString default)",
+     i18n("Convert a string to an integer. If not possible use the default value"), 1, 2);
+@@ -543,7 +592,7 @@
+   insert(Input::value, "value(QString caption, QString label, int value, int min, int max, int step)", 
+          i18n("Shows value selection dialog. Returns entered value."), 5);
+   insert(Input::valueDouble, "double(QString caption, QString label, double value, double min, double max, double step)", 
+-         i18n("Shows float value selection dialog. Returns entered value."), 5);
++         i18n("Shows float value selection dialog. Returns entered value."), 6);
+   insert(Input::openfile, "openfile(QString startdir, QString filter, QString caption)", 
+          i18n("Shows existing file selection dialog. Returns selected file."), 0);
+   insert(Input::savefile, "savefile(QString startdir, QString filter, QString caption)", 
+@@ -555,9 +604,9 @@
+   
+   insertGroup(Group::Message, "Message", "message");
+   insert(Message::info, "info(QString text, QString caption)", 
+-         i18n("Shows an information dialog."), 1);
++         i18n("Shows an information dialog. Returns true when clicked so you can check for user response."), 1);
+   insert(Message::error, "error(QString text, QString caption)", 
+-         i18n("Shows an error dialog."), 1);
++         i18n("Shows an error dialog. Returns true when clicked so you can check for user response."), 1);
+   insert(Message::warning, "warning(QString text, QString caption, QString button1, QString button2, QString button3)",
+          i18n("Shows a warning dialog with up to three buttons. Returns number of selected button."), 1);
+   insert(Message::question, "question(QString text, QString caption, QString button1, QString button2, QString button3)",
+Index: plugin/specials.h
+===================================================================
+--- kdewebdev/kommander/plugin/specials.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/plugin/specials.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -23,7 +23,7 @@
+ 
+ namespace Group
+ {
+-  enum {DCOP, Kommander, String, Array, File, Input, Message, Slots};
++  enum {DCOP, Kommander, String, Array, File, Input, Message, Slots, Matrix};
+ }
+ 
+ namespace DCOP
+@@ -32,26 +32,31 @@
+     currentItem, currentRow, execute, findItem, global, insertColumn, insertItem, insertItems, insertRow, 
+     item, itemDepth, itemPath, removeColumn, removeItem, removeRow, selection, setAssociatedText, setChecked, 
+     setCellText, setCurrentItem, insertTab, setColumnCaption, setEnabled, setGlobal, setMaximum, setPixmap, 
+-    setRowCaption, setSelection, setText, 
+-    setVisible, text, type, setCellWidget, cellWidget, setEditable, geometry, hasFocus};
++    setRowCaption, setSelection, setText, getBackgroundColor, setBackgroundColor,
++    setVisible, text, type, setCellWidget, cellWidget, setEditable, geometry, hasFocus, isModified};
+ }
+ 
+ namespace Kommander
+ {
+   enum {widgetText, selectedWidgetText, null, pid, dcopid, parentPid, debug,
+   echo, env, exec, expr, global, i18n, dialog, readSetting, setGlobal, writeSetting, dcop,
+-  switchBlock, execBegin, forBlock, forEachBlock, ifBlock, comment, createWidget, connect, disconnect, widgetExists, exit, Break, Continue, Return, execBackground};
++  switchBlock, execBegin, forBlock, forEachBlock, ifBlock, comment, createWidget, connect, disconnect, widgetExists, exit, Break, Continue, Return, execBackground, switchInternal}; //, focusWidget};
+ }
+ 
+ namespace Array
+ {
+-  enum {values, keys, clear, count, value, remove, setValue, fromString, toString, indexedFromString, indexedToString, indexedRemoveElements, indexedInsertElements};
++  enum {values, keys, clear, count, value, remove, setValue, fromString, toString, indexedFromString, indexedToString, indexedRemoveElements, indexedInsertElements, flipCopy};
+ }
+ 
++namespace Matrix
++{
++  enum {fromString, toString, clear, rows, columns, rowToArray, columnToArray, columnToIndexedArray, rowKeys, columnKeys, addRow, removeRow, removeColumn, findRow};
++}
++
+ namespace String
+ {
+   enum {length, contains, find, findRev, left, right, mid, remove, replace, upper, lower,
+-  compare, isEmpty, isNumber, section, args, toInt, toDouble, round};
++  compare, isEmpty, isNumber, section, args, toInt, toDouble, round, sort, trim, padLeft, padRight, count};
+ }
+ 
+ namespace File
+Index: widgets/treewidget.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/treewidget.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/treewidget.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -48,6 +48,9 @@
+ enum Functions {
+   FirstFunction = 189,
+   SelectedIndexes,
++  TW_childCount,
++  TW_setOpen,
++  TW_isOpen,
+   LastFunction
+ };
+ 
+@@ -68,6 +71,9 @@
+   KommanderPlugin::registerFunction(colCaption, "columnCaption(QString widget, int column)", i18n("Get the column caption for column index"), 2);
+   KommanderPlugin::registerFunction(setColWidth, "setColWidth(QString widget, int column, int width)", i18n("Set the pixel width for column index - use 0 to hide"), 3);
+   KommanderPlugin::registerFunction(setColAlignment, "setColumnAlignment(QString widget, int column, QString Alignment)", i18n("Set to <i>left</i>, <i>right</i> or <i>center</i>, case insensitive "), 3);
++  KommanderPlugin::registerFunction(TW_childCount, "childCount(QString widget)", i18n("Get the count of top level items."), 1);
++  KommanderPlugin::registerFunction(TW_setOpen, "setOpen(QString widget, int Index, bool Open)", i18n("Expand or collapse a node."), 3);
++  KommanderPlugin::registerFunction(TW_isOpen, "isOpen(QString widget, int Index)", i18n("See if node is open or closed."), 2);
+ }
+ 
+ TreeWidget::~TreeWidget()
+@@ -143,6 +149,8 @@
+ 
+ int TreeWidget::itemToIndex(QListViewItem* item)
+ {
++//  if (!item->isSelected())
++//    return -1;
+   QListViewItemIterator it(this);
+   int index = 0;
+   while (it.current()) {
+@@ -154,6 +162,19 @@
+   return -1;
+ }
+ 
++int TreeWidget::itemToIndexSafe(QListViewItem* item)
++{
++  QListViewItemIterator it(this);
++  int index = 0;
++  while (it.current()) {
++    if (it.current() == item)
++      return index;
++    ++it;
++    ++index;
++  }
++  return -1;
++}
++
+ QListViewItem* TreeWidget::indexToItem(int item)
+ {
+   QListViewItemIterator it(this);
+@@ -286,7 +307,7 @@
+   return f == DCOP::insertItem || f == DCOP::text || f == DCOP::setText || f == DCOP::insertItems ||
+     f == DCOP::selection || f == DCOP::setSelection || f == DCOP::clear || f == DCOP::removeItem || 
+     f == DCOP::currentItem || f == DCOP::setCurrentItem || f == DCOP::findItem || f == DCOP::item || 
+-      f == DCOP::itemPath || f == DCOP::itemDepth || f == DCOP::setPixmap || f == DCOP::setColumnCaption || f == DCOP::removeColumn || f == DCOP::columnCount || f == DCOP::geometry || f == DCOP::hasFocus  || (f > FirstFunction && f < LastFunction) || (f >= TW_FUNCTION && f <= TW_LAST_FUNCTION);
++      f == DCOP::itemPath || f == DCOP::itemDepth || f == DCOP::setPixmap || f == DCOP::setColumnCaption || f == DCOP::removeColumn || f == DCOP::columnCount || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor  || (f > FirstFunction && f < LastFunction) || (f >= TW_FUNCTION && f <= TW_LAST_FUNCTION);
+ }
+ 
+ QString TreeWidget::handleDCOP(int function, const QStringList& args)
+@@ -307,6 +328,12 @@
+         addItemFromString(*it);
+       break;
+     }
++    case TW_setOpen:
++      setOpen(indexToItem(args[0].toInt()), args[1].toInt());
++      break;
++    case TW_isOpen:
++      return QString::number(isOpen(indexToItem(args[0].toInt())));
++      break;
+     case SelectedIndexes:
+     {
+       QString selection = "";
+@@ -315,7 +342,7 @@
+       {
+         if (it.current()->isSelected())
+         {        
+-          selection.append(QString("%1\n").arg(itemToIndex(it.current())));
++          selection.append(QString("%1\n").arg(itemToIndexSafe(it.current())));
+         }
+         ++it;
+       }
+@@ -362,28 +389,33 @@
+       m_lastPath.clear();
+       break;
+     case DCOP::removeItem:
+-      delete indexToItem(args[0].toInt());
+-      m_lastPath.clear();
++    {
++      if (args[0].toInt() >= 0 )
++      {
++        delete indexToItem(args[0].toInt());
++        m_lastPath.clear();
++      }
+       break;
++    }
+     case DCOP::currentItem:
+-      return QString::number(itemToIndex(currentItem()));
++      return QString::number(itemToIndexSafe(currentItem()));
+       break;
+     case DCOP::setCurrentItem:
+       setCurrentItem(indexToItem(args[0].toInt()));
+       break;
+     case DCOP::findItem:
+       if (!args[1])
+-        return QString::number(itemToIndex(findItem(args[0], 0)));
++        return QString::number(itemToIndexSafe(findItem(args[0], 0)));
+       else
+       {
+         if (args[2].toUInt() && args[3].toUInt())
+-          return QString::number(itemToIndex(findItem(args[0], args[1].toInt())));
++          return QString::number(itemToIndexSafe(findItem(args[0], args[1].toInt())));
+         else if (args[2].toUInt())
+-          return QString::number(itemToIndex(findItem(args[0], args[1].toInt(), Qt::CaseSensitive | Qt::Contains)));
++          return QString::number(itemToIndexSafe(findItem(args[0], args[1].toInt(), Qt::CaseSensitive | Qt::Contains)));
+         else if (args[3].toUInt())
+-          return QString::number(itemToIndex(findItem(args[0], args[1].toInt(), Qt::ExactMatch)));
++          return QString::number(itemToIndexSafe(findItem(args[0], args[1].toInt(), Qt::ExactMatch)));
+         else
+-          return QString::number(itemToIndex(findItem(args[0], args[1].toInt(), Qt::Contains)));
++          return QString::number(itemToIndexSafe(findItem(args[0], args[1].toInt(), Qt::Contains)));
+       }
+       break;
+     case DCOP::item:
+@@ -415,6 +447,16 @@
+       if (columns() >= args[0].toInt())
+         setColumnText(args[0].toInt(), args[1]);
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     case addColumnTree:
+       return QString::number(KListView::addColumn(args[0], args[1].toInt()));
+       break;
+@@ -449,6 +491,9 @@
+       }
+       break;
+     }  
++    case TW_childCount:
++      return QString::number(childCount());
++      break;
+     case DCOP::geometry:
+     {
+       QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+Index: widgets/execbutton.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/execbutton.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/execbutton.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -25,6 +25,9 @@
+ #include <qstring.h>
+ #include <qstringlist.h>
+ #include <qwidget.h>
++#include <qpopupmenu.h>
++#include <qapplication.h>
++#include <qwidgetlist.h>
+ 
+ /* OTHER INCLUDES */
+ #include <kommanderwidget.h>
+@@ -32,9 +35,18 @@
+ #include "execbutton.h"
+ #include <myprocess.h>
+ #include <iostream>
++#include <kommanderplugin.h>
+ 
+ using namespace std;
+ 
++enum Functions {
++  FirstFunction = 260, //CHANGE THIS NUMBER TO AN UNIQUE ONE!!!
++  EB_isOn,
++  EB_setPopup,
++  EB_setButtonText,
++  LastFunction
++};
++
+ ExecButton::ExecButton(QWidget* a_parent, const char* a_name)
+   : KPushButton(a_parent, a_name), KommanderWidget(this)
+ {
+@@ -45,6 +57,11 @@
+   setWriteStdout(true);
+   setBlockGUI(Button);
+   connect(this, SIGNAL(clicked()), this, SLOT(startProcess()));
++  
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(EB_isOn, "isOn(QString widget)",  i18n("For use only when button is togle type."), 1);
++  KommanderPlugin::registerFunction(EB_setPopup, "setPopup(QString widget, QString Menu)",  i18n("Associate a Kommander PopupMenu with this ExecButton."), 2);
++  KommanderPlugin::registerFunction(EB_setButtonText, "setButtonText(QString widget, QString Text)",  i18n("Set the text on the ExecButton."), 2);
+ }
+ 
+ ExecButton::~ExecButton()
+@@ -154,9 +171,16 @@
+   emit widgetOpened();
+ }
+ 
++void ExecButton::contextMenuEvent( QContextMenuEvent * e )
++{
++  e->accept();
++  QPoint p = e->globalPos();
++  emit contextMenuRequested(p.x(), p.y());
++}
++
+ bool ExecButton::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::execute || f == DCOP::geometry;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::execute || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ QString ExecButton::handleDCOP(int function, const QStringList& args)
+@@ -170,12 +194,43 @@
+     case DCOP::execute:
+       startProcess();
+       break;
++    case EB_isOn:
++      return QString::number(this->isOn() );
++      break;
++    case EB_setButtonText:
++      ExecButton::setText(args[0]);
++      break;
++    case EB_setPopup:
++    {
++      QWidgetList  *list = QApplication::allWidgets();
++      QWidgetListIt it( *list );
++      QWidget * w;
++      while ( (w=it.current()) != 0 ) {  // for each widget...
++        ++it;
++        if (w->name() == args[0] && w->className() == "PopupMenu")
++        {
++          QPopupMenu *popup = dynamic_cast<QPopupMenu*>(w->child("unnamed", "KPopupMenu"));
++          this->setPopup(popup);
++        }
++      }
++      break;
++    }
+     case DCOP::geometry:
+     {
+       QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+       return geo;
+       break;
+     }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/textbrowser.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/textbrowser.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/textbrowser.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -14,14 +14,26 @@
+  *                                                                         *
+  ***************************************************************************/
+ 
++/* KDE INCLUDES */
++#include <klocale.h>
++
+ /* QT INCLUDES */
+ #include <qstringlist.h>
+ #include <qevent.h>
++#include <qstring.h>
+ 
+ /* OTHER INCLUDES */
++#include "kommanderplugin.h"
+ #include <specials.h>
+ #include "textbrowser.h"
+ 
++enum Functions {
++  FirstFunction = 420,
++  TBR_setNotifyClick,
++  TBR_isNotifyClick,
++  LastFunction
++};
++
+ TextBrowser::TextBrowser(QWidget * a_parent, const char *a_name)
+   : KTextBrowser(a_parent, a_name), KommanderWidget((QObject *) this)
+ {
+@@ -29,6 +41,9 @@
+   states << "default";
+   setStates(states);
+   setDisplayStates(states);
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(TBR_setNotifyClick, "setNotifyClick(QString widget, bool Set)",i18n("Set notify click to intercept clicks and handle links"), 2, 2);
++  KommanderPlugin::registerFunction(TBR_isNotifyClick, "isNotifyClick(QString widget)",i18n("Set notify click to intercept clicks and handle links"), 1);
+ }
+ 
+ QString TextBrowser::currentState() const
+@@ -92,7 +107,7 @@
+ 
+ bool TextBrowser::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::clear;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::clear || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ QString TextBrowser::handleDCOP(int function, const QStringList& args)
+@@ -105,6 +120,12 @@
+       break;
+     case DCOP::selection:
+       return selectedText();
++    case TBR_setNotifyClick:
++      KTextBrowser::setNotifyClick(args[0]);
++      break;
++    case TBR_isNotifyClick:
++      return QString::number(KTextBrowser::isNotifyClick());
++      break;
+     case DCOP::clear:
+       clear();
+       break;
+Index: widgets/aboutdialog.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/aboutdialog.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/aboutdialog.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -224,6 +224,15 @@
+   setAssociatedText(KommanderWidget::evalAssociatedText( populationText()));
+ }
+ 
++void AboutDialog::execute()
++{
++  if (m_aboutData)
++  {        
++    KAboutApplication dialog(m_aboutData, this);
++    dialog.exec();
++  }
++}
++
+ QString AboutDialog::handleDCOP(int function, const QStringList& args)
+ {
+   switch (function) {
+Index: widgets/textedit.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/textedit.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/textedit.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -29,7 +29,16 @@
+ 
+ enum Functions {
+   FirstFunction = 450, //CHANGE THIS NUMBER TO AN UNIQUE ONE!!!
+-  TE_isModified,
++  TE_setModified,
++  TE_selectText,
++  TE_paragraphs,
++  TE_length,
++//  TE_getCursorPosition,
++  TE_paragraphLength,
++  TE_linesOfParagraph,
++  TE_findText,
++  TE_VAsuperScript,
++  TE_VAnormalScript,
+   LastFunction
+ };
+ 
+@@ -44,7 +53,17 @@
+   connect(this, SIGNAL(textChanged()), this, SLOT(setTextChanged()));
+ 
+   KommanderPlugin::setDefaultGroup(Group::DCOP);
+-  KommanderPlugin::registerFunction(TE_isModified, "isModified(QString widget)",  i18n("see if widget has been modified."), 1);
++  KommanderPlugin::registerFunction(TE_setModified, "setModified(QString widget, bool Modified)",  i18n("Set widget modified status."), 1);
++  KommanderPlugin::registerFunction(TE_selectText, "selectText(QString widget, int paraFrom, int indexFrom, int paraTo, int indexTo)",  i18n("Select a block of text using the paragraph number and character index of the line. You can use the cursorPositionChanged(int, int) signal to get this data in real time into a script."), 5);
++  KommanderPlugin::registerFunction(TE_findText, "findText(QString widget, QString Text, bool Case-Sensitive, bool Forward)",  i18n("Search for text from the cursor or a specified position. You can specifiy case sensitive search and forward or backward."), 5);
++//  KommanderPlugin::registerFunction(TE_findText, "findText(QString widget, QString Text, bool Case-Sensitive, bool Forward, int Paragraph, int Index)",  i18n("Search for text from the cursor or a specified position. You can specifiy case sensitive search and forward or backward."), 5, 7);
++  KommanderPlugin::registerFunction(TE_paragraphs, "paragraphs(QString widget)",  i18n("Get the number of paragraphs in the widget."), 1);
++  KommanderPlugin::registerFunction(TE_length, "length(QString widget)",  i18n("Get the total length of all text."), 1);
++//  KommanderPlugin::registerFunction(TE_getCursorPosition, "getCursorPosition(QString widget)",  i18n("Get the cursor postion in the form of paragraph and postion integers."), 1);
++  KommanderPlugin::registerFunction(TE_paragraphLength, "paragraphLength(QString widget, int Paragraph)",  i18n("Get the length of the paragraph."), 2);
++  KommanderPlugin::registerFunction(TE_linesOfParagraph, "linesOfParagraph(QString widget, int Paragraph)",  i18n("Get the number of lines in the paragraph."), 2);
++  KommanderPlugin::registerFunction(TE_VAsuperScript, "setSuperScript(QString widget)",  i18n("Use to set superscript."), 1);
++  KommanderPlugin::registerFunction(TE_VAnormalScript, "setNormalScript(QString widget)",  i18n("Use to revert from superscript to normal script."), 1);
+ }
+ 
+ QString TextEdit::currentState() const
+@@ -124,7 +143,7 @@
+ 
+ bool TextEdit::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::setSelection || f == DCOP::clear || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus || (f >= FirstFunction && f <= LastFunction);
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::setSelection || f == DCOP::clear || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor || f == DCOP::isModified || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ QString TextEdit::handleDCOP(int function, const QStringList& args)
+@@ -146,9 +165,51 @@
+     case DCOP::setEditable:
+       setReadOnly(args[0] == "false" || args[0] == "0");
+       break;
+-    case TE_isModified:
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
++    case DCOP::isModified:
+       return isModified() ? "1" : "0";
+       break;
++    case TE_setModified:
++      this->setModified(args[0].toInt());
++      break;
++    case TE_selectText:
++      QTextEdit::setSelection(args[0].toInt(), args[1].toInt(), args[2].toInt(), args[3].toInt());
++      break;
++    case TE_length:
++      return QString::number(QTextEdit::length() );
++      break;
++    /*case TE_getCursorPosition:
++      return QString::number(QTextEdit::getCursorPosition() );
++      break;*/
++    case TE_paragraphLength:
++      return QString::number(QTextEdit::paragraphLength(args[0].toInt() ) );
++      break;
++    case TE_linesOfParagraph:
++      return QString::number(QTextEdit::linesOfParagraph(args[0].toInt() ) );
++      break;
++    case TE_findText:
++    {
++//      int para = args[3].toInt();
++//      int idx = args[4].toInt();
++//      return QString::number(QTextEdit::find(args[0], args[1].toUInt(), false, args[2].toUInt(), para, idx ));
++      return QString::number(QTextEdit::find(args[0], args[1].toUInt(), false ));
++      break;
++    }
++    case TE_VAsuperScript:
++      break;
++      QTextEdit::setVerticalAlignment(AlignSuperScript);
++    case TE_VAnormalScript:
++      QTextEdit::setVerticalAlignment(AlignNormal);
++      break;
+     case DCOP::geometry:
+     {
+       QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+Index: widgets/dialog.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/dialog.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/dialog.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -14,6 +14,7 @@
+  *                                                                         *
+  ***************************************************************************/
+ /* KDE INCLUDES */
++#include <klocale.h>
+ 
+ /* QT INCLUDES */
+ #include <qstring.h>
+@@ -22,12 +23,23 @@
+ #include <qevent.h>
+ #include <qdialog.h>
+ #include <qpoint.h>
++#include <qcursor.h>
++#include <qapplication.h>
+ 
+ /* OTHER INCLUDES */
+ #include <specials.h>
+ #include "dialog.h"
+ #include <myprocess.h>
++#include "kommanderplugin.h"
+ 
++enum Functions {
++  FirstFunction = 185,
++  D_focusWidget,
++  D_waitCursor,
++  D_restoreCursor,
++  LastFunction
++};
++
+ Dialog::Dialog(QWidget *a_parent, const char *a_name, bool a_modal, int a_flags)
+   : QDialog(a_parent, a_name, a_modal, a_flags), KommanderWindow(this)
+ {
+@@ -40,6 +52,10 @@
+   m_useShebang = false;
+   m_shebang = "#!/usr/bin/kmdr-executor";
+   m_firstShow = true;
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(D_focusWidget, "focusWidget(QString widget)",  i18n("The name of the widget having focus"), 1);
++  KommanderPlugin::registerFunction(D_waitCursor, "waitCursor(QString widget)",  i18n("Set a wait cursor. CAUTION: if set more than once an equal number of calls to restore must be made to clear it."), 1);
++  KommanderPlugin::registerFunction(D_restoreCursor, "restoreCursor(QString widget)",  i18n("Restore normal curser. NOTE: must be called as many times as wait was."), 1);
+ }
+ 
+ Dialog::~Dialog()
+@@ -177,7 +193,7 @@
+ 
+ bool Dialog::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::geometry;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::geometry || (f > FirstFunction && f < LastFunction);
+ }
+ 
+ QString Dialog::handleDCOP(int function, const QStringList& args)
+@@ -191,6 +207,15 @@
+     case DCOP::geometry:
+       return QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+       break;
++    case D_focusWidget:
++      return focusWidget()->name();
++      break;
++    case D_waitCursor:
++      QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
++      break;
++    case D_restoreCursor:
++      QApplication::restoreOverrideCursor();
++      break;
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/spinboxint.h
+===================================================================
+--- kdewebdev/kommander/widgets/spinboxint.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/spinboxint.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -56,8 +56,12 @@
+ signals:
+   void widgetOpened();
+   void widgetTextChanged(const QString&);
++  void lostFocus();
++  void gotFocus();
+ protected:
+   void showEvent(QShowEvent *e);
++  void focusOutEvent( QFocusEvent* e);
++  void focusInEvent( QFocusEvent* e);
+ private:
+ };
+ 
+Index: widgets/lineedit.h
+===================================================================
+--- kdewebdev/kommander/widgets/lineedit.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/lineedit.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -60,10 +60,12 @@
+   void widgetTextChanged(const QString &);
+   void contextMenuRequested(int xpos, int ypos);
+   void gotFocus();
++  void lostFocus();
+ protected:
+   virtual void showEvent( QShowEvent *e );
+   void contextMenuEvent( QContextMenuEvent * e );
+   void focusInEvent( QFocusEvent* e);
++  void focusOutEvent( QFocusEvent* e);
+ private:
+ };
+ 
+Index: widgets/execbutton.h
+===================================================================
+--- kdewebdev/kommander/widgets/execbutton.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/execbutton.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -77,8 +77,10 @@
+ signals:
+   void widgetOpened();
+   void widgetTextChanged(const QString&);
+-  
++  void contextMenuRequested(int xpos, int ypos);
++
+ protected:
++  void contextMenuEvent( QContextMenuEvent * e );
+   // Whether output from process should be put in real stdout
+   bool m_writeStdout;
+   // Whether pressing execubtton should block GUI until process ends
+Index: widgets/toolbox.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/toolbox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/toolbox.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -121,7 +121,7 @@
+ 
+ bool ToolBox::isFunctionSupported(int f)
+ {
+-  return f == DCOP::count || (f >= FIRST_FUNCTION && f <=  LAST_FUNCTION) ;
++  return f == DCOP::count || f == DCOP::geometry || (f >= FIRST_FUNCTION && f <=  LAST_FUNCTION) ;
+ }
+ 
+ QString ToolBox::handleDCOP(int function, const QStringList& args)
+@@ -176,6 +176,12 @@
+     }
+     case DCOP::count:
+       return QString::number(count());
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/table.h
+===================================================================
+--- kdewebdev/kommander/widgets/table.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/table.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -52,12 +52,14 @@
+     virtual QString handleDCOP(int function, const QStringList& args);
+     virtual bool isFunctionSupported(int function);
+     virtual void clearCellWidget(int row, int col);
++    virtual void columnClicked(int col);
+   public slots:
+     virtual void populate();
+     virtual void setWidgetText(const QString &);
+     //void adjustColumn(int col);
+   signals:
+     void contextMenuRequested(int xpos, int ypos);
++    void columnHeaderClicked(int col);
+   protected:
+     void contextMenuEvent( QContextMenuEvent * e );
+   private:
+Index: widgets/spinboxint.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/spinboxint.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/spinboxint.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -87,9 +87,21 @@
+   emit widgetOpened();
+ }
+ 
++void SpinBoxInt::focusOutEvent( QFocusEvent * e)
++{
++  QSpinBox::focusOutEvent(e);
++  emit lostFocus();
++}
++
++void SpinBoxInt::focusInEvent( QFocusEvent * e)
++{
++  QSpinBox::focusInEvent(e);
++  emit gotFocus();
++}
++
+ bool SpinBoxInt::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::setMaximum;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::setMaximum  || f == DCOP::geometry|| f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ QString SpinBoxInt::handleDCOP(int function, const QStringList& args)
+@@ -103,6 +115,22 @@
+     case DCOP::setMaximum:
+       setMaxValue(args[0].toUInt());
+       break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/lineedit.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/lineedit.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/lineedit.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -21,7 +21,15 @@
+ /* OTHER INCLUDES */
+ #include <specials.h>
+ #include "lineedit.h"
++#include <klocale.h>
++#include <kommanderplugin.h>
+ 
++enum functions {
++  FirstFunction = 440,
++  LE_clearModified,
++  LastFunction
++};
++
+ LineEdit::LineEdit(QWidget *a_parent, const char *a_name)
+ 	: KLineEdit(a_parent, a_name), KommanderWidget((QObject *)this)
+ {
+@@ -32,6 +40,9 @@
+ 
+   connect(this, SIGNAL(textChanged(const QString &)), this,
+       SIGNAL(widgetTextChanged(const QString &)));
++      
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(LE_clearModified, "clearModified(QString widget)",  i18n("Clear widget modified status."), 1);
+ }
+ 
+ void LineEdit::showEvent(QShowEvent *e)
+@@ -46,6 +57,12 @@
+   emit gotFocus();
+ }
+ 
++void LineEdit::focusOutEvent( QFocusEvent * e)
++{
++  QLineEdit::focusOutEvent(e);
++  emit lostFocus();
++}
++
+ QString LineEdit::currentState() const
+ {
+   return QString("default");
+@@ -107,7 +124,7 @@
+ bool LineEdit::isFunctionSupported(int f)
+ {
+   return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::setSelection ||
+-    f == DCOP::clear || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus ;
++    f == DCOP::clear || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor || f == DCOP::isModified || (f >= FirstFunction && f <= LastFunction) ;
+ }
+ 
+ QString LineEdit::handleDCOP(int function, const QStringList& args)
+@@ -138,6 +155,22 @@
+     case DCOP::hasFocus:
+       return QString::number(this->hasFocus());
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
++    case DCOP::isModified:
++      return isModified() ? "1" : "0";
++      break;
++    case LE_clearModified:
++      this->clearModified();
++      break;
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/pixmaplabel.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/pixmaplabel.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/pixmaplabel.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -94,6 +94,13 @@
+   emit widgetOpened();
+ }
+ 
++void PixmapLabel::contextMenuEvent( QContextMenuEvent * e )
++{
++  e->accept();
++  QPoint p = e->globalPos();
++  emit contextMenuRequested(p.x(), p.y());
++}
++
+ bool PixmapLabel::isFunctionSupported(int f)
+ {
+   return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::geometry;
+Index: widgets/aboutdialog.h
+===================================================================
+--- kdewebdev/kommander/widgets/aboutdialog.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/aboutdialog.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -43,6 +43,7 @@
+ 
+ public slots:
+   virtual void populate();
++  virtual void execute();
+ 
+ private:
+   void initialize(const QString& appName, const QString &icon, const QString& version, const QString& copyright);  
+Index: widgets/scriptobject.h
+===================================================================
+--- kdewebdev/kommander/widgets/scriptobject.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/scriptobject.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -52,6 +52,7 @@
+   virtual void populate();
+   virtual void execute();
+   virtual void execute(const QString&);
++  virtual void execute(const QString&, const QString&);
+   virtual void execute(int);
+   virtual void execute(int, int);
+   virtual void execute(bool);
+Index: widgets/groupbox.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/groupbox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/groupbox.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -23,11 +23,14 @@
+ #include <qevent.h>
+ #include <qgroupbox.h>
+ #include <qobjectlist.h>
++#include <klocale.h>
+ 
+ /* OTHER INCLUDES */
++#include "kommanderplugin.h"
+ #include <specials.h>
+ #include "groupbox.h"
+ 
++
+ GroupBox::GroupBox(QWidget *a_parent, const char *a_name)
+   : QGroupBox(a_parent, a_name), KommanderWidget(this)
+ {
+@@ -105,7 +108,8 @@
+ 
+ bool GroupBox::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
++// || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ QString GroupBox::handleDCOP(int function, const QStringList& args)
+@@ -122,6 +126,22 @@
+     case DCOP::setText:
+       setTitle(args[0]);
+       break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/combobox.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/combobox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/combobox.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -30,7 +30,7 @@
+ #include "combobox.h"
+ 
+ enum Functions {
+-  FirstFunction = 355, //CHANGE THIS NUMBER TO AN UNIQUE ONE!!!
++  FirstFunction = 353, //CHANGE THIS NUMBER TO AN UNIQUE ONE!!!
+   popupList,
+   LastFunction
+ };
+@@ -121,7 +121,7 @@
+   return f == DCOP::text || f == DCOP::selection || f == DCOP::setSelection ||
+       f == DCOP::currentItem || f == DCOP::setCurrentItem || f == DCOP::item || 
+       f == DCOP::removeItem || f == DCOP::insertItem || f == DCOP::insertItems ||
+-      f == DCOP::addUniqueItem || f == DCOP::clear || f == DCOP::count || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus  || (f >= FirstFunction && f <= LastFunction);
++      f == DCOP::addUniqueItem || f == DCOP::clear || f == DCOP::count || f == DCOP::setEditable || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ QString ComboBox::handleDCOP(int function, const QStringList& args)
+@@ -179,6 +179,16 @@
+     case DCOP::setEditable:
+       setEditable(args[0] != "false" && args[0] != "0");
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     case popupList:
+       QComboBox::popup();
+       break;
+Index: widgets/statusbar.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/statusbar.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/statusbar.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -91,7 +91,7 @@
+ 
+ bool StatusBar::isFunctionSupported(int f)
+ {
+-  return f == DCOP::setText || f == DCOP::insertItem || f == DCOP::removeItem || f == DCOP::clear;
++  return f == DCOP::setText || f == DCOP::insertItem || f == DCOP::removeItem || f == DCOP::clear || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ QString StatusBar::handleDCOP(int function, const QStringList& args)
+@@ -112,6 +112,16 @@
+     case DCOP::clear:
+       clear();
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/tabwidget.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/tabwidget.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/tabwidget.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -23,6 +23,7 @@
+ #include <qstringlist.h>
+ #include <qevent.h>
+ #include <qtabwidget.h>
++#include <qtabbar.h>
+ 
+ /* OTHER INCLUDES */
+ #include <kommanderwidget.h>
+@@ -31,8 +32,14 @@
+ #include "tabwidget.h"
+ 
+ enum Functions {
+-  FirstFunction = 355,
++  FirstFunction = 357,
+   TAB_setTabIcon,
++  TAB_tabLabel,
++  TAB_isTabEnabled,
++  TAB_setTabEnabled,
++  TAB_showTabBar,
++  TAB_setCurrentPage,
++  TAB_setTabLabel,
+   LastFunction
+ };
+ 
+@@ -46,6 +53,12 @@
+ 
+   KommanderPlugin::setDefaultGroup(Group::DCOP);
+   KommanderPlugin::registerFunction(TAB_setTabIcon, "setTabIcon(QString widget, int Tab, QString Icon)", i18n("Sets an icon on the specified tab. Index is zero based."), 3);
++  KommanderPlugin::registerFunction(TAB_tabLabel, "tabLabel(QString widget, int Tab)", i18n("Returns the tab label at the given index. Index is zero based."), 2);
++  KommanderPlugin::registerFunction(TAB_isTabEnabled, "isTabEnabled(QString widget, int Tab)", i18n("Returns true if tab at specified index is enabled, otherwise returns false."), 2);
++  KommanderPlugin::registerFunction(TAB_setTabEnabled, "setTabEnabled(QString widget, int Tab, bool Enabled)", i18n("Sets the tab at the given index to enabled or disabled."), 3);
++  KommanderPlugin::registerFunction(TAB_showTabBar, "showTabBar(QString widget, bool Show)", i18n("Show or hide the tabs on the tab widget."), 2);
++  KommanderPlugin::registerFunction(TAB_setCurrentPage, "setCurrentPage(QString widget, QString Page)", i18n("Set the current page by name."), 2);
++  KommanderPlugin::registerFunction(TAB_setTabLabel, "setTabLabel(QString widget, int Tab, QString Text)", i18n("Sets the tab tab label."), 3);
+ }
+ 
+ TabWidget::~TabWidget()
+@@ -115,12 +128,63 @@
+     case DCOP::insertTab:
+       insertTab(0L, args[0], args[1].toUInt());
+       break;
++    case TAB_tabLabel:
++    {
++      QString s = this->label(args[0].toInt());
++      return s.remove("&");
++      break;
++    }
+     case TAB_setTabIcon:
+     {
+       QWidget *w = page(args[0].toInt());
+       setTabIconSet(w, KGlobal::iconLoader()->loadIcon(args[1], KIcon::NoGroup, KIcon::SizeMedium));
+       break;
+     }
++    case TAB_isTabEnabled:
++    {
++      QWidget *w = page(args[0].toInt());
++      return QString::number(this->isTabEnabled(w));
++      break;
++    }
++    case TAB_setTabLabel:
++    {
++      QWidget *w = page(args[0].toInt());
++      setTabLabel(w, args[1]);
++      break;
++    }
++    case TAB_setTabEnabled:
++    {
++      QWidget *w = page(args[0].toInt());
++      this->setTabEnabled(w, args[1].toInt());
++     break;
++    }
++    case TAB_setCurrentPage:
++    {
++      int cnt = this->count();
++      int i = 0;
++      bool found = false;
++      while (i < cnt) {
++        QString s = this->label(i);
++        if (s.remove("&") == args[0])
++        {
++          setCurrentPage(i);
++          found = true;
++          break;
++        }
++        i++;
++      }
++      return QString::number(found);
++      break;
++    }
++    case TAB_showTabBar:
++    {
++      QTabBar *t = this->tabBar();
++      if (args[0].toInt() == 1)
++        t->show();
++      else
++        t->hide();
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/slider.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/slider.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/slider.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -84,7 +84,7 @@
+ 
+ bool Slider::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::setMaximum;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::setMaximum || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ QString Slider::handleDCOP(int function, const QStringList& args)
+@@ -101,6 +101,16 @@
+     case DCOP::setMaximum:
+       setMaxValue(args[0].toInt());
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/table.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/table.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/table.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -41,6 +41,8 @@
+   TBL_setColumnReadOnly,
+   TBL_setRowReadOnly,
+   TBL_rowCount,
++  TBL_colHeader,
++  TBL_rowHeader,
+   LastFunction
+ };
+ 
+@@ -61,6 +63,8 @@
+   KommanderPlugin::registerFunction(TBL_setColumnReadOnly, "setColumnReadOnly(QString widget, int col, bool Readonly)", i18n("Set the column read only using zero based index.<br /><b>Not guaranteed to have KDE4 compatiblility</b>"), 3);
+   KommanderPlugin::registerFunction(TBL_setRowReadOnly, "setRowReadOnly(QString widget, int row, bool Readonly)", i18n("Set the row read only using zero based index.<br /><b>Not guaranteed to have KDE4 compatiblility</b>"), 3);
+   KommanderPlugin::registerFunction(TBL_rowCount, "rowCount(QString widget)", i18n("Returns the number of rows of the table"), 1);
++  KommanderPlugin::registerFunction(TBL_colHeader, "columnHeader(QString widget, int Column)", i18n("Returns the text of the header for the column index"), 2);
++  KommanderPlugin::registerFunction(TBL_rowHeader, "rowHeader(QString widget, int Row)", i18n("Returns the text of the header for the row index"), 2);
+ 
+ }
+ 
+@@ -119,7 +123,7 @@
+   return f == DCOP::currentColumn || f == DCOP::currentRow || f == DCOP::insertColumn || 
+       f == DCOP::insertRow || f == DCOP::cellText || f == DCOP::setCellText || f == DCOP::setCellWidget || f == DCOP::cellWidget || f == DCOP::columnCount ||
+       f == DCOP::removeRow || f == DCOP::removeColumn || f == DCOP::setColumnCaption ||
+-      f == DCOP::setRowCaption || f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::geometry || f == DCOP::hasFocus  || (f >= FirstFunction && f <= LastFunction);
++      f == DCOP::setRowCaption || f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor  || (f >= FirstFunction && f <= LastFunction);
+ }
+ 
+ void Table::setCellWidget(int row, int col, const QString & _widgetName)
+@@ -180,15 +184,16 @@
+   QPoint p = e->globalPos();
+   emit contextMenuRequested(p.x(), p.y());
+ }
+-/*
+-void Table::adjustColumn(int col)
++
++void Table::columnClicked(int col)
+ {
+-  if (numRows() >= col)
+-    QTable::adjustColumn(col);
+-  else
+-    KMessageBox::error(this, "Attempted to size nonexistant column");
++  emit columnHeaderClicked(col);
++  static bool ascending = TRUE;
++  if (!sorting()) return;
++  ascending=!ascending;
++  sortColumn( col, ascending, TRUE);
+ }
+-*/
++
+ QString Table::handleDCOP(int function, const QStringList& args)
+ {
+   switch (function) 
+@@ -293,27 +298,62 @@
+     case DCOP::selection:
+       return selectedArea();
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     case TBL_sortColumnExtra:
+-      QTable::sortColumn(args[0].toInt(), args[1].toInt(), args[2].toInt());
++      if (numCols() >= args[0].toInt())
++        QTable::sortColumn(args[0].toInt(), args[1].toInt(), args[2].toInt());
+       break;
+     case TBL_keepCellVisible:
+-      QTable::ensureCellVisible(args[0].toInt()-1, args[1].toInt()-1);
++      if (numRows() >= args[0].toInt() && numCols() >+ args[1].toInt())
++        QTable::ensureCellVisible(args[0].toInt()-1, args[1].toInt()-1);
+       break;
+     case   TBL_selectCells:
+-      QTable::selectCells (args[0].toInt(), args[1].toInt(), args[2].toInt(), args[3].toInt());
++      if (numRows() >= args[0].toInt() && numCols() >+ args[1].toInt() && numRows() >= args[2].toInt() && numCols() >+ args[3].toInt())
++        QTable::selectCells (args[0].toInt(), args[1].toInt(), args[2].toInt(), args[3].toInt());
+       break;
+     case TBL_selectRow:
+-      QTable::selectRow (args[0].toInt());
++      if (numRows() >= args[0].toInt())
++        QTable::selectRow (args[0].toInt());
+       break;
+     case TBL_selectColumn:
+-      QTable::selectColumn (args[0].toInt());
++      if (numCols() >= args[0].toInt())
++        QTable::selectColumn (args[0].toInt());
+       break;
+     case TBL_setColumnReadOnly:
+-      QTable::setColumnReadOnly (args[0].toInt(), args[1].toUInt());
++      if (numCols() >= args[0].toInt())
++        QTable::setColumnReadOnly (args[0].toInt(), args[1].toUInt());
+       break;
+     case TBL_setRowReadOnly:
+-      QTable::setRowReadOnly (args[0].toInt(), args[1].toUInt());
++      if (numRows() >= args[0].toInt())
++        QTable::setRowReadOnly (args[0].toInt(), args[1].toUInt());
+       break;
++    case TBL_colHeader:
++    {
++      QHeader* hdr = QTable::horizontalHeader();
++      if (numCols() >= args[0].toInt())
++        return hdr->label(args[0].toInt());
++      else
++        return "No column at index "+args[0];
++      break;
++    }
++    case TBL_rowHeader:
++    {
++      QHeader* hdr = QTable::verticalHeader();
++      if (numRows() >= args[0].toInt())
++        return hdr->label(args[0].toInt());
++      else
++        return "No row at index "+args[0];
++      break;
++    }
+     case DCOP::geometry:
+     {
+       QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+Index: widgets/progressbar.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/progressbar.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/progressbar.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -14,6 +14,7 @@
+  ***************************************************************************/
+ 
+ /* KDE INCLUDES */
++#include <klocale.h>
+ 
+ /* QT INCLUDES */
+ #include <qobject.h>
+@@ -25,7 +26,15 @@
+ /* OTHER INCLUDES */
+ #include <specials.h>
+ #include "progressbar.h"
++#include "kommanderplugin.h"
+ 
++enum Functions {
++  FirstFunction = 585,
++  PB_setHighlightColor,
++  PB_setHightlightTextColor,
++  LastFunction
++};
++
+ ProgressBar::ProgressBar(QWidget *a_parent, const char *a_name)
+   : KProgress(a_parent, a_name), KommanderWidget(this)
+ {
+@@ -33,6 +42,9 @@
+   states << "default";
+   setStates(states);
+   setDisplayStates(states);
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(PB_setHighlightColor, "setBarColor(QString widget, QString Color)",  i18n("Sets the ProgresBar color"), 2);
++  KommanderPlugin::registerFunction(PB_setHightlightTextColor, "setBarTextColor(QString widget, QString Color)",  i18n("Sets the ProgresBar text color"), 2);
+ }
+ 
+ ProgressBar::~ProgressBar()
+@@ -82,7 +94,7 @@
+ 
+ bool ProgressBar::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::setMaximum;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::setMaximum || f == DCOP::geometry || (f > FirstFunction && f < LastFunction);
+ }
+ 
+ QString ProgressBar::handleDCOP(int function, const QStringList& args)
+@@ -99,6 +111,30 @@
+     case DCOP::setMaximum:
+       setTotalSteps(args[0].toUInt());
+       break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case PB_setHighlightColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      QPalette p = this->palette();
++      p.setColor(QPalette::Active, QColorGroup::Highlight, color);
++      this->setPalette( p, TRUE );
++      break;
++    }
++    case PB_setHightlightTextColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      QPalette p = this->palette();
++      p.setColor(QPalette::Active, QColorGroup::HighlightedText, color);
++      this->setPalette( p, TRUE );
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/scriptobject.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/scriptobject.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/scriptobject.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -126,6 +126,14 @@
+   executeProcess(true);
+ }
+ 
++void ScriptObject::execute(const QString& s1, const QString& s2)
++{
++  m_params.clear();
++  m_params.append(s1);
++  m_params.append(s2);
++  executeProcess(true);
++}
++
+ void ScriptObject::execute(int i)
+ {
+   m_params.clear();
+Index: widgets/pixmaplabel.h
+===================================================================
+--- kdewebdev/kommander/widgets/pixmaplabel.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/pixmaplabel.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -56,8 +56,10 @@
+ signals:
+   void widgetOpened();
+   void widgetTextChanged(const QString&);
++  void contextMenuRequested(int xpos, int ypos);
+ protected:
+   void showEvent(QShowEvent *e);
++  void contextMenuEvent( QContextMenuEvent * e );
+ private:
+ };
+ 
+Index: widgets/treewidget.h
+===================================================================
+--- kdewebdev/kommander/widgets/treewidget.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/treewidget.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -68,6 +68,7 @@
+   void showEvent(QShowEvent *e);
+   void contextMenuEvent( QContextMenuEvent * e );
+   int itemToIndex(QListViewItem* item);
++  int itemToIndexSafe(QListViewItem* item);
+   QString itemText(QListViewItem* item) const;
+   QString itemsText();
+   QListViewItem* indexToItem(int index);
+Index: widgets/label.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/label.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/label.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -88,7 +88,7 @@
+ 
+ bool Label::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::clear || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ QString Label::handleDCOP(int function, const QStringList& args)
+@@ -102,6 +102,22 @@
+     case DCOP::clear:
+       setWidgetText("");
+       break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/listbox.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/listbox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/listbox.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -96,7 +96,7 @@
+   return f == DCOP::text || f == DCOP::setText || f == DCOP::selection || f == DCOP::setSelection ||
+     f == DCOP::insertItems || f == DCOP::insertItem || f == DCOP::removeItem || f == DCOP::clear ||
+     f == DCOP::currentItem || f == DCOP::setCurrentItem || f == DCOP::item || f == DCOP::addUniqueItem ||
+-      f == DCOP::findItem || f == DCOP::setPixmap || f == DCOP::count || f == DCOP::geometry || f == DCOP::hasFocus;
++      f == DCOP::findItem || f == DCOP::setPixmap || f == DCOP::count || f == DCOP::geometry || f == DCOP::hasFocus || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ void ListBox::contextMenuEvent( QContextMenuEvent * e )
+@@ -206,6 +206,16 @@
+     case DCOP::hasFocus:
+       return QString::number(this->hasFocus());
+       break;
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/checkbox.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/checkbox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/checkbox.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -102,7 +102,7 @@
+ 
+ bool CheckBox::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::checked || f == DCOP::setChecked;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::checked || f == DCOP::setChecked || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ void CheckBox::contextMenuEvent( QContextMenuEvent * e )
+@@ -125,6 +125,22 @@
+     case DCOP::setChecked:
+       setChecked(args[0] != "false" && args[0] != "0");
+       break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/popupmenu.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/popupmenu.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/popupmenu.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -224,9 +224,11 @@
+     {
+       uint index = args[0].toInt();
+       return index < m_params.count() ? m_params[index] : QString::null;
++      break;
+     }
+     case DCOP::count:
+       return QString::number(m_menu->count());
++      break;
+     case DCOP::geometry:
+     {
+       QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
+Index: widgets/buttongroup.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/buttongroup.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/buttongroup.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -14,6 +14,7 @@
+  *                                                                         *
+  ***************************************************************************/
+ /* KDE INCLUDES */
++#include <klocale.h>
+ 
+ /* QT INCLUDES */
+ #include <qobject.h>
+@@ -24,11 +25,19 @@
+ #include <qevent.h>
+ 
+ /* OTHER INCLUDES */
++#include <kommanderwidget.h>
++#include "kommanderplugin.h"
+ #include <specials.h>
+ #include "buttongroup.h"
+ 
+ #include "radiobutton.h" // include a button header for the compiler with dynamic cast below
+ 
++enum Functions {
++  FirstFunction = 720,
++  BG_selectedId,
++  LastFunction
++};
++
+ ButtonGroup::ButtonGroup(QWidget *a_parent, const char *a_name)
+ 	: QButtonGroup(a_parent, a_name), KommanderWidget(this)
+ {
+@@ -37,6 +46,9 @@
+   states << "unchecked";
+   setStates(states);
+   setDisplayStates(states);
++  
++  KommanderPlugin::setDefaultGroup(Group::DCOP);
++  KommanderPlugin::registerFunction(BG_selectedId, "selectedId(QString widget)", i18n("Returns the ID of the selected button."), 1);
+ 
+ }
+ 
+@@ -97,7 +109,7 @@
+ 
+ bool ButtonGroup::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::checked || f == DCOP::setChecked;
++  return f == DCOP::text || f == DCOP::checked || f == DCOP::setChecked || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor || (f >= FirstFunction && f <= LastFunction);
+ }
+     
+ 
+@@ -118,6 +130,25 @@
+       setCheckable(true);
+       setChecked(args[0] != "false");
+       break;
++    case BG_selectedId:
++      return QString::number(this->selectedId() );
++      break;
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: widgets/radiobutton.cpp
+===================================================================
+--- kdewebdev/kommander/widgets/radiobutton.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/widgets/radiobutton.cpp	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -101,7 +101,7 @@
+ 
+ bool RadioButton::isFunctionSupported(int f)
+ {
+-  return f == DCOP::text || f == DCOP::setText || f == DCOP::setChecked || f == DCOP::checked;
++  return f == DCOP::text || f == DCOP::setText || f == DCOP::setChecked || f == DCOP::checked || f == DCOP::geometry || f == DCOP::getBackgroundColor || f == DCOP::setBackgroundColor;
+ }
+ 
+ QString RadioButton::handleDCOP(int function, const QStringList& args)
+@@ -117,6 +117,22 @@
+       break;
+     case DCOP::checked:
+       return QString::number(isOn());
++    case DCOP::geometry:
++    {
++      QString geo = QString::number(this->x())+" "+QString::number(this->y())+" "+QString::number(this->width())+" "+QString::number(this->height());
++      return geo;
++      break;
++    }
++    case DCOP::getBackgroundColor:
++      return this->paletteBackgroundColor().name();
++      break;
++    case DCOP::setBackgroundColor:
++    {
++      QColor color;
++      color.setNamedColor(args[0]);
++      this->setPaletteBackgroundColor(color);
++      break;
++    }
+     default:
+       return KommanderWidget::handleDCOP(function, args);
+   }
+Index: factory/kommanderversion.h
+===================================================================
+--- kdewebdev/kommander/factory/kommanderversion.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/kommander/factory/kommanderversion.h	 (.../branches/KDE/3.5)	(revision 1064505)
+@@ -1,7 +1,7 @@
+ #ifndef __VERSION_H__
+ #define __VERSION_H__
+ 
+-#define KOMMANDER_VERSION "1.3"
++#define KOMMANDER_VERSION "1.5.3"
+ 
+ #endif
+ 

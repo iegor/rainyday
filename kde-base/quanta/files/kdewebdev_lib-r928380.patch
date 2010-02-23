@@ -1,0 +1,36 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r928380.
+Only looking at subdirectory kdewebdev/lib here.
+Logs since r849627 of the branch but this might be wrong.
+
+r928380 | amantia
+Add special case for webdav. Patch based on the one attached to the br, thank you!
+  M qextfileinfo.cpp
+
+
+Index: qextfileinfo.cpp
+===================================================================
+--- kdewebdev/lib/qextfileinfo.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdewebdev/lib/qextfileinfo.cpp	 (.../branches/KDE/3.5)	(revision 928380)
+@@ -192,11 +192,11 @@
+ {
+   int i = 0;
+   bool result;
+-  KURL dir3; 
++  KURL dir3;
+   KURL dir2;
+   KURL dir1 = path;
+   dir1.setPath("/");
+-  if (!exists(dir1, false, window))
++  if (!exists(dir1, false, window) && path.protocol() != "webdav" )
+   {
+     return false; //the root is not accessible, possible wrong username/password supplied
+   }
+@@ -508,7 +508,7 @@
+           u.setPath(u.directory(false, true) + linkDest);
+           u.cleanPath();
+         }
+-        else       
++        else
+           u.setPath(linkDest);
+         u.adjustPath(+1);
+         if (!dirListItems.contains(u) && u.url() != m_listStartURL && !u.isParentOf(item->url()))

@@ -1,0 +1,241 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r1022986.
+Only looking at subdirectory kdepim/kmail here.
+Logs since r849627 of the branch but this might be wrong.
+
+r849848 | coolo
+fix compile
+  M recipientspicker.cpp
+r857911 | gianni
+this commit fix the bug #168544 in the KDE 3.5 branch reviewed by Ingo
+  M accountmanager.cpp
+  M kmfoldertree.cpp
+r858979 | mueller
+fix build here too. only hell knows why kmail likes to copy&paste code from kdelibs that it could just as well just...
+  M configure.in.in
+  M editorwatcher.cpp
+r882942 | vkrause
+Merged revisions 882936 via svnmerge from https://vkrause@svn.kde.org/home/kde/branches/kdepim/enterprise/kdepim
+  M kmfoldercachedimap.h
+r931963 | scripty
+SVN_SILENT made messages (.desktop file)
+  M kmail_config_composer.desktop
+r951205 | wstephens
+Backport 927077
+  M kmcommands.cpp
+r1022980 | winterz
+merge r1021458 | tmcguire | 2009-09-09 05:16:29 -0400 (Wed, 09 Sep 2009) | 7 lines
+  M cachedimapjob.cpp
+  M kmfoldercachedimap.cpp
+  M kmfoldercachedimap.h
+r1022986 | winterz
+merge r1021464 | tmcguire | 2009-09-09 05:37:52 -0400 (Wed, 09 Sep 2009) | 5 lines
+  M kmfoldercachedimap.cpp
+
+
+Index: editorwatcher.cpp
+===================================================================
+--- kdepim/kmail/editorwatcher.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/editorwatcher.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -32,8 +32,12 @@
+ #include <cassert>
+ 
+ // inotify stuff taken from kdelibs/kio/kio/kdirwatch.cpp
+-#ifdef HAVE_INOTIFY
++#ifdef HAVE_SYS_INOTIFY
+ #include <sys/ioctl.h>
++#include <sys/inotify.h>
++#include <fcntl.h>
++#elif HAVE_INOTIFY
++#include <sys/ioctl.h>
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <sys/syscall.h>
+Index: cachedimapjob.cpp
+===================================================================
+--- kdepim/kmail/cachedimapjob.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/cachedimapjob.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -508,7 +508,7 @@
+         bool b = kmkernel->iCalIface().isResourceQuiet();
+         kmkernel->iCalIface().setResourceQuiet( true );
+ 
+-        mFolder->take( i );
++        mFolder->takeTemporarily( i );
+         mFolder->addMsgKeepUID( mMsg );
+         mMsg->setTransferInProgress( false );
+ 
+Index: kmail_config_composer.desktop
+===================================================================
+--- kdepim/kmail/kmail_config_composer.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/kmail_config_composer.desktop	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -71,6 +71,7 @@
+ Comment[da]=Skabeloner & Generel opførsel
+ Comment[de]=Vorlagen und allgemeines Verhalten
+ Comment[el]=Πρότυπα & γενική Συμπεριφορά
++Comment[en_GB]=Templates & General Behaviour
+ Comment[eo]=Ŝablonoj kaj Ĝenerala Konduto
+ Comment[es]=Plantilla y comportamiento general
+ Comment[et]=Mallid ja üldine käitumine
+Index: kmcommands.cpp
+===================================================================
+--- kdepim/kmail/kmcommands.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/kmcommands.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -2414,7 +2414,8 @@
+         .arg( mUrl.prettyURL() ), QString::null, i18n("Execute"), KStdGuiItem::cancel() ) != KMessageBox::Yes)
+         return Canceled;
+     }
+-    (void) new KRun( mUrl );
++    KRun * runner = new KRun( mUrl );
++    runner->setRunExecutables( false );
+   }
+   else
+     return Failed;
+Index: kmfoldercachedimap.cpp
+===================================================================
+--- kdepim/kmail/kmfoldercachedimap.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/kmfoldercachedimap.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -471,7 +471,6 @@
+   uidMapDirty = false;
+ }
+ 
+-/* Reimplemented from KMFolderMaildir */
+ KMMessage* KMFolderCachedImap::take(int idx)
+ {
+   uidMapDirty = true;
+@@ -479,6 +478,11 @@
+   return KMFolderMaildir::take(idx);
+ }
+ 
++void KMFolderCachedImap::takeTemporarily( int idx )
++{
++  KMFolderMaildir::take( idx );
++}
++
+ // Add a message without clearing it's X-UID field.
+ int KMFolderCachedImap::addMsgInternal( KMMessage* msg, bool newMail,
+                                         int* index_return )
+@@ -1565,6 +1569,11 @@
+     job->start();
+     return true;
+   } else {
++
++    // Nothing to delete on the server, make sure the map is clear again.
++    // Normally this wouldn't be necessary, but there can be stale maps because of
++    // https://issues.kolab.org/issue3833.
++    mDeletedUIDsSinceLastSync.clear();
+     return false;
+   }
+ }
+Index: kmfoldercachedimap.h
+===================================================================
+--- kdepim/kmail/kmfoldercachedimap.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/kmfoldercachedimap.h	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -182,8 +182,20 @@
+   /* Reimplemented from KMFolder. Moving is not supported, so aParent must be 0 */
+   virtual int rename(const QString& aName, KMFolderDir *aParent=0);
+ 
+-  /* Reimplemented from KMFolderMaildir */
++  /**
++   * Reimplemented from KMFolderMaildir
++   * This deletes the message permanently, also from the server. For this, rememberDeletion() is
++   * called, so that the message can be deleted from the server on the next sync.
++   */
+   virtual KMMessage* take(int idx);
++
++  /**
++   * Like take(), only that the deletion is not remembered, i.e. the message will not be deleted
++   * from the server.
++   * Calling this can cause inconsistencies, so make sure you re-add the message later!
++   */
++  void takeTemporarily( int idx );
++
+   /* Reimplemented from KMFolderMaildir */
+   virtual int addMsg(KMMessage* msg, int* index_return = 0);
+   /* internal version that doesn't remove the X-UID header */
+@@ -213,8 +225,11 @@
+   void setSilentUpload( bool silent ) { mSilentUpload = silent; }
+   bool silentUpload() { return mSilentUpload; }
+ 
+-  virtual int createIndexFromContents()
+-    { return KMFolderMaildir::createIndexFromContents(); }
++  virtual int createIndexFromContents() {
++    const int result = KMFolderMaildir::createIndexFromContents();
++    reloadUidMap();
++    return result;
++  }
+ 
+   int createIndexFromContentsRecursive();
+ 
+Index: configure.in.in
+===================================================================
+--- kdepim/kmail/configure.in.in	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/configure.in.in	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -57,8 +57,30 @@
+   AC_LANG_RESTORE
+   ])
+ 
+-  if test "$kde_cv_have_inotify" = "yes" ; then
++  AC_CACHE_VAL(kde_cv_have_sys_inotify,
++  [
++  kde_cv_have_sys_inotify=no
++  AC_LANG_SAVE
++  AC_LANG_C
++
++  AC_TRY_COMPILE(
++  [
++#include <sys/inotify.h>
++  ],
++  [
++#ifndef IN_ALL_EVENTS
++#error no inotify notification
++#endif
++  ],kde_cv_have_sys_inotify=yes,kde_cv_have_sys_inotify=no)
++
++  AC_LANG_RESTORE
++  ])
++
++  if test "$kde_cv_have_inotify" = "yes" -o "$kde_cv_have_sys_inotify" = "yes"; then
+     AC_DEFINE_UNQUOTED(HAVE_INOTIFY, 1, [Define if your system has Linux Inode Notification])
++    if test "$kde_cv_have_sys_inotify" = "yes"; then
++      AC_DEFINE_UNQUOTED(HAVE_SYS_INOTIFY, 1, [Define if your system has glibc support for inotify])
++    fi
+     AC_MSG_RESULT(yes)
+   else
+     AC_MSG_RESULT(no)
+Index: accountmanager.cpp
+===================================================================
+--- kdepim/kmail/accountmanager.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/accountmanager.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -7,6 +7,7 @@
+ #include "accountmanager.h"
+ 
+ #include "kmaccount.h"
++#include "kmacctfolder.h"
+ #include "kmacctmaildir.h"
+ #include "kmacctlocal.h"
+ #include "popaccount.h"
+@@ -239,6 +240,11 @@
+ {
+   if ( account ) {
+     mAcctList.append( account );
++    // init folder's account list
++    KMAcctFolder *folder = static_cast<KMAcctFolder*>( account->folder() );
++    if ( folder && !folder->hasAccounts() ) {
++      folder->addAccount( account );
++    }
+     emit accountAdded( account );
+     account->installTimer();
+   }
+Index: kmfoldertree.cpp
+===================================================================
+--- kdepim/kmail/kmfoldertree.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kmail/kmfoldertree.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
+@@ -432,6 +432,9 @@
+   connect(kmkernel->acctMgr(), SIGNAL(accountRemoved(KMAccount*)),
+           this, SLOT(slotAccountRemoved(KMAccount*)));
+ 
++  connect(kmkernel->acctMgr(), SIGNAL(accountAdded(KMAccount*)),
++          this, SLOT(slotUnhideLocalInbox()));
++
+   connect(kmkernel->searchFolderMgr(), SIGNAL(folderRemoved(KMFolder*)),
+           this, SLOT(slotFolderRemoved(KMFolder*)));
+ 

@@ -1,0 +1,29 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r897778.
+Only looking at subdirectory kdetoys/kworldwatch here.
+Logs since r849627 of the branch but this might be wrong.
+
+r897778 | djarvie
+Fix map themes not working with double size screenwidth.
+  M maploader.cpp
+
+
+Index: maploader.cpp
+===================================================================
+--- kdetoys/kworldwatch/maploader.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdetoys/kworldwatch/maploader.cpp	 (.../branches/KDE/3.5)	(revision 897778)
+@@ -88,11 +88,11 @@
+   // find the closest (bigger) size
+   uint size=0;
+   for (uint i=0; i<sizes.count(); ++i)
+-    if (sizes[i] >= width)
+-      {
+-	size = sizes[i];
++    {
++      size = sizes[i];
++      if (size >= width)
+ 	break;
+-      }
++    }
+   
+   QImage image;
+   if (size == 0)

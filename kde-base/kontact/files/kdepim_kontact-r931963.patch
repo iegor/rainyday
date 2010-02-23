@@ -1,0 +1,543 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r931963.
+Only looking at subdirectory kdepim/kontact here.
+Logs since r849627 of the branch but this might be wrong.
+
+r851969 | scripty
+SVN_SILENT made messages (.desktop file)
+  M plugins/akregator/akregatorplugin.desktop
+  M plugins/kaddressbook/kaddressbookplugin.desktop
+  M plugins/karm/karmplugin.desktop
+  M plugins/kitchensync/kitchensync.desktop
+  M plugins/kmail/kcmkmailsummary.desktop
+  M plugins/kmail/kmailplugin.desktop
+  M plugins/knode/knodeplugin.desktop
+  M plugins/knotes/knotesplugin.desktop
+  M plugins/korganizer/journalplugin.desktop
+  M plugins/korganizer/kcmkorgsummary.desktop
+  M plugins/korganizer/korganizerplugin.desktop
+  M plugins/korganizer/todoplugin.desktop
+  M plugins/kpilot/kpilotplugin.desktop
+  M plugins/newsticker/newstickerplugin.desktop
+  M plugins/specialdates/kcmsdsummary.desktop
+  M plugins/specialdates/specialdatesplugin.desktop
+  M plugins/summary/kcmkontactsummary.desktop
+  M plugins/summary/summaryplugin.desktop
+  M plugins/weather/weatherplugin.desktop
+  M src/kontact.setdlg
+r861733 | scripty
+SVN_SILENT made messages (.desktop file)
+  M plugins/akregator/akregatorplugin.desktop
+  M plugins/akregator/akregatorplugin3.2.desktop
+  M plugins/karm/karmplugin.desktop
+  M plugins/kitchensync/kitchensync.desktop
+  M plugins/kmail/kcmkmailsummary.desktop
+  M plugins/kmail/kmailplugin.desktop
+  M plugins/korganizer/korganizerplugin.desktop
+  M plugins/korganizer/todoplugin.desktop
+  M src/kontact.setdlg
+r893152 | scripty
+SVN_SILENT made messages (.desktop file)
+  M plugins/akregator/akregatorplugin3.2.desktop
+  M plugins/test/kptestplugin.desktop
+r897910 | scripty
+SVN_SILENT made messages (.desktop file)
+  M plugins/kmail/kmailplugin.desktop
+  M plugins/specialdates/kcmsdsummary.desktop
+  M plugins/specialdates/specialdatesplugin.desktop
+  M src/kontact.setdlg
+r931963 | scripty
+SVN_SILENT made messages (.desktop file)
+  M plugins/kitchensync/kitchensync.desktop
+
+
+Index: plugins/akregator/akregatorplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/akregator/akregatorplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/akregator/akregatorplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -19,6 +19,7 @@
+ Comment[da]=Feed-læserkomponent (Akregator-plugin)
+ Comment[de]=News-Leser (Akregator-Modul)
+ Comment[el]=Συστατικό ανάγνωσης ροών (Πρόσθετο του Akregator)
++Comment[es]=Componente de lectura de fuentes (complemento de Akregator)
+ Comment[et]=Uudistevoogude plugin (Akregator)
+ Comment[fr]=Composant du lecteur de flux (Module pour Akregator)
+ Comment[is]=Fréttastraumalestur (Akregator íforrit)
+@@ -29,6 +30,7 @@
+ Comment[nl]=Component om feeds te lezen (Akregator-plugin)
+ Comment[pl]=Składnik do czytania kanałów RSS (wtyczka Akregator)
+ Comment[ru]=Просмотр лент новостей (модуль Akregator)
++Comment[sk]=Komponent na čítanie kanálov (Modul pre Akregator)
+ Comment[sr]=Компонента читања довода (прикључак Akregator-а)
+ Comment[sr@Latn]=Komponenta čitanja dovoda (priključak Akregator-a)
+ Comment[sv]=Komponent för läsning av kanaler (Akregator-insticksprogram)
+@@ -71,7 +73,7 @@
+ Name[pt]=Fontes
+ Name[pt_BR]=Fontes de Notícias
+ Name[ru]=Ленты новостей
+-Name[sk]=Kŕmitka
++Name[sk]=Kanály
+ Name[sl]=Viri
+ Name[sr]=Доводи
+ Name[sr@Latn]=Dovodi
+Index: plugins/akregator/akregatorplugin3.2.desktop
+===================================================================
+--- kdepim/kontact/plugins/akregator/akregatorplugin3.2.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/akregator/akregatorplugin3.2.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -48,7 +48,7 @@
+ Comment[nn]=Akregator-programtillegg
+ Comment[pl]=Wtyczka Akregatora
+ Comment[pt]='Plugin' Akregator
+-Comment[pt_BR]=Plugin do Akregator
++Comment[pt_BR]=Plug-in do Akregator
+ Comment[ru]=Модуль Akregator
+ Comment[sk]=Modul Akregator
+ Comment[sl]=Vstavek Akregator
+@@ -98,7 +98,7 @@
+ Name[pt]=Fontes
+ Name[pt_BR]=Fontes de Notícias
+ Name[ru]=Ленты новостей
+-Name[sk]=Kŕmitka
++Name[sk]=Kanály
+ Name[sl]=Viri
+ Name[sr]=Доводи
+ Name[sr@Latn]=Dovodi
+Index: plugins/test/kptestplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/test/kptestplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/test/kptestplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -95,7 +95,7 @@
+ Name[nn]=Test-programtillegg
+ Name[nso]=Plugin ya Teko
+ Name[pl]=Wtyczka testowa
+-Name[pt_BR]=Plugin de Teste
++Name[pt_BR]=Plug-in de Teste
+ Name[ro]=Modul de  test
+ Name[ru]=Проверочный модуль
+ Name[se]=Geahččalan-lassemoduvla
+Index: plugins/weather/weatherplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/weather/weatherplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/weather/weatherplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Vejrkomponent til Kontact
+ Comment[de]=Wetter-Komponente für Kontact
+ Comment[el]=Συστατικό καιρού του Kontact
++Comment[es]=Extensión de meteorología para Kontact
+ Comment[et]=Kontacti ilmaplugin
+ Comment[fr]=Composant météo pour Kontact
+ Comment[is]=Kontact veðurfréttaeining
+Index: plugins/knode/knodeplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/knode/knodeplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/knode/knodeplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -19,6 +19,7 @@
+ Comment[da]=Nyhedskomponent (KNode-plugin)
+ Comment[de]=News-Komponente (KNode-Modul)
+ Comment[el]=Συστατικό ανάγνωσης νέων (Πρόσθετο του KNode)
++Comment[es]=Componente de noticias (complemento de KNode)
+ Comment[et]=Uudistelugeja plugin (KNode)
+ Comment[fr]=Composant de lecteur de nouvelles (Module pour KNode)
+ Comment[is]=Fréttaeining (KNode íforrit)
+Index: plugins/specialdates/kcmsdsummary.desktop
+===================================================================
+--- kdepim/kontact/plugins/specialdates/kcmsdsummary.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/specialdates/kcmsdsummary.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -16,6 +16,7 @@
+ Name[da]=Oversigt over særlige datoer
+ Name[de]=Übersicht über besondere Termine
+ Name[el]=Επισκόπηση σημαντικών ημερομηνιών
++Name[es]=Resumen de fechas especiales
+ Name[et]=Tähtpäevade ülevaade
+ Name[fr]=Aperçu des dates importantes
+ Name[is]=Yfirlit sérstakra daga
+@@ -25,6 +26,7 @@
+ Name[nds]=Översicht besünner Daten
+ Name[nl]=Overzicht van speciale data
+ Name[pl]=Daty specjalne
++Name[pt_BR]=Resumo de Datas Especiais
+ Name[ru]=Сводка особых дат
+ Name[sr]=Преглед посебних датума
+ Name[sr@Latn]=Pregled posebnih datuma
+Index: plugins/specialdates/specialdatesplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/specialdates/specialdatesplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/specialdates/specialdatesplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -72,6 +72,7 @@
+ Comment[da]=Komponent til særlige datoer
+ Comment[de]=Komponente für Übersicht über besondere Termine
+ Comment[el]=Συστατικό σημαντικών ημερομηνιών
++Comment[es]=Componente de fechas especiales
+ Comment[et]=Tähtpäevade plugin
+ Comment[fr]=Composant des dates importantes
+ Comment[is]=Eining fyrir sérstaka daga
+@@ -81,6 +82,7 @@
+ Comment[nds]=Komponent för besünner Daten
+ Comment[nl]=Component voor overzicht van speciale data
+ Comment[pl]=Składnik dat specjalnych
++Comment[pt_BR]=Componente de Datas Especiais
+ Comment[ru]=Особые даты
+ Comment[sr]=Компонента посебних датума
+ Comment[sr@Latn]=Komponenta posebnih datuma
+Index: plugins/kitchensync/kitchensync.desktop
+===================================================================
+--- kdepim/kontact/plugins/kitchensync/kitchensync.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/kitchensync/kitchensync.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -18,6 +18,8 @@
+ Comment[da]=Synkronisergingskomponent (Kitchensync-plugin)
+ Comment[de]=Abgleich-Komponente (KitchenSync-Modul)
+ Comment[el]=Συστατικό συγχρονισμού (Πρόσθετο του Kitchensynk)
++Comment[en_GB]=Synchronisation Component (Kitchensynk Plugin)
++Comment[es]=Componente de sincronización (complemento de KitchenSync)
+ Comment[et]=Sünkroniseerimise plugin (KitchenSync)
+ Comment[fr]=Composant de synchronisation (Module KitchenSync)
+ Comment[is]=Samstillingareining (KitchenSync íforrit)
+@@ -28,6 +30,7 @@
+ Comment[nl]=Synchronisatiecomponent (Kitchensynk-plugin)
+ Comment[pl]=Składnik synchronizacji (wtyczka KitchenSync)
+ Comment[ru]=Синхронизация (модуль KitchenSync)
++Comment[sk]=Synchronizačný komponent (Modul pre Kitchensynk)
+ Comment[sr]=Компонента синхронизације (прикључак KitchenSync-а)
+ Comment[sr@Latn]=Komponenta sinhronizacije (priključak KitchenSync-a)
+ Comment[sv]=Synkroniseringskomponent (Kitchensynk-insticksprogram)
+Index: plugins/kpilot/kpilotplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/kpilot/kpilotplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/kpilot/kpilotplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Komponent til palm-værktøjer (KPilot-plugin)
+ Comment[de]=Palm-Komponente (KPilot-Modul)
+ Comment[el]=Συστατικό εργαλείων Palm (Πρόσθετο του KPilot)
++Comment[es]=Componente de herramientas de Palm (complemento KPilot)
+ Comment[et]=Palmi tööriistade plugin (KPilot)
+ Comment[fr]=Composant d'outils pour Palms (Module KPilot)
+ Comment[is]=Palm verkfæraeining (KPilot íforrit)
+Index: plugins/knotes/knotesplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/knotes/knotesplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/knotes/knotesplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -19,6 +19,7 @@
+ Comment[da]=Notatkomponent (KNotes-plugin)
+ Comment[de]=Notizen-Komponente (KNotes-Modul)
+ Comment[el]=Συσταικό σημειώσεων (Πρόσθετο του KNotes)
++Comment[es]=Componente de notas (complemento de KNotes)
+ Comment[et]=Märkmete plugin (KNotes)
+ Comment[fr]=Composant de notes (Module KNotes)
+ Comment[is]=Minnismiðaeining (KNotes íforrit)
+Index: plugins/karm/karmplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/karm/karmplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/karm/karmplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -18,6 +18,7 @@
+ Comment[da]=Time Tracker-komponent (KArm-plugin)
+ Comment[de]=Zeitplaner-Komponente (KArm-Modul)
+ Comment[el]=Συστατικό γραμμής χρόνου (Πρόσθετο του KArm)
++Comment[es]=Componente de seguimiento de tiempos (complemento de KArm)
+ Comment[et]=Ajaarvestaja plugin (KArm)
+ Comment[fr]=Composant de suivi temporel (Module pour KArm)
+ Comment[is]=Tímastjórnunareining (KArm íforrit)
+@@ -40,6 +41,7 @@
+ Name[ca]=Cronòmetre
+ Name[de]=Stoppuhr
+ Name[el]=Χρονόμετρο
++Name[es]=Temporizador
+ Name[et]=Ajaarvestaja
+ Name[fr]=Minuteur
+ Name[is]=Tímamælir
+@@ -49,6 +51,7 @@
+ Name[nl]=Tijdklok
+ Name[pl]=Stoper
+ Name[ru]=Таймер
++Name[sk]=Časovač
+ Name[sr]=Тајмер
+ Name[sr@Latn]=Tajmer
+ Name[sv]=Tidmätning
+Index: plugins/kaddressbook/kaddressbookplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/kaddressbook/kaddressbookplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/kaddressbook/kaddressbookplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Kontaktkomponent (KAddressbook-plugin)
+ Comment[de]=Kontakte-Komponente (Adressbuch-Modul)
+ Comment[el]=Συστατικό επαφών (Πρόσθετο του KAdressbook)
++Comment[es]=Componente de contactos (complemento de KAddressbook)
+ Comment[et]=Kontaktide plugin (KDE aadressiraamat)
+ Comment[fr]=Composant des contacts (module externe KAdressBook)
+ Comment[is]=Vistfangaskráreining (KAddressBook íforrit)
+Index: plugins/korganizer/kcmkorgsummary.desktop
+===================================================================
+--- kdepim/kontact/plugins/korganizer/kcmkorgsummary.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/korganizer/kcmkorgsummary.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -16,6 +16,7 @@
+ Name[da]=Oversigt over møder og gøremål
+ Name[de]=Übersicht über Termine und Aufgaben
+ Name[el]=Επισκόπηση ραντεβού και προς υλοποίηση εργασιών
++Name[es]=Resumen de citas y tareas pendientes
+ Name[et]=Kohtumised ja ülesannete ülevaade
+ Name[fr]=Aperçu des rendez-vous et des tâches
+ Name[is]=Yfirlit um fundi og verkþætti
+Index: plugins/korganizer/todoplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/korganizer/todoplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/korganizer/todoplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Komponent til gøremålsliste (KOrganizer-plugin)
+ Comment[de]=Aufgabenlisten-Komponente (KOrganizer-Modul)
+ Comment[el]=Συστατικό λίστα προς υλοποίηση εργασιών (Πρόσθετο του KOrganizer)
++Comment[es]=Componente de tareas pendientes (complemento de KOrganizer)
+ Comment[et]=Ülesannete nimekirja plugin (KOrganizer)
+ Comment[fr]=Composant de la liste des tâches (Module KOrganizer)
+ Comment[is]=Verkefnaeining (KOrganizer íforrit)
+@@ -31,6 +32,7 @@
+ Comment[nl]=Takenlijstcomponent (KOrganizer-plugin)
+ Comment[pl]=Składnik zadań (wtyczka KOrganizer)
+ Comment[ru]=Задачи (модуль KOrganizer)
++Comment[sk]=Komponent zoznamu úloh (Modul pre KOrganizer)
+ Comment[sr]=Прикључак листе обавеза (прикључак KOrganizer-а)
+ Comment[sr@Latn]=Priključak liste obaveza (priključak KOrganizer-a)
+ Comment[sv]=Uppgiftslistkomponent (Korganizer-insticksprogram)
+@@ -43,6 +45,7 @@
+ Name[da]=Gøremål
+ Name[de]=Aufgaben
+ Name[el]=Προς υλοποίηση εργασίες
++Name[es]=Tareas pendientes
+ Name[et]=Ülesanded
+ Name[fr]=Tâches
+ Name[is]=Verkefni
+@@ -53,6 +56,7 @@
+ Name[nl]=Takenlijst
+ Name[pl]=Lista zadań
+ Name[ru]=Задачи
++Name[sk]=Zoznam úloh
+ Name[sr]=Обавезе
+ Name[sr@Latn]=Obaveze
+ Name[sv]=Uppgift
+Index: plugins/korganizer/journalplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/korganizer/journalplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/korganizer/journalplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Journalkomponent (KOrganizer-plugin)
+ Comment[de]=Journal-Komponente (KOrganizer-Modul)
+ Comment[el]=Συστατικό χρονικών (Πρόσθετο του KOrganizer)
++Comment[es]=Componente de diario (Complemento de KOrganizer)
+ Comment[et]=Päevikuplugin (KOrganizer)
+ Comment[fr]= Composant de journal (Module KOrganizer)
+ Comment[is]=Dagbókareining (Journal KOrganizer íforrit)
+Index: plugins/korganizer/korganizerplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/korganizer/korganizerplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/korganizer/korganizerplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -21,6 +21,7 @@
+ Comment[da]=Kalenderkomponent (KOrganizer-plugin)
+ Comment[de]=Kalender-Komponente (KOrganizer-Modul)
+ Comment[el]=Συστατικό ημερολογίου (Πρόσθετο του KOrganizer)
++Comment[es]=Componente de calendario (complemento de KOrganizer)
+ Comment[et]=Kalendriplugin (KOrganizer)
+ Comment[fr]= Composant de calendrier (Module KOrganizer)
+ Comment[is]=Dagatalseining (KOrganizer íforrit)
+@@ -31,6 +32,7 @@
+ Comment[nl]=Agendacomponent (KOrganizer-plugin)
+ Comment[pl]=Składnik kalendarza (wtyczka KOrganizer)
+ Comment[ru]=Календарь (модуль KOrganizer)
++Comment[sk]=Kalendárový komponent (Modeul pre KOrganizer)
+ Comment[sr]=Компонента календара (прикључак KOrganizer-а)
+ Comment[sr@Latn]=Komponenta kalendara (priključak KOrganizer-a)
+ Comment[sv]=Kalenderkomponent (Korganizer-insticksprogram)
+Index: plugins/kmail/kmailplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/kmail/kmailplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/kmail/kmailplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -22,6 +22,7 @@
+ Comment[da]=Post-komponent (KMail-plugin)
+ Comment[de]=E-Mail-Komponente (KMail-Modul)
+ Comment[el]=Συστατικό αλληλογραφίας (Πρόσθετο του KMail)
++Comment[es]=Componente de correo electrónico (complemento de KMail)
+ Comment[et]=E-posti plugin (KMail)
+ Comment[fr]=Composant de courriel (Module pour KMail)
+ Comment[is]=Pósteining (KMail íforrit)
+@@ -31,7 +32,9 @@
+ Comment[nds]=Nettpost-Komponent (KMail-Moduul)
+ Comment[nl]=E-mailcomponent (KMail-plugin)
+ Comment[pl]=Składnik poczty (wtyczka KMail)
++Comment[pt_BR]=Componente de e-mail (plug-in do KMail)
+ Comment[ru]=Электронная почта (модуль KMail)
++Comment[sk]=Poštový komponent (Model pre KMail)
+ Comment[sr]=Компонента е-поште (прикључак KMail-а)
+ Comment[sr@Latn]=Komponenta e-pošte (priključak KMail-a)
+ Comment[sv]=E-postkomponent (Kmail-insticksprogram)
+@@ -43,6 +46,7 @@
+ Name[ca]=Correu
+ Name[da]=E-mail
+ Name[el]=Αλληλογραφία
++Name[es]=Correo electrónico
+ Name[et]=E-post
+ Name[fr]=Courriel
+ Name[is]=Tölvupóstur
+@@ -52,7 +56,9 @@
+ Name[nds]=Nettpost
+ Name[nl]=E-mail
+ Name[pl]=E-mail
++Name[pt_BR]=E-mail
+ Name[ru]=Электронная почта
++Name[sk]=Pošta
+ Name[sr]=Е-пошта
+ Name[sr@Latn]=E-pošta
+ Name[sv]=E-post
+Index: plugins/kmail/kcmkmailsummary.desktop
+===================================================================
+--- kdepim/kontact/plugins/kmail/kcmkmailsummary.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/kmail/kcmkmailsummary.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -16,6 +16,7 @@
+ Name[da]=Oversigt over e-mail
+ Name[de]=E-Mail-Übersicht
+ Name[el]=Επισκόπηση αλληλογραφίας
++Name[es]=Resumen de correo electrónico
+ Name[et]=E-posti ülevaade
+ Name[fr]=Aperçu du courriel
+ Name[is]=Yfirsýn á tölvupóst
+@@ -26,6 +27,7 @@
+ Name[nl]=E-mailoverzicht
+ Name[pl]=Poczta
+ Name[ru]=Сведения о почте
++Name[sk]=Prehľad pošty
+ Name[sr]=Преглед е-поште
+ Name[sr@Latn]=Pregled e-pošte
+ Name[sv]=E-postöversikt
+@@ -38,6 +40,7 @@
+ Comment[da]=Opsætning af post-opsummering
+ Comment[de]=Einstellungen für E-Mail-Übersicht
+ Comment[el]=Ρύθμιση σύνοψης αλληλογραφίας
++Comment[es]=Configuración del resumen de correo electrónico
+ Comment[et]=E-posti kokkuvõtte seadistus
+ Comment[fr]=Configuration du résumé des courriels
+ Comment[is]=Uppsetning póstyfirlits
+@@ -48,6 +51,7 @@
+ Comment[nl]=Instellingen voor e-mailoverzicht
+ Comment[pl]=Ustawienia podsumowania e-maili
+ Comment[ru]=Настройка сводки почты
++Comment[sk]=Nastavenie súhrnu pošty
+ Comment[sr]=Подешавање сажетка е-поште
+ Comment[sr@Latn]=Podešavanje sažetka e-pošte
+ Comment[sv]=Inställning av e-postöversikt
+Index: plugins/summary/kcmkontactsummary.desktop
+===================================================================
+--- kdepim/kontact/plugins/summary/kcmkontactsummary.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/summary/kcmkontactsummary.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -16,6 +16,7 @@
+ Name[da]=Elementer i opsummeringsvisning
+ Name[de]=Elemente der Zusammenfassungsansicht
+ Name[el]=Αντικείμενα προβολής σύνοψης
++Name[es]=Elementos de la vista de sumario
+ Name[et]=Kokkuvõttevaate elemendid
+ Name[it]=Elementi vista sommario
+ Name[ja]=要約ビューの項目
+Index: plugins/summary/summaryplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/summary/summaryplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/summary/summaryplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -17,6 +17,7 @@
+ Comment[da]=Komponent for opsummeringsvisning
+ Comment[de]=Zusammenfassungsansicht-Komponente
+ Comment[el]=Συστατικό προβολής σύνοψης
++Comment[es]=Componente Vista de resumen
+ Comment[et]=Kokkuvõttevaate plugin
+ Comment[fr]=Composant de la vue résumée
+ Comment[is]=Eining fyrir yfirlitssýn
+Index: plugins/newsticker/newstickerplugin.desktop
+===================================================================
+--- kdepim/kontact/plugins/newsticker/newstickerplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/plugins/newsticker/newstickerplugin.desktop	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -20,6 +20,7 @@
+ Comment[da]=Nyhedstelegraf-komponent
+ Comment[de]=Newsticker-Komponente
+ Comment[el]=Συστατικό προβολέα ειδήσεων
++Comment[es]=Componente de teletipo de noticias
+ Comment[et]=Uudistejälgija plugin
+ Comment[fr]=Composant Newsticker
+ Comment[is]=Fréttastrimilseining
+Index: src/kontact.setdlg
+===================================================================
+--- kdepim/kontact/src/kontact.setdlg	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kontact/src/kontact.setdlg	 (.../branches/KDE/3.5)	(revision 931963)
+@@ -5,6 +5,7 @@
+ Name[da]=Opsummeringsvisning
+ Name[de]=Übersicht
+ Name[el]=Προβολή σύνοψης
++Name[es]=Vista de resumen
+ Name[et]=Kokkuvõttevaade
+ Name[fr]=Vue résumée
+ Name[is]=Yfirlitssýn
+@@ -27,6 +28,7 @@
+ Comment[da]=Konfiguration af Kontacts <b>Opsummeringsvisning</b>. Nogle plugins giver <i>Opsummeringsvisning</i>-elementer, vælg dem du ønsker på listen.
+ Comment[de]=Einrichtung der <b>Zusammenfassungsansicht</b> von Kontact. Einige Kontact-Module stellen Elemente für die <i>Zusammenfassungsansicht</i> zur Verfügung. Wählen Sie hier, welche Elemente angezeigt werden sollen.
+ Comment[el]=Ρύθμιση της <b>Προβολής σύνοψης</b> του  Kontact. Κάποια πρόσθετα παρέχουν αντικείμενα <i>Προβολή σύνοψης</i>· επιλέξτε αυτά που θέλετε να εμφανίζονται.
++Comment[es]=Configuración de Kontact <b>Vista de resumen</b>. Algunos complementos proveen elementos para la <i>Vista de resumen</i>, elija los que quiera listar.
+ Comment[et]=Kontacti <b>kokkuvõttevaate</b> seadistamine. Mõned pluginad pakuvad <i>kokkuvõttevaate</i> elemente. Vali nimekirjas need, mida soovid näha.
+ Comment[fr]=Configuration de Kontact <b> Vue résumée</b>. Certains modules fournissent des éléments de <i>Vue Résumée</i>, choisissez ceux que vous voulez voir listés.
+ Comment[is]=Stillingar á <b>Yfirlitssýn</b>í Kontact. Sum íforrit koma með hluti í <i>Yfirlitssýn</i>, veldu þá sem þú vilt hafa á síðunni.
+@@ -51,6 +53,7 @@
+ Name[ca]=Correu
+ Name[da]=E-mail
+ Name[el]=Αλληλογραφία
++Name[es]=Correo electrónico
+ Name[et]=E-post
+ Name[fr]=Courriel
+ Name[is]=Tölvupóstur
+@@ -60,7 +63,9 @@
+ Name[nds]=Nettpost
+ Name[nl]=E-mail
+ Name[pl]=E-mail
++Name[pt_BR]=E-mail
+ Name[ru]=Электронная почта
++Name[sk]=Pošta
+ Name[sr]=Е-пошта
+ Name[sr@Latn]=E-pošta
+ Name[sv]=E-post
+@@ -73,6 +78,7 @@
+ Comment[da]=Konfiguration af Kontacts e-mail-plugin <b>KMail</b>, inkluderer et <i>Opsummeringsvisnings-element</i> og repræsenterer en <i>Kontact-komponent</i>.
+ Comment[de]=Einrichtung des E-Mail-Moduls <b>KMail</b> für Kontact. Die E-Mail-Komponente kann als <i>Kontact-Komponente<i> in die <i>Zusammenfassungsansicht</i> integriert werden.
+ Comment[el]=Η ρύθμιση του προσθέτου αλληλογραφίας <b>KMail</b> του Kontact, περιέχει ένα <i>Αντικείμενο προβολής σύνοψης</i> και αντιπροσωπεύει ένα <i>Συστατικό του Kontact</i>.
++Comment[es]=Configuración del complemento de correo-e de Kontact <b>KMail</b>, incluye una <i>Vista de resumen</i> y representa un <i>Componente de Kontact</i>.
+ Comment[et]=Kontacti e-posti plugina <b>KMaili</b> seadistamine, mis sisaldab <i>kokkuvõttevaate elementi</i>.
+ Comment[fr]=Configuration du Module de Courriel de Kontact <b>KMail</b>, inclut un <i>Élément de Vue Résumée</i> et correspond à un <i>Composant de Kontact</i>.
+ Comment[is]=Stillingar fyrir tölvupóstíforrit Kontact <b>KMail</b>, inniheldur <i>yfirlitssýnarhlut</i> sem stendur fyrir <i>Kontact einingu</i>.
+@@ -157,6 +163,7 @@
+ Comment[da]=Konfiguration af Kontacts adressebog-plugin <b>KAdressbook</b> som repræsenterer en <i>Kontact-komponent</i>.
+ Comment[de]=Einrichtung des Adressbuch-Moduls für Kontact, welches eine <i>Kontact-Komponente</i> repräsentiert.
+ Comment[el]=Ρύθμιση του πρόσθετου βιβλίου διευθύνσεων <b>KAdressbook</b> του Kontact που αντιπροσωπεύει ένα <i>Συστατικό του Kontact</i>.
++Comment[es]=Configuración del complemento de libreta de direcciones de Kontact <b> KAddressbok</b>, el cual representa un <i>Componente de Kontact</i>.
+ Comment[et]=Kontacti aadressiraamatu plugina <b>KAdressbook</b> seaditamine.
+ Comment[fr]=Configuration du Module de Carnet d'Adresses de Kontact <b> KAdressbook</b> qui correspond à un <i>Composant de Kontact</i>.
+ Comment[is]=Stillingar fyrir vistfangaskráríforrit Kontact <b>KAdressbook</b>, inniheldur <i>yfirlitssýnarhlut</i> sem stendur fyrir <i>Kontact einingu</i>.
+@@ -341,6 +348,7 @@
+ Comment[da]=Konfiguration af Kontacts kalender-plugin <b>KOrganizer</b>, inkluderer et <i>Opsummeringsvisningselement</i> og repræsenterer en <i>Kontact-komponent</i>.
+ Comment[de]=Einrichtung des Kalender-Moduls <b>KOrganizer</b> für Kontact, einschließlich der <i>Zusammenfassungsansicht</i>; repräsentiert eine <i>Kontact-Komponente</i>
+ Comment[el]=Η ρύθμιση του προσθέτου ημερολογίου του <b>KOrganizer</b> του Kontact, περιέχει ένα <i>Αντικείμενο προβολής σύνοψης</i> και αντιπροσωπεύει ένα <i>Συστατικό του Kontact</i>.
++Comment[es]=Configuración del complemento de calendario de Kontact, <b> KOrganizer</b>, incluye una <i>Vista de resumen</i> y representa un <i>Componente de Kontact</i>.
+ Comment[et]=Kontacti kalendriplugina <b>KOrganizeri</b> seadistamine, mis sisaldab <i>kokkuvõttevaate elementi</i>.
+ Comment[fr]=Configuration du Module de Calendrier de Kontact <b>KOrganizer</b>, inclut un <i>Élément de Vue Résumée</i> et correspond à un <i>Composant de Kontact</i>.
+ Comment[is]=Stillingar fyrir dagatalsíforrit Kontact <b>KOrganizer</b>, inniheldur <i>yfirlitssýnarhlut</i> sem stendur fyrir <i>Kontact einingu</i>.
+@@ -425,6 +433,7 @@
+ Comment[da]=Konfiguration af Kontacts nyheds-plugin <b>KNode</b> som repræsenterer en <i>Kontact-komponent</i>.
+ Comment[de]=Einrichtung des News-Moduls <b>KNode</b> für Kontact; repräsentiert eine <i>Kontact-Komponente</i>
+ Comment[el]=Ρύθμιση του πρόσθετου νέων <b>KNode</b> του Kontact που αντιπροσωπεύει ένα <i>Συστατικό του Kontact</i>.
++Comment[es]=Configuración del complemento de noticias de Kontact <b>KNode</b> , el cual representa un <i>Componente de Kontact</i>.
+ Comment[et]=Kontacti uudisteplugina <b>KNode</b> seadistamine.
+ Comment[fr]=Configuration du Module de Nouvelles de Kontact <b>KNode</b> qui correspond à un <i>Composant de Kontact</i>.
+ Comment[is]=Stillingar fyrir fréttastraumsíforrit Kontact <b>KNode</b>, inniheldur <i>yfirlitssýnarhlut</i> sem stendur fyrir <i>Kontact einingu</i>.
+@@ -509,6 +518,7 @@
+ Comment[da]=Komponent til vejrinformation
+ Comment[de]=Komponente für Wetterinformationen
+ Comment[el]=Συστατικό πληροφοριών καιρού
++Comment[es]=Componente de información meteorológica
+ Comment[et]=Ilmateate komponent
+ Comment[fr]=Composant d'Informations météorologiques
+ Comment[is]=Eining fyrir veðurupplýsingar
+@@ -519,6 +529,7 @@
+ Comment[nl]=Weerinformatiecomponent
+ Comment[pl]=Składnik informacji o pogodzie
+ Comment[ru]=Информация о погоде
++Comment[sk]=Informácie o počasí
+ Comment[sr]=Компонента информација о времену
+ Comment[sr@Latn]=Komponenta informacija o vremenu
+ Comment[sv]=Komponent med väderrapport
