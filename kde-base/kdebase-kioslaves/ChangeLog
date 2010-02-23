@@ -1,6 +1,13 @@
 # ChangeLog for kde-base/kdebase-kioslaves
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdebase-kioslaves/ChangeLog,v 1.165 2009/10/13 00:14:13 abcd Exp $
+
+*kdebase-kioslaves-3.5.10-r2 (23 Feb 2010)
+
+  23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/kdebase_kioslave-r911492.patch,
+  +kdebase-kioslaves-3.5.10-r2.ebuild:
+  Revision bump to track upstream branches/3.5
 
   13 Oct 2009; Jonathan Callen <abcd@gentoo.org>
   -files/kdebase-3.5.9-ntfs3g-locale.patch:

@@ -1,6 +1,13 @@
 # ChangeLog for kde-base/kaddressbook
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kaddressbook/ChangeLog,v 1.128 2009/10/13 00:15:36 abcd Exp $
+
+*kaddressbook-3.5.10-r1 (23 Feb 2010)
+
+  23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/kdepim_kabc-p05-r886802.patch, +kaddressbook-3.5.10-r1.ebuild,
+  +files/kdepim_kaddressbook-r893152.patch:
+  Revision bump to track upstream branches/3.5
 
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kaddressbook-3.5.9.ebuild:
   KDE 3.5.9 removal

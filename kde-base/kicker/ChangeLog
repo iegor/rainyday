@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kicker/ChangeLog,v 1.110 2009/10/12 21:18:12 abcd Exp $
 
+*kicker-3.5.10-r3 (23 Feb 2010)
+
+  23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/kdebase_kicker-p13-r886334.patch, +kicker-3.5.10-r3.ebuild:
+  Revision bump to track upstream branches/3.5
+
 *kicker-3.5.10-r2 (16 Jan 2010)
 
   16 Jan 2010; Serghei Amelian <serghei@gentoo.org>

@@ -1,6 +1,12 @@
 # ChangeLog for kde-base/kommander
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kommander/ChangeLog,v 1.124 2009/10/12 21:53:43 abcd Exp $
+
+*kommander-3.5.10-r1 (23 Feb 2010)
+
+  23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/kdewebdev_kommander-r1064505.patch, +kommander-3.5.10-r1.ebuild:
+  Revision bump to track upstream branches/3.5
 
   12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kommander-3.5.9.ebuild:
   KDE 3.5.9 removal
