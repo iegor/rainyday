@@ -1,15 +1,15 @@
-Changes between KDE 3.5.10 tag and KDE 3.5 branch r1022986.
-Only looking at subdirectory kdepim/kmail here.
+Changes between KDE 3.5.10 tag as modified by kdepim-3.5-patchset-05.tar.bz2
+and KDE 3.5 branch r1022986. Only looking at subdirectory kdepim/kmail here.
 Logs since r849627 of the branch but this might be wrong.
 
-r849848 | coolo
+r849848 | coolo (= kmail-3.5.10-post-r857910.diff in Gentoo patchset 05)
 fix compile
   M recipientspicker.cpp
-r857911 | gianni
+r857911 | gianni (= kmail-3.5.10-post-r857910.diff in Gentoo patchset 05)
 this commit fix the bug #168544 in the KDE 3.5 branch reviewed by Ingo
   M accountmanager.cpp
   M kmfoldertree.cpp
-r858979 | mueller
+r858979 | mueller (= kmail-3.5.10-post-r857910.diff in Gentoo patchset 05)
 fix build here too. only hell knows why kmail likes to copy&paste code from kdelibs that it could just as well just...
   M configure.in.in
   M editorwatcher.cpp
@@ -32,24 +32,6 @@ merge r1021464 | tmcguire | 2009-09-09 05:37:52 -0400 (Wed, 09 Sep 2009) | 5 lin
   M kmfoldercachedimap.cpp
 
 
-Index: editorwatcher.cpp
-===================================================================
---- kdepim/kmail/editorwatcher.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdepim/kmail/editorwatcher.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
-@@ -32,8 +32,12 @@
- #include <cassert>
- 
- // inotify stuff taken from kdelibs/kio/kio/kdirwatch.cpp
--#ifdef HAVE_INOTIFY
-+#ifdef HAVE_SYS_INOTIFY
- #include <sys/ioctl.h>
-+#include <sys/inotify.h>
-+#include <fcntl.h>
-+#elif HAVE_INOTIFY
-+#include <sys/ioctl.h>
- #include <unistd.h>
- #include <fcntl.h>
- #include <sys/syscall.h>
 Index: cachedimapjob.cpp
 ===================================================================
 --- kdepim/kmail/cachedimapjob.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
@@ -164,78 +146,4 @@ Index: kmfoldercachedimap.h
 +  }
  
    int createIndexFromContentsRecursive();
- 
-Index: configure.in.in
-===================================================================
---- kdepim/kmail/configure.in.in	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdepim/kmail/configure.in.in	 (.../branches/KDE/3.5)	(revision 1022986)
-@@ -57,8 +57,30 @@
-   AC_LANG_RESTORE
-   ])
- 
--  if test "$kde_cv_have_inotify" = "yes" ; then
-+  AC_CACHE_VAL(kde_cv_have_sys_inotify,
-+  [
-+  kde_cv_have_sys_inotify=no
-+  AC_LANG_SAVE
-+  AC_LANG_C
-+
-+  AC_TRY_COMPILE(
-+  [
-+#include <sys/inotify.h>
-+  ],
-+  [
-+#ifndef IN_ALL_EVENTS
-+#error no inotify notification
-+#endif
-+  ],kde_cv_have_sys_inotify=yes,kde_cv_have_sys_inotify=no)
-+
-+  AC_LANG_RESTORE
-+  ])
-+
-+  if test "$kde_cv_have_inotify" = "yes" -o "$kde_cv_have_sys_inotify" = "yes"; then
-     AC_DEFINE_UNQUOTED(HAVE_INOTIFY, 1, [Define if your system has Linux Inode Notification])
-+    if test "$kde_cv_have_sys_inotify" = "yes"; then
-+      AC_DEFINE_UNQUOTED(HAVE_SYS_INOTIFY, 1, [Define if your system has glibc support for inotify])
-+    fi
-     AC_MSG_RESULT(yes)
-   else
-     AC_MSG_RESULT(no)
-Index: accountmanager.cpp
-===================================================================
---- kdepim/kmail/accountmanager.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdepim/kmail/accountmanager.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
-@@ -7,6 +7,7 @@
- #include "accountmanager.h"
- 
- #include "kmaccount.h"
-+#include "kmacctfolder.h"
- #include "kmacctmaildir.h"
- #include "kmacctlocal.h"
- #include "popaccount.h"
-@@ -239,6 +240,11 @@
- {
-   if ( account ) {
-     mAcctList.append( account );
-+    // init folder's account list
-+    KMAcctFolder *folder = static_cast<KMAcctFolder*>( account->folder() );
-+    if ( folder && !folder->hasAccounts() ) {
-+      folder->addAccount( account );
-+    }
-     emit accountAdded( account );
-     account->installTimer();
-   }
-Index: kmfoldertree.cpp
-===================================================================
---- kdepim/kmail/kmfoldertree.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdepim/kmail/kmfoldertree.cpp	 (.../branches/KDE/3.5)	(revision 1022986)
-@@ -432,6 +432,9 @@
-   connect(kmkernel->acctMgr(), SIGNAL(accountRemoved(KMAccount*)),
-           this, SLOT(slotAccountRemoved(KMAccount*)));
- 
-+  connect(kmkernel->acctMgr(), SIGNAL(accountAdded(KMAccount*)),
-+          this, SLOT(slotUnhideLocalInbox()));
-+
-   connect(kmkernel->searchFolderMgr(), SIGNAL(folderRemoved(KMFolder*)),
-           this, SLOT(slotFolderRemoved(KMFolder*)));
  

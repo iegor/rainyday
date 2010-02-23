@@ -1,0 +1,60 @@
+Changes between KDE 3.5.10 tag as modified by kdebase-3.5-patchset-13.tar.bz2
+and KDE 3.5 branch r886334. Only looking at subdirectory kdebase/kicker here.
+Logs since r849627 of the branch but this might be wrong.
+
+r850417 | bminisini
+Fix the background management of the taskbar extension.
+  M extensions/taskbar/taskbarextension.cpp
+
+r854109, r854114, r854164, r854853, r859108 in kicker-3.5.10-post-r850417.diff
+
+r886334 | bminisini
+BUG: 173349
+  M taskbar/taskbar.cpp
+
+
+Index: taskbar/taskbar.cpp
+===================================================================
+--- kdebase/kicker/taskbar/taskbar.cpp	 (.../tags/KDE/3.5.10)	(patchset 13)
++++ kdebase/kicker/taskbar/taskbar.cpp	 (.../branches/KDE/3.5)	(revision 886334)
+@@ -304,6 +304,7 @@
+ 
+     Panner::resizeEvent(e);
+     reLayoutEventually();
++    setViewportBackground();
+ }
+ 
+ void TaskBar::add(Task::Ptr task)
+Index: extensions/taskbar/taskbarextension.cpp
+===================================================================
+--- kdebase/kicker/extensions/taskbar/taskbarextension.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kicker/extensions/taskbar/taskbarextension.cpp	 (.../branches/KDE/3.5)	(revision 886334)
+@@ -170,7 +170,6 @@
+     }
+ 
+     unsetPalette();
+-    m_container->unsetPalette();
+ 
+     if (KickerSettings::useBackgroundTheme())
+     {
+@@ -215,17 +214,17 @@
+                 KickerLib::colorize(bgImage);
+             }
+             setPaletteBackgroundPixmap(bgImage);
+-            m_container->setPaletteBackgroundPixmap(bgImage);
+         }
+     }
++    
++    m_container->setBackground();
+ }
+ 
+ void TaskBarExtension::updateBackground(const QPixmap& bgImage)
+ {
+     unsetPalette();
+     setPaletteBackgroundPixmap(bgImage);
+-    m_container->unsetPalette();
+-    m_container->setPaletteBackgroundPixmap(bgImage);
++    m_container->setBackground();
+ }
+ 
+ void TaskBarExtension::resizeEvent(QResizeEvent *e)

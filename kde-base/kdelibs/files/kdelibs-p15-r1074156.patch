@@ -1,5 +1,5 @@
-Changes between KDE 3.5.10 tag and KDE 3.5 branch r1074156.
-Only looking at subdirectory kdelibs here.
+Changes between KDE 3.5.10 tag as modified by kdelibs-3.5-patchset-15.tar.bz2
+and KDE 3.5 branch r1074156. Only looking at subdirectory kdelibs here.
 Logs since r849627 of the branch but this might be wrong.
 
 r849884 | coolo
@@ -9,11 +9,11 @@ updated packages
 r854560 | skilling
 Fixing a few old errors
   M kdoctools/customization/pt-BR/user.entities
-r858854 | mueller
+r858854 | mueller (= kdelibs-3.5.10-post-r858853.diff in Gentoo patchset 15)
 prefer the glibc header of inotify support over the linux header, as the latter is broken with newer kernels
   M kio/kio/configure.in.in
   M kio/kio/kdirwatch.cpp
-r858971 | mueller
+r858971 | mueller (= kdelibs-3.5.10-post-r858853.diff in Gentoo patchset 15)
 fix configure again
   M kio/kio/configure.in.in
 r859451 | mueller
@@ -4603,62 +4603,10 @@ Index: kio/kio/karchive.cpp
    if( m_entries[ entry->name() ] ) {
        kdWarning() << "KArchiveDirectory::addEntry: directory " << name()
                    << " has entry " << entry->name() << " already" << endl;
-Index: kio/kio/configure.in.in
-===================================================================
---- kdelibs/kio/kio/configure.in.in	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdelibs/kio/kio/configure.in.in	 (.../branches/KDE/3.5)	(revision 1074156)
-@@ -139,8 +139,30 @@
-   AC_LANG_RESTORE
-   ])
- 
--  if test "$kde_cv_have_inotify" = "yes" ; then
-+  AC_CACHE_VAL(kde_cv_have_sys_inotify,
-+  [
-+  kde_cv_have_sys_inotify=no
-+  AC_LANG_SAVE
-+  AC_LANG_C
-+
-+  AC_TRY_COMPILE(
-+  [
-+#include <sys/inotify.h>
-+  ],
-+  [
-+#ifndef IN_ALL_EVENTS
-+#error no inotify notification
-+#endif
-+  ],kde_cv_have_sys_inotify=yes,kde_cv_have_sys_inotify=no)
-+
-+  AC_LANG_RESTORE
-+  ])
-+
-+  if test "$kde_cv_have_inotify" = "yes" -o "$kde_cv_have_sys_inotify" = "yes"; then
-     AC_DEFINE_UNQUOTED(HAVE_INOTIFY, 1, [Define if your system has Linux Inode Notification])
-+    if test "$kde_cv_have_sys_inotify" = "yes"; then
-+      AC_DEFINE_UNQUOTED(HAVE_SYS_INOTIFY, 1, [Define if your system has glibc support for inotify])
-+    fi
-     AC_MSG_RESULT(yes)
-   else
-     AC_MSG_RESULT(no)
 Index: kio/kio/kdirwatch.cpp
 ===================================================================
---- kdelibs/kio/kio/kdirwatch.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
+--- kdelibs/kio/kio/kdirwatch.cpp	 (.../tags/KDE/3.5.10)	(patchset 15)
 +++ kdelibs/kio/kio/kdirwatch.cpp	 (.../branches/KDE/3.5)	(revision 1074156)
-@@ -64,11 +64,13 @@
- // debug
- #include <sys/ioctl.h>
- 
--#ifdef HAVE_INOTIFY
-+#ifdef HAVE_SYS_INOTIFY
-+#include <sys/inotify.h>
-+#include <fcntl.h>
-+#elif HAVE_INOTIFY
- #include <unistd.h>
- #include <fcntl.h>
- #include <sys/syscall.h>
--#include <linux/types.h>
- // Linux kernel headers are documented to not compile
- #define _S390_BITOPS_H
- #include <linux/inotify.h>
 @@ -87,7 +89,9 @@
  {
    return syscall (__NR_inotify_rm_watch, fd, wd);

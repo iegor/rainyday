@@ -1,11 +1,11 @@
-Changes between KDE 3.5.10 tag and KDE 3.5 branch r975372.
-Only looking at subdirectory kdebase/kcontrol here.
-Logs since r849627 of the branch but this might be wrong.
+Changes between KDE 3.5.10 tag as modified by kdebase-3.5-patchset-13.tar.bz2
+and KDE 3.5 branch r975372. Only looking at subdirectory kdepim/kabc here.
+Logs since r849627 of the branch.
 
-r852629 | lunakl
+r852629 | lunakl (= kcontrol-3.5-wp-change-fix.diff in Gentoo patchset 13)
 Update wallpapers correctly when adding new screen with xrandr1.2 (bnc#329221).
   M background/bgrender.cpp
-r863251 | ianjo
+r863251 | ianjo (= kcontrol-3.5-kde-bug-161839.diff in Gentoo patchset 13)
 Backport of r786315 to 3.5 branch: Fix rarely hit path where glXDestroyContext would be called twice.
   M info/opengl.cpp
 r886803 | tyrerj
@@ -16,34 +16,6 @@ apply gcc-4.4 compilation fix from http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/p
   M kfontinst/kfontinst/Fontmap.cpp
 
 
-Index: background/bgrender.cpp
-===================================================================
---- kdebase/kcontrol/background/bgrender.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdebase/kcontrol/background/bgrender.cpp	 (.../branches/KDE/3.5)	(revision 975372)
-@@ -1163,9 +1163,8 @@
-         m_pPixmap = new QPixmap(m_size);
-         m_pPixmap->fill(Qt::black);
-     }
--    
--    for (unsigned i=0; i<m_numRenderers; ++i)
--        m_renderer[i]->desktopResized();
-+
-+    initRenderers();    
- }
- 
- 
-Index: info/opengl.cpp
-===================================================================
---- kdebase/kcontrol/info/opengl.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
-+++ kdebase/kcontrol/info/opengl.cpp	 (.../branches/KDE/3.5)	(revision 975372)
-@@ -608,7 +608,6 @@
-    }
-    else {
-       kdDebug() << "Error: glXMakeCurrent failed\n";
--      glXDestroyContext(dpy, ctx);
-    }
- 
-    glXDestroyContext(dpy, ctx);
 Index: arts/arts.cpp
 ===================================================================
 --- kdebase/kcontrol/arts/arts.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
