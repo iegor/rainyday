@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-kresources/ChangeLog,v 1.134 2009/10/12 20:53:13 abcd Exp $
 
+  24 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  kdepim-kresources-3.5.10-r1.ebuild:
+  Depend on ktnef, bug #306373 reported by Andrew John Hughes
+
 *kdepim-kresources-3.5.10-r1 (23 Feb 2010)
 
   23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>

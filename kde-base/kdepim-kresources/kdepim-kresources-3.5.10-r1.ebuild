@@ -19,6 +19,7 @@ DEPEND=">=kde-base/libkmime-${PV}:${SLOT}
 	>=kde-base/libkdepim-${PV}:${SLOT}
 	>=kde-base/kaddressbook-${PV}:${SLOT}
 	>=kde-base/kode-${PV}:${SLOT}
+	>=kde-base/ktnef-${PV}:${SLOT}
 	dev-libs/libical
 	>=app-crypt/gpgme-1.0.2"
 RDEPEND="${DEPEND}"
