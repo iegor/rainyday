@@ -1,0 +1,33 @@
+Fix compile issue for kopete 3.5.10 groupwise plugin with recent g++.
+
+Reported by Dale in
+http://archives.gentoo.org/gentoo-desktop/msg_fc55a82d728aa61f5034a374bd8489e4.xml
+
+2010-02-24 Martin von Gagern
+
+Index: kopete-3.5.10/kopete/protocols/groupwise/libgroupwise/rtf.cc
+===================================================================
+--- kopete-3.5.10.orig/kopete/protocols/groupwise/libgroupwise/rtf.cc
++++ kopete-3.5.10/kopete/protocols/groupwise/libgroupwise/rtf.cc
+@@ -2235,7 +2235,7 @@ void Level::setText(const char *str)
+ 
+         FontDef& def = p->fonts[m_nFont-1];
+ 
+-        char *pp = strchr(str, ';');
++        const char *pp = strchr(str, ';');
+         unsigned size;
+         if (pp != NULL)
+            size = (pp - str);
+Index: kopete-3.5.10/kopete/protocols/groupwise/libgroupwise/rtf.ll
+===================================================================
+--- kopete-3.5.10.orig/kopete/protocols/groupwise/libgroupwise/rtf.ll
++++ kopete-3.5.10/kopete/protocols/groupwise/libgroupwise/rtf.ll
+@@ -570,7 +570,7 @@ void Level::setText(const char *str)
+ 
+         FontDef& def = p->fonts[m_nFont-1];
+ 
+-        char *pp = strchr(str, ';');
++        const char *pp = strchr(str, ';');
+         unsigned size;
+         if (pp != NULL)
+            size = (pp - str);

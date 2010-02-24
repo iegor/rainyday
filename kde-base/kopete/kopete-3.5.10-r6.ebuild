@@ -102,6 +102,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${P}-icq-protocol-change2.patch"
 	epatch "${FILESDIR}/${P}-jabber-protocol-gtalknickfix.patch"
 	epatch "${FILESDIR}/${P}-glibc210.patch"
+	epatch "${FILESDIR}/${P}-groupwise.patch"
 
 	if use emoticons-manager; then
 		epatch "${FILESDIR}/emoticon-manager.patch"

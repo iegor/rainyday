@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/ChangeLog,v 1.218 2009/10/12 23:58:47 abcd Exp $
 
+  24 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  kopete-3.5.10-r6.ebuild, +files/kopete-3.5.10-groupwise.patch:
+  Fix compiler error in groupwise plugin
+
 *kopete-3.5.10-r6 (23 Feb 2010)
 
   23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
