@@ -1,1 +1,5 @@
-Please don't report bugs to gentoo bugzilla. Use gentoo-desktop mailing list to contact the maintainers. A list of commiters can be found in Documentation/commiters. See http://kde.gentoo.org for more information
+Please don't report bugs to gentoo bugzilla. Use gentoo-desktop mailing list to contact the maintainers. A list of commiters can be found in Documentation/commiters. See http://kde.gentoo.org for more information.
+
+In order to properly use this overlay, you have to unmask the qt3 USE flag. To do so, execute the following commands as root:
+# mkdir -p /etc/portage/profile
+# echo -qt3 >> /etc/portage/profile/use.mask
