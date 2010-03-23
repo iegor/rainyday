@@ -11,12 +11,12 @@ SRC_URI="ftp://ftp.trolltech.com/qt/source/qt-x11-${SRCTYPE}-${PV}.tar.gz"
 IUSE=""
 LICENSE="|| ( QPL-1.0 GPL-2 GPL-3 )"
 SLOT="3"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 
 RDEPEND="~x11-libs/qt-${PV}
 	dev-db/unixODBC"
 DEPEND="${RDEPEND}
-	<dev-db/unixODBC-2.2.14"
+	>=dev-db/unixODBC-2.2.14"
 
 S="${WORKDIR}/qt-x11-${SRCTYPE}-${PV}"
 
@@ -29,6 +29,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/qt-no-rpath.patch
+	epatch "${FILESDIR}"/unixODBC-2.2.14.patch
 
 	cp configure configure.orig
 	sed -e 's:read acceptance:acceptance=yes:' configure.orig > configure
