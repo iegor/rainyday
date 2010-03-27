@@ -35,8 +35,8 @@ S="${WORKDIR}/${MY_P}"
 
 need-kde 3.5
 
-PATCHES=("${FILESDIR}/${PN}-2.2.5-avahi-check.patch
-	${FILESDIR}/${P}-lograce.patch" )
+PATCHES=("${FILESDIR}/${PN}-2.2.5-avahi-check.patch"
+	"${FILESDIR}/${P}-lograce.patch" )
 
 src_configure() {
 	local myconf="${myconf}
