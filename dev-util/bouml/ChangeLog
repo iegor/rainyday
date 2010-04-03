@@ -1,0 +1,21 @@
+# ChangeLog for dev-util/bouml
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bouml/Attic/ChangeLog,v 1.1 2006/09/03 16:01:35 flameeyes Exp $
+
+*bouml-4.16.4 (03 Apr 2010)
+*bouml-4.15 (03 Apr 2010)
+*bouml-4.13.1 (03 Apr 2010)
+*bouml-4.12.1 (03 Apr 2010)
+
+  03 Apr 2010; Markos Chandras <hwoarang@gentoo.org> +bouml-4.12.1.ebuild,
+  +bouml-4.13.1.ebuild, +bouml-4.15.ebuild, +bouml-4.16.4.ebuild,
+  +metadata.xml:
+  Initial commit to kde-sunset overlay
+
+*bouml-2.16 (03 Sep 2006)
+
+  03 Sep 2006; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  +bouml-2.16.ebuild:
+  Initial import of BOUML UML toolbox. Thanks to Gabi Shaar, Fabrice Belamy
+  and Baptiste Grenier in bug #112208 for their work and patience.
+
