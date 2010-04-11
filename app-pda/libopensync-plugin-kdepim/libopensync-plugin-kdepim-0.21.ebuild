@@ -8,7 +8,7 @@ inherit qt3
 
 DESCRIPTION="OpenSync Kdepim Plugin"
 HOMEPAGE="http://www.opensync.org/"
-SRC_URI="http://dev.gentooexperimental.org/~peper/distfiles/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 KEYWORDS="~amd64 ~x86"
 SLOT="0"

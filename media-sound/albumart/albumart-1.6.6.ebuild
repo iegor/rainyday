@@ -6,7 +6,7 @@ inherit distutils eutils qt3
 
 DESCRIPTION="Album Cover Art Downloader"
 HOMEPAGE="http://unrealvoodoo.org/hiteck/projects/albumart"
-SRC_URI="http://muksuluuri.unrealvoodoo.org/~skyostil/projects/albumart/dist/${P}.tar.gz"
+SRC_URI="http://unrealvoodoo.org/hiteck/projects/albumart/dist/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,3 +22,4 @@ src_install() {
 	rm -rf "${D}"/usr/share/{doc/albumart,applnk}
 	make_desktop_entry ${PN}-qt "Album Cover Art Downloader" ${PN}
 }
+
