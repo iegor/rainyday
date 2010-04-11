@@ -1,0 +1,13 @@
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# use flags used in the kde-sunset overlay
+
+# dropped 2010-01-15 in 1.430
+arts - Adds support for aRts: the KDE sound daemon
+
+# dropped 2010-01-13 in 1.429
+kdehiddenvisibility - Makes KDE symbols hidden by default, requires GCC 4.1 (experimental)
+
+# dropped 2010-03-22 in 1.436
+qt3 - Adds support for the Qt GUI/Application Toolkit version 3.x
