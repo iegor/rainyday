@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/k3b/${P/_}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="3.5"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
-IUSE="alsa css dvd dvdr encode emovix ffmpeg flac hal mp3 musepack musicbrainz
+IUSE="alsa css dvd dvdr encode emovix ffmpeg flac hal mp3 musicbrainz
 	sndfile vcd vorbis"
 
 COMMON_DEPEND="!<app-cdr/k3b-1.0.5-r5
@@ -26,7 +26,6 @@ COMMON_DEPEND="!<app-cdr/k3b-1.0.5-r5
 	flac? ( media-libs/flac[cxx] )
 	hal? ( sys-apps/hal )
 	mp3? ( media-libs/libmad )
-	musepack? ( media-libs/libmpcdecsv7 )
 	musicbrainz? ( media-libs/musicbrainz:1 )
 	sndfile? ( media-libs/libsndfile )
 	vorbis? ( media-libs/libvorbis )"
@@ -97,7 +96,7 @@ src_configure() {
 		$(use_with vorbis oggvorbis)
 		$(use_with sndfile)
 		$(use_with mp3 libmad)
-		$(use_with musepack)
+		--without-musepack
 		$(use_with musicbrainz)
 		$(use_with dvd libdvdread)
 		$(use_with alsa)"
