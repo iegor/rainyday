@@ -11,7 +11,6 @@ HOMEPAGE="http://sourceforge.net/projects/kuroo"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 
-SLOT="3.5"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 IUSE=""
 
@@ -23,3 +22,8 @@ RDEPEND="${DEPEND}
 	kde-base/kdesu"
 
 need-kde 3.5
+
+src_unpack() {
+	kde_src_unpack
+	rm configure
+}
