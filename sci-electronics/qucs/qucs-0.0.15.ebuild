@@ -26,6 +26,6 @@ src_configure() {
 src_install() {
 	emake install DESTDIR="${D}" || die
 
-	doicon qucs/bitmaps/big.qucs.xpm || die
+	newicon qucs/bitmaps/big.qucs.xpm qucs.xpm || die
 	make_desktop_entry qucs Qucs qucs "Qt;Science;Electronics"
 }

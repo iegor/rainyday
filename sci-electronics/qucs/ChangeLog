@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+  14 Apr 2010; Michał Górny <gentoo@mgorny.alt.pl> qucs-0.0.15.ebuild:
+  Fix the application icon naming.
+
 *qucs-0.0.15 (10 Apr 2010)
 
   10 Apr 2010; Michał Górny <gentoo@mgorny.alt.pl> +qucs-0.0.15.ebuild:
