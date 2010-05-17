@@ -40,6 +40,7 @@ done
 PATCHES=(
 	"${FILESDIR}/gwenview-1.4.2-exiv2.patch"
 	"${FILESDIR}/gwenview-1.4.2-desktop-file.diff"
+	"${FILESDIR}/gwenview-libpng-14.patch"
 	)
 
 src_unpack() {
