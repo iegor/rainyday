@@ -8,7 +8,8 @@ inherit kde
 
 DESCRIPTION="KDE frontend to Gentoo Portage"
 HOMEPAGE="http://sourceforge.net/projects/kuroo"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
+		mirror://gentoo/kde-admindir-3.5.5.tar.bz2"
 LICENSE="GPL-2"
 
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
