@@ -11,6 +11,12 @@
   fix bug 271372 (konqueror + my.ebay-crash)
   fix googlemaps map-display
 
+*kdelibs-3.5.10-r9 (21 May 2010)
+
+  21 May 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +kdelibs-3.5.10-r9.ebuild:
+  Drop hicolor icon theme (bug #267018)
+
 *kdelibs-3.5.10-r8 (23 Feb 2010)
 
   23 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
