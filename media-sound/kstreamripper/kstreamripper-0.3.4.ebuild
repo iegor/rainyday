@@ -9,7 +9,7 @@ DESCRIPTION="KStreamripper - a nice KDE3 frontend to media-sound/streamripper"
 HOMEPAGE="http://kstreamripper.tuxipuxi.org/"
 # Portage isn't capable to get along with this url.
 # SRC_URI="http://www.tuxipuxi.org/?download=${P}.tar.bz2"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="http://mirror.krakonos.org/kde-sunset/${P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"

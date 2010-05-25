@@ -5,7 +5,7 @@
 inherit kde
 
 DESCRIPTION="KSystemLog is a system log viewer for KDE."
-SRC_URI="http://annivernet.free.fr/ksystemlog/archives/src/${P}.tar.bz2"
+SRC_URI="http://mirror.krakonos.org/kde-sunset/${P}.tar.bz2"
 HOMEPAGE="http://annivernet.free.fr/ksystemlog/"
 
 LICENSE="GPL-2"

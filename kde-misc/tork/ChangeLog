@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/tork/ChangeLog,v 1.33 2009/10/12 07:25:53 abcd Exp $
 
+  25 Nov 2010; Ladislav Láska <ladislav.laska@gmail.com> tork-0.31.ebuild:
+  Updated SRC_URI
+
   14 Nov 2009; Jonathan Callen <abcd@gentoo.org> tork-0.23.ebuild,
   tork-0.27.ebuild, tork-0.31.ebuild:
   Remove monolithic deps

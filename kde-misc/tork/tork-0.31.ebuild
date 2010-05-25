@@ -10,7 +10,7 @@ inherit kde multilib
 
 DESCRIPTION="TorK is a powerful anonymity manager for the KDE and acts as a frontedn to Tor."
 HOMEPAGE="http://tork.sourceforge.net/"
-SRC_URI="http://www.anonymityanywhere.com/pre-release/${P}.tar.bz2"
+SRC_URI="mirror://sourceforge/tork/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
