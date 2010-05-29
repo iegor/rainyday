@@ -1,0 +1,123 @@
+app-arch/p7zip:rar - Enable support for non-free rar decoder
+app-cdr/k3b:emovix - Enable burning support for eMoviX images
+app-laptop/kthinkbat:smapi - Use extended ThinkPad battery info exported via SMAPI BIOS by app-laptop/tp_smapi
+app-office/kword:wpd - Build wordperfect document support.
+app-office/kword:wv2 - Build MS-Word .doc support.
+app-office/krita:kdcraw - Enable KDE image manipulating interface.
+app-office/krita:gmm - Enable library for sparse, dense and skyline matrices.
+app-office/kmymoney2:hbci - Add HBCI online banking support
+app-office/kmymoney2:qtdesigner - Installs KMyMoney specific widget library for Qt-designer
+app-office/kspread:solver - Use solver extension for solving lingebra and others.
+app-text/poppler:exceptions - Enable exceptions throwing.
+app-text/poppler:abiword -  Enable support for app-office/abiword output. Requires dev-libs/libxml2. 
+app-text/poppler:utils -  Install command-line PDF converters and various utilities. 
+app-text/poppler:xpdf-headers - Install xpdf headers.
+dev-db/hk_classes:mdb - Enables Microsoft Access DB support
+dev-db/hk_classes:xbase - Enables support for xbase databases (dBase, FoxPro, etc.)
+dev-util/kdevelop:cmake - Support for the CMake Build System.
+dev-util/kdevelop:sql - Support for the Structured Query Language (SQL).
+dev-util/kdevelop:perforce - Support for the Perforce version control system.
+dev-util/kdevelop:pascal - Support for the Pascal programming language.
+dev-util/kdevelop:haskell - Support for the Haskell programming language.
+dev-util/kdevelop:qmake - Support for the QMake Build System.
+dev-util/kdevelop:ada - Support for the Ada programming language.
+dev-util/kdevelop:clearcase - Support for the ClearCase version control system.
+kde-base/kttsd:akode - Support for the aKode audio-decoding frame-work.
+kde-base/kpilot:avantgo - Add support for syncing Avantgo accounts
+kde-base/kdeutils-meta:floppy - Install kfloppy to format and create DOS or ext2fs filesystems in a floppy.
+kde-base/kbugbuster:kcal - Support for kcal (calendar) format
+kde-base/kig:kig-scripting - Support Python scripting
+kde-base/kdegraphics-meta:povray - Install kde-base/kpovmodeler, which needs POV-Ray
+kde-base/kopete:winpopup - Enable pop-up messages sending on windows. (same as good old "net send" messages ;])
+kde-base/kopete:jabber - Enable XMPP protocol handler (this is also gmail).
+kde-base/kopete:addbookmarks - Automaticaly add incoming urls to bookmarks.
+kde-base/kopete:webpresence - Show your status and some more informations on web.
+kde-base/kopete:statistics - Everybody loves statistic graphs, especialy cake ones. ;]
+kde-base/kopete:sms - Enable the sms sending plugin.
+kde-base/kopete:autoreplace - Automaticaly replace selected text
+kde-base/kopete:msn - Enable "Windows live messenger" protocol support.
+kde-base/kopete:sametime - Enables support for the Sametime protocol for instant messaging
+kde-base/kopete:irc - Enable the IRC protocol handler.
+kde-base/kopete:groupwise - Enable the Groupwise protocol handler.
+kde-base/kopete:yahoo - Enable yahoo protocol support.
+kde-base/kopete:translator - Translate incoming and outgoing messages.
+kde-base/kopete:contactnotes - Enables writing personal notes for contacts.
+kde-base/kopete:nowlistening - Shows song you currently listen to in your status/etc. Bindings for many players.
+kde-base/kopete:latex - Embed latex formatted text into messages.
+kde-base/kopete:texteffect - Various fancy text effects for your messages (dont ever consider writing us with this enabled ;]).
+kde-base/kopete:connectionstatus - Builds Connection Status plugin
+kde-base/kopete:highlight - Allows you to specify highlights on specific events.
+kde-base/kopete:alias - Enables creating of your own aliases for commands.
+kde-base/kopete:emoticons-manager - Enables emoticons theme manager so that the user can edit and remove emoticons or add custom ones etc
+kde-base/kopete:gadu - Enable the Gadu protocol handler.
+kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
+kde-base/kopete:history - Enables saving chat history.
+kde-base/kdepim-meta:kitchensync - Include the kitchensync package
+kde-base/kdm:consolekit - Enables support for authorization using consolekit
+kde-base/krdc:rdp - Enable runtime dependency for net-misc/rdesktop
+kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
+kde-base/kalzium:solver - Enable the equation solver
+kde-base/kcontrol:logitech-mouse -  Build the Control Center module to configure logitech mice 
+kde-base/kmilo:pbbuttonsd - Support for the Apple PMU daemon pbbuttonsd
+kde-base/kaddressbook:gnokii - Address synchronization with mobile phones via app-mobilephone/gnokii
+kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
+kde-base/kdelibs:utempter - Records user logins. Useful on multi-user systems
+kde-base/kdeadmin-meta:lilo - Install lilo-config, a frontend for the lilo boot loader
+kde-base/kdvi:kpathsea - Enable integration with kpathsea search library (TeX related)
+kde-base/arts:artswrappersuid - Set artswrapper suid for realtime playing, which is a security hazard
+kde-base/kdeartwork-kscreensaver:eigen - Enable various aritmethic screensavers which use Eigen2 for computations.
+kde-base/konqueror:bookmarks -  Add dependency on bookmark package. 
+kde-base/konqueror:thumbnail -  Enables video thumbnails generation for kde-base/konqueror file manager. 
+kde-base/konqueror:auth -  Add dependency on authentization packages. 
+kde-base/juk:akode - Support for the aKode audio-decoding frame-work
+kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks
+kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
+kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
+kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
+kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN net-misc/openvpn client
+media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums base directory.
+media-gfx/gwenview:kipi -  Support for the KDE Image Plugin Interface. 
+media-gfx/showimg:kipi -  Support for the KDE Image Plugin Interface. 
+media-plugins/kipi-plugins:linguas_zn_CN - Add zn_CN lingua suppport
+media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
+media-sound/amarok:real -  Build the Helix engine for Amarok, linked against media-video/realplayer. This is an alternative engine to the xine one, which supports a different set of formats. Only available for x86 architecture as it uses the binary version of RealPlayer. Please note that by enabling this USE flag, the resulting package will not be redistributable, as it links to the non-GPL compatible RealPlayer. 
+media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb
+media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
+media-sound/amarok:daap -  Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing. 
+media-sound/amarok:visualization -  Support visualization plugins through media-libs/libvisual 
+media-sound/amarok:python -  Install the Amarok scripts written in Python, depending on dev-python/PyQt. At the moment the only script installed by this flag is the webcontrol script. 
+media-sound/amarok:mp4 -  Build the TagLib plugin for writing tags in Mp4 container files (m4a). Please note that by enabling this USE flag, the resulting package will not be redistributable, as it links to media-libs/libmp4v2, distributed under a GPL-incompatible license. 
+media-sound/amarok:amazon - Enable support for downloading covers from amazon.com
+media-sound/amarok:mp3tunes - Enable mp3tunes integration
+media-sound/amarok:lastfm - Enable Last.fm streaming services support through media-libs/liblastfm
+media-tv/kdetv:zvbi - Enable VBI Decoding Library for Zapping
+media-video/kmplayer:npp - Compile the npp backend that plays xembed style browser plugins.
+net-dns/avahi:bookmarks - Install the avahi-bookmarks application (requires dev-python/twisted)
+net-dns/avahi:mdnsresponder-compat - Enable compat libraries for mDNSResponder
+net-dns/avahi:autoipd - Build and install the IPv4LL (RFC3927) network address configuration daemon
+net-dns/avahi:howl-compat - Enable compat libraries for howl
+net-im/sim:weather - Enable weather plugin to get weather data from weather.com and dispaly it 
+net-im/sim:sms - Enable sms plugin
+net-im/sim:gpg - Enable gpg plugin to adds GnuPG encryption/decryption support for messages 
+net-im/sim:livejournal - Enable livejournal plugin to post in LiveJournal 
+net-im/kmess:konqueror - Enable integration with konqueror
+net-misc/kvpnc:cisco - Adds support for Cisco client
+net-p2p/ktorrent:logviewer - Enable the logviewer plugin
+net-p2p/ktorrent:search - Enable the search plugin
+net-p2p/ktorrent:bwscheduler - Enable the bwscheduler plugin
+net-p2p/ktorrent:stats - Enable the statistics plugin
+net-p2p/ktorrent:downloadorder - Enable plugin for user selected download order
+net-p2p/ktorrent:mediaplayer - Enable the mediaplayer plugin
+net-p2p/ktorrent:ipfilter - Enable the ipfilter plugin
+net-p2p/ktorrent:zeroconf - Discover peers on the local network using the Zeroconf protocol
+net-p2p/ktorrent:webinterface - Enable the webinterface plugin
+net-p2p/ktorrent:shutdown - Shutdown when done
+net-p2p/ktorrent:scanfolder - Enable the scanfolder plugin
+net-p2p/ktorrent:infowidget - Enable the infowidget plugin
+net-p2p/ktorrent:upnp - Enable the uphp plugin
+net-p2p/ktorrent:kross - Enable kross scripting support
+net-voip/twinkle:ilbc - Enables use of ilbc (RFC3951) audio encoding
+net-voip/twinkle:zrtp - Enables use of secure rtp using the zrtp extension of GNU RTP stack developed by Phil Zimmermann 
+x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
+x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
+x11-themes/gtk-engines-qt:gnome - Enable proper theming of buttons in gnome toolbars (as opposed to just plain gtk+ toolbars)
