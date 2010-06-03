@@ -10,7 +10,7 @@ MY_P=${P/_/-}
 
 DESCRIPTION="Client for the NUT UPS monitoring daemon"
 HOMEPAGE="http://www.knut.noveradsl.cz/knutclient/"
-SRC_URI="ftp://ftp.buzuluk.cz/pub/alo/knutclient/stable/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.buzuluk.cz/pub/alo/knutclient/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
