@@ -8,8 +8,8 @@ MY_P="${PN}-wifi-cracker-ng-${PV/0./r}"
 inherit base
 
 DESCRIPTION="Qt3 Based aircrack GUI"
-HOMEPAGE="http://backtrack.it/~emgent/hackstuff/Gerix-Wifi-Cracker-NG/index-en.html"
-SRC_URI="http://backtrack.it/~emgent/hackstuff/Gerix-Wifi-Cracker-NG/download/${MY_P}.tar"
+HOMEPAGE="http://www.backtrack.it/~emgent/hackstuff/old_gerix_wifi_cracker_ng/index-en.html"
+SRC_URI="http://www.backtrack.it/~emgent/hackstuff/old_gerix_wifi_cracker_ng/download/${MY_P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
