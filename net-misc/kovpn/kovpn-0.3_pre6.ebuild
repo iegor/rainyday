@@ -12,7 +12,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 SLOT="0"
-S=${WORKDIR}/${P}
+S=${WORKDIR}/${P/_pre/.pre}
 
 DEPEND=">=net-misc/openvpn-2.0"
 need-kde 3.4

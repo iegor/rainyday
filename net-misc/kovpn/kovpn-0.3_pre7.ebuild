@@ -17,8 +17,8 @@ S=${WORKDIR}/${P/_pre/.pre}
 DEPEND=">=net-misc/openvpn-2.0"
 need-kde 3.4
 
-src_unpack() {
-	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/traywindow_x86_64.patch
-}
+#src_unpack() {
+#	unpack ${A}
+#	cd ${S}
+#	epatch ${FILESDIR}/traywindow_x86_64.patch
+#}

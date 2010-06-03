@@ -2,6 +2,16 @@
 # Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/kovpn/ChangeLog,v 1.6 2007/09/16 05:06:29 josejx Exp $
 
+  03 Jun 2010; Ladislav Láska <ladislav.laska@gmail.com> kovpn-0.3_pre2.ebuild,
+  kovpn-0.2.ebuild:
+  Cleaned old ebuilds
+
+  03 Jun 2010; Ladislav Láska <ladislav.laska@gmail.com> kovpn-0.3_pre6.ebuild, 
+  kovpn-0.3_pre6-r1.ebuild, kovpn-0.3_pre7.ebuild:
+  Version bumped, updated SRC_URI and paths.
+
+*kovpn-0.3_pre7 (03 Jun 2010)
+
   16 Sep 2007; Joseph Jezak <josejx@gentoo.org> kovpn-0.3_pre6-r1.ebuild:
   Marked ~ppc for bug #188450.
 
