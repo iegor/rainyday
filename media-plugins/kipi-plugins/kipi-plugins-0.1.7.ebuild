@@ -46,8 +46,8 @@ for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
 done
 
-src_unpack() {
-	kde_src_unpack
+src_prepare() {
+	kde_src_prepare
 
 	# remove configure script to trigger its rebuild during kde_src_compile
 	rm -f "${S}"/configure
