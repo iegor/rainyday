@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/qgit-1.5.7.ebuild,v 1.5 2007/09/20 21:00:06 ranger Exp $
 
@@ -18,7 +18,7 @@ IUSE=""
 
 DEPEND="=x11-libs/qt-3*"
 RDEPEND="${DEPEND}
-	>=dev-util/git-1.5"
+	>=dev-vcs/git-1.5"
 
 S="${WORKDIR}/${MY_P}"
 

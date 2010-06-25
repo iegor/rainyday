@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/qgit
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.45 2009/05/19 22:19:08 jokey Exp $
+
+  25 Jun 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  qgit-1.5.7.ebuild, qgit-1.5.8.ebuild:
+  Update ebuild to use dev-vcs package group.
 
 *qgit-2.3 (19 May 2009)
 

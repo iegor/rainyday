@@ -1,4 +1,4 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/qgit-1.5.8.ebuild,v 1.1 2007/12/31 16:48:32 jokey Exp $
 
@@ -18,7 +18,7 @@ IUSE=""
 
 DEPEND="=x11-libs/qt-3*"
 RDEPEND="${DEPEND}
-	>=dev-util/git-1.5"
+	>=dev-vcs/git-1.5"
 
 S="${WORKDIR}/${MY_P}"
 

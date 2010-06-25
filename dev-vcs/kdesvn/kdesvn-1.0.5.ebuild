@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdesvn/kdesvn-1.0.5.ebuild,v 1.4 2009/08/12 16:45:46 wired Exp $
 
@@ -20,7 +20,7 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 RDEPEND="!<dev-util/kdesvn-1.0.5
-	>=dev-util/subversion-1.4
+	>=dev-vcs/subversion-1.4
 	kde-base/kdesdk-kioslaves:3.5
 	dev-db/sqlite"
 

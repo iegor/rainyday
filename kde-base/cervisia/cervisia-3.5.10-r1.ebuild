@@ -11,7 +11,7 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="kdehiddenvisibility"
 
 RDEPEND="${RDEPEND}
-	dev-util/cvs"
+	dev-vcs/cvs"
 HOMEPAGE="http://cervisia.kde.org"
 
 PATCHES=( "${FILESDIR}/${KMNAME}_${PN}-r851881.patch" )
