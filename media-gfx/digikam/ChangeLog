@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/digikam/ChangeLog,v 1.144 2009/10/24 13:10:20 nixnut Exp $
 
+*digikam-0.9.6 (29 Jun 2010)
+
+  30 Jun 2010; Petr Morávek [Xificurk] <xificurk@gmail.com>
+  digikam-0.9.5-r1.ebuild, +files/digikam-libpng-1.4.patch:
+  Backport libpng14 patch from portage tree.
+  +digikam-0.9.6.ebuild:
+  Version bump.
+
   14 Nov 2009; Jonathan Callen <abcd@gentoo.org> digikam-0.9.4.ebuild,
   digikam-0.9.5-r1.ebuild:
   Remove monolithic deps

@@ -10,7 +10,7 @@ inherit kde
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
-P_DOC="${PN}-doc-${PV/_*/}"
+P_DOC="${PN}-doc-0.9.5"
 S_DOC="${WORKDIR}/${P_DOC}"
 
 DESCRIPTION="A digital photo management application for KDE."
@@ -19,7 +19,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2
 	doc? ( mirror://sourceforge/${PN}/${P_DOC}.tar.bz2 )"
 SLOT="3.5"
 LICENSE="GPL-2"
-KEYWORDS="~alpha amd64 ppc ~sparc x86"
+KEYWORDS="~alpha ~amd64 ~ppc ~sparc ~x86"
 IUSE="nfs doc"
 
 DEPEND=">=dev-db/sqlite-3.5.9:3
@@ -61,7 +61,6 @@ src_unpack(){
 	local MAKE_PO=$(echo "${LINGUAS} ${LANGS}" | tr ' ' '\n' | sort | uniq -d | tr '\n' ' ')
 	elog "Preparing to build translations for: en ${MAKE_PO}"
 	sed -i -e "s:^SUBDIRS =.*:SUBDIRS = . ${MAKE_PO}:" "${S}/po/Makefile.am" || die "sed for locale failed"
-	epatch "${FILESDIR}/${PV}-cam_download.patch"
 	epatch "${FILESDIR}/${PV}-libpng-1.4.patch"
 
 	if use doc; then
