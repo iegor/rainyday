@@ -1,18 +1,18 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.6.ebuild,v 1.3 2009/07/15 21:04:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.8.0.ebuild,v 1.6 2010/06/27 09:35:23 fauli Exp $
 
 EAPI=3
 
 inherit qt3 multilib eutils flag-o-matic
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
-HOMEPAGE="http://www.gnupg.org/aegypten/"
+HOMEPAGE="http://gnupg.org/aegypten2/index.html"
 SRC_URI="mirror://gnupg/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86 ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="gtk ncurses qt3 qt4 caps static"
 
 DEPEND="static? ( sys-libs/ncurses )
@@ -29,10 +29,9 @@ RDEPEND="${DEPEND}"
 pkg_setup() {
 	use static && append-ldflags -static
 
-	if use static && { use gtk || use qt3 || use qt4; }
-	then
+	if use static && { use gtk || use qt3 || use qt4; }; then
 		ewarn
-		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk, qt3 and qt4 USE flags."
+		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk and qt4 USE flags."
 		ewarn
 	fi
 }
@@ -43,7 +42,7 @@ src_prepare() {
 	if use qt4; then
 		local file
 		for file in qt4/*.moc; do
-			"${EPREFIX}"/usr/bin/moc ${file/.moc/.h} > ${file} || die "moc ${file} failed"
+			"${EPREFIX}"/usr/bin/moc ${file/.moc/.h} > ${file} || die
 		done
 	fi
 }
@@ -51,7 +50,7 @@ src_prepare() {
 src_configure() {
 	local myconf=""
 
-	if ! { use qt3 || use qt4 || use gtk || use ncurses; }
+	if ! { use qt4 || use gtk || use ncurses; }
 	then
 		myconf="--enable-pinentry-curses --enable-fallback-curses"
 	elif use static
@@ -72,12 +71,12 @@ src_configure() {
 		$(use_enable ncurses fallback-curses) \
 		$(use_enable qt4 pinentry-qt4) \
 		$(use_with caps libcap) \
-		${myconf}
+		${myconf} || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog NEWS README THANKS TODO || die "dodoc failed"
+	emake DESTDIR="${D}" install || die
+	dodoc AUTHORS ChangeLog NEWS README THANKS TODO || die
 }
 
 pkg_postinst() {

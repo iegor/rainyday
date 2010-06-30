@@ -1,6 +1,37 @@
 # ChangeLog for app-crypt/pinentry
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.96 2009/07/15 21:04:10 arfrever Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.104 2010/06/27 09:35:23 fauli Exp $
+
+  27 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  pinentry-0.8.0.ebuild:
+  add ~x86-freebsd
+
+  24 Jun 2010; Christoph Mende <angelos@gentoo.org> pinentry-0.8.0.ebuild:
+  Stable on amd64 wrt bug #299388
+
+  20 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  pinentry-0.8.0.ebuild:
+  fix HOMEPAGE
+
+  20 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  pinentry-0.8.0.ebuild:
+  stable x86, bug 299388
+
+  30 May 2010; Fabian Groffen <grobian@gentoo.org> pinentry-0.8.0.ebuild:
+  Marked ~sparc-solaris, ~sparc64-solaris
+
+*pinentry-0.8.0 (26 Apr 2010)
+
+  26 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  +pinentry-0.8.0.ebuild:
+  version bump for bug 308695
+
+  01 Apr 2010; Jonathan Callen <abcd@gentoo.org> pinentry-0.7.6.ebuild:
+  Bump to EAPI=3, add prefix keywords
+
+  02 Jan 2010; Ben de Groot <yngwin@gentoo.org> pinentry-0.7.5.ebuild,
+  pinentry-0.7.5-r1.ebuild, pinentry-0.7.6.ebuild:
+  Drop qt3 support
 
   15 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pinentry-0.7.6.ebuild:
