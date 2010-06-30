@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/kipi/${P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~ia64 ~ppc ~sparc x86"
 IUSE=""
 
 DEPEND=""
