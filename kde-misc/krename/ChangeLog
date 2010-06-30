@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/krename/ChangeLog,v 1.49 2009/06/01 18:07:43 scarabeus Exp $
 
+  30 Jun 2010; Petr Morávek [Xificurk] <xificurk@gmail.com>
+  -krename-3.0.14.ebuild, krename-3.0.14-r1.ebuild:
+  Stable amd64 ppc ppc64 sparc x86
+
 *krename-3.9.3 (01 Jun 2009)
 
   01 Jun 2009; Tomas Chvatal <scarabeus@gentoo.org>

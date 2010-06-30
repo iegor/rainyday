@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/krename/${P}.tar.bz2
 
 SLOT="3.5"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="amd64 ppc ppc64 sparc x86"
 IUSE="doc"
 
 RDEPEND="!${CATEGORY}/${PN}:0"
