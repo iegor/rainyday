@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65-r1.ebuild,v 1.1 2010/02/15 21:10:46 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-9.13.ebuild,v 1.1 2010/06/07 06:52:52 jlec Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -38,24 +38,28 @@ src_prepare() {
 	else
 		sed -e '/Rar/d' -i makefile*
 		rm -rf CPP/7zip/Compress/Rar
-		epatch "${FILESDIR}"/${PV}-makefile.patch
+		epatch "${FILESDIR}"/9.04-makefile.patch
 	fi
 
 	sed -i \
 		-e "/^CXX=/s:g++:$(tc-getCXX):" \
 		-e "/^CC=/s:gcc:$(tc-getCC):" \
 		-e "s:OPTFLAGS=-O:OPTFLAGS=${CXXFLAGS}:" \
-		-e 's:-s ::' \
+		-e '/ALLFLAGS/s:-s ::' \
 		makefile* || die "changing makefiles"
 
 	if use amd64; then
 		cp -f makefile.linux_amd64 makefile.machine
 	elif [[ ${CHOST} == *-darwin* ]] ; then
 		# Mac OS X needs this special makefile, because it has a non-GNU linker
-		cp -f makefile.macosx makefile.machine
-		# bundles have extension .bundle
+		[[ ${CHOST} == *64-* ]] \
+			&& cp -f makefile.macosx_64bits makefile.machine \
+			|| cp -f makefile.macosx_32bits makefile.machine
+		# bundles have extension .bundle but don't die because USE=-rar
+		# removes the Rar directory
 		sed -i -e '/^PROG=/s/\.so/.bundle/' \
-			CPP/7zip/Bundles/Format7zFree/makefile || die
+			CPP/7zip/Bundles/Format7zFree/makefile \
+			CPP/7zip/Compress/Rar/makefile
 	elif use x86-fbsd; then
 		# FreeBSD needs this special makefile, because it hasn't -ldl
 		sed -e 's/-lc_r/-pthread/' makefile.freebsd > makefile.machine
@@ -65,10 +69,7 @@ src_prepare() {
 	# We can be more parallel
 	cp -f makefile.parallel_jobs makefile
 
-	epatch "${FILESDIR}"/${PV}-hardlink.patch
-
-	#disable kde4-patch
-	#epatch "${FILESDIR}"/${PV}-kde4.patch
+	epatch "${FILESDIR}"/9.04-kde4.patch
 
 	if use kde || use wxwidgets; then
 		einfo "Preparing dependency list"
@@ -85,9 +86,6 @@ src_compile() {
 
 src_test() {
 	emake test_7z test_7zr || die "test failed"
-	if use kde || use wxwidgets; then
-		emake test_7zG || die "GUI test failed"
-	fi
 }
 
 src_install() {
@@ -113,7 +111,8 @@ src_install() {
                         # don' put desktop-files to kde4-directory
                         #insinto  /usr/share/kde4/services/ServiceMenus
                         insinto /usr/kde/3.5/share/apps/konqueror/servicemenus/
-                        doins GUI/kde/p7zip_compress*.desktop
+                        #doins GUI/kde/p7zip_compress*.desktop
+			doins GUI/kde/p7zip_compress2.desktop
 		fi
 	fi
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-9.04.ebuild,v 1.2 2010/02/16 08:19:27 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-9.04.ebuild,v 1.5 2010/06/07 06:43:56 jlec Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -52,10 +52,14 @@ src_prepare() {
 		cp -f makefile.linux_amd64 makefile.machine
 	elif [[ ${CHOST} == *-darwin* ]] ; then
 		# Mac OS X needs this special makefile, because it has a non-GNU linker
-		cp -f makefile.macosx makefile.machine
-		# bundles have extension .bundle
+		[[ ${CHOST} == *64-* ]] \
+			&& cp -f makefile.macosx_64bits makefile.machine \
+			|| cp -f makefile.macosx_32bits makefile.machine
+		# bundles have extension .bundle but don't die because USE=-rar
+		# removes the Rar directory
 		sed -i -e '/^PROG=/s/\.so/.bundle/' \
-			CPP/7zip/Bundles/Format7zFree/makefile || die
+			CPP/7zip/Bundles/Format7zFree/makefile \
+			CPP/7zip/Compress/Rar/makefile
 	elif use x86-fbsd; then
 		# FreeBSD needs this special makefile, because it hasn't -ldl
 		sed -e 's/-lc_r/-pthread/' makefile.freebsd > makefile.machine
@@ -65,8 +69,7 @@ src_prepare() {
 	# We can be more parallel
 	cp -f makefile.parallel_jobs makefile
 
-	# disable kde4-patch
-	#epatch "${FILESDIR}"/${PV}-kde4.patch
+	epatch "${FILESDIR}"/${PV}-kde4.patch
 
 	if use kde || use wxwidgets; then
 		einfo "Preparing dependency list"
@@ -83,9 +86,6 @@ src_compile() {
 
 src_test() {
 	emake test_7z test_7zr || die "test failed"
-	if use kde || use wxwidgets; then
-		emake test_7zG || die "GUI test failed"
-	fi
 }
 
 src_install() {
@@ -108,10 +108,8 @@ src_install() {
 			insinto /usr/share/icons/hicolor/16x16/apps/
 			newins GUI/p7zip_16_ok.png p7zip.png
 
-			# don' put desktop-files to kde4-directory
-			#insinto  /usr/share/kde4/services/ServiceMenus
-			insinto /usr/kde/3.5/share/apps/konqueror/servicemenus/
-			doins GUI/kde/p7zip_compress*.desktop
+			insinto  /usr/share/kde4/services/ServiceMenus
+			doins GUI/kde/*.desktop
 		fi
 	fi
 
