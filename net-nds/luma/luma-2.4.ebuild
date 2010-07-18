@@ -1,9 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nds/luma/luma-2.4.ebuild,v 1.4 2008/07/27 22:12:11 carlo Exp $
 
 EAPI=1
-NEED_PYTHON=2.3
+PYTHON_DEPEND="2"
 
 inherit eutils python qt3
 

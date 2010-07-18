@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/imgseek/imgseek-0.8.6-r1.ebuild,v 1.3 2008/07/17 02:28:23 dirtyepic Exp $
 
-NEED_PYTHON=2.2
+PYTHON_DEPEND="2"
 
 inherit eutils distutils
 
