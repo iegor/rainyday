@@ -49,7 +49,8 @@ KMCOPYLIB="libkonq libkonq
 	libtaskbar kicker/taskbar
 	libtaskmanager kicker/taskmanager"
 
-PATCHES=( "${FILESDIR}/${KMNAME}_${PN}-p13-r975372.patch" )
+PATCHES=( "${FILESDIR}/${KMNAME}_${PN}-p13-r975372.patch"
+	"${FILESDIR}/${PN}-openssl-1.0.0.patch" )
 
 src_unpack() {
 	kde-meta_src_unpack unpack
