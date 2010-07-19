@@ -11,6 +11,11 @@
   fix bug 271372 (konqueror + my.ebay-crash)
   fix googlemaps map-display
 
+  19 Jul 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  kdelibs-3.5.10-r6.ebuild, kdelibs-3.5.10-r7.ebuild,
+  kdelibs-3.5.10-r8.ebuild, kdelibs-3.5.10-r9.ebuild:
+  Depend on <dev-libs/openssl-1.0.0
+
 *kdelibs-3.5.10-r10 (19 Jul 2010)
 
   19 Jul 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>

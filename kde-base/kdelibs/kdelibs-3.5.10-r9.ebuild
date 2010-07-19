@@ -83,6 +83,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	doc? ( app-doc/doxygen )
+	<dev-libs/openssl-1.0.0
 "
 RDEPEND="${RDEPEND}
 	!<=kde-base/kdebase-startkde-3.5.10-r3
