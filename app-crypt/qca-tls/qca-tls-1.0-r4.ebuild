@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/qca-tls/qca-tls-1.0-r4.ebuild,v 1.9 2009/03/18 18:09:26 ranger Exp $
 
@@ -23,6 +23,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/qca-pathfix.patch
 	epatch "${FILESDIR}"/qca-openssl-0.9.8.patch
+	epatch "${FILESDIR}"/qca-openssl-1.0.0.patch
 }
 
 src_compile() {

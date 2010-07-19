@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/qca-tls
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/qca-tls/ChangeLog,v 1.57 2009/10/14 00:57:52 halcy0n Exp $
+
+  19 Jul 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  qca-tls-1.0-r4.ebuild, +files/qca-openssl-1.0.0.patch:
+  Adjust for dev-libs/openssl-1.0.0a and its stricter typing.
 
   14 Oct 2009; Mark Loeser <halcy0n@gentoo.org> qca-tls-1.0-r3.ebuild:
   QA fixes; unquoted variables
