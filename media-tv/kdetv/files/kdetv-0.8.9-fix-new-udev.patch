@@ -1,0 +1,54 @@
+diff -r -u kdetv-0.8.9.orig/kdetv/plugins/video/v4l/kdetv_v4l.cpp kdetv-0.8.9/kdetv/plugins/video/v4l/kdetv_v4l.cpp
+--- kdetv-0.8.9.orig/kdetv/plugins/video/v4l/kdetv_v4l.cpp	2006-07-09 21:30:49.000000000 +0300
++++ kdetv-0.8.9/kdetv/plugins/video/v4l/kdetv_v4l.cpp	2010-07-27 22:04:47.000000000 +0300
+@@ -466,22 +466,11 @@
+ 
+ int KdetvV4L::probeDevices()
+ {
+-    QString dev;
+-    struct stat sb;
+-
+-
+     // don't probe multiple times, it's unnecessary and might yield incorrect
+     // results if plugin is currently using the device
+     if (_probed) return 0;
+ 
+-    int rc = stat("/dev/v4l", &sb);
+-    if (!rc && S_ISDIR(sb.st_mode) && !access("/dev/v4l", R_OK|X_OK)) {
+-        // DEVFS
+-        dev = "/dev/v4l/video%1";
+-    } else {
+-        // Normal V4L case
+-        dev = "/dev/video%1";
+-    }
++    QString dev = "/dev/video%1";
+ 
+     _devices.clear();
+     _sources.clear();
+diff -r -u kdetv-0.8.9.orig/kdetv/plugins/video/v4l2/kdetv_v4l2.cpp kdetv-0.8.9/kdetv/plugins/video/v4l2/kdetv_v4l2.cpp
+--- kdetv-0.8.9.orig/kdetv/plugins/video/v4l2/kdetv_v4l2.cpp	2006-07-09 21:30:53.000000000 +0300
++++ kdetv-0.8.9/kdetv/plugins/video/v4l2/kdetv_v4l2.cpp	2010-07-27 22:05:08.000000000 +0300
+@@ -479,22 +479,11 @@
+ 
+ int KdetvV4L2::probeDevices()
+ {
+-    QString dev;
+-    struct stat sb;
+-
+-
+     // don't probe multiple times, it's unnecessary and might yield incorrect
+     // results if plugin is currently using the device
+     if (_probed) return 0;
+ 
+-    int rc = stat("/dev/v4l", &sb);
+-    if (!rc && S_ISDIR(sb.st_mode) && !access("/dev/v4l", R_OK|X_OK)) {
+-        // DEVFS
+-        dev = "/dev/v4l/video%1";
+-    } else {
+-        // Normal V4L2 case
+-        dev = "/dev/video%1";
+-    }
++    QString dev = "/dev/video%1";
+ 
+     _devices.clear();
+     _sources.clear();
