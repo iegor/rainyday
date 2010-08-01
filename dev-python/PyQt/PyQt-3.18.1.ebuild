@@ -28,7 +28,7 @@ src_prepare() {
 }
 
 src_configure() {
-	distutils_python_version
+	python_get_version
 	addpredict ${QTDIR}/etc/settings
 
 	local myconf="-d $(python_get_sitedir) \

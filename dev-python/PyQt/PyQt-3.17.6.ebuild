@@ -31,7 +31,7 @@ src_unpack() {
 }
 
 src_compile() {
-	distutils_python_version
+	python_get_version
 	addpredict ${QTDIR}/etc/settings
 
 	local myconf="-d /usr/$(get_libdir)/python${PYVER}/site-packages \
