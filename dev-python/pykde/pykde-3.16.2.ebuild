@@ -30,7 +30,7 @@ DEPEND="${RDEPEND} =kde-base/konsole-3.5*"
 #}
 
 src_compile() {
-	distutils_python_version
+	python_get_version
 	echo $PATH
 	local myconf="-d /usr/$(get_libdir)/python${PYVER}/site-packages \
 			-v /usr/share/sip \
