@@ -8,7 +8,7 @@ inherit kde
 
 DESCRIPTION="A ThinkPad Battery Viewer Applet"
 HOMEPAGE="https://lepetitfou.dyndns.org/KThinkBat"
-SRC_URI="http://lepetitfou.dyndns.org/download/kthinkbat/src/kthinkbat-0.2.x/${P}.tar.bz2"
+SRC_URI="ftp://hasnoname.de/mirror/gentoo/distfiles/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="3.5"
