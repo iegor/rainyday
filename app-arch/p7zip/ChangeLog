@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.114 2010/02/16 08:19:27 jlec Exp $
 
+  15 Aug 2010; Roman v. Gemmeren <strowi@hasnoname.de>
+  +p7zip-9.13-r1.ebuild:
+  fixed system:/ uri when using right-click in konqueror
+
   07 Jul 2010; Roman v. Gemmeren <strowi@hasnoname.de> 
   +p7zip-9.13.ebuild:
   removed kde4-desktop-files
