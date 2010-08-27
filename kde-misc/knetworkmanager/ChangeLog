@@ -2,6 +2,15 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/knetworkmanager/ChangeLog,v 1.10 2009/11/02 09:19:49 abcd Exp $
 
+*knetworkmanager-0.7_pre1168552 (27 Aug 2010)
+
+  27 Aug 2010; Serghei Amelian <serghei@gentoo.org>
+  -knetworkmanager-0.7_pre1075348.ebuild,
+  +knetworkmanager-0.7_pre1168552.ebuild,
+  +files/knetworkmanager-0.7-configure-check-for-nm.patch,
+  +files/knetworkmanager-0.7-uuid_fix.patch:
+  make compatible with NetworkManager >= 0.7 (using correct UUID format)
+
 *knetworkmanager-0.7_pre1075348 (16 Jan 2010)
 
   16 Jan 2010; Serghei Amelian <serghei@gentoo.org>

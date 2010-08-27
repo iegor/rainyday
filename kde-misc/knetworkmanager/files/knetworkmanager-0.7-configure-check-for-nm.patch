@@ -1,0 +1,44 @@
+diff -u -r knetworkmanager.orig/knetworkmanager-0.7/configure.in.in knetworkmanager/knetworkmanager-0.7/configure.in.in
+--- knetworkmanager.orig/knetworkmanager-0.7/configure.in.in	2010-08-27 02:50:45.000000000 +0300
++++ knetworkmanager/knetworkmanager-0.7/configure.in.in	2010-08-27 03:45:15.000000000 +0300
+@@ -10,7 +10,7 @@
+ AC_DEFINE_UNQUOTED(KNETWORKMANAGER_VERSION, $KNETWORKMANAGER_VERSION, [KNetworkManager Version])
+ AC_DEFINE_UNQUOTED(KNETWORKMANAGER_VERSION_STRING, "$KNETWORKMANAGER_VERSION", [KNetworkManager Version String])
+ 
+-# check for dbus, hal, libnm-util and libnl
++# check for dbus, hal, glib, NetworkManager, libnm-util and libnl
+ PKG_CHECK_MODULES(HAL, [hal], [], [ 
+ 	AC_MSG_RESULT([no])
+ 	AC_MSG_WARN([You need Hal, knetworkmanager will not be compiled])
+@@ -18,6 +18,20 @@
+ 	MISSING_DEPS="$MISSING_DEPS hal"
+ ])
+ 
++PKG_CHECK_MODULES(GLIB, [glib-2.0], [], [ 
++	AC_MSG_RESULT([no])
++	AC_MSG_WARN([You need glib-2.0, knetworkmanager will not be compiled])
++	DO_NOT_COMPILE="$DO_NOT_COMPILE knetworkmanager" 
++	MISSING_DEPS="$MISSING_DEPS glib-2.0"
++])
++
++PKG_CHECK_MODULES(NETWORKMANAGER, [NetworkManager], [], [ 
++	AC_MSG_RESULT([no])
++	AC_MSG_WARN([You need NetworkManager, knetworkmanager will not be compiled])
++	DO_NOT_COMPILE="$DO_NOT_COMPILE knetworkmanager" 
++	MISSING_DEPS="$MISSING_DEPS NetworkManager"
++])
++
+ PKG_CHECK_MODULES(LIBNMUTIL, [libnm-util >= 0.7], [], [ 
+ 	AC_MSG_RESULT([no])
+ 	AC_MSG_WARN([You need libnm-util >= 0.7, knetworkmanager will not be compiled])
+@@ -51,8 +65,8 @@
+ 	MISSING_DEPS="$MISSING_DEPS dbusxml2qt3"
+ fi
+ 
+-PACKAGE_CFLAGS="$HAL_CFLAGS $LIBNL_CFLAGS $DBUS_QT3_CFLAGS $LIBNMGLIB_CFLAGS"
+-PACKAGE_LIBS="$HAL_LIBS $LIBNL_LIBS $DBUS_QT3_LIBS"
++PACKAGE_CFLAGS="$GLIB_CFLAGS $NETWORKMANAGER_CFLAGS $HAL_CFLAGS $LIBNL_CFLAGS $DBUS_QT3_CFLAGS $LIBNMGLIB_CFLAGS"
++PACKAGE_LIBS="$GLIB_LIBS $NETWORKMANAGER_LIBS $HAL_LIBS $LIBNL_LIBS $DBUS_QT3_LIBS"
+ 
+ AC_ARG_WITH(dbus-sys, AC_HELP_STRING([--with-dbus-sys=DIR], [D-BUS system.d directory]))
+ if ! test -z "$with_dbus_sys" ; then

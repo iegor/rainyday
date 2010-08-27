@@ -1,0 +1,32 @@
+diff -r -u knetworkmanager.orig/knetworkmanager-0.7/src/knetworkmanager-connection_store.cpp knetworkmanager/knetworkmanager-0.7/src/knetworkmanager-connection_store.cpp
+--- knetworkmanager.orig/knetworkmanager-0.7/src/knetworkmanager-connection_store.cpp	2010-08-27 02:50:44.000000000 +0300
++++ knetworkmanager/knetworkmanager-0.7/src/knetworkmanager-connection_store.cpp	2010-08-27 02:57:02.000000000 +0300
+@@ -22,6 +22,8 @@
+  *
+  **************************************************************************/
+ 
++#include <uuid/uuid.h> // for uuid generator
++
+ #include <qtimer.h>
+ #include <dbus/qdbusobjectpath.h>
+ 
+@@ -161,14 +163,16 @@
+ ConnectionStore::createNewConnectionID()
+ {
+ 	bool unique;
+-	QString id;
++	uuid_t uuid;
++	char id[37];
+ 
+ 	do
+ 	{
+ 		unique = true;
+ 
+-		// 16 bytes of randomness should be enougth for getting a unique ID
+-		id = KApplication::randomString( 16 );
++		// generate universally unique identifier (UUID)
++		::uuid_generate(uuid);
++		::uuid_unparse_lower(uuid, id);
+ 
+ 		// nevertheless check if the id is used already
+ 		QValueList<Connection*>::Iterator it = _connectionList.begin();
