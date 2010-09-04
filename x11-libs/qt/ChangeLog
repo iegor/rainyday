@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.586 2009/08/02 21:54:28 tommy Exp $
 
+  04 Sep 2010; Ladislav Láska <ladislav.laska@gmail.com> qt-3.3.8b-r1.ebuild, 
+  qt-3.3.8b-r2.ebuild:
+  Changed dependency from virtual/postgresql-base to dev-db/postgresql-base,
+  since the former no longer exists.
+  
   10 Dec 2009; Petr Morávek [Xificurk] <xificurk@gmail.com>
   qt-3.3.8b-r1.ebuild, qt-3.3.8b-r2.ebuild: Sync from portage tree.
   Remove unused USE flags from metadata.

@@ -22,7 +22,7 @@ IUSE="exif kipi mysql postgres"
 
 DEPEND="|| ( =kde-base/libkonq-3.5* =kde-base/kdebase-3.5* )
 	mysql? ( virtual/mysql )
-	postgres? ( virtual/postgresql-base >=dev-libs/libpqxx-2.6.9 )
+	postgres? ( dev-db/postgresql-base >=dev-libs/libpqxx-2.6.9 )
 	exif? ( media-libs/libkexif )
 	kipi? ( media-plugins/kipi-plugins )
 	media-libs/libexif"

@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/ChangeLog,v 1.344 2009/11/09 18:18:36 fauli Exp $
 
+  04 Sep 2010; Ladislav Láska <ladislav.laska@gmail.com> 
+  amarok-1.4.10_p20090130-r4.ebuild, amarok-1.4.10_p20090130-r3.ebuild:
+  Changed dependency from virtual/postgresql-base to dev-db/postgresql-base,
+  since the former no longer exists.
+
 *amarok-1.4.10_p20090130-r4 (26 Jun 2010)
 
   26 Jun 2010; Serghei Amelian <serghei@gentoo.org>

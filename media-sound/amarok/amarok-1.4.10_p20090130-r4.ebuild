@@ -51,7 +51,7 @@ RDEPEND="
 	mysql? ( >=virtual/mysql-4.0 )
 	njb? ( >=media-libs/libnjb-2.2.4 )
 	opengl? ( virtual/opengl )
-	postgres? ( virtual/postgresql-base )
+	postgres? ( dev-db/postgresql-base )
 	real? (
 		media-libs/alsa-lib
 		media-video/realplayer
