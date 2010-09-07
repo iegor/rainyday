@@ -14,8 +14,7 @@ inherit kde
 
 DESCRIPTION="A file manager for KDE focusing on usability."
 HOMEPAGE="http://enzosworld.gmxhome.de/"
-SRC_URI="http://enzosworld.gmxhome.de/download/${P}.tar.gz"
-
+SRC_URI="http://www.thel.ro/kde-sunset/${P}.tar.gz"
 KEYWORDS="amd64 ppc x86 ~x86-fbsd"
 
 SLOT="3.5"
