@@ -1,0 +1,18 @@
+--- subtitlecomposer-0.4.3/src/core/action.h	2008-09-04 08:51:34.000000000 +0200
++++ subtitlecomposer-0.4.3-b/src/core/action.h	2010-09-08 13:17:01.763018647 +0200
+@@ -80,14 +80,7 @@
+ 			template <class T>
+ 			T* tryCastTo( Action* action )
+ 			{
+-				try
+-				{
+-					return dynamic_cast<T*>( action );
+-				}
+-				catch( const std::bad_cast& )
+-				{
+-					return 0;
+-				}
++				return dynamic_cast<T*>( action );
+ 			}
+ 
+ 			/// when this method is called both the callee and the action parameter have been executed
