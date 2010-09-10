@@ -8,7 +8,7 @@ inherit kde
 
 DESCRIPTION="A ThinkPad Battery Viewer Applet"
 HOMEPAGE="https://lepetitfou.dyndns.org/KThinkBat"
-SRC_URI="ftp://hasnoname.de/mirror/gentoo/distfiles/${P}.tar.bz2"
+SRC_URI="mirror://kde-sunset/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="3.5"
