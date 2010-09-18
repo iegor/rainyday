@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/kopete-3.5.10-r4.ebuild,v 1.11 2009/07/08 14:33:06 alexxy Exp $
 
 KMNAME=kdenetwork
-EAPI="1"
+EAPI="2"
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}
@@ -14,7 +14,8 @@ HOMEPAGE="http://kopete.kde.org/"
 
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 
-IUSE="emoticons-manager jingle ssl xscreensaver slp kernel_linux kdehiddenvisibility"
+IUSE="emoticons-manager jingle ssl xscreensaver slp kernel_linux
+kdehiddenvisibility opengl"
 PLUGINS="addbookmarks alias autoreplace connectionstatus contactnotes crypt highlight history latex netmeeting nowlistening
 	statistics texteffect translator webpresence"
 PROTOCOLS="gadu groupwise irc jabber oscar msn sametime sms v4l2 winpopup yahoo"
@@ -45,6 +46,7 @@ BOTH_DEPEND="
 	sametime? ( =net-libs/meanwhile-1.0* )
 	sms? ( app-mobilephone/gsmlib )
 	xscreensaver? ( x11-libs/libXScrnSaver )
+	opengl? ( x11-libs/qt[opengl] )
 "
 RDEPEND="
 	${BOTH_DEPEND}
@@ -135,7 +137,7 @@ src_unpack() {
 	rm -f "${S}/configure"
 }
 
-src_compile() {
+src_configure() {
 	local myconf="
 		--without-xmms
 		$(use_enable debug testbed)
@@ -143,8 +145,13 @@ src_compile() {
 		$(use_enable sametime meanwhile)
 		$(use_enable sms smsgsm)
 		$(use_with xscreensaver)
+		$(use_with opengl gl)
 	"
 
+	kde_src_configure
+}
+	
+src_compile() {
 	kde_src_compile
 }
 

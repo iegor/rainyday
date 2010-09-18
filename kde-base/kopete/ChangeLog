@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/ChangeLog,v 1.218 2009/10/12 23:58:47 abcd Exp $
 
+  19 Sep 2010; Ladislav Láska <ladislav.laska@gmail.com>
+  kopete-3.5.10-r6.ebuild:
+  Added opengl use flag, EAPI=2 and corrected configuration for systems
+  without opengl.
+
   24 Feb 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   kopete-3.5.10-r6.ebuild, +files/kopete-3.5.10-groupwise.patch:
   Fix compiler error in groupwise plugin
