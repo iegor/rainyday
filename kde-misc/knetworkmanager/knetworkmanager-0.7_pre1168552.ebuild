@@ -7,7 +7,7 @@ inherit kde eutils
 DESCRIPTION="A KDE frontend for NetworkManager"
 HOMEPAGE="http://en.opensuse.org/Projects/KNetworkManager"
 LICENSE="GPL-2"
-SRC_URI="http://www.thel.ro/kde-sunset/${P}.tar.bz2"
+SRC_URI="mirror://kde-sunset/${P}.tar.bz2"
 KEYWORDS="~x86"
 
 IUSE="cisco openvpn pptp dialup"
