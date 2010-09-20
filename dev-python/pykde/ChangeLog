@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pykde/ChangeLog,v 1.40 2008/12/15 04:14:11 neurogeek Exp $
 
+*pykde-3.16.7 (20 Sep 2010)
+
+  20 Sep 2010; Ladislav Láska <ladislav.laska@gmail.com> +pykde-3.16.7.ebuild:
+  Bump to new version.
+
   01 Aug 2010; Roman v. Gemmeren <strowi@hasnoname.de> pykde-3.16.2.ebuild:
   distutils_python_version deprecated. replaced with python_get_version
 
