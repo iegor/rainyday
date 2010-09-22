@@ -39,8 +39,7 @@ src_install() {
 
 	dodir /usr
 
-	python_version
-	"${python}" install.py --prefix="${D}/usr"
+	"$(PYTHON)" install.py --prefix="${D}/usr"
 	make_desktop_entry "luma" Luma "/usr/share/luma/icons/luma-128.png" "System;Qt"
 }
 
