@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/poppler-qt3
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-qt3/ChangeLog,v 1.18 2009/10/18 14:08:49 loki_val Exp $
+
+  29 Sep 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  poppler-qt3-0.10.6.ebuild, poppler-qt3-0.10.7.ebuild,
+  poppler-qt3-0.12.0.ebuild, poppler-qt3-0.12.1.ebuild,
+  poppler-qt3-0.12.3.ebuild:
+  Block poppler[qt3] as that doesn't block poppler-qt3 any more (#338346).
 
 *poppler-qt3-0.12.1 (18 Oct 2009)
 

@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-qt3/poppler-qt3-0.10.7.ebuild,v 1.8 2009/08/09 11:56:15 nixnut Exp $
 
@@ -19,6 +19,7 @@ IUSE=""
 
 RDEPEND="
 	~dev-libs/poppler-${PV}
+	!dev-libs/poppler[qt3]
 	>=x11-libs/qt-3.3:3
 	"
 DEPEND="
