@@ -9,7 +9,7 @@ S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="KMPlayer is a Video player plugin for Konqueror and basic MPlayer/Xine/ffmpeg/ffserver/VDR frontend."
 HOMEPAGE="http://kmplayer.kde.org/"
-SRC_URI="http://kmplayer.kde.org/pkgs/${MY_P}.tar.bz2"
+SRC_URI="mirror://kde-sunset/${MY_P}.tar.bz2"
 
 SLOT="0"
 LICENSE="GPL-2"
