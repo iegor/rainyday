@@ -44,7 +44,9 @@ src_prepare() {
 
 src_install() {
 	kde_src_install
-
+	mkdir -p "${D}"/usr/kde/3.5/share/applications/kde
+	cp -v "${S}"/lib/kio-msits/kchmviewer.desktop "${D}"/usr/kde/3.5/share/applications/kde/
+	sed -i 's/kchmviewer.png/kchmviewer/g' "${D}"/lib/kio-msits/kchmviewer.desktop
 	dodoc ChangeLog FAQ DCOP-bingings README || die "installing docs failed"
 }
 

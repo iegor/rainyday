@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/kchmviewer/ChangeLog,v 1.21 2009/11/14 19:30:28 wired Exp $
 
+*kchmviewer-3.1_p2-r1.ebuild (29 Oct 2010)
+  29 Oct 2010; Roman v. Gemmeren <strowi@hasnoname.de> kchmviewer-3.1_p2-r1.ebuild:
+  fix + copy kchmviewer.desktop to /usr/kde/3.5/share/applications/kde/
+
 *kchmviewer-4.2 (14 Nov 2009)
 
   14 Nov 2009; Alex Alexander <wired@gentoo.org> +kchmviewer-4.2.ebuild:
