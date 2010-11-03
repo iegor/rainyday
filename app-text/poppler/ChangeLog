@@ -1,6 +1,39 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.258 2010/09/23 11:20:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.267 2010/10/25 23:13:11 halcy0n Exp $
+
+  25 Oct 2010; Mark Loeser <halcy0n@gentoo.org> poppler-0.14.4.ebuild:
+  Stable on ppc64; bug #338878
+
+  18 Oct 2010; Tobias Klausmann <klausman@gentoo.org> poppler-0.14.4.ebuild:
+  Stable on alpha, bug #338878
+
+  17 Oct 2010; Raúl Porcel <armin76@gentoo.org> poppler-0.14.4.ebuild:
+  ia64/s390/sh/sparc stable wrt #338878
+
+  16 Oct 2010; Jeroen Roovers <jer@gentoo.org> poppler-0.14.4.ebuild:
+  Stable for HPPA (bug #338878).
+
+  16 Oct 2010; Markus Meier <maekke@gentoo.org> poppler-0.14.4.ebuild:
+  arm stable, bug #338878
+
+  15 Oct 2010; Brent Baude <ranger@gentoo.org> poppler-0.14.4.ebuild:
+  Marking poppler-0.14.4 ppc for bug 338878
+
+  14 Oct 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  poppler-0.14.4.ebuild:
+  x86 stable wrt security bug #338878
+
+  14 Oct 2010; Markos Chandras <hwoarang@gentoo.org> poppler-0.14.4.ebuild:
+  Stable on amd64 wrt bug #338878
+
+*poppler-0.14.4 (06 Oct 2010)
+
+  06 Oct 2010; Maciej Mrozowski <reavertm@gentoo.org>
+  -poppler-0.12.4-r3.ebuild, poppler-0.14.1.ebuild, -poppler-0.14.3.ebuild,
+  +poppler-0.14.4.ebuild:
+  Version bump 0.14.4, remove old. Remove obsolete blocks on poppler-qt3
+  everywhere.
 
   23 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> poppler-0.14.3.ebuild:
   Remove dev-libs/poppler-qt3 from blockers wrt #338346 by Michał Górny.

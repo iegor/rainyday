@@ -7,6 +7,7 @@ set -e
 cd "$(dirname "$0")"/../..
 
 # Clone avahi dir from main portage tree
+pre=( net-dns/avahi/*.ebuild )
 rm -r net-dns/avahi
 cp -r "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/
 
@@ -24,5 +25,13 @@ done
 
 # Redigest and show difference
 ebuild $(ls -1 net-dns/avahi/*.ebuild | tail -n1) digest
-diff -ur "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/avahi
+diff -ur "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/avahi || true
 Documentation/maintainers/generate_unmask
+
+git add net-dns/avahi/{*.ebuild,ChangeLog,Manifest} \
+    Documentation/package.unmask/kde-3.5
+for old in "${pre[@]}"; do
+	test -e "${old}" || git rm "${old}"
+done
+git status
+echo 'Run: git commit -m "[net-dns/avahi] Update from main portage tree"'

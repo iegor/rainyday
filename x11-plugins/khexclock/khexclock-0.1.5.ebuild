@@ -7,7 +7,7 @@ inherit kde
 IUSE=""
 DESCRIPTION="KHexClock shows the current hexadecimal time and date."
 HOMEPAGE="http://utopios.org/~luke-jr/programs/khexclock/"
-SRC_URI="http://utopios.org/~luke-jr/programs/${PN}/${P}.tbz2"
+SRC_URI="mirror://kde-sunset/${P}.tbz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
