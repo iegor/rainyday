@@ -7,7 +7,6 @@ set -e
 cd "$(dirname "$0")"/../..
 
 # Clone avahi dir from main portage tree
-pre=( net-dns/avahi/*.ebuild )
 rm -r net-dns/avahi
 cp -r "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/
 
@@ -19,19 +18,21 @@ sed -i \
     net-dns/avahi/*.ebuild
 
 # Drop all unmodified ebuilds, e.g. for older versions without qt4 USE flag
+# For modified files, check number of changes
 for i in net-dns/avahi/*.ebuild; do
     cmp -s "$i" "${PORTDIR:-/usr/portage}/$i" && rm $i
+    nchg="$(diff -U0 "${PORTDIR:-/usr/portage}/$i" "$i" | grep ^+ | wc -l)"
+    if [[ $nchg -ne 4 ]]; then
+        diff -U0 "${PORTDIR:-/usr/portage}/$i" "$i" | grep ^+
+        echo "Unexpected number of changes in $i: $nchg changes" >&2
+        exit 1
+    fi
 done
 
 # Redigest and show difference
 ebuild $(ls -1 net-dns/avahi/*.ebuild | tail -n1) digest
-diff -ur "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/avahi || true
 Documentation/maintainers/generate_unmask
 
-git add net-dns/avahi/{*.ebuild,ChangeLog,Manifest} \
-    Documentation/package.unmask/kde-3.5
-for old in "${pre[@]}"; do
-	test -e "${old}" || git rm "${old}"
-done
+git add -A net-dns/avahi Documentation/package.unmask/kde-3.5
 git status
 echo 'Run: git commit -m "[net-dns/avahi] Update from main portage tree"'
