@@ -23,7 +23,7 @@ MY_P="${P/_*/}"
 S="${WORKDIR}/${MY_P}"
 
 SRC_URI="mirror://kde/stable/amarok/${PV/_*/}/src/${MY_P}.tar.bz2
-	mirror://gentoo/amarok-1.4.10-post20090130.diff.tar.bz2"
+	mirror://kde-sunset/amarok-1.4.10-post20090130.diff.tar.bz2"
 
 DESCRIPTION="Advanced audio player based on KDE framework."
 HOMEPAGE="http://amarok.kde.org/"
