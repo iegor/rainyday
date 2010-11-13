@@ -4,7 +4,6 @@ set -e
 cd "$(dirname "$0")"/../..
 
 # Clone poppler dir from main portage tree
-pre=( app-text/poppler/*.ebuild )
 rm -r app-text/poppler
 cp -r "${PORTDIR:-/usr/portage}/app-text/poppler" app-text/
 
@@ -17,19 +16,21 @@ sed -i \
     app-text/poppler/*.ebuild
 
 # Drop all unmodified ebuilds, e.g. for older versions without qt4 USE flag
+# For modified files, check number of changes
 for i in app-text/poppler/*.ebuild; do
     cmp -s "$i" "${PORTDIR:-/usr/portage}/$i" && rm $i
+    nchg="$(diff -U0 "${PORTDIR:-/usr/portage}/$i" "$i" | grep ^+ | wc -l)"
+    if [[ $nchg -ne 5 ]]; then
+        diff -U0 "${PORTDIR:-/usr/portage}/$i" "$i" | grep ^+
+        echo "Unexpected number of changes in $i: $nchg changes" >&2
+        exit 1
+    fi
 done
 
 # Redigest and show difference
 ebuild $(ls -1 app-text/poppler/*.ebuild | tail -n1) digest
-diff -ur "${PORTDIR:-/usr/portage}/app-text/poppler" app-text/poppler || true
 Documentation/maintainers/generate_unmask
 
-git add app-text/poppler/{*.ebuild,ChangeLog,Manifest} \
-    Documentation/package.unmask/kde-3.5
-for old in "${pre[@]}"; do
-	test -e "${old}" || git rm "${old}"
-done
+git add -A app-text/poppler Documentation/package.unmask/kde-3.5
 git status
 echo 'Run: git commit -m "[app-text/poppler] Update from main portage tree"'
