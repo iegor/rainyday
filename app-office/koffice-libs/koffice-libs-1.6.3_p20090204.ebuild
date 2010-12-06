@@ -8,6 +8,8 @@ KMNAME=koffice
 KMMODULE=lib
 inherit kde-meta eutils
 
+SRC_URI="http://files.hboeck.de/distfiles/koffice-${PV}.tar.bz2"
+
 DESCRIPTION="Shared KOffice libraries."
 HOMEPAGE="http://www.koffice.org/"
 LICENSE="GPL-2 LGPL-2"
