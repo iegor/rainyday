@@ -18,13 +18,13 @@ SLOT="0"
 
 DEPEND="net-misc/networkmanager
 	=kde-base/kdelibs-3.5*
-	dev-libs/dbus-qt3-old:0.9
+	>=dev-libs/dbus-qt3-old-0.9
 	sys-apps/hal
 	net-wireless/wireless-tools
 	>=dev-libs/libnl-1.1
-	cisco?   ( <net-misc/networkmanager-vpnc-0.7.0 )
-	openvpn? ( <net-misc/networkmanager-openvpn-0.3.3 )
-	pptp?    ( <net-misc/networkmanager-pptp-0.7.0 )
+	cisco?   ( net-misc/networkmanager-vpnc )
+	openvpn? ( net-misc/networkmanager-openvpn )
+	pptp?    ( net-misc/networkmanager-pptp )
 	dialup? ( =kde-base/kppp-3.5* )"
 
 RDEPEND="${DEPEND}"
