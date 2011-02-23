@@ -10,7 +10,7 @@ HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2"
 SLOT="3.5"
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE="pda +kitchensync"
+IUSE="pda kitchensync"
 
 RDEPEND="
 	>=kde-base/akregator-${PV}:${SLOT}
@@ -22,7 +22,7 @@ RDEPEND="
 	>=kde-base/kdepim-kioslaves-${PV}:${SLOT}
 	>=kde-base/kdepim-kresources-${PV}:${SLOT}
 	>=kde-base/kdepim-wizards-${PV}:${SLOT}
-	>=kde-base/kitchensync-${PV}:${SLOT}
+	kitchensync? ( >=kde-base/kitchensync-${PV}:${SLOT} )
 	>=kde-base/kmail-${PV}:${SLOT}
 	>=kde-base/kmailcvt-${PV}:${SLOT}
 	>=kde-base/knode-${PV}:${SLOT}
