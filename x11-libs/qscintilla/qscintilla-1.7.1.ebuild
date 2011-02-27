@@ -12,7 +12,7 @@ MY_P=${MY_P/_pre/snapshot-}
 
 DESCRIPTION="QScintilla is a port to Qt of Neil Hodgson's Scintilla C++ editor class."
 HOMEPAGE="http://www.riverbankcomputing.co.uk/qscintilla/"
-SRC_URI="http://www.riverbankcomputing.com/Downloads/QScintilla1/${MY_P}.tar.gz"
+SRC_URI="http://www.riverbankcomputing.com/Downloads/QScintilla1/${MY_P}.tar.gz  mirror://kde-sunset/${MY_P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"

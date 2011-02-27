@@ -13,7 +13,7 @@ DESCRIPTION="QScintilla is a port to Qt of Neil Hodgson's Scintilla C++ editor c
 HOMEPAGE="http://www.riverbankcomputing.co.uk/qscintilla/"
 #SRC_URI="http://www.river-bank.demon.co.uk/download/snapshots/QScintilla/${MY_P}.tar.gz"
 #SRC_URI="http://www.river-bank.demon.co.uk/download/QScintilla/${MY_P}.tar.gz"
-SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz mirror://kde-sunset/${MY_P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
