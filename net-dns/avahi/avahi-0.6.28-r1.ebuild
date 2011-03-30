@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.27.ebuild,v 1.2 2010/12/14 00:27:52 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.28-r1.ebuild,v 1.7 2011/03/05 13:42:05 armin76 Exp $
 
 EAPI="3"
 
@@ -16,10 +16,11 @@ SRC_URI="http://avahi.org/download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
-IUSE="bookmarks howl-compat mdnsresponder-compat gdbm dbus doc mono gtk python qt3 qt4 autoipd kernel_linux test ipv6"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd"
+IUSE="autoipd bookmarks dbus doc gdbm gtk howl-compat ipv6 kernel_linux mdnsresponder-compat mono python qt3 qt4 test "
 
-RDEPEND=">=dev-libs/libdaemon-0.11-r1
+DBUS_DEPEND=">=sys-apps/dbus-0.30"
+RDEPEND=">=dev-libs/libdaemon-0.14
 	dev-libs/expat
 	>=dev-libs/glib-2
 	gdbm? ( sys-libs/gdbm )
@@ -29,15 +30,21 @@ RDEPEND=">=dev-libs/libdaemon-0.11-r1
 		>=x11-libs/gtk+-2.14.0:2
 	)
 	dbus? (
-		>=sys-apps/dbus-0.30
+		${DBUS_DEPEND}
 		python? ( dev-python/dbus-python )
 	)
 	mono? (
 		>=dev-lang/mono-1.1.10
 		gtk? ( >=dev-dotnet/gtk-sharp-2 )
 	)
-	howl-compat? ( !net-misc/howl )
-	mdnsresponder-compat? ( !net-misc/mDNSResponder )
+	howl-compat? (
+		!net-misc/howl
+		${DBUS_DEPEND}
+	)
+	mdnsresponder-compat? (
+		!net-misc/mDNSResponder
+		${DBUS_DEPEND}
+	)
 	python? (
 		gtk? ( >=dev-python/pygtk-2 )
 	)
@@ -55,25 +62,13 @@ DEPEND="${RDEPEND}
 	)"
 
 pkg_setup() {
-	if use python
-	then
+	if use python; then
 		python_set_active_version 2
 		python_pkg_setup
 	fi
 
-	if ( use mdnsresponder-compat || use howl-compat || use mono ) && ! use dbus
-	then
-		die "For *-compat or mono support you also need to enable the dbus USE flag!"
-	fi
-
-	if use bookmarks && ! ( use python && use dbus && use gtk )
-	then
-		die "For bookmarks support you also need to enable the python, dbus and gtk USE flags!"
-	fi
-
-	if use python && ! use dbus && ! use gtk
-	then
-		die "For proper python support you also need the dbus and gtk USE flags!"
+	if use python && ! use dbus && ! use gtk; then
+		ewarn "For proper python support you should also enable the dbus and gtk USE flags!"
 	fi
 }
 
@@ -82,17 +77,25 @@ pkg_preinst() {
 	enewgroup avahi
 	enewuser avahi -1 -1 -1 avahi
 
-	if use autoipd
-	then
+	if use autoipd; then
 		enewgroup avahi-autoipd
 		enewuser avahi-autoipd -1 -1 -1 avahi-autoipd
 	fi
 }
 
 src_prepare() {
-	use ipv6 && sed -i -e s/use-ipv6=no/use-ipv6=yes/ avahi-daemon/avahi-daemon.conf
+	if use ipv6; then
+		sed -i \
+			-e s/use-ipv6=no/use-ipv6=yes/ \
+			avahi-daemon/avahi-daemon.conf || die
+	fi
 
-	sed -i -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" doxygen_to_devhelp.xsl
+	sed -i\
+		-e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
+		doxygen_to_devhelp.xsl || die
+
+	epatch "${FILESDIR}"/netlink-request-all-matches-when-requesting-interface.patch
+	epatch "${FILESDIR}"/${P}-CVE-2011-1002.patch
 }
 
 src_configure() {
@@ -100,20 +103,28 @@ src_configure() {
 
 	local myconf=""
 
-	if use python
-	then
-		use dbus && myconf="${myconf} --enable-python-dbus"
-		use gtk && myconf="${myconf} --enable-pygtk"
+	if use python; then
+		myconf+="
+			$(use_enable dbus python-dbus)
+			$(use_enable gtk pygtk)
+		"
 	fi
 
-	if use mono && use doc
-	then
-		myconf="${myconf} --enable-monodoc"
+	if use mono; then
+		myconf+=" $(use_enable doc monodoc)"
+	fi
+
+	# these require dbus enabled
+	if use mdnsresponder-compat || use howl-compat || use mono; then
+		myconf+=" --enable-dbus"
 	fi
 
 	# We need to unset DISPLAY, else the configure script might have problems detecting the pygtk module
 	unset DISPLAY
 
+	# Upstream ships a gir file (AvahiCore.gir) which does not work with
+	# >=gobject-introspection-0.9, so we disable introspection for now.
+	# http://avahi.org/ticket/318
 	econf \
 		--localstatedir=/var \
 		--with-distro=gentoo \
@@ -121,6 +132,7 @@ src_configure() {
 		--disable-pygtk \
 		--disable-xmltoman \
 		--disable-monodoc \
+		--disable-introspection \
 		--enable-glib \
 		$(use_enable test tests) \
 		$(use_enable autoipd) \
@@ -141,59 +153,50 @@ src_configure() {
 src_compile() {
 	emake || die "emake failed"
 
-	use doc && emake avahi.devhelp
+	use doc && { emake avahi.devhelp || die ; }
 }
 
 src_install() {
 	emake install py_compile=true DESTDIR="${D}" || die "make install failed"
-	use bookmarks || rm -f "${D}"/usr/bin/avahi-bookmarks
+	use bookmarks && use python && use dbus && use gtk || \
+		rm -f "${D}"/usr/bin/avahi-bookmarks
 
 	use howl-compat && ln -s avahi-compat-howl.pc "${D}"/usr/$(get_libdir)/pkgconfig/howl.pc
 	use mdnsresponder-compat && ln -s avahi-compat-libdns_sd/dns_sd.h "${D}"/usr/include/dns_sd.h
 
-	if use autoipd
-	then
+	if use autoipd; then
 		insinto /$(get_libdir)/rcscripts/net
-		doins "${FILESDIR}"/autoipd.sh
+		doins "${FILESDIR}"/autoipd.sh || die
 
 		insinto /$(get_libdir)/rc/net
-		newins "${FILESDIR}"/autoipd-openrc.sh autoipd.sh
+		newins "${FILESDIR}"/autoipd-openrc.sh autoipd.sh || die
 	fi
 
-	dodoc docs/{AUTHORS,NEWS,README,TODO}
+	dodoc docs/{AUTHORS,NEWS,README,TODO} || die
 
-	if use doc
-	then
-		dohtml -r doxygen/html/.
+	if use doc; then
+		dohtml -r doxygen/html/. || die
 		insinto /usr/share/devhelp/books/avahi
-		doins avahi.devhelp
+		doins avahi.devhelp || die
 	fi
 }
 
 pkg_postrm() {
-	if use python; then
-		python_mod_cleanup avahi avahi_discover
-	fi
+	use python && python_mod_cleanup avahi $(use dbus && use gtk && echo avahi_discover)
 }
 
 pkg_postinst() {
-	if use python; then
-		python_mod_optimize avahi avahi_discover
-	fi
+	use python && python_mod_optimize avahi $(use dbus && use gtk && echo avahi_discover)
 
-	if use autoipd
-	then
-		elog
+	if use autoipd; then
+		echo
 		elog "To use avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
 		elog "addresses, just set config_<interface>=( autoipd ) in /etc/conf.d/net!"
-		elog
 	fi
 
-	if use dbus
-	then
-		elog
+	if use dbus; then
+		echo
 		elog "If this is your first install of avahi please reload your dbus config"
 		elog "with /etc/init.d/dbus reload before starting avahi-daemon!"
-		elog
 	fi
 }

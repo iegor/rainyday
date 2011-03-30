@@ -1,6 +1,47 @@
 # ChangeLog for net-dns/avahi
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/ChangeLog,v 1.192 2011/01/23 20:24:45 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/ChangeLog,v 1.202 2011/03/17 07:14:41 swegener Exp $
+
+  17 Mar 2011; Sven Wegener <swegener@gentoo.org>
+  files/netlink-request-all-matches-when-requesting-interface.patch:
+  Update netlink patch from git.
+
+*avahi-0.6.29 (17 Mar 2011)
+
+  17 Mar 2011; Sven Wegener <swegener@gentoo.org> +avahi-0.6.29.ebuild:
+  Version bump, bug #358971.
+
+  12 Mar 2011; Sven Wegener <swegener@gentoo.org>
+  -files/avahi-0.6.24-cmsg_space.patch, -files/avahi-0.6.24-libintl.patch,
+  -avahi-0.6.25-r1.ebuild, -avahi-0.6.27.ebuild, -avahi-0.6.27-r1.ebuild,
+  -files/avahi-0.6.27-no-auto-activated.patch, -avahi-0.6.28.ebuild:
+  Cleanup.
+
+  05 Mar 2011; Raúl Porcel <armin76@gentoo.org> avahi-0.6.28-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #355583
+
+  03 Mar 2011; Jeroen Roovers <jer@gentoo.org> avahi-0.6.28-r1.ebuild:
+  Stable for HPPA (bug #355583).
+
+  02 Mar 2011; Thomas Kahle <tomka@gentoo.org> avahi-0.6.28-r1.ebuild:
+  x86 stable per bug 355583
+
+  01 Mar 2011; Kacper Kowalik <xarthisius@gentoo.org>
+  avahi-0.6.28-r1.ebuild:
+  ppc/ppc64 stable wrt #355583
+
+  01 Mar 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  avahi-0.6.28-r1.ebuild:
+  Byte-compile avahi_discover only with USE="dbus gtk python" (bug #339933).
+
+  28 Feb 2011; Markos Chandras <hwoarang@gentoo.org> avahi-0.6.28-r1.ebuild:
+  Stable on amd64 wrt bug #355583
+
+*avahi-0.6.28-r1 (27 Feb 2011)
+
+  27 Feb 2011; Sven Wegener <swegener@gentoo.org> +avahi-0.6.28-r1.ebuild,
+  +files/avahi-0.6.28-CVE-2011-1002.patch:
+  Revision bump, security bug #355583.
 
   23 Jan 2011; Sven Wegener <swegener@gentoo.org> avahi-0.6.28.ebuild,
   +files/netlink-request-all-matches-when-requesting-interface.patch:
