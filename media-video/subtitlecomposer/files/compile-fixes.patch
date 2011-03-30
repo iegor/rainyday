@@ -1,0 +1,11 @@
+--- subtitlecomposer-0.4.3/src/core/sstring.cpp	2008-09-04 08:51:34.000000000 +0200
++++ subtitlecomposer-0.4.3-b/src/core/sstring.cpp	2011-03-30 16:31:18.980909658 +0200
+@@ -920,7 +920,7 @@
+ 	append( str );
+ }
+ 
+-SStringList::SStringList( const SStringList::SStringList& list ):
++SStringList::SStringList( const SStringList& list ):
+ 	QValueList<SString>( list )
+ {
+ }

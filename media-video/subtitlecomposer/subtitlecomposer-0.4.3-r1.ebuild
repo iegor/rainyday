@@ -25,7 +25,8 @@ DEPEND="|| ( kde-base/kate kde-base/kdebase )
         mplayer? ( media-video/mplayer )"
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/replace-exceptions.patch" )
+PATCHES=( "${FILESDIR}/replace-exceptions.patch" 
+	"${FILESDIR}/compile-fixes.patch" )
 
 S=${WORKDIR}/${P}
 
