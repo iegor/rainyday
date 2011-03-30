@@ -10,7 +10,7 @@ MY_P="${PN}_${PV}"
 
 DESCRIPTION="Free UML 2 tool with code generation"
 HOMEPAGE="http://bouml.free.fr/"
-SRC_URI="http://downloads.sourceforge.net/bouml/${MY_P}.tar.gz"
+SRC_URI="mirror://kde-sunset/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
