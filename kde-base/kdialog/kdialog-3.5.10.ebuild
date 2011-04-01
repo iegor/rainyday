@@ -15,7 +15,7 @@ KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="kdehiddenvisibility"
 
 # Uses cdcontrol on FreeBSD
-RDEPEND="kernel_linux? ( || ( >=sys-apps/eject-2.1.5 sys-block/unieject ) ) "
+RDEPEND="kernel_linux? ( || ( >=sys-block/eject-2.1.5 sys-block/unieject ) ) "
 
 KMEXTRA="kdeeject"
 KMNODOCS=true

@@ -3,7 +3,7 @@ via kde-base/kdebase-kioslaves, Krusader can use some external applications:
 
 Tools
 
-eject   - sys-apps/eject
+eject   - sys-block/eject
 locate  - sys-apps/slocate
 kdiff3  - kde-misc/kdiff3
 kompare - kde-base/kompare
