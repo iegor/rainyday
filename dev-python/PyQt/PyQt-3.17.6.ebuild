@@ -10,9 +10,7 @@ S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="A set of Python bindings for Qt3"
 HOMEPAGE="http://www.riverbankcomputing.co.uk/software/pyqt/intro/"
-#SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
-SRC_URI="http://www.riverbankcomputing.com/static/Downloads/PyQt3/${MY_P}.tar.gz"
-#SRC_URI="http://www.riverbankcomputing.com/Downloads/Snapshots/PyQt3/${MY_P}.tar.gz"
+SRC_URI="mirror://kde-sunset/${MY_P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-2"
