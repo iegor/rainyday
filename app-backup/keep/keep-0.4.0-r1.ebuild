@@ -10,7 +10,7 @@ inherit kde
 
 DESCRIPTION="A simple backup system for KDE."
 HOMEPAGE="http://jr.falleri.free.fr/keep/wiki/Home"
-SRC_URI="http://jr.falleri.free.fr/files/devel/keep/${P}.tar.gz"
+SRC_URI="mirror://kde-sunset/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="3.5"
