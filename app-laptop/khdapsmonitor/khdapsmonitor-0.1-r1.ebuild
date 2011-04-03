@@ -8,7 +8,7 @@ inherit kde
 
 DESCRIPTION="KDE monitor for the Hard Drive Active Protection System"
 HOMEPAGE="http://roy.marples.name/projects/khdaps/wiki"
-SRC_URI="http://roy.marples.name/files/${P}.tar.bz2"
+SRC_URI="http://roy.marples.name/downloads/khdaps/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
