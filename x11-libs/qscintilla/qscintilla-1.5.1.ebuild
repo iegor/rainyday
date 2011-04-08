@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 KEYWORDS="alpha amd64 ia64 ppc ppc64 sparc x86"
 IUSE="doc"
 
-RDEPEND="=x11-libs/qt-3*"
+RDEPEND="=x11-libs/qt-meta-3*"
 DEPEND="${RDEPEND}
 	sys-apps/sed"
 

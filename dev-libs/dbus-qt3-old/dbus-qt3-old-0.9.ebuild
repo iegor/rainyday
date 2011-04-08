@@ -14,7 +14,7 @@ IUSE="debug"
 
 RDEPEND=">=sys-apps/dbus-0.91"
 DEPEND="${RDEPEND}
-	=x11-libs/qt-3*"
+	=x11-libs/qt-meta-3*"
 
 S=${WORKDIR}/dbus-1-qt3-${PV}
 

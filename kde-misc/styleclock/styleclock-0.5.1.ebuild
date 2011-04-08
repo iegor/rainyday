@@ -15,6 +15,6 @@ KEYWORDS="amd64 ~ppc ~sparc x86"
 IUSE=""
 
 DEPEND="virtual/opengl
-	x11-libs/qt:3[opengl]"
+	x11-libs/qt-meta:3[opengl]"
 
 need-kde 3.5

@@ -20,7 +20,7 @@ SLOT="3.5"
 KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="alsa esd artswrappersuid jack mp3 nas vorbis"
 
-RDEPEND="x11-libs/qt:3
+RDEPEND="x11-libs/qt-meta:3
 	>=dev-libs/glib-2
 	alsa? ( media-libs/alsa-lib )
 	vorbis? ( media-libs/libogg

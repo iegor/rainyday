@@ -14,7 +14,7 @@ cp -r "${PORTDIR:-/usr/portage}/net-dns/avahi" net-dns/
 sed -i \
     -e 's/^\(IUSE=.*\) qt4/\1 qt3 qt4/' \
     -e 's/--disable-qt3/$(use_enable qt3)/' \
-    -e 's/^\([ \t]*\)\(qt4? ( x11-libs\/qt-core:4\)/\1qt3? ( x11-libs\/qt:3 )\n\1\2/' \
+    -e 's/^\([ \t]*\)\(qt4? ( x11-libs\/qt-core:4\)/\1qt3? ( x11-libs\/qt-meta:3 )\n\1\2/' \
     net-dns/avahi/*.ebuild
 
 # Drop all unmodified ebuilds, e.g. for older versions without qt4 USE flag

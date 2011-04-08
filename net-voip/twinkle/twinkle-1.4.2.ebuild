@@ -16,7 +16,7 @@ IUSE="speex ilbc zrtp"
 
 RDEPEND=">=net-libs/ccrtp-1.6.0
 	dev-cpp/commoncpp2
-	x11-libs/qt:3
+	x11-libs/qt-meta:3
 	media-libs/libsndfile
 	dev-libs/boost
 	speex? ( media-libs/speex )

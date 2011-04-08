@@ -22,7 +22,7 @@ RDEPEND=">=media-libs/alsa-lib-1.0
 	>=media-libs/ladspa-sdk-1.12-r2
 	>=media-libs/libsndfile-1.0.11
 	>=media-libs/libsamplerate-0.1.1-r1
-	qt3? ( x11-libs/qt:3 )"
+	qt3? ( x11-libs/qt-meta:3 )"
 DEPEND="${RDEPEND}
 	sys-apps/sed
 	dev-util/pkgconfig"

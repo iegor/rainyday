@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="x11-libs/qt:3"
+DEPEND="x11-libs/qt-meta:3"
 RDEPEND="${DEPEND}"
 
 src_unpack() {

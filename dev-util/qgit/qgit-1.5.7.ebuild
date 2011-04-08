@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86"
 IUSE=""
 
-DEPEND="=x11-libs/qt-3*"
+DEPEND="=x11-libs/qt-meta-3*"
 RDEPEND="${DEPEND}
 	>=dev-vcs/git-1.5"
 

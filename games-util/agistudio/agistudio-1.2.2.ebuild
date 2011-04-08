@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ppc x86"
 IUSE=""
 
-DEPEND="x11-libs/qt:3"
+DEPEND="x11-libs/qt-meta:3"
 
 S=${WORKDIR}/${P}/src
 

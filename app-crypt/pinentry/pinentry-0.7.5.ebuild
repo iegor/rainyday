@@ -17,7 +17,7 @@ IUSE="gtk ncurses qt3 caps"
 
 DEPEND="gtk? ( x11-libs/gtk+:2 )
 	ncurses? ( sys-libs/ncurses )
-	qt3? ( x11-libs/qt:3 )
+	qt3? ( x11-libs/qt-meta:3 )
 	!gtk? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) )
 	caps? ( sys-libs/libcap )"
 RDEPEND="${DEPEND}"

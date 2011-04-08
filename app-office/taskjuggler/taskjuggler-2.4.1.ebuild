@@ -17,7 +17,7 @@ IUSE="arts kde"
 SLOT="0"
 
 # Otherwise compilation will break for amd64 or when using -Os
-DEPEND="x11-libs/qt:3
+DEPEND="x11-libs/qt-meta:3
 	kde? ( kde-base/kdelibs:3.5
 		kde-base/libkdepim:3.5
 		kde-base/libkcal:3.5 )

@@ -46,8 +46,8 @@ need-kde 3.5
 
 pkg_setup() {
 	# use opengl &&
-		if ! built_with_use =x11-libs/qt-3* opengl ; then
-			eerror "You need to build x11-libs/qt with opengl use flag enabled."
+		if ! built_with_use =x11-libs/qt-meta-3* opengl ; then
+			eerror "You need to build x11-libs/qt-meta with opengl use flag enabled."
 			die
 		fi
 }

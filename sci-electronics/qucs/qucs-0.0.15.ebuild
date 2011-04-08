@@ -15,8 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="debug"
 
-DEPEND="x11-libs/qt:3"
-RDEPEND="x11-libs/qt:3
+DEPEND="x11-libs/qt-meta:3"
+RDEPEND="x11-libs/qt-meta:3
 	>=sci-electronics/freehdl-0.0.7"
 
 src_configure() {

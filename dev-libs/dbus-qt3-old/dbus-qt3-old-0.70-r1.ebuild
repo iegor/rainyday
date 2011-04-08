@@ -17,7 +17,7 @@ IUSE="debug"
 
 RDEPEND=">=sys-apps/dbus-0.91"
 DEPEND="${RDEPEND}
-	=x11-libs/qt-3*"
+	=x11-libs/qt-meta-3*"
 RDEPEND="${RDEPEND}
 	!dev-libs/dbus-qt3-old:0"
 

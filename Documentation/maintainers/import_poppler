@@ -12,7 +12,7 @@ sed -i \
     -e '/^IUSE/N' \
     -e 's/^\(IUSE=.*\) qt4/\1 qt3 qt4/' \
     -e 's/-DWITH_Qt3=OFF/$(cmake-utils_use_with qt3)/' \
-    -e 's/^\([ \t]*\)\(qt4? (\)/\1qt3? ( >=x11-libs\/qt-3.3:3 )\n\1\2/' \
+    -e 's/^\([ \t]*\)\(qt4? (\)/\1qt3? ( >=x11-libs\/qt-meta-3.3:3 )\n\1\2/' \
     -e 's/^\(inherit.*\)/\1 qt3/' \
     app-text/poppler/*.ebuild
 

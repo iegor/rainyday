@@ -16,7 +16,7 @@ KEYWORDS="amd64 ppc sparc x86"
 IUSE="debug"
 
 DEPEND=">=net-libs/aqbanking-3.7.2[qt3]
-	=x11-libs/qt-3*"
+	=x11-libs/qt-meta-3*"
 RDEPEND="${DEPEND}"
 S="${WORKDIR}/${P/_/}"
 MAKEOPTS="${MAKEOPTS} -j1"

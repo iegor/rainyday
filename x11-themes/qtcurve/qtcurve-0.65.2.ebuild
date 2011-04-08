@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="alpha amd64 hppa ppc ~ppc64 ~sparc x86"
 IUSE=""
 
-RDEPEND="x11-libs/qt:3"
+RDEPEND="x11-libs/qt-meta:3"
 DEPEND="${RDEPEND}"
 
 need-kde 3.5

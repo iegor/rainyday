@@ -18,7 +18,7 @@ IUSE="qt3"
 
 DEPEND=">=sys-libs/readline-4.1
 		>=sys-libs/ncurses-5.2
-		qt3? ( =x11-libs/qt-3* )"
+		qt3? ( =x11-libs/qt-meta-3* )"
 RDEPEND="${DEPEND}"
 
 # the configure.in patch is required for 'use qt3'

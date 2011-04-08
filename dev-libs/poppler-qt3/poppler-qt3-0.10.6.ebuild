@@ -20,7 +20,7 @@ IUSE=""
 RDEPEND="
 	~dev-libs/poppler-${PV}
 	!dev-libs/poppler[qt3]
-	>=x11-libs/qt-3.3:3
+	>=x11-libs/qt-meta-3.3:3
 	"
 DEPEND="
 	${RDEPEND}

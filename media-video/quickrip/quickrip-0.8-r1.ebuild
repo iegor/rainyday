@@ -18,7 +18,7 @@ KEYWORDS="~amd64 -mips -ppc x86"
 IUSE=""
 
 DEPEND="dev-lang/python
-	x11-libs/qt:3
+	x11-libs/qt-meta:3
 	>=dev-python/PyQt-3.5-r1
 	media-video/mplayer
 	media-video/transcode"

@@ -13,7 +13,7 @@ LICENSE="|| ( QPL-1.0 GPL-2 GPL-3 )"
 SLOT="3"
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86"
 
-RDEPEND="~x11-libs/qt-${PV}
+RDEPEND="~x11-libs/qt-meta-${PV}
 	dev-db/unixODBC"
 DEPEND="${RDEPEND}
 	<dev-db/unixODBC-2.2.14"

@@ -13,7 +13,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~ppc ~ppc64 ~x86"
 IUSE="examples"
-DEPEND="x11-libs/qt:3"
+DEPEND="x11-libs/qt-meta:3"
 
 S=${WORKDIR}/${PN}
 

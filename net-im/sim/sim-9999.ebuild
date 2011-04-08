@@ -25,7 +25,7 @@ IUSE="debug gpg +jabber kde msn +oscar sms spell ssl weather yahoo livejournal"
 RDEPEND="kde? ( kde-base/kdelibs:3.5[spell=]
 				kde-base/kdebase-data:3.5 )
 		!kde? ( spell? ( app-text/aspell ) )
-		x11-libs/qt:3
+		x11-libs/qt-meta:3
 		ssl? ( dev-libs/openssl )
 		gpg? ( app-crypt/gnupg )
 		dev-libs/libxml2

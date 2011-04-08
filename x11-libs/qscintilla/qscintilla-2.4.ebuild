@@ -18,7 +18,7 @@ KEYWORDS="alpha amd64 hppa ia64 ppc ~ppc64 sparc x86 ~x86-fbsd"
 IUSE="doc python +qt4"
 
 RDEPEND="qt4? ( x11-libs/qt-gui:4 )
-	!qt4? ( x11-libs/qt:3 )"
+	!qt4? ( x11-libs/qt-meta:3 )"
 DEPEND="${RDEPEND}"
 # dev-python/PyQt needs qscintilla to build and qscintilla's python bindings
 # need dev-python/PyQt, bug 199543

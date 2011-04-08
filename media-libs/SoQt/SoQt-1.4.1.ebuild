@@ -21,7 +21,7 @@ RDEPEND=">=media-libs/coin-2.4.4
 		x11-libs/qt-opengl:4[qt3support]
 		x11-libs/qt-qt3support:4
 	)
-	!qt4? ( x11-libs/qt:3[opengl] )"
+	!qt4? ( x11-libs/qt-meta:3[opengl] )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( app-doc/doxygen )"

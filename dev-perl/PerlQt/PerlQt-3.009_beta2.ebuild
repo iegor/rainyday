@@ -23,7 +23,7 @@ S=${WORKDIR}/${P/_beta2/}
 #if kdebindings is installed compilation is really fast!
 # because libsmoke comes with kdebindings-3.1
 
-DEPEND="=x11-libs/qt-3*
+DEPEND="=x11-libs/qt-meta-3*
 	kde-base/kdelibs
 	dev-lang/perl"
 

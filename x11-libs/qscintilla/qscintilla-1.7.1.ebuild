@@ -19,7 +19,7 @@ LICENSE="GPL-2"
 KEYWORDS="alpha ~amd64 hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="doc"
 
-DEPEND="x11-libs/qt:3"
+DEPEND="x11-libs/qt-meta:3"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}

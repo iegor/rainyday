@@ -13,7 +13,7 @@ KEYWORDS="~ppc x86"
 
 IUSE="arts"
 
-DEPEND="=x11-libs/qt-3*
+DEPEND="=x11-libs/qt-meta-3*
 	arts? ( media-libs/libsndfile
 		media-libs/libao
 		kde-base/arts )"

@@ -69,11 +69,11 @@ DEPEND="
 "
 
 pkg_setup() {
-	if use v4l2 && use kernel_linux && ! built_with_use x11-libs/qt:3 opengl; then
+	if use v4l2 && use kernel_linux && ! built_with_use x11-libs/qt-meta:3 opengl; then
 		eerror "To support Video4Linux webcams in this package is required to have"
-		eerror "x11-libs/qt:3 compiled with OpenGL support."
-		eerror "Please reemerge x11-libs/qt:3 with USE=\"opengl\"."
-		die "Please reemerge x11-libs/qt:3 with USE=\"opengl\"."
+		eerror "x11-libs/qt-meta:3 compiled with OpenGL support."
+		eerror "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
+		die "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
 	fi
 
 	if use netmeeting && ! use msn; then

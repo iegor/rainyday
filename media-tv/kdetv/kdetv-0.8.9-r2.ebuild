@@ -26,7 +26,7 @@ RDEPEND="
 	!${CATEGORY}/${PN}:0
 	zvbi? ( >=media-libs/zvbi-0.2.4 )
 	lirc? ( app-misc/lirc )
-	opengl? ( virtual/opengl x11-libs/qt[opengl] )
+	opengl? ( virtual/opengl x11-libs/qt-meta[opengl] )
 	media-libs/alsa-lib
 	x11-libs/libICE
 	x11-libs/libXxf86dga

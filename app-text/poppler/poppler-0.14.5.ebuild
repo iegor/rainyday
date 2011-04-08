@@ -33,7 +33,7 @@ COMMON_DEPEND="
 	jpeg2k? ( media-libs/openjpeg )
 	lcms? ( =media-libs/lcms-1* )
 	png? ( >=media-libs/libpng-1.4 )
-	qt3? ( >=x11-libs/qt-3.3:3 )
+	qt3? ( >=x11-libs/qt-meta-3.3:3 )
 	qt4? (
 		x11-libs/qt-core:4
 		x11-libs/qt-gui:4

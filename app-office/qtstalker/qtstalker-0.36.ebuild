@@ -19,7 +19,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-DEPEND="x11-libs/qt:3
+DEPEND="x11-libs/qt-meta:3
 	>=sci-libs/ta-lib-0.4.0
 	>=sys-libs/db-4.3"
 

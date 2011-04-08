@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
-DEPEND="x11-libs/qt:3"
+DEPEND="x11-libs/qt-meta:3"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"

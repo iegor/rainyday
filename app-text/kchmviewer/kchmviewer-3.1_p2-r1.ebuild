@@ -27,7 +27,7 @@ KEYWORDS="amd64 ppc x86"
 IUSE="kde"
 
 DEPEND="!<app-text/kchmviewer-3.1_p2-r1
-	x11-libs/qt:3
+	x11-libs/qt-meta:3
 	dev-libs/chmlib
 	kde? ( kde-base/kdelibs:3.5 )"
 RDEPEND="${DEPEND}"

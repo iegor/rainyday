@@ -20,9 +20,9 @@ PATCHES=( "${FILESDIR}/no-gtk-glib-check.diff"
 		"${FILESDIR}/no-libhpi.so-check.patch" )
 
 pkg_setup() {
-	if ! built_with_use x11-libs/qt:3 opengl ; then
+	if ! built_with_use x11-libs/qt-meta:3 opengl ; then
 		eerror "${CATEGORY}/${PN} needs Qt 3 built with OpenGL support."
-		die "Please reemerge x11-libs/qt:3 with USE=\"opengl\"."
+		die "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
 	fi
 
 	kde_pkg_setup

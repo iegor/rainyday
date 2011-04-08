@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ppc sparc x86"
 IUSE="samba"
 
-RDEPEND="x11-libs/qt:3
+RDEPEND="x11-libs/qt-meta:3
 	>=dev-python/PyQt-3.10
 	>=dev-python/python-ldap-2.0.1
 	samba? ( >=dev-python/py-smbpasswd-1.0 )"

@@ -17,7 +17,7 @@ LICENSE="GPL-2"
 KEYWORDS="alpha amd64 hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="debug doc examples"
 
-RDEPEND="x11-libs/qt:3
+RDEPEND="x11-libs/qt-meta:3
 	~dev-python/sip-4.7.9
 	x11-libs/qscintilla"
 DEPEND="${RDEPEND}

@@ -14,7 +14,7 @@ KEYWORDS="~amd64 ppc sparc x86"
 IUSE="debug"
 
 DEPEND=">=net-libs/aqbanking-2.2.5
-	=x11-libs/qt-3*"
+	=x11-libs/qt-meta-3*"
 S="${WORKDIR}/${P}"
 
 pkg_setup() {

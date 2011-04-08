@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 IUSE="cairo cups"
 
-DEPEND="x11-libs/qt:3
+DEPEND="x11-libs/qt-meta:3
 	>=media-libs/freetype-2.3
 	>=media-libs/lcms-1.17
 	>=media-libs/tiff-3.6

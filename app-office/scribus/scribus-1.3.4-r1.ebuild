@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
 IUSE=""
 
-DEPEND="x11-libs/qt:3
+DEPEND="x11-libs/qt-meta:3
 	>=media-libs/freetype-2.1
 	>=media-libs/lcms-1.09
 	media-libs/tiff

@@ -21,7 +21,7 @@ IUSE="qt3 gnome"
 
 RDEPEND=">=sys-libs/readline-4.1
 		>=sys-libs/ncurses-5.2
-		qt3? ( =x11-libs/qt-3* )
+		qt3? ( =x11-libs/qt-meta-3* )
 		gnome? ( gnome-base/libgnomeui )
 		sys-devel/libtool"
 DEPEND="${RDEPEND}
