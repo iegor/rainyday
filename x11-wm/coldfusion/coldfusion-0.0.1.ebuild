@@ -40,6 +40,10 @@ pkg_setup() {
 
 src_unpack() {
 	mkdir ${S}
+
+	cp ${FILES_DIR}/start-cf.sh ${S}/
+	cp ${FILES_DIR}/cold-fusion ${S}/
+	cp ${FILES_DIR}/coldfusion.desktop ${S}/
 }
 
 src_install() {
@@ -49,11 +53,11 @@ src_install() {
 	dodir /home/${WM_SUDO_USER}/.coldfusion
 
 	exeinto /usr/local/bin
-	doexe ${FILES_DIR}/start-cf.sh
+	doexe ${S}/start-cf.sh
 
 	exeinto /usr/bin
-	doexe ${FILES_DIR}/cold-fusion
+	doexe ${S}/cold-fusion
 
 	insinto /usr/share/xsessions
-	doins ${FILES_DIR}/coldfusion.desktop
+	doins ${S}/coldfusion.desktop
 }
