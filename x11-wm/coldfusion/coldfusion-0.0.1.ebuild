@@ -26,10 +26,10 @@ gnome-extra/gnome-system-monitor
 app-admin/gnome-system-tools"
 RDEPEND="${DEPEND}"
 
-# awful cheat to detemine current user (in who's dir will configs be dropped)
-WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
-
 src_install() {
+	# awful cheat to detemine current user (in who's dir will configs be dropped)
+	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
+
 	dodir /home/${WM_SUDO_USER}/.coldfusion
 
 	exeinto /usr/local/bin
