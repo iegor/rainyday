@@ -33,6 +33,10 @@ CF_VERSION=0.0.1
 MY_P=coldfusion-${CF_VERSION}
 S="${WORKDIR}/${MY_P}"
 
+pkg_setup() {
+	mkdir ${S}
+}
+
 src_install() {
 	# awful cheat to detemine current user (in who's dir will configs be dropped)
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
