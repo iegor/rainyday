@@ -49,7 +49,7 @@ src_install() {
 	dodir /home/${WM_SUDO_USER}/.coldfusion
 
 	exeinto /usr/local/bin
-	doexe ${FILES_DIR}/start_cf.sh
+	doexe ${FILES_DIR}/start-cf.sh
 
 	exeinto /usr/bin
 	doexe ${FILES_DIR}/cold-fusion
