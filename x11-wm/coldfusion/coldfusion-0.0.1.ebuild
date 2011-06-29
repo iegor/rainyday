@@ -34,6 +34,11 @@ MY_P=coldfusion-${CF_VERSION}
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
+	ebegin "Package setup"
+	eend 0
+}
+
+src_unpack() {
 	mkdir ${S}
 }
 
