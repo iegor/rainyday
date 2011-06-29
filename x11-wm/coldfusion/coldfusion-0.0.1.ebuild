@@ -26,6 +26,13 @@ gnome-extra/gnome-system-monitor
 app-admin/gnome-system-tools"
 RDEPEND="${DEPEND}"
 
+CF_VERSION=0.0.1
+
+# Creating my own path variable containing path to current version of bumblebee
+# and modifying S path
+MY_P=coldfusion-${CF_VERSION}
+S="${WORKDIR}/${MY_P}"
+
 src_install() {
 	# awful cheat to detemine current user (in who's dir will configs be dropped)
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
