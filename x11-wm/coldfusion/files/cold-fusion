@@ -4,5 +4,5 @@ DIR=${HOME}/.coldfusion
 
 # Update to see if we are intending to quit
 while true; do
-	#sleep 1
+	sleep 1
 done
