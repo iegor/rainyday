@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Compiz WM stuff
-compiz --replace ccp &
+compiz --replace --use-root-window ccp &
 # emerald &
 fusion-icon &
 
@@ -26,6 +26,15 @@ gnome-do &
 # Finally launch app that will be the anchor of our session
 #xfce4-panel
 docky &
+# avant-window-navigator &
+
+
+# set xkb options
+setxkbmap -model pc105 -layout us,ru -variant ,winkeys -option grp:ctrl_shift_toggle,grp_led:scroll
+
+if [ "$?" = "0" ]; then
+	notify-send "keyboard options xkn are set"
+fi
 
 # Run our cf manager script
 /usr/bin/cold-fusion
