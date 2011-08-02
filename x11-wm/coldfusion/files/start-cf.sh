@@ -30,8 +30,9 @@ docky &
 
 
 # set xkb options
-setxkbmap -model pc105 -layout us,ru -variant ,winkeys -option grp:ctrl_shift_toggle,grp_led:scroll
-
+setxkbmap -option grp:shift_caps_toggle
+# setxkbmap -option grp_led:scroll
+setxkbmap -model pc104 -layout us,ru -variant .winkeys
 if [ "$?" = "0" ]; then
 	notify-send "keyboard options xkn are set"
 fi
