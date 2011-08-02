@@ -26,6 +26,9 @@ S=${WORKDIR}
 #	>=net-misc/vino-2.28.2
 #	>=app-admin/pessulus-2.30.3
 #	>=app-admin/sabayon-2.30.1
+#	>=x11-themes/gtk-engines-qt-0.8-r4
+
+# ekiga corrected to prevent anything evolutional in my setup
 
 # FIXME: bump gstreamer to 0.10.26
 # XXX: lower gdm to 2.20 since we still keep 2.28 masked
@@ -112,7 +115,6 @@ RDEPEND="
 	>=x11-themes/gtk-engines-flat-2.0-r2
 	>=x11-themes/gtk-engines-murrine-0.90.3-r1
 	>=x11-themes/gtk-engines-nimbus-0.1.4
-	>=x11-themes/gtk-engines-qt-0.8-r4
 	>=x11-themes/gtk-engines-qtcurve-1.6.4
 	>=x11-themes/gtk-engines-qtpixmap-0.28-r2
 	>=x11-themes/gtk-engines-rezlooks-0.6
@@ -151,7 +153,7 @@ RDEPEND="
 
 	
 	ldap? (
-		>=net-voip/ekiga-2.0.12 )
+		>=net-voip/ekiga-3.2.7 )
 
 	>=gnome-extra/gnome-screensaver-2.30.2
 	>=x11-misc/alacarte-0.13.2
