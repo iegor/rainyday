@@ -1,0 +1,207 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+# Script for using bumblebee and it's certain dependencies as service.
+
+#NB: Config is in /etc/conf.d/bumblebee
+
+### BEGIN INIT INFO
+# Provides: xdm-optimus
+# Required-Start: $local_fs $remote_fs
+# Required-Stop: $local_fs $remote_fs
+# Should-Start: xfs $named slapd hal
+# Should-Stop: xfs $named slapd hal
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: The X Display Manager for Optimus
+### END INIT INFO
+
+# set -e
+
+#. /lib/lsb/init-functions
+
+# To start xdm even if it is not the default display manager, change
+# HEED_DEFAULT_DISPLAY_MANAGER to "false."
+# Also overridable from command line like:
+# HEED_DEFAULT_DISPLAY_MANAGER=false /etc/init.d/xdm start
+[ -z "${HEED_DEFAULT_DISPLAY_MANAGER}" ] && HEED_DEFAULT_DISPLAY_MANAGER=true
+
+depend() {
+	need localmount xdm-setup
+	use consolekit xfs
+
+	provide bumblebee
+
+	# this should start as early as possible
+	# we can't do 'before *' as that breaks it
+
+	after bootmisc
+	# (#70689 comment #92) Start after consolefont to avoid display corruption
+	after consolefont
+	after modules
+	after netmount
+	after readahead-list
+
+	# (#139824) Start after ypbind and autofs for network authentication
+	after ypbind autofs
+	after openvpn
+
+	# (#145219 #180163) Could use lirc mouse as input device
+	after gpm
+	after lircmd
+
+	# (#291269) Start after quota, since some dm need readable home
+	after quota
+	
+	before alsasound
+	after xdm
+}
+
+acpi_call () {
+    echo "$*" > /proc/acpi/call
+    cat /proc/acpi/call
+}
+
+insert_acpi_call_module() {
+	[ ! -f ${ACPI_CALL_MODULE} ] || ( eerror "module ${ACPI_CALL_MODULE} not found" && return 1 )
+
+	[ lsmod | grep -q "${ACPI_CALL_MODULE_NAME}" ] || ( eerror "${ACPI_CALL_MODULE} is already inserted" && return 1 )
+
+	ebegin "Inserting acpi_call module"
+		modprobe ${ACPI_CALL_MODULE}
+		local INS_RESULT=${?}
+	eend ${INS_RESULT}
+
+	[ ${INS_RESULT} -eq 0 ] || ( eerror "module ${ACPI_CALL_MODULE_NAME} was not inserted" && return 1 )
+	
+	return 0
+}
+
+remove_acpi_call_module() {
+	[ ! `lsmod | grep -q "${ACPI_CALL_MODULE_NAME}"` ] || ( eerror "module is not inserted" && return 1 )
+
+	ebegin "Removing acpi_call module"
+		modprobe -r ${ACPI_CALL_MODULE_NAME}
+		local REM_RESULT=${?}
+	eend ${REM_RESULT}
+
+	# Check if we still have module inserted, then it probably means that something is using it
+	# we will not remove module in that case
+	[ ${REM_RESULT} -eq 0 ] || ( eerror "Module was not removed. leaving it as it is." && return 1 )
+
+	return 0
+}
+
+is_optimus_on() {
+	PSC=$(acpi_call "${BUMBLEBEE_CMD_BLOCK}_PSC")
+	echo _PSC is ${PSC}
+	case "${PSC}" in
+	0x0)
+		# PSC="on"
+		return 0
+	;;
+	0x3)
+		# PSC="off"
+		return 1
+	;;
+	esac
+	return 2
+}
+
+enable_nv_card() {
+	# Check if we already enabled nvidia card
+	is_optimus_on || ( eerror "nvidia card is already enabled" && return 1 )
+
+	ebegin "Enabling optimus nvidia card"
+		# Make _PS0 call
+		echo _PS0 $(acpi_call "${BUMBLEBEE_CMD_BLOCK}_PS0")
+		echo P3MO $(acpi_call "${BUMBLEBEE_CMD_BLOCK}P3MO")
+		echo DGPS $(acpi_call "${BUMBLEBEE_CMD_BLOCK}DGPS")
+		# Test to see if we did enabled it
+		is_optimus_on
+		local NVENABLE_RESULT=${?}
+	eend ${NVENABLE_RESULT}
+
+	[${NVENABLE_RESULT} -eq 0] || ( echo "Failed to enable nvidia card" && return 1 )
+
+	return 0
+}
+
+disable_nv_card() {
+	# Check if we already disabled nvidia card
+	[ ! is_optimus_on ] || ( eerror "Nvidia card is already disabled" && return 1 )
+	
+	ebegin "Disabling optimus nvidia card"
+		# Make our DSM call
+		echo _DSM $(acpi_call ${BUMBLEBEE_CMD__DSM_BLOCK})
+		# Make _PS3 call
+		echo _PS3 $(acpi_call "${BUMBLEBEE_CMD_BLOCK}_PS3")
+		echo P3MO $(acpi_call "${BUMBLEBEE_CMD_BLOCK}P3MO")
+		echo DGPS $(acpi_call "${BUMBLEBEE_CMD_BLOCK}DGPS")
+		# Test to make sure we disabled it
+		is_optimus_on
+		local NVDISABLE_RESULT=${?}
+	eend ${NVDISABLE_RESULT}
+
+	[ ${NVDISABLE_RESULT} -eq 0 ] || ( echo "Failed to disable nvidia card" && return 1 )
+
+	return 0
+}
+
+wait_for_condition()
+{
+	echo interval "[ ${1} ]"
+	echo condition "[ ${2} ]"
+	i=1
+	while  [ ${2} -eq 1 ]; do
+	sleep 1
+	i=`expr $i + 1`
+	if [ $i -gt ${1} ]; then
+		echo "condition not met in required interval"
+		return 1
+	fi 
+	done
+	return 0
+}
+
+start() {
+	# Check if we already started bumblebee service
+	# Try to enable nvidia card
+	# Try to start bumblebee X instance
+	ebegin "Starting X instance"
+		export LD_PRELOAD="/usr/lib/opengl/nvidia/lib/libGL.so:/usr/lib/opengl/nvidia/lib/libnvidia-tls.so"
+		start-stop-daemon -v -S -q -b -p ${PIDFILE} -x ${DAEMON} -P -- ${DAEMON_ARGS} || eend 1
+		sleep ${DAEMON_WAIT_INTERVAL}
+	eend 0
+
+	# Wait 10 sec and check if it is started
+	# wait_for_condition 10 "ps aux |grep xorg.conf.nvidia |wc -l"
+
+	# Try to start a VGL daemon
+	#ebegin "Starting VGL instance"
+		#start-stop-daemon -v --start -q -b -x /usr/bin/vglclient -- -gl || eend 1
+	#eend 0
+}
+
+stop() {
+	# Kill bumblebee X instance
+	ebegin "Stopping X instance"
+		#kill $(cat ${PIDFILE})
+		start-stop-daemon -v -s SIGKILL -q -p ${PIDFILE} -P || eend 1
+		sleep ${DAEMON_WAIT_INTERVAL}
+		rm -f ${PIDFILE}
+	eend 0
+
+	# Kill bumblebee VGL instance
+	#ebegin "Stopping VGL instance"
+		# killall vglclient
+		#start-stop-daemon -v -s SIGKILL -q -n $(basename ${VGLDAEMON}) || eend 1
+	#eend 0
+
+	# Wait 10 sec
+	# wait_for_condition 10 "$(ps aux |grep xorg.conf.nvidia |wc -l) -ne 1"
+	# Check if we stopped bumblebee X instance
+	# Try to disable nvidia card
+}

@@ -1,0 +1,58 @@
+This is ebuild for installing bumblebee on your gentoo machine.
+It was written for version 1.6.40.
+
+PLEASE READ INSTALL FILES VERY CAREFULLY BEFORE APPLYING CHANGES TO YOUR MACHINE.
+
+It might, and in fact as practise is showing contains errors.
+
+It will now be in testing stage for x64 and x86.
+
+Unchanged:
+- Still use unpacked VirtualGL files from a deb package
+- Still, probably, need some manual work with files.
+- Still doesn't use start and stop mechanisms with acpi_call.
+
+what is new:
+- It will try to recognise your laptop while installing.
+  If it doesn't know your laptop, it will ask what type of
+  connection (CRT-0, DFP-0) you are using.
+
+- Doesn't need to store backups.
+
+- Added simple script to get rid of previous installation. (uninstall_bumblebee.sh)
+  Use verry carefully !!!
+  Just removes all files that were installed by previous version install
+
+- Have a dependency, acpi_call ebuild, it is now in main tree
+  so there should be no problems.
+
+- X nvidia instance now uses own libglx.so, so if I understand
+  everything correctly then the second X instance has hw acceleration
+  too.
+
+- x86 support.
+
+Problems:
+- some documentation files are automatically packaged while installing.
+  Don't know how to fix that yet :(
+
+
+plans for future:
+- A cup of tea (or coffee)
+- Arrange usage of VirtualGL ebuild from https://github.com/speckins/usr-local-portage
+- Rearrange of git repo to make an overlay.
+- Testing.
+- Moving bumblebee install into rainyday overlay.
+
+INSTALLATION:
+"sudo layman -S"
+"sudo layman -add rainyday"
+"sudo emerge -avt bumblebee" 
+
+That will make possible to do next
+sudo layman -a(--add) bumblebee
+from your terminal.
+
+Good luck.
+iegor
+

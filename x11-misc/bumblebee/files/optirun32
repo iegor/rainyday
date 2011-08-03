@@ -1,0 +1,10 @@
+#!/bin/bash
+# This script is a replacement of optirun64 alias
+# Testing to fix problems when launching from kmenu
+
+source /etc/default/bumblebee/bumblebee
+
+export ${VGL_READBACK}
+export LD_PRELOAD="/usr/lib32/opengl/nvidia/lib/libGL.so:/usr/lib32/opengl/nvidia/lib/libnvidia-tls.so"
+
+vglrun -c ${VGL_COMPRESS} -d ${VGL_DISPLAY} -ld /usr/lib32 -- "$@"
