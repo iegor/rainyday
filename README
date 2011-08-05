@@ -1,18 +1,2 @@
 INSTALLATION:
-Here is what could be done to install this ebuild.
-You need to copy this to "/var/lib/layman/cache_***.xml" file.
-
-  <repo quality="experimental" status="unofficial">
-    <name><![CDATA[rainyday]]></name>
-    <description><![CDATA[overlay for some projects of mine gentoo]]></description>
-    <homepage>https://github.com/iegor/rainyday </homepage>
-    <owner>
-      <email>rmtdev@gmail.com</email>
-      <name><![CDATA[Iegor]]></name>
-    </owner>
-    <source type="git">git://github.com/iegor/rainyday.git </source>
-  </repo>
-
-That will make possible to do next
-sudo layman -a(--add) rainyday
-from your terminal.
+sudo layman -S && sudo layman -a rainyday
