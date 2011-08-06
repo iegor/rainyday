@@ -49,10 +49,5 @@ INSTALLATION:
 "sudo layman -add rainyday"
 "sudo emerge -avt bumblebee" 
 
-That will make possible to do next
-sudo layman -a(--add) bumblebee
-from your terminal.
-
 Good luck.
 iegor
-
