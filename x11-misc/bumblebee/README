@@ -1,6 +1,9 @@
 This is ebuild for installing bumblebee on your gentoo machine.
 It was written for version 1.6.40.
 
+Interesting Gentoo wiki article:
+http://en.gentoo-wiki.com/wiki/X.Org/nVidia_Optimus
+
 PLEASE READ INSTALL FILES VERY CAREFULLY BEFORE APPLYING CHANGES TO YOUR MACHINE.
 
 It might, and in fact as practise is showing contains errors.
