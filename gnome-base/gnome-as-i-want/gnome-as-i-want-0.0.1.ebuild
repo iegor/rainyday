@@ -155,9 +155,7 @@ RDEPEND="
 	ldap? (
 		>=net-voip/ekiga-3.2.7 )
 
-        xscr? (
-                >=x11-misc/xscreensaver-5.14
-                !gnome-extra/gnome-screensaver )
+        xscr? ( >=x11-misc/xscreensaver-5.14 )
         !xscr? ( >=gnome-extra/gnome-screensaver-2.30.2 )
 
 	>=x11-misc/alacarte-0.13.2
