@@ -50,7 +50,12 @@ plans for future:
 INSTALLATION:
 "sudo layman -S"
 "sudo layman -add rainyday"
-"sudo emerge -avt bumblebee" 
+"sudo emerge -avt bumblebee"
+next step is to run bumblebee and add it to default run level
+"sudo rc-config start bumblebee"
+"sudo rc-config add bumblebee default"
+
+That is all that is required to run bumblebee.
 
 Good luck.
 iegor
