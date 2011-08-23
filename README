@@ -1,2 +1,7 @@
 INSTALLATION:
 sudo layman -S && sudo layman -a rainyday
+
+contains:
+
+x11-misc/bumblebee
+    gentoo support of solution for using your nv gfx-adapter on optimus laptops
