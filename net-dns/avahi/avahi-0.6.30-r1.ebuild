@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.30.ebuild,v 1.2 2011/08/06 09:41:21 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/avahi/avahi-0.6.30-r1.ebuild,v 1.1 2011/08/14 12:52:06 nirbheek Exp $
 
 EAPI="3"
 
@@ -8,7 +8,7 @@ PYTHON_DEPEND="python? 2"
 PYTHON_USE_WITH="gdbm"
 PYTHON_USE_WITH_OPT="python"
 
-inherit eutils mono python multilib flag-o-matic
+inherit autotools eutils mono python multilib flag-o-matic
 
 DESCRIPTION="System which facilitates service discovery on a local network"
 HOMEPAGE="http://avahi.org/"
@@ -16,19 +16,20 @@ SRC_URI="http://avahi.org/download/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x86-linux"
-IUSE="autoipd bookmarks dbus doc gdbm gtk howl-compat ipv6 kernel_linux mdnsresponder-compat mono python qt3 qt4 test "
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
+~x86-fbsd ~x86-linux"
+IUSE="autoipd bookmarks dbus doc gdbm gtk gtk3 howl-compat +introspection ipv6
+kernel_linux mdnsresponder-compat mono python qt3 qt4 test utils"
 
 DBUS_DEPEND=">=sys-apps/dbus-0.30"
-RDEPEND=">=dev-libs/libdaemon-0.14
+COMMON_DEPEND=">=dev-libs/libdaemon-0.14
 	dev-libs/expat
-	>=dev-libs/glib-2
+	dev-libs/glib:2
 	gdbm? ( sys-libs/gdbm )
 	qt3? ( x11-libs/qt-meta:3 )
 	qt4? ( x11-libs/qt-core:4 )
-	gtk? (
-		>=x11-libs/gtk+-2.14.0:2
-	)
+	gtk? ( >=x11-libs/gtk+-2.14.0:2 )
+	gtk3? ( x11-libs/gtk+:3 )
 	dbus? (
 		${DBUS_DEPEND}
 		python? ( dev-python/dbus-python )
@@ -37,14 +38,9 @@ RDEPEND=">=dev-libs/libdaemon-0.14
 		>=dev-lang/mono-1.1.10
 		gtk? ( >=dev-dotnet/gtk-sharp-2 )
 	)
-	howl-compat? (
-		!net-misc/howl
-		${DBUS_DEPEND}
-	)
-	mdnsresponder-compat? (
-		!net-misc/mDNSResponder
-		${DBUS_DEPEND}
-	)
+	howl-compat? ( ${DBUS_DEPEND} )
+	introspection? ( >=dev-libs/gobject-introspection-0.9.5 )
+	mdnsresponder-compat? ( ${DBUS_DEPEND} )
 	python? (
 		gtk? ( >=dev-python/pygtk-2 )
 	)
@@ -53,13 +49,16 @@ RDEPEND=">=dev-libs/libdaemon-0.14
 		dev-python/twisted-web
 	)
 	kernel_linux? ( sys-libs/libcap )"
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	>=dev-util/intltool-0.40.5
 	>=dev-util/pkgconfig-0.9.0
 	doc? (
 		app-doc/doxygen
 		mono? ( >=virtual/monodoc-1.1.8 )
 	)"
+RDEPEND="${COMMON_DEPEND}
+	howl-compat? ( !net-misc/howl )
+	mdnsresponder-compat? ( !net-misc/mDNSResponder )"
 
 pkg_setup() {
 	if use python; then
@@ -69,6 +68,11 @@ pkg_setup() {
 
 	if use python && ! use dbus && ! use gtk; then
 		ewarn "For proper python support you should also enable the dbus and gtk USE flags!"
+	fi
+
+	# FIXME: Use REQUIRED_USE once python.eclass gets EAPI 4 support, bug 372255
+	if use utils && ! { use gtk || use gtk3; }; then
+		ewarn "To install the avahi utilities, USE='gtk utils' or USE='gtk3 utils''"
 	fi
 }
 
@@ -93,12 +97,17 @@ src_prepare() {
 	sed -i\
 		-e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
 		doxygen_to_devhelp.xsl || die
+
+	# Make gtk utils optional
+	epatch "${FILESDIR}/${PN}-0.6.30-optional-gtk-utils.patch"
+
+	eautoreconf
 }
 
 src_configure() {
 	use sh && replace-flags -O? -O0
 
-	local myconf=""
+	local myconf="--disable-static"
 
 	if use python; then
 		myconf+="
@@ -119,9 +128,6 @@ src_configure() {
 	# We need to unset DISPLAY, else the configure script might have problems detecting the pygtk module
 	unset DISPLAY
 
-	# Upstream ships a gir file (AvahiCore.gir) which does not work with
-	# >=gobject-introspection-0.9, so we disable introspection for now.
-	# http://avahi.org/ticket/318
 	econf \
 		--localstatedir="${EPREFIX}/var" \
 		--with-distro=gentoo \
@@ -129,8 +135,8 @@ src_configure() {
 		--disable-pygtk \
 		--disable-xmltoman \
 		--disable-monodoc \
-		--disable-introspection \
 		--enable-glib \
+		--enable-gobject \
 		$(use_enable test tests) \
 		$(use_enable autoipd) \
 		$(use_enable mdnsresponder-compat compat-libdns_sd) \
@@ -139,8 +145,10 @@ src_configure() {
 		$(use_enable mono) \
 		$(use_enable dbus) \
 		$(use_enable python) \
-		--disable-gtk3 \
 		$(use_enable gtk) \
+		$(use_enable gtk3) \
+		$(use_enable introspection) \
+		$(use_enable utils gtk-utils) \
 		$(use_enable qt3) \
 		$(use_enable qt4) \
 		$(use_enable gdbm) \
@@ -176,6 +184,9 @@ src_install() {
 		insinto /usr/share/devhelp/books/avahi
 		doins avahi.devhelp || die
 	fi
+
+	# Remove .la files
+	find "${D}" -name '*.la' -exec rm -f {} + || die
 }
 
 pkg_postrm() {
