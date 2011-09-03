@@ -11,19 +11,24 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky gnome-do cairo-dock extras gnome-systools +emerald"
+IUSE="docky gnome-do cairo-dock extras gnome-systools decorations"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
 
 MERGE_TYPE="binary"
 
-DEPEND="x11-wm/compiz-fusion
-docky? ( gnome-extra/docky )
-x11-wm/emerald
-gnome-extra/gnome-do
-gnome-extra/gnome-system-monitor
-app-admin/gnome-system-tools"
+DEPEND="
+	x11-wm/compiz
+	docky? ( gnome-extra/docky )
+	decorations? ( x11-wm/emerald )
+	gnome-do? ( gnome-extra/gnome-do )
+	!gnome-do? ( x11-misc/bbrun )
+	extras? ( x11-wm/compiz-fusion )
+	gnome-extra/gnome-system-monitor
+	app-admin/gnome-system-tools
+"
+
 RDEPEND="${DEPEND}"
 
 CF_VERSION=0.0.1
