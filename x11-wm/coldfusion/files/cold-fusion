@@ -5,4 +5,10 @@ DIR=${HOME}/.coldfusion
 # Update to see if we are intending to quit
 while true; do
 	sleep 1
+
+	# Checking if we need to exit
+	if [ -f ${DIR}/status/ext ]; then
+	   rm -rf ${DIR}/status/ext
+	   break
+	fi
 done
