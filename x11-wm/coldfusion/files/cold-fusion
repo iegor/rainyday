@@ -8,7 +8,9 @@ while true; do
 
 	# Checking if we need to exit
 	if [ -f ${DIR}/status/ext ]; then
-	   rm -rf ${DIR}/status/ext
 	   break
 	fi
 done
+
+# Cleaning after ourselves
+rm -rf ${DIR}/status/ext
