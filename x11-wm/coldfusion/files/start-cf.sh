@@ -15,6 +15,7 @@ xscreensaver &
 xclock -digital &
 xcalendar &
 pavucontrol &
+trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom
 
 # Start some kde-3.5.10 layer apps
 # other apps are in the /usr/kde/3.5/bin
