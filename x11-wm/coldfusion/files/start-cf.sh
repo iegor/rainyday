@@ -14,6 +14,7 @@ xscreensaver &
 # Start up a clock
 xclock -digital &
 xcalendar &
+pavucontrol &
 
 # Start some kde-3.5.10 layer apps
 # other apps are in the /usr/kde/3.5/bin
