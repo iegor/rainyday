@@ -11,6 +11,10 @@ fusion-icon &
 # Start our screen saver
 xscreensaver &
 
+# Start up a clock
+xclock -digital &
+xcalendar &
+
 # Start some kde-3.5.10 layer apps
 # other apps are in the /usr/kde/3.5/bin
 #kdeinit_wrapper
@@ -21,11 +25,10 @@ xscreensaver &
 #konqueror --silent --preload &
 
 # Gnome tools
-gnome-do &
+# gnome-do &
 
 # Finally launch app that will be the anchor of our session
-#xfce4-panel
-docky &
+# docky &
 # avant-window-navigator &
 
 
