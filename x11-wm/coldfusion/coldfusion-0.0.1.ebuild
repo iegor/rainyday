@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky gnome-do cairo-dock extras gnome-systools decorations"
+IUSE="docky gnome-do cairo-dock extras gnome-systools decorations pulseaudio"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
@@ -27,6 +27,11 @@ DEPEND="
 	extras? ( x11-wm/compiz-fusion )
 	gnome-extra/gnome-system-monitor
 	app-admin/gnome-system-tools
+
+	x11-misc/xcalendar
+	x11-misc/trayer
+
+	pulseaudio? ( media-sound/pavucontrol )
 "
 
 RDEPEND="${DEPEND}"

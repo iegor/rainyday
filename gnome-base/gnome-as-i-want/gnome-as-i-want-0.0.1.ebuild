@@ -14,7 +14,7 @@ SLOT="2.0"
 # double check none of the deps are still masked !
 KEYWORDS="alpha amd64 ia64 ~ppc ~ppc64 sparc x86"
 
-IUSE="accessibility cdr cups dvdr ldap mono policykit xscr"
+IUSE="accessibility cdr cups dvdr ldap mono policykit xscr extras"
 
 S=${WORKDIR}
 
@@ -108,18 +108,21 @@ RDEPEND="
 	>=gnome-extra/hamster-applet-2.30.2
 
 	>=x11-themes/gtk-engines-2.20.1:2
-	>=x11-themes/gtk-engines-aurora-1.5.1
-	>=x11-themes/gtk-engines-cleanice-2.4.1
-	>=x11-themes/gtk-engines-dwerg-0.8
-	>=x11-themes/gtk-engines-experience-0.10.4
-	>=x11-themes/gtk-engines-flat-2.0-r2
-	>=x11-themes/gtk-engines-murrine-0.90.3-r1
-	>=x11-themes/gtk-engines-nimbus-0.1.4
-	>=x11-themes/gtk-engines-qtcurve-1.6.4
-	>=x11-themes/gtk-engines-qtpixmap-0.28-r2
-	>=x11-themes/gtk-engines-rezlooks-0.6
-	>=x11-themes/gtk-engines-ubuntulooks-0.9.12-r3
-	>=x11-themes/gtk-engines-xfce-2.8.1
+
+	extras? (
+		>=x11-themes/gtk-engines-aurora-1.5.1
+		>=x11-themes/gtk-engines-cleanice-2.4.1
+		>=x11-themes/gtk-engines-dwerg-0.8
+		>=x11-themes/gtk-engines-experience-0.10.4
+		>=x11-themes/gtk-engines-flat-2.0-r2
+		>=x11-themes/gtk-engines-murrine-0.90.3-r1
+		>=x11-themes/gtk-engines-nimbus-0.1.4
+		>=x11-themes/gtk-engines-qtcurve-1.6.4
+		>=x11-themes/gtk-engines-qtpixmap-0.28-r2
+		>=x11-themes/gtk-engines-rezlooks-0.6
+		>=x11-themes/gtk-engines-ubuntulooks-0.9.12-r3
+		>=x11-themes/gtk-engines-xfce-2.8.1 )
+
 	>=x11-themes/gnome-backgrounds-2.30.0
 
 	>=x11-libs/vte-0.24.3:0
@@ -131,7 +134,8 @@ RDEPEND="
 
 	>=gnome-extra/gnome-utils-2.30.0
 
-	>=gnome-extra/gnome-games-2.28.2
+	extras? (
+	>=gnome-extra/gnome-games-2.28.2 )
 	>=gnome-base/librsvg-2.26.3:2
 
 	>=gnome-extra/gnome-system-monitor-2.28.2
