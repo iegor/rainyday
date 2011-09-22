@@ -13,11 +13,13 @@ automatically compatible with either the free spacenavd driver or the official
 HOMEPAGE="http://spacenav.sourceforge.net/"
 SRC_URI="http://downloads.sourceforge.net/project/spacenav/spacenav%20library%20%28SDK%29/libspnav%200.2.2/libspnav-${PV}.tar.gz"
 LICENSE="BEER-WARE"
-SLOT="0.2"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 PROPERTIES="interactive"
 FEATURES="sandbox collision-protect strict"
+
+CATEGORY="app-misc"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
