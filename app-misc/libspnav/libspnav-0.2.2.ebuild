@@ -11,15 +11,15 @@ original X11 protocol for communicating with the driver, and the new
 alternative non-X protocol. Programs that choose to use the X11 protocol, are
 automatically compatible with either the free spacenavd driver or the official
 3dxserv, as if they were using the magellan SDK."
-HOMEPAGE=""
-SRC_URI=""
-LICENSE=""
+HOMEPAGE="http://spacenav.sourceforge.net/"
+SRC_URI="http://downloads.sourceforge.net/project/spacenav/spacenav%20library%20%28SDK%29/libspnav%200.2.2/libspnav-${PV}.tar.gz"
+LICENSE="BEER-WARE"
 SLOT="0.2"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-S="${WORKDIR}-${VERSION}"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
 PDEPEND=""
+
+S="${WORKDIR}-${VERSION}"
