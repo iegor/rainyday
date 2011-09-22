@@ -24,4 +24,5 @@ RDEPEND=""
 DEPEND="${RDEPEND}"
 PDEPEND=""
 
-S="${WORKDIR}-${VERSION}"
+MY_P="libspnav-${PV}"
+S="${WORKDIR}/${MY_P}"
