@@ -16,7 +16,7 @@ LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 # IUSE=""
-PROPERTIES="interactive"
+# PROPERTIES="interactive"
 # FEATURES="collision-protect strict"
 
 CATEGORY="app-misc"
