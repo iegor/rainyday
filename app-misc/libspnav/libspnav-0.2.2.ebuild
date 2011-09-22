@@ -17,7 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 # IUSE=""
 # PROPERTIES="interactive"
-# FEATURES="collision-protect strict"
+# FEATURES="sandbox collision-protect strict"
+RESTRICT="sandbox"
 
 CATEGORY="app-misc"
 
