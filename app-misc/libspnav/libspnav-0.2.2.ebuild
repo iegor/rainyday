@@ -17,6 +17,8 @@ LICENSE="BEER-WARE"
 SLOT="0.2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+PROPERTIES="interactive"
+FEATURES="sandbox collision-protect strict"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
