@@ -29,7 +29,7 @@ IUSE="nvidia"
 PROPERTIES="interactive"
 FEATURES="sandbox collision-protect strict"
 
-CATEGORY="app-misc"
+CATEGORY="x11-misc"
 
 MERGE_TYPE="binary"
 
@@ -580,7 +580,7 @@ src_install() {
 	eend 0
 
 	# Perform installation of VirtualGL
-	virtual_gl_ala_install_improvisation || die
+	virtual_gl_ala_install_improvisation || die "Vgl installation failed."
 
 	ebegin "Installing bumblebee service"
 		newinitd "${FILESDIR}/bumblebee.initd" bumblebee || ( eend 1 && die )
