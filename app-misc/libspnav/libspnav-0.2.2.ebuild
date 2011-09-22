@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-VERSION="0.2.2"
-
 EAPI="4"
+VERSION="0.2.2"
 DESCRIPTION="The libspnav library is provided as a replacement of the magellan library. It
 provides a cleaner, and more orthogonal interface. libspnav supports both the
 original X11 protocol for communicating with the driver, and the new
@@ -26,3 +25,7 @@ PDEPEND=""
 
 MY_P="libspnav-${PV}"
 S="${WORKDIR}/${MY_P}"
+
+src_install() {
+	mkdir /usr/mytestlib
+}
