@@ -29,5 +29,7 @@ MY_P="libspnav-${PV}"
 S="${WORKDIR}/${MY_P}"
 
 src_install() {
-	mkdir /usr/mytestlib
+	ebegin "installing custom test directory"
+		mkdir /usr/mytestlib
+	eend 0
 }
