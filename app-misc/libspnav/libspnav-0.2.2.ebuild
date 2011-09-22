@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 PROPERTIES="interactive"
-FEATURES="sandbox collision-protect strict"
+FEATURES="collision-protect strict"
 
 CATEGORY="app-misc"
 
@@ -27,9 +27,3 @@ PDEPEND=""
 
 MY_P="libspnav-${PV}"
 S="${WORKDIR}/${MY_P}"
-
-src_install() {
-	ebegin "installing custom test directory"
-		mkdir /usr/mytestlib
-	eend 0
-}
