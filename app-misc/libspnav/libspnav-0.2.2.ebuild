@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI="4"
-VERSION="0.2.2"
+# VERSION="0.2.2"
 DESCRIPTION="The libspnav library is provided as a replacement of the magellan library. It
 provides a cleaner, and more orthogonal interface. libspnav supports both the
 original X11 protocol for communicating with the driver, and the new
@@ -15,9 +15,9 @@ SRC_URI="http://downloads.sourceforge.net/project/spacenav/spacenav%20library%20
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+# IUSE=""
 PROPERTIES="interactive"
-FEATURES="collision-protect strict"
+# FEATURES="collision-protect strict"
 
 CATEGORY="app-misc"
 
