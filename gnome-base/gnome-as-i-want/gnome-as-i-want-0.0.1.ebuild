@@ -121,7 +121,8 @@ RDEPEND="
 		>=x11-themes/gtk-engines-qtpixmap-0.28-r2
 		>=x11-themes/gtk-engines-rezlooks-0.6
 		>=x11-themes/gtk-engines-ubuntulooks-0.9.12-r3
-		>=x11-themes/gtk-engines-xfce-2.8.1 )
+		>=x11-themes/gtk-engines-xfce-2.8.1
+		>=x11-themes/metacity-themes-1.2 )
 
 	>=x11-themes/gnome-backgrounds-2.30.0
 
