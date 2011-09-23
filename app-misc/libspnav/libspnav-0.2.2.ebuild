@@ -27,3 +27,9 @@ PDEPEND=""
 
 MY_P="libspnav-${PV}"
 S="${WORKDIR}/${MY_P}"
+
+src_unpack() {
+	unpack ${A}
+	cd ${S}
+	epatch ${FILESDIR}/${P}-makefile.patch
+}
