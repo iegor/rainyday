@@ -3,6 +3,9 @@
 # $Header: $
 
 EAPI="4"
+
+inherit eutils
+
 # VERSION="0.2.2"
 DESCRIPTION="The libspnav library is provided as a replacement of the magellan library. It
 provides a cleaner, and more orthogonal interface. libspnav supports both the
