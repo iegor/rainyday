@@ -36,3 +36,7 @@ src_unpack() {
 	cd ${S}
 	epatch ${FILESDIR}/${P}-makefile.patch
 }
+
+src_install() {
+	emake DESTDIR="${D}" install || die "Install failed"
+}
