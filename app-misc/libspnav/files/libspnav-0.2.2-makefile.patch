@@ -1,0 +1,15 @@
+--- Makefile.in
++++ Makefile.in
+@@ -31,9 +31,9 @@
+ 
+ .PHONY: install
+ install: $(lib_a) $(lib_so)
+-	cp $(lib_a) $(PREFIX)/$(libdir)/$(lib_a)
+-	cp $(lib_so) $(PREFIX)/$(libdir)/$(lib_so)
+-	for h in $(hdr); do cp -p $(srcdir)/$$h $(PREFIX)/include/; done
++	cp $(lib_a) $(DESTDIR)/$(PREFIX)/$(libdir)/$(lib_a)
++	cp $(lib_so) $(DESTDIR)/$(PREFIX)/$(libdir)/$(lib_so)
++	for h in $(hdr); do cp -p $(srcdir)/$$h $(DESTDIR)/$(PREFIX)/include/; done
+ 
+ .PHONY: uninstall
+ uninstall:
