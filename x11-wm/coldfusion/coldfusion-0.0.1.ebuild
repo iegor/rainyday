@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky gnome-do cairo-dock extras gnome-systools decorations pulseaudio"
+IUSE="docky gnome-do bbrun cairo-dock extras gnome-systools decorations pulseaudio"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
@@ -23,7 +23,8 @@ DEPEND="
 	docky? ( gnome-extra/docky )
 	decorations? ( x11-wm/emerald )
 	gnome-do? ( gnome-extra/gnome-do )
-	!gnome-do? ( x11-misc/bbrun )
+	!gnome-do? (
+		   bbrun? ( x11-misc/bbrun ) )
 	extras? ( x11-wm/compiz-fusion )
 	gnome-extra/gnome-system-monitor
 	app-admin/gnome-system-tools
