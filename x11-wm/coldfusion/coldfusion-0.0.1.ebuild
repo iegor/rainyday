@@ -19,19 +19,21 @@ CATEGORY="x11-wm"
 MERGE_TYPE="binary"
 
 DEPEND="
-	x11-wm/compiz
-	docky? ( gnome-extra/docky )
-	decorations? ( x11-wm/emerald )
-	gnome-do? ( gnome-extra/gnome-do )
-	!gnome-do? (
-		   bbrun? ( x11-misc/bbrun ) )
-	extras? ( x11-wm/compiz-fusion )
+	=x11-wm/compiz-0.8.6-r3
+	=x11-plugins/compiz-plugins-main-0.8.6-r1
+	=x11-apps/ccsm-0.8.4-r1
+
+	extras? ( =x11-plugins/compiz-plugins-extra-0.8.6-r1
+		docky? ( gnome-extra/docky )
+		decorations? ( x11-wm/emerald )
+		gnome-do? ( gnome-extra/gnome-do )
+        	!gnome-do? (
+                	   bbrun? ( x11-misc/bbrun ) ) )
+
 	gnome-extra/gnome-system-monitor
 	app-admin/gnome-system-tools
-
 	x11-misc/xcalendar
 	x11-misc/trayer
-
 	pulseaudio? ( media-sound/pavucontrol )
 "
 
@@ -67,4 +69,8 @@ src_install() {
 
 	insinto /usr/share/xsessions
 	doins ${FILESDIR}/coldfusion.desktop
+
+	# put config file for cf compiz
+	insinto /home/${WM_SUDO_USER}/.config/compizconfig
+	doins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
 }
