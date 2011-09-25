@@ -71,6 +71,6 @@ src_install() {
 	doins ${FILESDIR}/coldfusion.desktop
 
 	# put config file for cf compiz
-	insinto /home/${WM_SUDO_USER}/.config/compizconfig
-	doins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
+	insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
+	newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
 }
