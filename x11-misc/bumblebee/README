@@ -1,5 +1,5 @@
 This is ebuild for installing bumblebee on your gentoo machine.
-It was written for version 1.6.40.
+It was written for version 1.6.40
 
 Interesting Gentoo wiki article:
 http://en.gentoo-wiki.com/wiki/X.Org/nVidia_Optimus
@@ -49,8 +49,8 @@ plans for future:
 
 INSTALLATION:
 "sudo layman -S"
-"sudo layman -add rainyday"
-"sudo emerge -avt bumblebee"
+"sudo layman --add rainyday"
+"sudo emerge -avtbumblebee"
 next step is to run bumblebee and add it to default run level
 "sudo rc-config start bumblebee"
 "sudo rc-config add bumblebee default"
