@@ -5,3 +5,14 @@ contains:
 
 x11-misc/bumblebee
     gentoo support of solution for using your nv gfx-adapter on optimus laptops
+
+x11-wm/coldsufion
+    my own try to make cousy usable and great looking environment with compiz as wm
+
+app-misc/libspnav
+    free, compatible alternative to the proprietary 3Dconnexion device driver and SDK,
+    for their 3D input devices (called "space navigator", "space pilot", "space traveller", etc).
+    homepage: http://spacenav.sourceforge.net
+
+gnome-base/gnome-as-i-want
+    a slightly modified ebuild for gnome-meta package, with exception of couple details.

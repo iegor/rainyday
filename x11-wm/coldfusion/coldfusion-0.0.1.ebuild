@@ -73,4 +73,6 @@ src_install() {
 	# put config file for cf compiz
 	insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
 	newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
+	# make current user own settings file
+	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} ${D}/home/${WM_SUDO_USER}/.config/compiz/compizconfig/Default.ini
 }
