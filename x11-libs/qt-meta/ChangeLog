@@ -1,6 +1,10 @@
-# ChangeLog for x11-libs/qt
+# ChangeLog for x11-libs/qt-meta
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.586 2009/08/02 21:54:28 tommy Exp $
+
+  30 Sep 2011; Michał Górny <mgorny@gentoo.org> qt-meta-3.3.8b-r2.ebuild,
+  -files/qt-3.3.8-libpng14.patch, +files/qt-3.3.8-libpng15.patch:
+  Add libpng 1.5 patch, as requested by Poly-C. Fixes bug #384953.
 
   28 Feb 2011; Hanno Boeck <hanno@gentoo.org> qt-3.3.8b-r1.ebuild,
   qt-3.3.8b-r2.ebuild:
