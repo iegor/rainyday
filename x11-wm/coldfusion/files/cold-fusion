@@ -8,9 +8,21 @@ while true; do
 
 	# Checking if we need to exit
 	if [ -f ${DIR}/status/ext ]; then
-	   break
+		#zenity --question --text='Are you shure' --ok-label='quit' --cancel-label='stay' && break
+		# print some options
+		case $(zenity --list --text='exit options' --radiolist --column='' --column='text' 1 'shutdown' 2 'restart' 3 'logout' --hide-header) in
+		'shudown')
+		;;
+		'restart')
+		;;
+		'logout')
+		;;
+		*)
+		;;
+		esac
 	fi
 done
 
 # Cleaning after ourselves
 rm -rf ${DIR}/status/ext
+

@@ -60,6 +60,8 @@ src_install() {
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 
 	dodir /home/${WM_SUDO_USER}/.coldfusion
+	dodir /home/${WM_SUDO_USER}/.coldfusion/config
+	dodir /home/${WM_SUDO_USER}/.coldfusion/status
 
 	exeinto /usr/local/bin
 	doexe ${FILESDIR}/start-cf.sh
@@ -71,8 +73,10 @@ src_install() {
 	doins ${FILESDIR}/coldfusion.desktop
 
 	# put config file for cf compiz
-	insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
-	newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
+	insinto /home/${WM_SUDO_USER}/.coldfusion/config
+	newins ${FILESDIR}/CompizColdFusionSettings.ini compiz.ini
+	#insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
+	#newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
 	# make current user own settings file
-	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} ${D}/home/${WM_SUDO_USER}/.config/compiz/compizconfig/Default.ini
+	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} ${D}/home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
 }

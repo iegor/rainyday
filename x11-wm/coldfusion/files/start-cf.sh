@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Copy coldfusion config to compiz config dir
+cp -L ~/.coldfusion/config/compiz.ini ~/.config/compiz/compizconfig/Default.ini
+
 # Compiz WM stuff
 compiz --replace --use-root-window ccp &
 # emerald &
