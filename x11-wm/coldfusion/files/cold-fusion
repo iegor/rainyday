@@ -16,6 +16,7 @@ while true; do
 		'restart')
 		;;
 		'logout')
+			break
 		;;
 		*)
 		;;
