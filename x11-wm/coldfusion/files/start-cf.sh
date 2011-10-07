@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Copy gtk look settings file from config dir
+cp -L ~/.coldfusion/config/gtk.conf ~/.gtkrc-2.0
 # Copy coldfusion config to compiz config dir
 cp -L ~/.coldfusion/config/compiz.ini ~/.config/compiz/compizconfig/Default.ini
 
@@ -47,3 +49,7 @@ fi
 
 # Run our cf manager script
 /usr/bin/cold-fusion
+
+#doing exit stuff
+cp -L ~/.config/compiz/compizconfig/Default.ini ~/.coldfusion/config/compiz.ini
+cp -L ~/.gtkrc-2.0 ~/.coldfusion/config/gtk.conf
