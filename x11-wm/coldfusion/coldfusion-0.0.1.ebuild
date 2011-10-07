@@ -76,8 +76,12 @@ src_install() {
 	insinto /home/${WM_SUDO_USER}/.coldfusion/config	#insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
 	newins ${FILESDIR}/CompizColdFusionSettings.ini compiz.ini	#newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
 	newins ${FILESDIR}/gtk.conf gtk.conf
+}
+
+src_postinstall() {
+	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 
 	# make current user own settings file
-	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} ${D}/home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
-	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} ${D}/home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
+	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
+	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
 }
