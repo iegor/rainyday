@@ -21,6 +21,9 @@ while true; do
 		*)
 		;;
 		esac
+
+		# Cleaning after ourselves
+		rm -rf ${DIR}/status/ext
 	fi
 done
 
