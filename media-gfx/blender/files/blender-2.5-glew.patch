@@ -1,0 +1,21 @@
+--- extern/SConscript
++++ extern/SConscript
+@@ -2,7 +2,6 @@
+ 
+ Import('env')
+ 
+-SConscript(['glew/SConscript'])
+ SConscript(['colamd/SConscript'])
+ 
+ if env['WITH_BF_GAMEENGINE']:
+--- source/blender/editors/include/BIF_gl.h
++++ source/blender/editors/include/BIF_gl.h
+@@ -33,7 +33,7 @@
+ #ifndef BIF_GL_H
+ #define BIF_GL_H
+ 
+-#include "GL/glew.h"
++#include <GL/glew.h>
+ 
+	/*
+ 	 * these should be phased out. cpack should be replaced in
