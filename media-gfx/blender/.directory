@@ -1,5 +1,5 @@
 [Dolphin]
-AdditionalInfoV2=Details_Size,Details_Date,CustomizedDetails
-Timestamp=2011,10,25,18,21,20
+AdditionalInfoV2=CustomizedDetails,Details_Size,Details_Date,Details_Owner
+Timestamp=2011,10,25,20,3,59
 Version=2
 ViewMode=1
