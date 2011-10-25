@@ -20,8 +20,8 @@
  
  defs.append('WITH_IK_ITASC')
  
---- /var/tmp/portage/media-gfx/blender-9999/work/blender/source/gameengine/Converter/SConscript
-+++ /var/tmp/portage/media-gfx/blender-9999/work/blender/source/gameengine/Converter/SConscript
+--- source/gameengine/Converter/SConscript
++++ source/gameengine/Converter/SConscript
 @@ -21,7 +21,7 @@
  incs += ' #source/blender/makesrna'
  incs += ' #source/blender/ikplugin'
