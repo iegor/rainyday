@@ -25,7 +25,7 @@ EGIT_BRANCH=master
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nvidia"
+IUSE="nvidia acpicall"
 PROPERTIES="interactive"
 FEATURES="sandbox collision-protect strict"
 
@@ -52,7 +52,7 @@ MERGE_TYPE="binary"
 #   answer from him, hopefully with home page :)
 
 DEPEND="x11-drivers/nvidia-drivers
-sys-power/acpi_call
+acpicall? ( sys-power/acpi_call )
 x11-apps/mesa-progs
 sys-apps/dmidecode
 app-arch/rpm"
