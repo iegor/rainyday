@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# WORKAROUND !!!
+# reown config files and some of dirs that
+current_user=$(whoami)
+zenity --info --text "current user is: ${current_user}"
+
 # Copy gtk look settings file from config dir
 cp -L ~/.coldfusion/config/gtk.conf ~/.gtkrc-2.0
 # Copy coldfusion config to compiz config dir
