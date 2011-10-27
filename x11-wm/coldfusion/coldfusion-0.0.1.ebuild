@@ -71,16 +71,16 @@ src_install() {
 	doins ${FILESDIR}/coldfusion.desktop
 
 	# install all wm settings for specific user
-
 	# awful cheat to detemine current user (in who's dir will configs be dropped)
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 	WM_SUDO_UID=$(env|grep SUDO_UID|cut -f2 -d=)
+	#WM_SUDO_GUID=$(env|grep SUDO_GUID|cut -f2 d=)
 
 	# set specific options to make files owned by user
 	# that installs
-	insopts -m${WM_SUDO_UID}644
-	diropts -m${WM_SUDO_UID}755
-	exeopts -m${WM_SUDO_UID}755
+	insopts -o ${WM_SUDO_USER} -g ${WM_SUDO_USER} -m0644
+	diropts -o ${WM_SUDO_USER} -g ${WM_SUDO_USER} -m0755
+	exeopts -o ${WM_SUDO_USER} -g ${WM_SUDO_USER} -m0755
 
 	dodir /home/${WM_SUDO_USER}/.coldfusion
 	dodir /home/${WM_SUDO_USER}/.coldfusion/config
@@ -92,7 +92,7 @@ src_install() {
 	newins ${FILESDIR}/gtk.conf gtk.conf
 
 	# put a flag to indicate a first start after installation
-	insinto /home/${WM_SUDO_USER}/.coldfusion/status
+	#insinto /home/${WM_SUDO_USER}/.coldfusion/status
 }
 
 #pkg_postinstall() {
