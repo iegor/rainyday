@@ -87,7 +87,7 @@ pkg_postinstall() {
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 
 	# make current user own settings file
-	chmod -r ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion
+	chown -r ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion
 	#chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
 	#chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
 }
