@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky gnome-do bbrun cairo-dock extras gnome-systools decorations pulseaudio"
+IUSE="docky extras decorations pulseaudio filemanager_nautilus filemanager_pcman filebrowser_mfb"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
@@ -25,16 +25,21 @@ DEPEND="
 
 	extras? ( =x11-plugins/compiz-plugins-extra-0.8.6-r1
 		docky? ( gnome-extra/docky )
-		decorations? ( x11-wm/emerald )
-		gnome-do? ( gnome-extra/gnome-do )
-        	!gnome-do? (
-                	   bbrun? ( x11-misc/bbrun ) ) )
+		decorations? ( x11-wm/emerald ) )
 
+	>=app-admin/gkrellm-2.3.5
+	>=x11-themes/gkrellm-themes-0.1
+	>=x11-plugins/gkrellm-bluez-0.2-r1
+	>=x11-plugins/gkrellm-trayicons-1.03
+	>=x11-plugins/gkrellm-xkb-1.05
+	>=x11-plugins/gkrellmlaunch-0.5
 	gnome-extra/gnome-system-monitor
-	app-admin/gnome-system-tools
 	x11-misc/xcalendar
 	x11-misc/trayer
 	pulseaudio? ( media-sound/pavucontrol )
+
+	filemanager_nautilus? ( >=gnome-base/nautilus-2.32.2.1-r1 )
+	filemanager_pcman? ( >=x11-misc/pcmanfm-0.9.9 )
 "
 
 RDEPEND="${DEPEND}"
