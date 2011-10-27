@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# WORKAROUND !!!
-# reown config files and some of dirs that
+#determine who is our current user
 current_user=$(whoami)
-zenity --info --text "current user is: ${current_user}"
+#zenity --info --text "current user is: ${current_user}"
+cf_dir=/home/${current_user}/.coldfusion
+cf_cfgd=${cf_dir}/config
+
+# WORKAROUND !!!
+# reown config files and some of dirs that was set by installation
+#if [ -f ${cf_dir}/status/first_time_run ]; then
+#    sudo chown -r ${cf_dir}
+#fi
 
 # Copy gtk look settings file from config dir
-cp -L ~/.coldfusion/config/gtk.conf ~/.gtkrc-2.0
+cp -L ${cf_cfgd}/gtk.conf /home/${current_user}/.gtkrc-2.0
 # Copy coldfusion config to compiz config dir
-cp -L ~/.coldfusion/config/compiz.ini ~/.config/compiz/compizconfig/Default.ini
+cp -L ${cf_cfgd}/compiz.ini /home/${current_user}/.config/compiz/compizconfig/Default.ini
 
-# Compiz WM stuff
+# Start Compiz WM
 compiz --replace --use-root-window ccp &
 # emerald &
 fusion-icon &
@@ -27,26 +34,14 @@ xcalendar &
 pavucontrol &
 trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
 
-# Start some kde-3.5.10 layer apps
-# other apps are in the /usr/kde/3.5/bin
-#kdeinit_wrapper
-#/usr/kde/3.5/bin/kdeinit &
-#kicker
-#/usr/kde/3.5/bin/dcopserver &
-#/usr/kde/3.5/bin/startkde
-#konqueror --silent --preload &
-
-# Gnome tools
-# gnome-do &
+# launch some gkrellm
+gkrellm &
 
 # Finally launch app that will be the anchor of our session
 # docky &
-# avant-window-navigator &
-
 
 # set xkb options
 setxkbmap -option grp:shift_caps_toggle
-# setxkbmap -option grp_led:scroll
 setxkbmap -model pc104 -layout us,ru -variant .winkeys
 if [ "$?" = "0" ]; then
 	notify-send "keyboard options xkn are set"
@@ -56,5 +51,5 @@ fi
 /usr/bin/cold-fusion
 
 #doing exit stuff
-cp -L ~/.config/compiz/compizconfig/Default.ini ~/.coldfusion/config/compiz.ini
-cp -L ~/.gtkrc-2.0 ~/.coldfusion/config/gtk.conf
+cp -L /home/${current_user}/.config/compiz/compizconfig/Default.ini ${cf_cfgd}/compiz.ini
+cp -L /home/${current_user}/.gtkrc-2.0 ${cf_cfgd}/gtk.conf

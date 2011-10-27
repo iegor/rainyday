@@ -61,13 +61,6 @@ src_unpack() {
 }
 
 src_install() {
-	# awful cheat to detemine current user (in who's dir will configs be dropped)
-	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
-
-	dodir /home/${WM_SUDO_USER}/.coldfusion
-	dodir /home/${WM_SUDO_USER}/.coldfusion/config
-	dodir /home/${WM_SUDO_USER}/.coldfusion/status
-
 	exeinto /usr/local/bin
 	doexe ${FILESDIR}/start-cf.sh
 
@@ -77,18 +70,36 @@ src_install() {
 	insinto /usr/share/xsessions
 	doins ${FILESDIR}/coldfusion.desktop
 
+	# install all wm settings for specific user
+
+	# awful cheat to detemine current user (in who's dir will configs be dropped)
+	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
+	WM_SUDO_UID=$(env|grep SUDO_UID|cut -f2 -d=)
+
+	# set specific options to make files owned by user
+	# that installs
+	insopts -m${WM_SUDO_UID}644
+	diropts -m${WM_SUDO_UID}755
+	exeopts -m${WM_SUDO_UID}755
+
+	dodir /home/${WM_SUDO_USER}/.coldfusion
+	dodir /home/${WM_SUDO_USER}/.coldfusion/config
+	dodir /home/${WM_SUDO_USER}/.coldfusion/status
+
 	# put config file for cf compiz
-	insinto /home/${WM_SUDO_USER}/.coldfusion/config	#insinto /home/${WM_SUDO_USER}/.config/compiz/compizconfig
-	newins ${FILESDIR}/CompizColdFusionSettings.ini compiz.ini	#newins ${FILESDIR}/CompizColdFusionSettings.ini Default.ini
+	insinto /home/${WM_SUDO_USER}/.coldfusion/config
+	newins ${FILESDIR}/CompizColdFusionSettings.ini compiz.ini
 	newins ${FILESDIR}/gtk.conf gtk.conf
+
+	# put a flag to indicate a first start after installation
+	insinto /home/${WM_SUDO_USER}/.coldfusion/status
 }
 
-pkg_postinstall() {
-	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
-
+#pkg_postinstall() {
+	#WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 	# make current user own settings file
 	#chown -r ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion
-	chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
-	chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
-	chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/status
-}
+	#chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
+	#chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
+	#chown ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/status
+#}
