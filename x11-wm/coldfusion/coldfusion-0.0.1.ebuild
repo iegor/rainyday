@@ -83,10 +83,11 @@ src_install() {
 	newins ${FILESDIR}/gtk.conf gtk.conf
 }
 
-src_postinstall() {
+pkg_postinstall() {
 	WM_SUDO_USER=$(env|grep SUDO_USER|cut -f2 -d=)
 
 	# make current user own settings file
-	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
-	chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
+	chmod -r ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion
+	#chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/compiz.ini
+	#chmod ${WM_SUDO_USER}:${WM_SUDO_USER} /home/${WM_SUDO_USER}/.coldfusion/config/gtk.conf
 }
