@@ -53,3 +53,4 @@ fi
 #doing exit stuff
 cp -L /home/${current_user}/.config/compiz/compizconfig/Default.ini ${cf_cfgd}/compiz.ini
 cp -L /home/${current_user}/.gtkrc-2.0 ${cf_cfgd}/gtk.conf
+

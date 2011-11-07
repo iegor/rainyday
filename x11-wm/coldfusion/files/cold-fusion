@@ -1,6 +1,10 @@
 #/bin/bash
 
+current_user=$(whoami)
+
 DIR=${HOME}/.coldfusion
+cf_dir=/home/${current_user}/.coldfusion
+cf_cfgd=${cf_dir}/config
 
 # Update to see if we are intending to quit
 while true; do
@@ -24,6 +28,12 @@ while true; do
 
 		# Cleaning after ourselves
 		rm -rf ${DIR}/status/ext
+	fi
+
+	# Check if compiz is alive
+	if [ !(ps -e|grep "compiz") ]; then
+	   cp -L ${cf_cfgd}/compiz.ini /home/${current_user}/.config/compiz/compizconfig/Default.ini
+	   compiz --replace --use-root-window ccp &7
 	fi
 done
 
