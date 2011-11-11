@@ -51,7 +51,8 @@ RDEPEND="virtual/jpeg
    sndfile? ( media-libs/libsndfile )
    lcms? ( media-libs/lcms )
    collada? ( media-libs/opencollada )
-   3dmouse? ( app-misc/libspnav )"
+   3dmouse? ( app-misc/libspnav )
+   >=media-libs/openimageio-0.10.2"
 
 DEPEND=">=dev-util/scons-0.98
    apidoc? (
