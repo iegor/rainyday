@@ -177,12 +177,13 @@ RDEPEND="
 		>=app-accessibility/gok-2.30.1
 		>=app-accessibility/orca-2.30.2
 		>=gnome-extra/mousetweaks-2.30.2 )
-	cups? ( >=net-print/gnome-cups-manager-0.31-r2 )
+	cups? ( >=app-admin/system-config-printer-gnome-1.3.6 )
 
 	mono? (
 		>=dev-dotnet/gtk-sharp-2.12.10:2
 		>=app-misc/tomboy-1.2.1 )
 	policykit? ( gnome-extra/polkit-gnome )"
+# cups? ( >=net-print/gnome-cups-manager-0.31-r2 )
 DEPEND=""
 PDEPEND=">=gnome-base/gvfs-1.6.4[gdu]"
 # Broken from assumptions of gnome-vfs headers being included in nautilus headers,
