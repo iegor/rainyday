@@ -34,6 +34,11 @@ need-kde 3.5
 PATCHES=( "${FILESDIR}/kdevelop-3.5-gcc4.4.patch"
 	"${FILESDIR}/kdevelop-3.5-lexer.patch"
 	"${FILESDIR}/kdevelop-3.5-parallel.patch"
+	"${FILESDIR}/kdevelop-3.5-tools_part.cpp.patch"
+	"${FILESDIR}/kdevelop-3.5-bashsupport_part.cpp.patch"
+	"${FILESDIR}/kdevelop-3.5-csharpsupportpart.cpp.patch"
+	"${FILESDIR}/kdevelop-3.5-perlparser.cpp.patch"
+	"${FILESDIR}/kdevelop-3.5-perlsupportpart.cpp.patch"
 	"${WORKDIR}/kdevelop-3.5-libtool.m4.in.patch"
 	"${WORKDIR}/kdevelop-3.5-ltmain.sh.patch" )
 
