@@ -10,6 +10,7 @@ DESCRIPTION="Small dynamic tiling window manager for X11"
 HOMEPAGE="http://www.scrotwm.org"
 #SRC_URI="http://opensource.conformal.com/snapshots/${PN}/${P}.tgz"
 EGIT_REPO_URI="git://opensource.conformal.com/scrotwm.git"
+EGIT_SOURCEDIR="${WORKDIR}"
 
 LICENSE="ISC"
 SLOT="0"
@@ -23,6 +24,7 @@ DEPEND="${DEPEND}
 	x11-libs/libXtst"
 
 src_prepare() {
+#	epatch "${FILESDIR}"/scrotwm-0.9.34-makefile.patch
 	tc-export CC
 }
 
