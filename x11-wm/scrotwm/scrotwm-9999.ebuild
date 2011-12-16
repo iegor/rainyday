@@ -4,7 +4,7 @@
 
 EAPI=3
 
-inherit eutils multilib toolchain-funcs git
+inherit eutils multilib toolchain-funcs git-2
 
 DESCRIPTION="Small dynamic tiling window manager for X11"
 HOMEPAGE="http://www.scrotwm.org"
@@ -22,11 +22,12 @@ DEPEND="${DEPEND}
 	x11-libs/libXrandr
 	x11-libs/libXtst"
 
+S=${WORKDIR}/${P}/linux
+
 src_prepare() {
 	tc-export CC
 }
 
-S=${WORKDIR}/${P}/linux
 src_install() {
 	emake PREFIX="${D}"usr LIBDIR="${D}usr/$(get_libdir)"  install || die
 
