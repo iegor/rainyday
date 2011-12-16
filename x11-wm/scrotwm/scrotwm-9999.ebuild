@@ -28,7 +28,7 @@ src_prepare() {
 	tc-export CC
 }
 
-S=${WORKDIR}/${P}/linux
+S=${WORKDIR}/linux
 src_install() {
 	emake PREFIX="${D}"usr LIBDIR="${D}usr/$(get_libdir)"  install || die
 
