@@ -22,12 +22,11 @@ DEPEND="${DEPEND}
 	x11-libs/libXrandr
 	x11-libs/libXtst"
 
-S=${WORKDIR}/${P}/linux
-
 src_prepare() {
 	tc-export CC
 }
 
+S=${WORKDIR}/${P}/linux
 src_install() {
 	emake PREFIX="${D}"usr LIBDIR="${D}usr/$(get_libdir)"  install || die
 
