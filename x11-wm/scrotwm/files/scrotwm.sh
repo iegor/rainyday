@@ -192,7 +192,7 @@ if test -n "$dl"; then
 fi
 
 kdeinit dcopserver &
-kdeinit klauncher &
+#kdeinit klauncher &
 konqueror --preload &
 
 notify-send "kde sub-routines are initialised"
