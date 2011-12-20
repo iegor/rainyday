@@ -23,12 +23,13 @@ DEPEND="${DEPEND}
 	x11-libs/libXrandr
 	x11-libs/libXtst"
 
+S=${WORKDIR}/linux
+
 src_prepare() {
 #	epatch "${FILESDIR}"/scrotwm-0.9.34-makefile.patch
 	tc-export CC
 }
 
-S=${WORKDIR}/linux
 src_install() {
 	emake PREFIX="${D}"usr LIBDIR="${D}usr/$(get_libdir)"  install || die
 

@@ -1,4 +1,0 @@
-function SetBuildOptions(base) {
-    // makesdna ${out_filename.c} ${path_to_includes_makesdna}
-    //Log(_T("%LANGUAGE%"))
-}
