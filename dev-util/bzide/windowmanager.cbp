@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="windowmanager" />
+		<Option platforms="Unix;" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lin_deb_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_deb_x64/libbz_windowmanager_d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_deb_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="lin_rel_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_rel_x64/libbz_windowmanager" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_rel_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__BIG_ENDIAN__" />
+			<Add directory="./src/windowmanager" />
+			<Add directory="./src/blenfont" />
+			<Add directory="./src/blenkernel" />
+			<Add directory="./src/blenlib" />
+			<Add directory="./src/blenloader" />
+			<Add directory="./src/editors/include" />
+			<Add directory="./src/gpu" />
+			<Add directory="./src/imbuf" />
+			<Add directory="./src/makesdna" />
+			<Add directory="./src/makesrna" />
+			<Add directory="./src/render/extern/include" />
+			<Add directory="./intern/ghost" />
+			<Add directory="./intern/guardedalloc" />
+			<Add directory="./intern/memutil" />
+		</Compiler>
+		<Unit filename="./src/windowmanager/WM_api.h" />
+		<Unit filename="./src/windowmanager/WM_keymap.h" />
+		<Unit filename="./src/windowmanager/WM_types.h" />
+		<Unit filename="./src/windowmanager/intern/wm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_cursors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_dragdrop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_draw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_event_system.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_files.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_gesture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_init_exit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_jobs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_keymap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_operators.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_subwindow.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/intern/wm_window.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="./src/windowmanager/wm.h" />
+		<Unit filename="./src/windowmanager/wm_cursors.h" />
+		<Unit filename="./src/windowmanager/wm_draw.h" />
+		<Unit filename="./src/windowmanager/wm_event_system.h" />
+		<Unit filename="./src/windowmanager/wm_event_types.h" />
+		<Unit filename="./src/windowmanager/wm_files.h" />
+		<Unit filename="./src/windowmanager/wm_subwindow.h" />
+		<Unit filename="./src/windowmanager/wm_window.h" />
+		<Unit filename="intern/ghost/GHOST_C-api.h" />
+		<Unit filename="intern/ghost/GHOST_Path-api.h" />
+		<Unit filename="intern/ghost/GHOST_Types.h" />
+		<Unit filename="intern/guardedalloc/MEM_guardedalloc.h" />
+		<Unit filename="intern/guardedalloc/MEM_sys_types.h" />
+		<Unit filename="intern/memutil/MEM_CacheLimiterC-Api.h" />
+		<Unit filename="src/blenfont/BLF_api.h" />
+		<Unit filename="src/blenfont/BLF_translation.h" />
+		<Unit filename="src/blenkernel/BKE_DerivedMesh.h" />
+		<Unit filename="src/blenkernel/BKE_blender.h" />
+		<Unit filename="src/blenkernel/BKE_brush.h" />
+		<Unit filename="src/blenkernel/BKE_bvhutils.h" />
+		<Unit filename="src/blenkernel/BKE_context.h" />
+		<Unit filename="src/blenkernel/BKE_curve.h" />
+		<Unit filename="src/blenkernel/BKE_customdata.h" />
+		<Unit filename="src/blenkernel/BKE_depsgraph.h" />
+		<Unit filename="src/blenkernel/BKE_displist.h" />
+		<Unit filename="src/blenkernel/BKE_font.h" />
+		<Unit filename="src/blenkernel/BKE_global.h" />
+		<Unit filename="src/blenkernel/BKE_idcode.h" />
+		<Unit filename="src/blenkernel/BKE_idprop.h" />
+		<Unit filename="src/blenkernel/BKE_library.h" />
+		<Unit filename="src/blenkernel/BKE_main.h" />
+		<Unit filename="src/blenkernel/BKE_material.h" />
+		<Unit filename="src/blenkernel/BKE_mball.h" />
+		<Unit filename="src/blenkernel/BKE_packedFile.h" />
+		<Unit filename="src/blenkernel/BKE_report.h" />
+		<Unit filename="src/blenkernel/BKE_scene.h" />
+		<Unit filename="src/blenkernel/BKE_screen.h" />
+		<Unit filename="src/blenkernel/BKE_sequencer.h" />
+		<Unit filename="src/blenkernel/BKE_sound.h" />
+		<Unit filename="src/blenkernel/BKE_texture.h" />
+		<Unit filename="src/blenkernel/BKE_utildefines.h" />
+		<Unit filename="src/blenlib/BLI_blenlib.h" />
+		<Unit filename="src/blenlib/BLI_callbacks.h" />
+		<Unit filename="src/blenlib/BLI_dynstr.h" />
+		<Unit filename="src/blenlib/BLI_editVert.h" />
+		<Unit filename="src/blenlib/BLI_fileops.h" />
+		<Unit filename="src/blenlib/BLI_ghash.h" />
+		<Unit filename="src/blenlib/BLI_kdopbvh.h" />
+		<Unit filename="src/blenlib/BLI_linklist.h" />
+		<Unit filename="src/blenlib/BLI_listbase.h" />
+		<Unit filename="src/blenlib/BLI_math.h" />
+		<Unit filename="src/blenlib/BLI_math_base.h" />
+		<Unit filename="src/blenlib/BLI_math_color.h" />
+		<Unit filename="src/blenlib/BLI_math_geom.h" />
+		<Unit filename="src/blenlib/BLI_math_inline.h" />
+		<Unit filename="src/blenlib/BLI_math_matrix.h" />
+		<Unit filename="src/blenlib/BLI_math_rotation.h" />
+		<Unit filename="src/blenlib/BLI_math_vector.h" />
+		<Unit filename="src/blenlib/BLI_mempool.h" />
+		<Unit filename="src/blenlib/BLI_noise.h" />
+		<Unit filename="src/blenlib/BLI_path_util.h" />
+		<Unit filename="src/blenlib/BLI_rect.h" />
+		<Unit filename="src/blenlib/BLI_scanfill.h" />
+		<Unit filename="src/blenlib/BLI_storage.h" />
+		<Unit filename="src/blenlib/BLI_string.h" />
+		<Unit filename="src/blenlib/BLI_threads.h" />
+		<Unit filename="src/blenlib/BLI_utildefines.h" />
+		<Unit filename="src/blenlib/BLI_winstuff.h" />
+		<Unit filename="src/blenlib/PIL_time.h" />
+		<Unit filename="src/blenloader/BLO_readfile.h" />
+		<Unit filename="src/blenloader/BLO_sys_types.h" />
+		<Unit filename="src/blenloader/BLO_writefile.h" />
+		<Unit filename="src/editors/include/BIF_gl.h" />
+		<Unit filename="src/editors/include/BIF_glutil.h" />
+		<Unit filename="src/editors/include/ED_armature.h" />
+		<Unit filename="src/editors/include/ED_datafiles.h" />
+		<Unit filename="src/editors/include/ED_fileselect.h" />
+		<Unit filename="src/editors/include/ED_info.h" />
+		<Unit filename="src/editors/include/ED_keyframing.h" />
+		<Unit filename="src/editors/include/ED_node.h" />
+		<Unit filename="src/editors/include/ED_object.h" />
+		<Unit filename="src/editors/include/ED_render.h" />
+		<Unit filename="src/editors/include/ED_screen.h" />
+		<Unit filename="src/editors/include/ED_sculpt.h" />
+		<Unit filename="src/editors/include/ED_space_api.h" />
+		<Unit filename="src/editors/include/ED_util.h" />
+		<Unit filename="src/editors/include/ED_view3d.h" />
+		<Unit filename="src/editors/include/UI_icons.h" />
+		<Unit filename="src/editors/include/UI_interface.h" />
+		<Unit filename="src/editors/include/UI_interface_icons.h" />
+		<Unit filename="src/editors/include/UI_resources.h" />
+		<Unit filename="src/gpu/GPU_buffers.h" />
+		<Unit filename="src/gpu/GPU_draw.h" />
+		<Unit filename="src/gpu/GPU_extensions.h" />
+		<Unit filename="src/imbuf/IMB_imbuf.h" />
+		<Unit filename="src/imbuf/IMB_imbuf_types.h" />
+		<Unit filename="src/imbuf/IMB_thumbs.h" />
+		<Unit filename="src/makesdna/DNA_ID.h" />
+		<Unit filename="src/makesdna/DNA_action_types.h" />
+		<Unit filename="src/makesdna/DNA_anim_types.h" />
+		<Unit filename="src/makesdna/DNA_color_types.h" />
+		<Unit filename="src/makesdna/DNA_curve_types.h" />
+		<Unit filename="src/makesdna/DNA_customdata_types.h" />
+		<Unit filename="src/makesdna/DNA_image_types.h" />
+		<Unit filename="src/makesdna/DNA_ipo_types.h" />
+		<Unit filename="src/makesdna/DNA_listBase.h" />
+		<Unit filename="src/makesdna/DNA_mesh_types.h" />
+		<Unit filename="src/makesdna/DNA_object_types.h" />
+		<Unit filename="src/makesdna/DNA_outliner_types.h" />
+		<Unit filename="src/makesdna/DNA_scene_types.h" />
+		<Unit filename="src/makesdna/DNA_screen_types.h" />
+		<Unit filename="src/makesdna/DNA_space_types.h" />
+		<Unit filename="src/makesdna/DNA_texture_types.h" />
+		<Unit filename="src/makesdna/DNA_userdef_types.h" />
+		<Unit filename="src/makesdna/DNA_vec_types.h" />
+		<Unit filename="src/makesdna/DNA_view2d_types.h" />
+		<Unit filename="src/makesdna/DNA_view3d_types.h" />
+		<Unit filename="src/makesdna/DNA_windowmanager_types.h" />
+		<Unit filename="src/makesrna/RNA_access.h" />
+		<Unit filename="src/makesrna/RNA_define.h" />
+		<Unit filename="src/makesrna/RNA_enum_types.h" />
+		<Unit filename="src/makesrna/RNA_types.h" />
+		<Unit filename="src/render/extern/include/RE_pipeline.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

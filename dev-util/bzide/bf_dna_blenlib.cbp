@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="bf_dna_blenlib" />
+		<Option platforms="Unix;" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lin_deb_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_deb_x64/libbf_dna_blenlib_d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_deb_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="lin_rel_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_rel_x64/libbf_dna_blenlib" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_rel_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__BIG_ENDIAN__" />
+			<Add option="-DWITH_DNA_GHASH" />
+			<Add directory="./src/makesdna" />
+			<Add directory="./intern/guardedalloc" />
+			<Add directory="./src/blenloader" />
+			<Add directory="./src/blenlib" />
+		</Compiler>
+		<Unit filename="intern/guardedalloc/MEM_guardedalloc.h" />
+		<Unit filename="intern/guardedalloc/intern/mallocn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenlib/BLI_mempool.h" />
+		<Unit filename="src/blenlib/intern/BLI_ghash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenlib/intern/BLI_mempool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenlib/intern/listbase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/makesdna/DNA_ID.h" />
+		<Unit filename="src/makesdna/DNA_action_types.h" />
+		<Unit filename="src/makesdna/DNA_actuator_types.h" />
+		<Unit filename="src/makesdna/DNA_anim_types.h" />
+		<Unit filename="src/makesdna/DNA_armature_types.h" />
+		<Unit filename="src/makesdna/DNA_boid_types.h" />
+		<Unit filename="src/makesdna/DNA_brush_types.h" />
+		<Unit filename="src/makesdna/DNA_camera_types.h" />
+		<Unit filename="src/makesdna/DNA_cloth_types.h" />
+		<Unit filename="src/makesdna/DNA_color_types.h" />
+		<Unit filename="src/makesdna/DNA_constraint_types.h" />
+		<Unit filename="src/makesdna/DNA_controller_types.h" />
+		<Unit filename="src/makesdna/DNA_curve_types.h" />
+		<Unit filename="src/makesdna/DNA_customdata_types.h" />
+		<Unit filename="src/makesdna/DNA_effect_types.h" />
+		<Unit filename="src/makesdna/DNA_fileglobal_types.h" />
+		<Unit filename="src/makesdna/DNA_gpencil_types.h" />
+		<Unit filename="src/makesdna/DNA_group_types.h" />
+		<Unit filename="src/makesdna/DNA_image_types.h" />
+		<Unit filename="src/makesdna/DNA_ipo_types.h" />
+		<Unit filename="src/makesdna/DNA_key_types.h" />
+		<Unit filename="src/makesdna/DNA_lamp_types.h" />
+		<Unit filename="src/makesdna/DNA_lattice_types.h" />
+		<Unit filename="src/makesdna/DNA_listBase.h" />
+		<Unit filename="src/makesdna/DNA_material_types.h" />
+		<Unit filename="src/makesdna/DNA_mesh_types.h" />
+		<Unit filename="src/makesdna/DNA_meshdata_types.h" />
+		<Unit filename="src/makesdna/DNA_meta_types.h" />
+		<Unit filename="src/makesdna/DNA_modifier_types.h" />
+		<Unit filename="src/makesdna/DNA_nla_types.h" />
+		<Unit filename="src/makesdna/DNA_node_types.h" />
+		<Unit filename="src/makesdna/DNA_object_fluidsim.h" />
+		<Unit filename="src/makesdna/DNA_object_force.h" />
+		<Unit filename="src/makesdna/DNA_object_types.h" />
+		<Unit filename="src/makesdna/DNA_outliner_types.h" />
+		<Unit filename="src/makesdna/DNA_packedFile_types.h" />
+		<Unit filename="src/makesdna/DNA_particle_types.h" />
+		<Unit filename="src/makesdna/DNA_property_types.h" />
+		<Unit filename="src/makesdna/DNA_scene_types.h" />
+		<Unit filename="src/makesdna/DNA_screen_types.h" />
+		<Unit filename="src/makesdna/DNA_sdna_types.h" />
+		<Unit filename="src/makesdna/DNA_sensor_types.h" />
+		<Unit filename="src/makesdna/DNA_sequence_types.h" />
+		<Unit filename="src/makesdna/DNA_smoke_types.h" />
+		<Unit filename="src/makesdna/DNA_sound_types.h" />
+		<Unit filename="src/makesdna/DNA_space_types.h" />
+		<Unit filename="src/makesdna/DNA_speaker_types.h" />
+		<Unit filename="src/makesdna/DNA_text_types.h" />
+		<Unit filename="src/makesdna/DNA_texture_types.h" />
+		<Unit filename="src/makesdna/DNA_userdef_types.h" />
+		<Unit filename="src/makesdna/DNA_vec_types.h" />
+		<Unit filename="src/makesdna/DNA_vfont_types.h" />
+		<Unit filename="src/makesdna/DNA_view2d_types.h" />
+		<Unit filename="src/makesdna/DNA_view3d_types.h" />
+		<Unit filename="src/makesdna/DNA_windowmanager_types.h" />
+		<Unit filename="src/makesdna/DNA_world_types.h" />
+		<Unit filename="src/makesdna/intern/makesdna.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

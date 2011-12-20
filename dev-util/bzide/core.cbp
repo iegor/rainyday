@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="core" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lin_deb_x64">
+				<Option output="bin/lin_deb_x64/bzide" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/lin_deb_x64/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="bz_windowmanager_d" />
+					<Add library="bz_render_d" />
+					<Add library="bz_bli_d" />
+					<Add library="bz_bke_d" />
+					<Add library="bf_intern_guardedalloc_cpp_d" />
+					<Add library="bf_gpu_d" />
+				</Linker>
+			</Target>
+			<Target title="lin_rel_x64">
+				<Option output="bin/lin_rel_x64/bzide" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/lin_rel_x64/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__BIG_ENDIAN__" />
+			<Add directory="./intern/guardedalloc" />
+			<Add directory="./src/blenlib" />
+			<Add directory="./src/blenkernel" />
+			<Add directory="./src/blenloader" />
+			<Add directory="./src/editors/include" />
+			<Add directory="./src/makesrna" />
+			<Add directory="./src/imbuf" />
+			<Add directory="./src/render/extern/include" />
+			<Add directory="./src/makesdna" />
+			<Add directory="./src/gpu" />
+			<Add directory="./src/windowmanager" />
+		</Compiler>
+		<Linker>
+			<Add directory="$(TARGET_OUTPUT_DIR)" />
+		</Linker>
+		<Unit filename="./src/core/core.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="intern/guardedalloc/MEM_guardedalloc.h" />
+		<Unit filename="src/blenkernel/BKE_node.h" />
+		<Unit filename="src/blenkernel/BKE_utildefines.h" />
+		<Unit filename="src/blenlib/BLI_args.h" />
+		<Unit filename="src/blenloader/BLO_sys_types.h" />
+		<Unit filename="src/editors/include/ED_datafiles.h" />
+		<Unit filename="src/gpu/GPU_draw.h" />
+		<Unit filename="src/imbuf/IMB_imbuf.h" />
+		<Unit filename="src/makesdna/DNA_ID.h" />
+		<Unit filename="src/makesrna/RNA_types.h" />
+		<Unit filename="src/render/extern/include/RE_pipeline.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

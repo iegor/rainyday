@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="bke" />
+		<Option platforms="Unix;" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lin_deb_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_deb_x64/libbz_bke_d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_deb_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="lin_rel_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_rel_x64/libbz_bke" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_rel_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__BIG_ENDIAN__" />
+			<Add directory="./src/blenkernel" />
+			<Add directory="./src/avi" />
+			<Add directory="./src/blenfont" />
+			<Add directory="./src/blenlib" />
+			<Add directory="./src/blenloader" />
+			<Add directory="./src/gpu" />
+			<Add directory="./src/ikplugin" />
+			<Add directory="./src/imbuf" />
+			<Add directory="./src/makesdna" />
+			<Add directory="./src/makesrna" />
+			<Add directory="./src/modifiers" />
+			<Add directory="./src/nodes" />
+			<Add directory="./src/render/extern/include" />
+			<Add directory="./intern/bsp/extern" />
+			<Add directory="./intern/decimation/extern" />
+			<Add directory="./intern/elbeem/extern" />
+			<Add directory="./intern/guardedalloc" />
+			<Add directory="./intern/iksolver/extern" />
+			<Add directory="./intern/memutil" />
+			<Add directory="./intern/mikktspace" />
+			<Add directory="./intern/opennl/extern" />
+			<Add directory="./intern/smoke/extern" />
+			<Add directory="./src/windowmanager" />
+		</Compiler>
+		<Unit filename="intern/elbeem/extern/LBM_fluidsim.h" />
+		<Unit filename="intern/elbeem/extern/elbeem.h" />
+		<Unit filename="intern/guardedalloc/MEM_guardedalloc.h" />
+		<Unit filename="src/blenkernel/BKE_DerivedMesh.h" />
+		<Unit filename="src/blenkernel/BKE_action.h" />
+		<Unit filename="src/blenkernel/BKE_anim.h" />
+		<Unit filename="src/blenkernel/BKE_animsys.h" />
+		<Unit filename="src/blenkernel/BKE_armature.h" />
+		<Unit filename="src/blenkernel/BKE_array_mallocn.h" />
+		<Unit filename="src/blenkernel/BKE_blender.h" />
+		<Unit filename="src/blenkernel/BKE_bmesh.h" />
+		<Unit filename="src/blenkernel/BKE_bmeshCustomData.h" />
+		<Unit filename="src/blenkernel/BKE_bmfont.h" />
+		<Unit filename="src/blenkernel/BKE_bmfont_types.h" />
+		<Unit filename="src/blenkernel/BKE_boids.h" />
+		<Unit filename="src/blenkernel/BKE_booleanops_mesh.h" />
+		<Unit filename="src/blenkernel/BKE_brush.h" />
+		<Unit filename="src/blenkernel/BKE_bullet.h" />
+		<Unit filename="src/blenkernel/BKE_bvhutils.h" />
+		<Unit filename="src/blenkernel/BKE_cdderivedmesh.h" />
+		<Unit filename="src/blenkernel/BKE_cloth.h" />
+		<Unit filename="src/blenkernel/BKE_collision.h" />
+		<Unit filename="src/blenkernel/BKE_colortools.h" />
+		<Unit filename="src/blenkernel/BKE_constraint.h" />
+		<Unit filename="src/blenkernel/BKE_context.h" />
+		<Unit filename="src/blenkernel/BKE_curve.h" />
+		<Unit filename="src/blenkernel/BKE_customdata.h" />
+		<Unit filename="src/blenkernel/BKE_customdata_file.h" />
+		<Unit filename="src/blenkernel/BKE_deform.h" />
+		<Unit filename="src/blenkernel/BKE_depsgraph.h" />
+		<Unit filename="src/blenkernel/BKE_displist.h" />
+		<Unit filename="src/blenkernel/BKE_effect.h" />
+		<Unit filename="src/blenkernel/BKE_fcurve.h" />
+		<Unit filename="src/blenkernel/BKE_fluidsim.h" />
+		<Unit filename="src/blenkernel/BKE_font.h" />
+		<Unit filename="src/blenkernel/BKE_global.h" />
+		<Unit filename="src/blenkernel/BKE_gpencil.h" />
+		<Unit filename="src/blenkernel/BKE_group.h" />
+		<Unit filename="src/blenkernel/BKE_icons.h" />
+		<Unit filename="src/blenkernel/BKE_idcode.h" />
+		<Unit filename="src/blenkernel/BKE_idprop.h" />
+		<Unit filename="src/blenkernel/BKE_image.h" />
+		<Unit filename="src/blenkernel/BKE_ipo.h" />
+		<Unit filename="src/blenkernel/BKE_key.h" />
+		<Unit filename="src/blenkernel/BKE_lattice.h" />
+		<Unit filename="src/blenkernel/BKE_library.h" />
+		<Unit filename="src/blenkernel/BKE_main.h" />
+		<Unit filename="src/blenkernel/BKE_material.h" />
+		<Unit filename="src/blenkernel/BKE_mball.h" />
+		<Unit filename="src/blenkernel/BKE_mesh.h" />
+		<Unit filename="src/blenkernel/BKE_modifier.h" />
+		<Unit filename="src/blenkernel/BKE_multires.h" />
+		<Unit filename="src/blenkernel/BKE_nla.h" />
+		<Unit filename="src/blenkernel/BKE_node.h" />
+		<Unit filename="src/blenkernel/BKE_object.h" />
+		<Unit filename="src/blenkernel/BKE_packedFile.h" />
+		<Unit filename="src/blenkernel/BKE_paint.h" />
+		<Unit filename="src/blenkernel/BKE_particle.h" />
+		<Unit filename="src/blenkernel/BKE_plugin_types.h" />
+		<Unit filename="src/blenkernel/BKE_pointcache.h" />
+		<Unit filename="src/blenkernel/BKE_property.h" />
+		<Unit filename="src/blenkernel/BKE_report.h" />
+		<Unit filename="src/blenkernel/BKE_sca.h" />
+		<Unit filename="src/blenkernel/BKE_scene.h" />
+		<Unit filename="src/blenkernel/BKE_screen.h" />
+		<Unit filename="src/blenkernel/BKE_script.h" />
+		<Unit filename="src/blenkernel/BKE_sequencer.h" />
+		<Unit filename="src/blenkernel/BKE_shrinkwrap.h" />
+		<Unit filename="src/blenkernel/BKE_sketch.h" />
+		<Unit filename="src/blenkernel/BKE_smoke.h" />
+		<Unit filename="src/blenkernel/BKE_softbody.h" />
+		<Unit filename="src/blenkernel/BKE_sound.h" />
+		<Unit filename="src/blenkernel/BKE_speaker.h" />
+		<Unit filename="src/blenkernel/BKE_subsurf.h" />
+		<Unit filename="src/blenkernel/BKE_suggestions.h" />
+		<Unit filename="src/blenkernel/BKE_text.h" />
+		<Unit filename="src/blenkernel/BKE_texture.h" />
+		<Unit filename="src/blenkernel/BKE_unit.h" />
+		<Unit filename="src/blenkernel/BKE_utildefines.h" />
+		<Unit filename="src/blenkernel/BKE_world.h" />
+		<Unit filename="src/blenkernel/BKE_writeavi.h" />
+		<Unit filename="src/blenkernel/BKE_writeffmpeg.h" />
+		<Unit filename="src/blenkernel/BKE_writeframeserver.h" />
+		<Unit filename="src/blenkernel/depsgraph_private.h" />
+		<Unit filename="src/blenkernel/intern/BME_Customdata.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/BME_conversions.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/BME_eulers.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/BME_mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/BME_structure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/BME_tools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/CCGSubSurf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/CCGSubSurf.h" />
+		<Unit filename="src/blenkernel/intern/DerivedMesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/action.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/anim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/anim_sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/armature.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/blender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/bmesh_private.h" />
+		<Unit filename="src/blenkernel/intern/bmfont.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/boids.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/booleanops_mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/brush.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/bullet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/bvhutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/cdderivedmesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/cloth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/collision.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/colortools.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/constraint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/context.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/curve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/customdata.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/customdata_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/deform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/depsgraph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/displist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/effect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/fcurve.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/fluidsim.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/fmodifier.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/font.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/gpencil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/group.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/icons.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/idcode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/idprop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/image_gen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/implicit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/ipo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/key.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/lattice.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/library.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/material.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/mball.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/mesh.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/mesh_validate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/modifier.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/multires.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/nla.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/node.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/object.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/packedFile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/paint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/particle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/particle_system.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/pointcache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/property.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/report.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/sca.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/scene.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/screen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/script.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/seqcache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/seqeffects.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/sequencer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/shrinkwrap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/sketch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/smoke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/softbody.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/sound.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/speaker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/subsurf_ccg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/suggestions.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/text.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/texture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/unit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/world.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/writeavi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/writeffmpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/intern/writeframeserver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/blenkernel/nla_private.h" />
+		<Unit filename="src/blenlib/BLI_blenlib.h" />
+		<Unit filename="src/blenlib/BLI_bpath.h" />
+		<Unit filename="src/blenlib/BLI_callbacks.h" />
+		<Unit filename="src/blenlib/BLI_dynstr.h" />
+		<Unit filename="src/blenlib/BLI_edgehash.h" />
+		<Unit filename="src/blenlib/BLI_editVert.h" />
+		<Unit filename="src/blenlib/BLI_math.h" />
+		<Unit filename="src/blenlib/BLI_path_util.h" />
+		<Unit filename="src/blenlib/BLI_rand.h" />
+		<Unit filename="src/blenlib/BLI_utildefines.h" />
+		<Unit filename="src/blenlib/BLI_winstuff.h" />
+		<Unit filename="src/blenloader/BLO_readfile.h" />
+		<Unit filename="src/blenloader/BLO_undofile.h" />
+		<Unit filename="src/blenloader/BLO_writefile.h" />
+		<Unit filename="src/gpu/GPU_buffers.h" />
+		<Unit filename="src/gpu/GPU_draw.h" />
+		<Unit filename="src/gpu/GPU_extensions.h" />
+		<Unit filename="src/gpu/GPU_material.h" />
+		<Unit filename="src/ikplugin/intern/BIK_api.h" />
+		<Unit filename="src/makesdna/DNA_actuator_types.h" />
+		<Unit filename="src/makesdna/DNA_anim_types.h" />
+		<Unit filename="src/makesdna/DNA_armature_types.h" />
+		<Unit filename="src/makesdna/DNA_brush_types.h" />
+		<Unit filename="src/makesdna/DNA_cloth_types.h" />
+		<Unit filename="src/makesdna/DNA_constraint_types.h" />
+		<Unit filename="src/makesdna/DNA_controller_types.h" />
+		<Unit filename="src/makesdna/DNA_gpencil_types.h" />
+		<Unit filename="src/makesdna/DNA_group_types.h" />
+		<Unit filename="src/makesdna/DNA_image_types.h" />
+		<Unit filename="src/makesdna/DNA_key_types.h" />
+		<Unit filename="src/makesdna/DNA_mesh_types.h" />
+		<Unit filename="src/makesdna/DNA_meshdata_types.h" />
+		<Unit filename="src/makesdna/DNA_nla_types.h" />
+		<Unit filename="src/makesdna/DNA_object_types.h" />
+		<Unit filename="src/makesdna/DNA_property_types.h" />
+		<Unit filename="src/makesdna/DNA_scene_types.h" />
+		<Unit filename="src/makesdna/DNA_screen_types.h" />
+		<Unit filename="src/makesdna/DNA_sensor_types.h" />
+		<Unit filename="src/makesdna/DNA_sequence_types.h" />
+		<Unit filename="src/makesdna/DNA_sound_types.h" />
+		<Unit filename="src/makesdna/DNA_speaker_types.h" />
+		<Unit filename="src/makesdna/DNA_text_types.h" />
+		<Unit filename="src/makesdna/DNA_texture_types.h" />
+		<Unit filename="src/makesdna/DNA_userdef_types.h" />
+		<Unit filename="src/makesdna/DNA_vfont_types.h" />
+		<Unit filename="src/makesdna/DNA_windowmanager_types.h" />
+		<Unit filename="src/makesrna/RNA_access.h" />
+		<Unit filename="src/makesrna/RNA_types.h" />
+		<Unit filename="src/modifiers/MOD_modifiertypes.h" />
+		<Unit filename="src/nodes/NOD_composite.h" />
+		<Unit filename="src/nodes/NOD_shader.h" />
+		<Unit filename="src/nodes/NOD_socket.h" />
+		<Unit filename="src/nodes/NOD_texture.h" />
+		<Unit filename="src/windowmanager/WM_api.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

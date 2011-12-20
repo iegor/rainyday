@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="render" />
+		<Option platforms="Unix;" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lin_deb_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_deb_x64/libbz_render_d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_deb_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="lin_rel_x64">
+				<Option platforms="Unix;" />
+				<Option output="bin/lin_rel_x64/libbz_render" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/lin_rel_x64/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-D__BIG_ENDIAN__" />
+			<Add directory="./src/render/extern/include" />
+			<Add directory="./src/render/intern/include" />
+			<Add directory="./src/blenkernel" />
+			<Add directory="./src/blenlib" />
+			<Add directory="./src/blenloader" />
+			<Add directory="./src/imbuf" />
+			<Add directory="./src/makesdna" />
+			<Add directory="./src/makesrna" />
+			<Add directory="./intern/guardedalloc" />
+			<Add directory="./intern/mikktspace" />
+			<Add directory="./intern/smoke/extern" />
+		</Compiler>
+		<Unit filename="intern/guardedalloc/MEM_guardedalloc.h" />
+		<Unit filename="intern/mikktspace/mikktspace.h" />
+		<Unit filename="intern/smoke/extern/smoke_API.h" />
+		<Unit filename="src/blenkernel/BKE_DerivedMesh.h" />
+		<Unit filename="src/blenkernel/BKE_action.h" />
+		<Unit filename="src/blenkernel/BKE_anim.h" />
+		<Unit filename="src/blenkernel/BKE_animsys.h" />
+		<Unit filename="src/blenkernel/BKE_armature.h" />
+		<Unit filename="src/blenkernel/BKE_colortools.h" />
+		<Unit filename="src/blenkernel/BKE_constraint.h" />
+		<Unit filename="src/blenkernel/BKE_curve.h" />
+		<Unit filename="src/blenkernel/BKE_customdata.h" />
+		<Unit filename="src/blenkernel/BKE_deform.h" />
+		<Unit filename="src/blenkernel/BKE_displist.h" />
+		<Unit filename="src/blenkernel/BKE_effect.h" />
+		<Unit filename="src/blenkernel/BKE_global.h" />
+		<Unit filename="src/blenkernel/BKE_group.h" />
+		<Unit filename="src/blenkernel/BKE_image.h" />
+		<Unit filename="src/blenkernel/BKE_ipo.h" />
+		<Unit filename="src/blenkernel/BKE_key.h" />
+		<Unit filename="src/blenkernel/BKE_lattice.h" />
+		<Unit filename="src/blenkernel/BKE_library.h" />
+		<Unit filename="src/blenkernel/BKE_main.h" />
+		<Unit filename="src/blenkernel/BKE_material.h" />
+		<Unit filename="src/blenkernel/BKE_mball.h" />
+		<Unit filename="src/blenkernel/BKE_mesh.h" />
+		<Unit filename="src/blenkernel/BKE_modifier.h" />
+		<Unit filename="src/blenkernel/BKE_node.h" />
+		<Unit filename="src/blenkernel/BKE_object.h" />
+		<Unit filename="src/blenkernel/BKE_particle.h" />
+		<Unit filename="src/blenkernel/BKE_pointcache.h" />
+		<Unit filename="src/blenkernel/BKE_report.h" />
+		<Unit filename="src/blenkernel/BKE_scene.h" />
+		<Unit filename="src/blenkernel/BKE_sequencer.h" />
+		<Unit filename="src/blenkernel/BKE_subsurf.h" />
+		<Unit filename="src/blenkernel/BKE_texture.h" />
+		<Unit filename="src/blenkernel/BKE_utildefines.h" />
+		<Unit filename="src/blenkernel/BKE_world.h" />
+		<Unit filename="src/blenkernel/BKE_writeavi.h" />
+		<Unit filename="src/blenlib/BLI_blenlib.h" />
+		<Unit filename="src/blenlib/BLI_cpu.h" />
+		<Unit filename="src/blenlib/BLI_ghash.h" />
+		<Unit filename="src/blenlib/BLI_jitter.h" />
+		<Unit filename="src/blenlib/BLI_math.h" />
+		<Unit filename="src/blenlib/BLI_memarena.h" />
+		<Unit filename="src/blenlib/BLI_rand.h" />
+		<Unit filename="src/blenlib/BLI_utildefines.h" />
+		<Unit filename="src/blenlib/BLI_voxel.h" />
+		<Unit filename="src/blenlib/PIL_time.h" />
+		<Unit filename="src/imbuf/IMB_imbuf.h" />
+		<Unit filename="src/imbuf/IMB_imbuf_types.h" />
+		<Unit filename="src/imbuf/intern/openexr/openexr_multi.h" />
+		<Unit filename="src/makesdna/DNA_ID.h" />
+		<Unit filename="src/makesdna/DNA_armature_types.h" />
+		<Unit filename="src/makesdna/DNA_boid_types.h" />
+		<Unit filename="src/makesdna/DNA_camera_types.h" />
+		<Unit filename="src/makesdna/DNA_curve_types.h" />
+		<Unit filename="src/makesdna/DNA_effect_types.h" />
+		<Unit filename="src/makesdna/DNA_group_types.h" />
+		<Unit filename="src/makesdna/DNA_image_types.h" />
+		<Unit filename="src/makesdna/DNA_key_types.h" />
+		<Unit filename="src/makesdna/DNA_lamp_types.h" />
+		<Unit filename="src/makesdna/DNA_lattice_types.h" />
+		<Unit filename="src/makesdna/DNA_material_types.h" />
+		<Unit filename="src/makesdna/DNA_mesh_types.h" />
+		<Unit filename="src/makesdna/DNA_meshdata_types.h" />
+		<Unit filename="src/makesdna/DNA_meta_types.h" />
+		<Unit filename="src/makesdna/DNA_modifier_types.h" />
+		<Unit filename="src/makesdna/DNA_node_types.h" />
+		<Unit filename="src/makesdna/DNA_object_fluidsim.h" />
+		<Unit filename="src/makesdna/DNA_object_force.h" />
+		<Unit filename="src/makesdna/DNA_object_types.h" />
+		<Unit filename="src/makesdna/DNA_particle_types.h" />
+		<Unit filename="src/makesdna/DNA_scene_types.h" />
+		<Unit filename="src/makesdna/DNA_sequence_types.h" />
+		<Unit filename="src/makesdna/DNA_smoke_types.h" />
+		<Unit filename="src/makesdna/DNA_texture_types.h" />
+		<Unit filename="src/makesdna/DNA_userdef_types.h" />
+		<Unit filename="src/makesdna/DNA_view3d_types.h" />
+		<Unit filename="src/makesdna/DNA_world_types.h" />
+		<Unit filename="src/render/extern/include/RE_pipeline.h" />
+		<Unit filename="src/render/extern/include/RE_render_ext.h" />
+		<Unit filename="src/render/extern/include/RE_shader_ext.h" />
+		<Unit filename="src/render/intern/include/envmap.h" />
+		<Unit filename="src/render/intern/include/gammaCorrectionTables.h" />
+		<Unit filename="src/render/intern/include/initrender.h" />
+		<Unit filename="src/render/intern/include/occlusion.h" />
+		<Unit filename="src/render/intern/include/pixelblending.h" />
+		<Unit filename="src/render/intern/include/pixelshading.h" />
+		<Unit filename="src/render/intern/include/pointdensity.h" />
+		<Unit filename="src/render/intern/include/raycounter.h" />
+		<Unit filename="src/render/intern/include/rayintersection.h" />
+		<Unit filename="src/render/intern/include/rayobject.h" />
+		<Unit filename="src/render/intern/include/render_types.h" />
+		<Unit filename="src/render/intern/include/rendercore.h" />
+		<Unit filename="src/render/intern/include/renderdatabase.h" />
+		<Unit filename="src/render/intern/include/renderpipeline.h" />
+		<Unit filename="src/render/intern/include/shadbuf.h" />
+		<Unit filename="src/render/intern/include/shading.h" />
+		<Unit filename="src/render/intern/include/sss.h" />
+		<Unit filename="src/render/intern/include/strand.h" />
+		<Unit filename="src/render/intern/include/sunsky.h" />
+		<Unit filename="src/render/intern/include/texture.h" />
+		<Unit filename="src/render/intern/include/volume_precache.h" />
+		<Unit filename="src/render/intern/include/volumetric.h" />
+		<Unit filename="src/render/intern/include/voxeldata.h" />
+		<Unit filename="src/render/intern/include/zbuf.h" />
+		<Unit filename="src/render/intern/raytrace/bvh.h" />
+		<Unit filename="src/render/intern/raytrace/rayobject.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_blibvh.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_empty.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_hint.h" />
+		<Unit filename="src/render/intern/raytrace/rayobject_instance.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_internal.h" />
+		<Unit filename="src/render/intern/raytrace/rayobject_octree.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_qbvh.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_raycounter.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_rtbuild.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_rtbuild.h" />
+		<Unit filename="src/render/intern/raytrace/rayobject_svbvh.cpp" />
+		<Unit filename="src/render/intern/raytrace/rayobject_vbvh.cpp" />
+		<Unit filename="src/render/intern/raytrace/reorganize.h" />
+		<Unit filename="src/render/intern/raytrace/svbvh.h" />
+		<Unit filename="src/render/intern/raytrace/vbvh.h" />
+		<Unit filename="src/render/intern/source/convertblender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/envmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/gammaCorrectionTables.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/imagetexture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/initrender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/occlusion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/pipeline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/pixelblending.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/pixelshading.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/pointdensity.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/rayshade.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/rendercore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/renderdatabase.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/shadbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/shadeinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/shadeoutput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/sss.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/strand.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/sunsky.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/volume_precache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/volumetric.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/voxeldata.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/render/intern/source/zbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

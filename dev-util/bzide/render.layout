@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="lin_deb_x64" />
+	<File name="src/render/intern/source/pipeline.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2090" topLine="66" />
+	</File>
+	<File name="src/render/intern/source/rendercore.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1326" topLine="22" />
+	</File>
+	<File name="src/render/intern/raytrace/svbvh.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1189" topLine="26" />
+	</File>
+	<File name="src/render/intern/include/rayobject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3845" topLine="91" />
+	</File>
+	<File name="src/render/intern/source/initrender.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2036" topLine="70" />
+	</File>
+	<File name="src/render/intern/source/zbuf.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2098" topLine="49" />
+	</File>
+	<File name="src/render/intern/raytrace/bvh.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1245" topLine="25" />
+	</File>
+	<File name="src/render/intern/source/rayshade.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1333" topLine="20" />
+	</File>
+	<File name="src/render/intern/raytrace/rayobject_rtbuild.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1241" topLine="27" />
+	</File>
+	<File name="src/render/intern/source/shadbuf.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1559" topLine="43" />
+	</File>
+	<File name="src/render/intern/source/occlusion.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1498" topLine="43" />
+	</File>
+	<File name="src/render/intern/source/voxeldata.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1458" topLine="39" />
+	</File>
+	<File name="src/render/intern/include/render_types.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1423" topLine="28" />
+	</File>
+	<File name="src/render/intern/raytrace/rayobject_qbvh.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1220" topLine="26" />
+	</File>
+	<File name="src/render/intern/source/pointdensity.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1601" topLine="45" />
+	</File>
+	<File name="src/render/intern/source/sunsky.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="884" topLine="16" />
+	</File>
+	<File name="src/render/intern/source/convertblender.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4292" topLine="138" />
+	</File>
+	<File name="src/render/intern/source/volumetric.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1691" topLine="37" />
+	</File>
+	<File name="src/blenkernel/BKE_pointcache.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1198" topLine="24" />
+	</File>
+	<File name="src/render/intern/raytrace/vbvh.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1179" topLine="26" />
+	</File>
+</CodeBlocks_layout_file>

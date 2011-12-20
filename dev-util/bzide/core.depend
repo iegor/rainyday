@@ -1,0 +1,189 @@
+# depslib dependency file v1.0
+1323772441 source:/home/rainman/projects/rainyday/dev-util/bzide/src/core/core.c
+	<fenv.h>
+	<xmmintrin.h>
+	<stdlib.h>
+	<stddef.h>
+	<string.h>
+	"MEM_guardedalloc.h"
+	"BLI_winstuff.h"
+	"BLI_args.h"
+	"BLI_threads.h"
+	"BLI_scanfill.h"
+	"BLI_utildefines.h"
+	"BLI_callbacks.h"
+	"DNA_ID.h"
+	"DNA_scene_types.h"
+	"BLI_blenlib.h"
+	"BKE_utildefines.h"
+	"BKE_blender.h"
+	"BKE_context.h"
+	"BKE_depsgraph.h"
+	"BKE_font.h"
+	"BKE_global.h"
+	"BKE_main.h"
+	"BKE_material.h"
+	"BKE_packedFile.h"
+	"BKE_scene.h"
+	"BKE_node.h"
+	"BKE_report.h"
+	"BKE_sound.h"
+	"IMB_imbuf.h"
+	"BPY_extern.h"
+	"RE_pipeline.h"
+	"ED_datafiles.h"
+	"WM_api.h"
+	"RNA_define.h"
+	"GPU_draw.h"
+	"GPU_extensions.h"
+	"BL_System.h"
+	<signal.h>
+	<sys/types.h>
+	<floatingpoint.h>
+	<sys/rtprio.h>
+	"binreloc.h"
+
+1319479751 /home/rainman/projects/rainyday/dev-util/bzide/intern/guardedalloc/MEM_guardedalloc.h
+	<stdio.h>
+	"MEM_sys_types.h"
+
+1319479751 /home/rainman/projects/rainyday/dev-util/bzide/intern/guardedalloc/MEM_sys_types.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+	<sys/types.h>
+	<sys/param.h>
+	<sys/types.h>
+	<netinet/in.h>
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_winstuff.h
+	<windows.h>
+	<windows.h>
+	<stdio.h>
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_args.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_threads.h
+	<pthread.h>
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_scanfill.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_utildefines.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_callbacks.h
+
+1319480286 /home/rainman/projects/rainyday/dev-util/bzide/src/makesdna/DNA_ID.h
+	"DNA_listBase.h"
+
+1319480286 /home/rainman/projects/rainyday/dev-util/bzide/src/makesdna/DNA_listBase.h
+
+1319480286 /home/rainman/projects/rainyday/dev-util/bzide/src/makesdna/DNA_scene_types.h
+	"DNA_vec_types.h"
+	"DNA_listBase.h"
+	"DNA_ID.h"
+
+1319480286 /home/rainman/projects/rainyday/dev-util/bzide/src/makesdna/DNA_vec_types.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_blenlib.h
+	<stdlib.h>
+	"BLI_listbase.h"
+	"BLI_string.h"
+	"BLI_path_util.h"
+	"BLI_storage.h"
+	"BLI_fileops.h"
+	"BLI_rect.h"
+	"BLI_noise.h"
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_listbase.h
+	"DNA_listBase.h"
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_string.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_path_util.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_storage.h
+	<stddef.h>
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_fileops.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_rect.h
+
+1319480366 /home/rainman/projects/rainyday/dev-util/bzide/src/blenlib/BLI_noise.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_utildefines.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_blender.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_context.h
+	"DNA_listBase.h"
+	"RNA_types.h"
+
+1319480330 /home/rainman/projects/rainyday/dev-util/bzide/src/makesrna/RNA_types.h
+	"BLO_sys_types.h"
+
+1319480351 /home/rainman/projects/rainyday/dev-util/bzide/src/blenloader/BLO_sys_types.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+	<sys/types.h>
+	<sys/param.h>
+	<sys/types.h>
+	<netinet/in.h>
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_depsgraph.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_font.h
+	<wchar.h>
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_global.h
+	"DNA_listBase.h"
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_main.h
+	"DNA_listBase.h"
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_material.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_packedFile.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_scene.h
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_node.h
+	"DNA_listBase.h"
+	"RNA_types.h"
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_report.h
+	"DNA_windowmanager_types.h"
+
+1319480286 /home/rainman/projects/rainyday/dev-util/bzide/src/makesdna/DNA_windowmanager_types.h
+	"DNA_listBase.h"
+	"DNA_vec_types.h"
+	"DNA_ID.h"
+
+1319480266 /home/rainman/projects/rainyday/dev-util/bzide/src/blenkernel/BKE_sound.h
+
+1319480347 /home/rainman/projects/rainyday/dev-util/bzide/src/imbuf/IMB_imbuf.h
+
+1319480208 /home/rainman/projects/rainyday/dev-util/bzide/src/render/extern/include/RE_pipeline.h
+	"DNA_listBase.h"
+	"DNA_vec_types.h"
+	"RNA_types.h"
+
+1319480454 /home/rainman/projects/rainyday/dev-util/bzide/src/editors/include/ED_datafiles.h
+
+1319480337 /home/rainman/projects/rainyday/dev-util/bzide/src/windowmanager/WM_api.h
+	"DNA_windowmanager_types.h"
+	"WM_keymap.h"
+
+1319480337 /home/rainman/projects/rainyday/dev-util/bzide/src/windowmanager/WM_keymap.h
+	"DNA_windowmanager_types.h"
+
+1319480330 /home/rainman/projects/rainyday/dev-util/bzide/src/makesrna/RNA_define.h
+	<float.h>
+	<limits.h>
+	"DNA_listBase.h"
+	"RNA_types.h"
+
+1319480294 /home/rainman/projects/rainyday/dev-util/bzide/src/gpu/GPU_draw.h
+
+1319480294 /home/rainman/projects/rainyday/dev-util/bzide/src/gpu/GPU_extensions.h
+
