@@ -4,7 +4,7 @@
 KMNAME=kdeaddons
 KMNOMODULE=true
 KMEXTRA="kate"
-EAPI="3"
+EAPI="1"
 inherit eutils kde-meta
 
 DESCRIPTION="kate plugins and docs"
