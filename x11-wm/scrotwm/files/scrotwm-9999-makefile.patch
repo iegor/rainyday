@@ -1,4 +1,4 @@
---- linux/Makefile
+--- linux/Makefile.old
 +++ linux/Makefile
 @@ -1,5 +1,5 @@
 -CFLAGS+= -Wall -ggdb -D_GNU_SOURCE -I.
@@ -16,7 +16,6 @@
 +CC?= gcc
  
  LVERS= $(shell . ../lib/shlib_version; echo $$major.$$minor)
- 
 @@ -24,10 +24,10 @@
   $(CC) $(LDFLAGS) -o $@ $+ $(LDADD)
  
