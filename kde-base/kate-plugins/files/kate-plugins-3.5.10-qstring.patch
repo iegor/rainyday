@@ -1,5 +1,5 @@
---- kate-plugins-3.5.10/kate/tabbarextension/plugin_katetabbarextension.h
-+++ kate-plugins-3.5.10/kate/tabbarextension/plugin_katetabbarextension.h
+--- kdeaddons-3.5.10/kate/tabbarextension/plugin_katetabbarextension.h
++++ kdeaddons-3.5.10/kate/tabbarextension/plugin_katetabbarextension.h
 @@ -53,7 +53,8 @@
  class MyPtrList : public QPtrList <KateTabBarButton>
  {
