@@ -26,7 +26,7 @@ DEPEND="${DEPEND}
 S=${WORKDIR}/linux
 
 src_prepare() {
-#	epatch "${FILESDIR}"/scrotwm-0.9.34-makefile.patch
+	epatch "${FILESDIR}"/scrotwm-9999-makefile.patch
 	tc-export CC
 }
 
