@@ -1,5 +1,5 @@
---- linux/Makefile.old
-+++ linux/Makefile
+--- Makefile
++++ Makefile
 @@ -1,5 +1,5 @@
 -CFLAGS+= -Wall -ggdb -D_GNU_SOURCE -I.
 -CFLAGS+= -DSWM_LIB=\"$(LIBDIR)/libswmhack.so.$(LVERS)\"
