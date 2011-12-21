@@ -13,3 +13,7 @@ IUSE=""
 
 DEPEND="|| ( >=kde-base/kate-${PV}:${SLOT} >=kde-base/kdebase-${PV}:${SLOT} )"
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+  epatch "${FILESDIR}"/kate-plugins-3.5.10-qstring.patch
+}
