@@ -1,5 +1,5 @@
---- kdevelop-3.5.4/languages/python/pythonsupportpart.cpp
-+++ kdevelop-3.5.4/languages/python/pythonsupportpart.cpp
+--- kdevelop-3.5.4/languages/python/pythonsupportpart.cpp	2011-11-20 20:47:45.000000000 -0800
++++ kdevelop-3.5.4/languages/python/pythonsupportpart.cpp	2011-11-20 20:46:27.000000000 -0800
 @@ -328,7 +328,7 @@
  {
      bool inTerminal = DomUtil::readBoolEntry(*projectDom(), "/kdevpythonsupport/run/terminal");
