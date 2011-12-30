@@ -1,9 +1,0 @@
---- languages/python/pythonsupportpart.cpp
-+++ languages/python/pythonsupportpart.cpp
-@@ -328,7 +328,7 @@
- {
-     bool inTerminal = DomUtil::readBoolEntry(*projectDom(), "/kdevpythonsupport/run/terminal");
-     if (KDevAppFrontend *appFrontend = extension<KDevAppFrontend>("KDevelop/AppFrontend"))
--        appFrontend->startAppCommand(QString::QString(), program, inTerminal);
-+        appFrontend->startAppCommand("", program, inTerminal);
- }
