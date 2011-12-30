@@ -41,7 +41,7 @@ PATCHES=( "${FILESDIR}/kdevelop-3.5-gcc4.4.patch"
 	"${FILESDIR}/kdevelop-3.5-perlsupportpart.cpp.patch"
 	"${WORKDIR}/kdevelop-3.5-libtool.m4.in.patch"
 	"${WORKDIR}/kdevelop-3.5-ltmain.sh.patch"
-  "${WORKDIR}/kdevelop-3.5-lang-python.patch" )
+  "${FILESDIR}/kdevelop-3.5-lang-python.patch" )
 
 pkg_setup() {
 	elog
