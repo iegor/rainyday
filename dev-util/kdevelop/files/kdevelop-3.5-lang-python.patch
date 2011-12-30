@@ -1,5 +1,5 @@
---- kdevelop-3.5.4-r1/languages/python/pythonsupportpart.cpp
-+++ kdevelop-3.5.4-r1/languages/python/pythonsupportpart.cpp
+--- kdevelop-3.5.4/languages/python/pythonsupportpart.cpp
++++ kdevelop-3.5.4/languages/python/pythonsupportpart.cpp
 @@ -328,7 +328,7 @@
  {
      bool inTerminal = DomUtil::readBoolEntry(*projectDom(), "/kdevpythonsupport/run/terminal");
