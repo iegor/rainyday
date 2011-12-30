@@ -197,7 +197,7 @@ konqueror --preload &
 
 notify-send "kde sub-routines are initialised"
 # launch our wm
-scrotwm
+exec scrotwm
 
 # killall gnome-settings-daemon
 # killall gnome-keyring-daemon
