@@ -310,7 +310,7 @@ src_compile() {
       to bugs.gentoo.org'
 
 #  einfo "Building plugins ..."
-#  cd "${WORKDIR}"/install/2.57/plugins/ \
+#  cd "${WORKDIR}"/install/plugins/ \
 #     || die "dir ${WORKDIR}/install/plugins/ do not exist"
 #  chmod 755 bmake
 
