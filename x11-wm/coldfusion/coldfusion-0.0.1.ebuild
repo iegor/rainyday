@@ -30,6 +30,7 @@ DEPEND="
 	x11-misc/trayer
 	x11-misc/xscreensaver
 	pulseaudio? ( media-sound/pavucontrol )
+	gnome-extra/zenity
 
 	x11-themes/gtk-engines-equinox
 "
