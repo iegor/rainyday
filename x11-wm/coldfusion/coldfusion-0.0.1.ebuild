@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky extras decos pulseaudio kde"
+IUSE="docky extras pulseaudio kde decorations"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
