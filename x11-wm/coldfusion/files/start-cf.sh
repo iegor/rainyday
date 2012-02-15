@@ -25,6 +25,7 @@ fusion-icon &
 # Start wireless connection manager
 # wicd-client &
 
+sleep 5
 # Start our screen saver
 xscreensaver &
 
@@ -32,7 +33,7 @@ xscreensaver &
 xclock -digital &
 xcalendar &
 pavucontrol &
-# trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
+trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
 
 # launch some gkrellm
 # gkrellm &
@@ -47,6 +48,7 @@ if [ "$?" = "0" ]; then
 	notify-send "keyboard options xkb are set"
 fi
 
+sleep 5
 # Run our cf manager script
 /usr/bin/cold-fusion
 

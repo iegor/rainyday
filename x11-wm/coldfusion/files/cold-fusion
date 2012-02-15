@@ -31,10 +31,10 @@ while true; do
 	fi
 
 	# Check if compiz is alive
-	if [ !(ps -e|grep "compiz") ]; then
-	   cp -L ${cf_cfgd}/compiz.ini /home/${current_user}/.config/compiz/compizconfig/Default.ini
-	   compiz --replace --use-root-window ccp &7
-	fi
+#	if [ !(ps -e|grep "compiz") ]; then
+#	   cp -L ${cf_cfgd}/compiz.ini /home/${current_user}/.config/compiz/compizconfig/Default.ini
+#	   compiz --replace --use-root-window ccp &7
+#	fi
 done
 
 # Cleaning after ourselves
