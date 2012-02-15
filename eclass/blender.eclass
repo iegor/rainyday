@@ -338,6 +338,7 @@ fi
 
 export BLENDER_SYSTEM_SCRIPTS="/usr/share/blender/${SLOT}/scripts"
 export BLENDER_SYSTEM_DATAFILES="/usr/share/blender/${SLOT}/datafiles"
+export BLENDER_SYSTEM_PLUGINS="/usr/lib/blender/${SLOT}/plugins"
 exec /usr/bin/blender-bin-${SLOT} \$*
 EOF
 

@@ -32,10 +32,10 @@ xscreensaver &
 xclock -digital &
 xcalendar &
 pavucontrol &
-trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
+# trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
 
 # launch some gkrellm
-gkrellm &
+# gkrellm &
 
 # Finally launch app that will be the anchor of our session
 # docky &
@@ -44,7 +44,7 @@ gkrellm &
 setxkbmap -option grp:shift_caps_toggle
 setxkbmap -model pc104 -layout us,ru -variant .winkeys
 if [ "$?" = "0" ]; then
-	notify-send "keyboard options xkn are set"
+	notify-send "keyboard options xkb are set"
 fi
 
 # Run our cf manager script
@@ -53,4 +53,3 @@ fi
 #doing exit stuff
 cp -L /home/${current_user}/.config/compiz/compizconfig/Default.ini ${cf_cfgd}/compiz.ini
 cp -L /home/${current_user}/.gtkrc-2.0 ${cf_cfgd}/gtk.conf
-

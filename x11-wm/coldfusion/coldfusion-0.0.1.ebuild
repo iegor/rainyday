@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="BEER-WARE"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="docky extras decorations pulseaudio filemanager_nautilus filemanager_pcman filebrowser_mfb"
+IUSE="docky extras pulseaudio kde decorations"
 FEATURES="sandbox collision-protect strict"
 
 CATEGORY="x11-wm"
@@ -19,29 +19,21 @@ CATEGORY="x11-wm"
 MERGE_TYPE="binary"
 
 DEPEND="
-	=x11-wm/compiz-0.8.6-r3
-	=x11-plugins/compiz-plugins-main-0.8.6-r1
-	=x11-apps/ccsm-0.8.4-r1
-
-	extras? ( =x11-plugins/compiz-plugins-extra-0.8.6-r1
-		docky? ( gnome-extra/docky )
-		decorations? ( x11-wm/emerald ) )
-
-	>=app-admin/gkrellm-2.3.5
-	>=x11-themes/gkrellm-themes-0.1
-	>=x11-plugins/gkrellm-bluez-0.2-r1
-	>=x11-plugins/gkrellm-trayicons-1.03
-	>=x11-plugins/gkrellm-xkb-1.05
-	>=x11-plugins/gkrellmlaunch-0.5
+	x11-wm/compiz
+	x11-plugins/compiz-plugins-main
+	x11-apps/ccsm
+	decorations? ( x11-wm/emerald )
+	extras? ( x11-plugins/compiz-plugins-extra )
+	docky? ( gnome-extra/docky )
 	gnome-extra/gnome-system-monitor
 	x11-misc/xcalendar
 	x11-misc/trayer
+	x11-misc/xscreensaver
 	pulseaudio? ( media-sound/pavucontrol )
+	gnome-extra/zenity
 
-	filemanager_nautilus? ( >=gnome-base/nautilus-2.32.2.1-r1 )
-	filemanager_pcman? ( >=x11-misc/pcmanfm-0.9.9 )
+	x11-themes/gtk-engines-equinox
 "
-
 RDEPEND="${DEPEND}"
 
 CF_VERSION=0.0.1
