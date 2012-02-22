@@ -17,7 +17,7 @@ RDEPEND="${DEPEND}
 	>=kde-base/kcontrol-${PV}:${SLOT}
 	>=kde-base/kdebase-kioslaves-${PV}:${SLOT}
 	>=kde-base/kfind-${PV}:${SLOT}
-	java? ( >=virtual/jre-1.4 )"
+	java? ( virtual/jre )"
 
 KMCOPYLIB="libkonq libkonq"
 KMEXTRACTONLY=kdesktop/KDesktopIface.h
