@@ -4,7 +4,8 @@
 
 DESCRIPTION="The fdi scripts that HAL uses"
 HOMEPAGE="http://hal.freedesktop.org/"
-SRC_URI="http://hal.freedesktop.org/releases/${P}.tar.gz"
+SRC_URI="http://hal.freedesktop.org/releases/${P}.tar.gz
+	mirror://kde-sunset/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
