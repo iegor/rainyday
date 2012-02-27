@@ -1,0 +1,11 @@
+--- kaffeine/src/player-parts/xine-part/kxinewidget.cpp~	2009-05-15 16:16:26.000000000 +0100
++++ kaffeine/src/player-parts/xine-part/kxinewidget.cpp	2012-02-25 23:45:45.000000000 +0000
+@@ -2638,7 +2638,7 @@
+ 	int num;
+ 	int i = 0;
+ 
+-	urls = xine_get_autoplay_mrls(m_xineEngine, plugin.ascii(), &num);
++	urls = (char**)xine_get_autoplay_mrls(m_xineEngine, plugin.ascii(), &num);
+ 
+ 	if (urls)
+ 	{
