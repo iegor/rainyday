@@ -36,7 +36,7 @@ RDEPEND=">=media-libs/xine-lib-1.1.9[xcb?]
 	x11-libs/libXtst"
 
 DEPEND="${RDEPEND}
-	dvb? ( media-tv/linuxtv-dvb-headers
+	dvb? ( virtual/linuxtv-dvb-headers
 		>=sys-kernel/linux-headers-2.6.28 )
 	x11-proto/inputproto"
 
