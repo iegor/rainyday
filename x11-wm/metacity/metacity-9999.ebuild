@@ -56,6 +56,10 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
 pkg_setup() {
+
+	# Run autogen.sh
+	${S}/autogen.sh
+
 	DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
 	G2CONF="${G2CONF}
 		--disable-static
