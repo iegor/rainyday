@@ -22,7 +22,7 @@ SRC_URI=""
 EGIT_REPO_URI="git://git.gnome.org/metacity"
 EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
-S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
+# S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # XXX: libgtop is automagic, hard-enabled instead
 RDEPEND=">=x11-libs/gtk+-2.20:2
