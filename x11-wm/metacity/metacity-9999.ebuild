@@ -19,7 +19,7 @@ IUSE="test xinerama"
 
 SRC_URI=""
 
-EGIT_REPO_URI="git://git.gnome.org/metacity/.git"
+EGIT_REPO_URI="git://git.gnome.org/metacity"
 # EGIT_SOURCEDIR="${WORKDIR}"
 
 # XXX: libgtop is automagic, hard-enabled instead
