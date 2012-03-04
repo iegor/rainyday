@@ -20,7 +20,9 @@ IUSE="test xinerama"
 SRC_URI=""
 
 EGIT_REPO_URI="git://git.gnome.org/metacity"
-# EGIT_SOURCEDIR="${WORKDIR}"
+EGIT_SOURCEDIR="${WORKDIR}"
+
+S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # XXX: libgtop is automagic, hard-enabled instead
 RDEPEND=">=x11-libs/gtk+-2.20:2
@@ -76,4 +78,5 @@ src_prepare() {
 	# https://bugs.gentoo.org/show_bug.cgi?id=309443
 	# https://bugzilla.gnome.org/show_bug.cgi?id=605460
 	epatch "${FILESDIR}/${PN}-2.28.1-wif_macros.patch"
+	epatch "${FILESDIR}/${PN}-9999_tab_no_pixmap.patch.patch"
 }
