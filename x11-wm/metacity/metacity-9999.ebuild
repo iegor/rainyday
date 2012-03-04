@@ -56,10 +56,6 @@ DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
 pkg_setup() {
-
-	# Run autogen.sh
-	${S}/autogen.sh
-
 	DOCS="AUTHORS ChangeLog HACKING NEWS README *.txt doc/*.txt"
 	G2CONF="${G2CONF}
 		--disable-static
@@ -83,4 +79,7 @@ src_prepare() {
 	# https://bugzilla.gnome.org/show_bug.cgi?id=605460
 	epatch "${FILESDIR}/${PN}-2.28.1-wif_macros.patch"
 	epatch "${FILESDIR}/${PN}-9999_tab_no_pixmap.patch"
+
+	# Run autogen.sh
+	${S}/autogen.sh
 }
