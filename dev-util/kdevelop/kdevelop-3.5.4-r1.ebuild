@@ -10,8 +10,8 @@ inherit kde eutils db-use
 
 DESCRIPTION="Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
 HOMEPAGE="http://www.kdevelop.org"
-SRC_URI="http://dev.gentoo.org/~tampakrap/tarballs/${P}.tar.bz2
-	http://dev.gentoo.org/~tampakrap/tarballs/${PN}-3.5-patchset-01.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2
+	mirror://gentoo/${PN}-3.5-patchset-01.tar.bz2"
 
 LICENSE="GPL-2"
 
