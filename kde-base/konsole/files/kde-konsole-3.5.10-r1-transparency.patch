@@ -1,0 +1,30 @@
+--- /home/rainman/src/kde/kdebase-3.5.10/konsole/konsole/konsole.cpp
++++ /home/rainman/src/kde/kdebase-3.5.10/konsole/konsole/konsole.cpp
+@@ -132,6 +132,7 @@
+ #include <ktip.h>
+ #include <kprocctrl.h>
+ #include <ktabwidget.h>
++#include <qwidgetstack.h>
+ #include <kregexpeditorinterface.h>
+ #include <kparts/componentfactory.h>
+ #include <kcharsets.h>
+@@ -321,6 +322,9 @@
+   makeTabWidget();
+   setCentralWidget(tabwidget);
+ 
++  QBoxLayout* lay = (QBoxLayout*)this->layout();
++  lay->setSpacing(-1);
++
+   if (b_dynamicTabHide || n_tabbar==TabNone)
+     tabwidget->setTabBarHidden(true);
+ 
+@@ -894,6 +898,9 @@
+   tabwidget->setTabReorderingEnabled(true);
+   tabwidget->setAutomaticResizeTabs( b_autoResizeTabs );
+   tabwidget->setTabCloseActivatePrevious( true );
++
++  QWidgetStack* stack = (QWidgetStack*)tabwidget->child("tab pages");
++  stack->setLineWidth(0);
+ 
+   if (n_tabbar==TabTop)
+     tabwidget->setTabPosition(QTabWidget::Top);
