@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Name=scrotwm
-Comment=window manager
-Exec=/usr/local/bin/scrotwm.sh
-TryExec=scrotwm
-Icon=
-Type=Application

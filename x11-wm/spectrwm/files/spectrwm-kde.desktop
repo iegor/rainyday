@@ -2,14 +2,14 @@
 Comment=window manager
 Comment[en_US]=window manager
 Encoding=UTF-8
-Exec[$e]=/usr/local/bin/spectrwm-kde.sh
+Exec=/usr/local/bin/spectrwm-kde.sh
 GenericName=
 GenericName[en_US]=
 Icon=
 MimeType=
 Name=spectrwm
 Name[en_US]=spectrwm
-Path[$e]=
+Path=
 StartupNotify=true
 Terminal=false
 TerminalOptions=
