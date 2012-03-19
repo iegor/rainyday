@@ -36,7 +36,7 @@ DOCS="AUTHORS HACKING NEWS README"
 src_prepare() {
 	# Upstream patch to use x-content/unix-software like all of gnome-3.2.1,
 	# will be in next release
-	epatch "${FILESDIR}/${P}-unix-software.patch"
+# 	epatch "${FILESDIR}/${P}-unix-software.patch"
 
   gnome2_src_prepare
 
