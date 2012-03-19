@@ -44,7 +44,7 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 	media-libs/libcanberra[gtk]
 	gnome-base/libgtop
 	gnome-extra/zenity
-  >=gnome-base/gsettings-desktop-schemas-3.3.0
+  >=gnome-base/gsettings-desktop-schemas-3.2.0
 	xinerama? ( x11-libs/libXinerama )
 	!x11-misc/expocity"
 
