@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment=window manager
+Comment[en_US]=window manager
+Encoding=UTF-8
+Exec[$e]=/usr/local/bin/spectrwm-kde.sh
+GenericName=
+GenericName[en_US]=
+Icon=
+MimeType=
+Name=spectrwm
+Name[en_US]=spectrwm
+Path[$e]=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+TryExec=scrotwm
+Type=Application
+X-DCOP-ServiceType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
