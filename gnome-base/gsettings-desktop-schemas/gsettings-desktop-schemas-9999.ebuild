@@ -5,7 +5,7 @@
 EAPI="4"
 GCONF_DEBUG="no"
 
-inherit eutils gnome2
+inherit eutils gnome2 git-2
 
 DESCRIPTION="Collection of GSettings schemas for GNOME desktop"
 HOMEPAGE="http://www.gnome.org/"
