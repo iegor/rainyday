@@ -13,7 +13,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ppc ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 arm hppa ~ia64 ppc ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 
 SRC_URI=""
 
