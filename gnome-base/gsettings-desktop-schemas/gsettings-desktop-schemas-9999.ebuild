@@ -18,7 +18,7 @@ KEYWORDS="~alpha ~amd64 arm hppa ~ia64 ppc ppc64 ~sh ~sparc x86 ~x86-fbsd ~x86-i
 SRC_URI=""
 
 EGIT_REPO_URI="git://git.gnome.org/gsettings-desktop-schemas"
-EGIT_COMMIT="3.3.2"
+EGIT_COMMIT="925fa376f10054bc7c02fd7e70b6ff3bbac6fc43"
 EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 RDEPEND=">=dev-libs/glib-2.21:2"
@@ -34,11 +34,11 @@ DOCS="AUTHORS HACKING NEWS README"
 #}
 
 src_prepare() {
-	gnome2_src_prepare
-
 	# Upstream patch to use x-content/unix-software like all of gnome-3.2.1,
 	# will be in next release
 	epatch "${FILESDIR}/${P}-unix-software.patch"
+
+  gnome2_src_prepare
 
   # Run autogen.sh
 	${S}/autogen.sh
