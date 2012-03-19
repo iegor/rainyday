@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.34.1.ebuild,v 1.1 2011/07/24 13:37:23 eva Exp $
+# $Header: $
 
 EAPI="4"
 # debug only changes CFLAGS
@@ -43,11 +43,9 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 	media-libs/libcanberra[gtk]
 	gnome-base/libgtop
 	gnome-extra/zenity
-  gnome-base/gsettings-desktop-schemas
+  >=gnome-base/gsettings-desktop-schemas-3.3.0
 	xinerama? ( x11-libs/libXinerama )
 	!x11-misc/expocity"
-
-# RDEPEND +=	>=gnome-base/gsettings-desktop-schemas-3.3.0
 
 DEPEND="${RDEPEND}
 	>=app-text/gnome-doc-utils-0.8
