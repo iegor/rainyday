@@ -27,10 +27,10 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS HACKING NEWS README"
 
-src_unpack() {
-  ebegin "Unpack sources, not needed. This is git :)"
-  eend 0
-}
+# src_unpack() {
+#  ebegin "Unpack sources, not needed. This is git :)"
+#  eend 0
+#}
 
 src_prepare() {
 	# Upstream patch to use x-content/unix-software like all of gnome-3.2.1,
