@@ -21,7 +21,7 @@ SRC_URI=""
 
 EGIT_REPO_URI="git://github.com/iegor/metacity.git"
 EGIT_BRANCH="metacity_m"
-EGIT_COMMIT="c38edcc7764242e0d3c8aecc0a0cbd5825e7b3f5"
+# EGIT_COMMIT="c38edcc7764242e0d3c8aecc0a0cbd5825e7b3f5"
 EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
@@ -92,3 +92,4 @@ src_prepare() {
 	# Run autogen.sh
 	${S}/autogen.sh
 }
+
