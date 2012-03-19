@@ -20,6 +20,7 @@ IUSE="test xinerama"
 SRC_URI=""
 
 EGIT_REPO_URI="git://github.com/iegor/metacity.git"
+EGIT_BRANCH="metacity_m"
 EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
