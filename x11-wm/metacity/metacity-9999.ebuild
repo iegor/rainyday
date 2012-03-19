@@ -72,6 +72,11 @@ pkg_setup() {
 		$(use_enable xinerama)"
 }
 
+src_unpack() {
+  ebegin "Unpack sources, not needed. This is git :)"
+  eend 0
+}
+
 src_prepare() {
 	gnome2_src_prepare
 
