@@ -7,7 +7,7 @@ EAPI="4"
 GCONF_DEBUG="no"
 GNOME2_LA_PUNT="yes"
 
-inherit eutils gnome2
+inherit eutils gnome2 git-2
 
 DESCRIPTION="GNOME default window manager"
 HOMEPAGE="http://blogs.gnome.org/metacity/"
@@ -16,6 +16,14 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="test xinerama"
+
+SRC_URI=""
+
+EGIT_REPO_URI="git://github.com/iegor/metacity.git"
+EGIT_BRANCH="metacity_m"
+# 2.34.1 + removed usage of pixpams on alt+tab
+EGIT_COMMIT="6cf3343805a3013de73b5e0068f29cdf29283207"
+EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # XXX: libgtop is automagic, hard-enabled instead
 RDEPEND=">=x11-libs/gtk+-2.20:2
@@ -73,5 +81,6 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.28.1-wif_macros.patch"
 
 	# patch to remove slow snapshots of windows while pressing alt+tab
-	epatch "${FILESDIR}/${PN}-9999_tab_no_pixmap.patch"
+	# epatch "${FILESDIR}/${PN}-9999_tab_no_pixmap.patch"
 }
+

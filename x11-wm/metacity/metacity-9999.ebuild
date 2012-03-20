@@ -21,7 +21,8 @@ SRC_URI=""
 
 EGIT_REPO_URI="git://github.com/iegor/metacity.git"
 EGIT_BRANCH="metacity_m"
-# EGIT_COMMIT="c38edcc7764242e0d3c8aecc0a0cbd5825e7b3f5"
+# 2.34.1
+# EGIT_COMMIT="89c49b6e40d3a9907ded10faa11ff8a59f5165d6"
 EGIT_SOURCEDIR="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
 
 # S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
@@ -45,7 +46,6 @@ RDEPEND=">=x11-libs/gtk+-2.20:2
 	media-libs/libcanberra[gtk]
 	gnome-base/libgtop
 	gnome-extra/zenity
-  >=gnome-base/gsettings-desktop-schemas-3.3.0
 	xinerama? ( x11-libs/libXinerama )
 	!x11-misc/expocity"
 
