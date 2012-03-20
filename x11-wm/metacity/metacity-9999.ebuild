@@ -74,11 +74,6 @@ pkg_setup() {
 		$(use_enable xinerama)"
 }
 
-# src_unpack() {
-#  ebegin "Unpack sources, not needed. This is git :)"
-#  eend 0
-#}
-
 src_prepare() {
 	gnome2_src_prepare
 
@@ -87,7 +82,6 @@ src_prepare() {
 	# https://bugs.gentoo.org/show_bug.cgi?id=309443
 	# https://bugzilla.gnome.org/show_bug.cgi?id=605460
 	epatch "${FILESDIR}/${PN}-2.28.1-wif_macros.patch"
-	epatch "${FILESDIR}/${PN}-9999_tab_no_pixmap.patch"
 
 	# Run autogen.sh
 	${S}/autogen.sh
