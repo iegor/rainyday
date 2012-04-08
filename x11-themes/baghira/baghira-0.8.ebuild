@@ -3,11 +3,15 @@
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/baghira/baghira-0.8.ebuild,v 1.4 2009/09/04 08:24:10 ssuominen Exp $
 
 ARTS_REQUIRED=never
-inherit kde
+inherit kde git-2
 
 DESCRIPTION="Baghira - an OS-X like style for KDE"
-HOMEPAGE="http://baghira.sourceforge.net/"
-SRC_URI="mirror://sourceforge/baghira/${P}.tar.bz2"
+#HOMEPAGE="http://baghira.sourceforge.net/"
+#SRC_URI="mirror://sourceforge/baghira/${P}.tar.bz2"
+
+EGIT_REPO_URI="git://github.com/iegor/x11-themes-baghira.git"
+EGIT_SOURCEDIR="${WORKDIR}/${PV}"
+EGIT_COMMIT="stable_8_0"
 
 LICENSE="GPL-2"
 SLOT="0"
