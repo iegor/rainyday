@@ -1,0 +1,35 @@
+diff -r -u kdepim-3.5.10.orig/kmail/kmcomposewin.cpp kdepim-3.5.10/kmail/kmcomposewin.cpp
+--- kdepim-3.5.10.orig/kmail/kmcomposewin.cpp	2008-08-19 21:15:47.000000000 +0300
++++ kdepim-3.5.10/kmail/kmcomposewin.cpp	2010-07-28 22:21:15.000000000 +0300
+@@ -155,7 +155,7 @@
+ 
+ //-----------------------------------------------------------------------------
+ KMComposeWin::KMComposeWin( KMMessage *aMsg, uint id  )
+-  : MailComposerIface(), KMail::Composer( "kmail-composer#" ),
++  : /*MailComposerIface(),*/ KMail::Composer( "kmail-composer#" ),
+     mSpellCheckInProgress( false ),
+     mDone( false ),
+     mAtmModified( false ),
+diff -r -u kdepim-3.5.10.orig/kmail/kmcomposewin.h kdepim-3.5.10/kmail/kmcomposewin.h
+--- kdepim-3.5.10.orig/kmail/kmcomposewin.h	2008-08-19 21:15:47.000000000 +0300
++++ kdepim-3.5.10/kmail/kmcomposewin.h	2010-07-28 22:20:57.000000000 +0300
+@@ -95,7 +95,7 @@
+ }
+ 
+ //-----------------------------------------------------------------------------
+-class KMComposeWin : public KMail::Composer, virtual public MailComposerIface
++class KMComposeWin : public KMail::Composer //, virtual public MailComposerIface
+ {
+   Q_OBJECT
+   friend class ::KMEdit;
+@@ -107,8 +107,8 @@
+ public:
+   static Composer * create( KMMessage * msg = 0, uint identity = 0 );
+ 
+-  MailComposerIface * asMailComposerIFace() { return this; }
+-  const MailComposerIface * asMailComposerIFace() const { return this; }
++  MailComposerIface * asMailComposerIFace() { return /*this*/ 0; }
++  const MailComposerIface * asMailComposerIFace() const { return /*this*/ 0; }
+ 
+ public: // mailserviceimpl
+   /**

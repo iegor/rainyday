@@ -1,0 +1,54 @@
+diff -ruN digikam-0.9.5.old/digikam/kioslave/digikamthumbnail.cpp digikam-0.9.5/digikam/kioslave/digikamthumbnail.cpp
+--- digikam-0.9.5.old/digikam/kioslave/digikamthumbnail.cpp	2009-03-16 13:21:53.000000000 +0100
++++ digikam-0.9.5/digikam/kioslave/digikamthumbnail.cpp	2010-06-30 10:25:52.000000000 +0200
+@@ -371,7 +371,7 @@
+     unsigned char buf[PNG_BYTES_TO_CHECK];
+ 
+     fread(buf, 1, PNG_BYTES_TO_CHECK, f);
+-    if (!png_check_sig(buf, PNG_BYTES_TO_CHECK))
++    if (png_sig_cmp(buf, 0, PNG_BYTES_TO_CHECK))
+     {
+         fclose(f);
+         return qimage;
+@@ -466,7 +466,7 @@
+     {
+         png_set_gray_to_rgb(png_ptr);
+         if (png_get_bit_depth(png_ptr, info_ptr) < 8)
+-            png_set_gray_1_2_4_to_8(png_ptr);
++            png_set_expand_gray_1_2_4_to_8(png_ptr);
+     }
+ 
+     int sizeOfUint = sizeof(unsigned int);
+diff -ruN digikam-0.9.5.old/digikam/libs/dimg/loaders/pngloader.cpp digikam-0.9.5/digikam/libs/dimg/loaders/pngloader.cpp
+--- digikam-0.9.5.old/digikam/libs/dimg/loaders/pngloader.cpp	2009-03-16 13:21:53.000000000 +0100
++++ digikam-0.9.5/digikam/libs/dimg/loaders/pngloader.cpp	2010-06-30 10:06:56.000000000 +0200
+@@ -88,7 +88,7 @@
+     unsigned char buf[PNG_BYTES_TO_CHECK];
+ 
+     fread(buf, 1, PNG_BYTES_TO_CHECK, f);
+-    if (!png_check_sig(buf, PNG_BYTES_TO_CHECK))
++    if (png_sig_cmp(buf, 0, PNG_BYTES_TO_CHECK))
+     {
+         DDebug() << k_funcinfo << "Not a PNG image file." << endl;
+         fclose(f);
+@@ -252,7 +252,7 @@
+ #ifdef ENABLE_DEBUG_MESSAGES
+                 DDebug() << "PNG in PNG_COLOR_TYPE_GRAY" << endl;
+ #endif
+-                png_set_gray_1_2_4_to_8(png_ptr);
++                png_set_expand_gray_1_2_4_to_8(png_ptr);
+                 png_set_gray_to_rgb(png_ptr);
+ 
+                 if (QImage::systemByteOrder() == QImage::LittleEndian)       // Intel
+diff -ruN digikam-0.9.5.old/digikam/libs/greycstoration/CImg.h digikam-0.9.5/digikam/libs/greycstoration/CImg.h
+--- digikam-0.9.5.old/digikam/libs/greycstoration/CImg.h	2009-03-16 13:21:53.000000000 +0100
++++ digikam-0.9.5/digikam/libs/greycstoration/CImg.h	2010-06-30 10:08:01.000000000 +0200
+@@ -29449,7 +29449,7 @@
+         new_bit_depth = 8;
+       }
+       if (new_color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8){
+-        png_set_gray_1_2_4_to_8(png_ptr);
++        png_set_expand_gray_1_2_4_to_8(png_ptr);
+         new_bit_depth = 8;
+       }
+       if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))

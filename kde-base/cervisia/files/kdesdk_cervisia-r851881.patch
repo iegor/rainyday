@@ -1,0 +1,123 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r851881.
+Only looking at subdirectory kdesdk/cervisia here.
+Logs since r849627 of the branch but this might be wrong.
+
+r851881 | woebbe
+Backport of rev. 847528:
+  M ChangeLog
+  M cvsservice/cvsloginjob.cpp
+  M repositories.cpp
+
+
+Index: repositories.cpp
+===================================================================
+--- kdesdk/cervisia/repositories.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdesdk/cervisia/repositories.cpp	 (.../branches/KDE/3.5)	(revision 851881)
+@@ -29,17 +29,29 @@
+ #include "cervisiapart.h"
+ 
+ 
++static QString fileNameCvs()
++{
++    return QDir::homeDirPath() + "/.cvspass";
++}
++
++
++static QString fileNameCvsnt()
++{
++    return QDir::homeDirPath() + "/.cvs/cvspass";
++}
++
++
+ // old .cvspass format:
+ //    user@host:/path Acleartext_password
+ //
+ // new .cvspass format (since cvs 1.11.1):
+ //    /1 user@host:port/path Aencoded_password
+ //
+-QStringList Repositories::readCvsPassFile()
++static QStringList readCvsPassFile()
+ {
+     QStringList list;
+-    
+-    QFile f(QDir::homeDirPath() + "/.cvspass");
++
++    QFile f(fileNameCvs());
+     if (f.open(IO_ReadOnly))
+         {
+             QTextStream stream(&f);
+@@ -55,13 +67,46 @@
+ 			    list.append(line.section(' ', 1, 1));
+ 		    }
+ 		}
+-            f.close();
+ 	}
+ 
+     return list;
+ }
+ 
+ 
++// .cvs/cvspass format
++//    user@host:port/path=Aencoded_password
++//
++static QStringList readCvsntPassFile()
++{
++    QStringList list;
++
++    QFile file(fileNameCvsnt());
++    if (file.open(IO_ReadOnly))
++    {
++        QTextStream stream(&file);
++        while (!stream.atEnd())
++        {
++            const QString line(stream.readLine());
++
++            const int pos(line.find("=A"));
++            if (pos >= 0)
++                list.append(line.left(pos));
++        }
++    }
++
++    return list;
++}
++
++
++QStringList Repositories::readCvsPassFile()
++{
++    return (QFileInfo(fileNameCvs()).lastModified()
++            < QFileInfo(fileNameCvsnt()).lastModified())
++        ? readCvsntPassFile()
++        : ::readCvsPassFile();
++}
++
++
+ QStringList Repositories::readConfigFile()
+ {
+     QStringList list;
+Index: ChangeLog
+===================================================================
+--- kdesdk/cervisia/ChangeLog	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdesdk/cervisia/ChangeLog	 (.../branches/KDE/3.5)	(revision 851881)
+@@ -1,3 +1,8 @@
++2008-08-15  André Wöbbeking  <Woebbeking@kde.org>
++
++	* Fix BR #162523:
++	  Allow cvsnt users to login to repositories.
++
+ 2008-06-18  André Wöbbeking  <Woebbeking@kde.org>
+ 
+ 	* Fix BR #164216:
+Index: cvsservice/cvsloginjob.cpp
+===================================================================
+--- kdesdk/cervisia/cvsservice/cvsloginjob.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdesdk/cervisia/cvsservice/cvsloginjob.cpp	 (.../branches/KDE/3.5)	(revision 851881)
+@@ -104,7 +104,8 @@
+         }
+ 
+         // process asks for the password
+-        if( line.contains(PASS_PHRASE) )
++        // search case insensitive as cvs and cvsnt use different capitalization
++        if( line.contains(PASS_PHRASE, false) )
+         {
+             kdDebug(8051) << "process waits for the password." << endl;
+ 

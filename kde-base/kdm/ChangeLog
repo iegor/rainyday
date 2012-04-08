@@ -1,0 +1,784 @@
+# ChangeLog for kde-base/kdm
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/ChangeLog,v 1.189 2009/11/08 23:34:43 alexxy Exp $
+
+  08 Nov 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.3.2.ebuild:
+  Drop KDE 4.3.2
+
+  08 Nov 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.4-r1.ebuild:
+  Drop KDE 4.2.4
+
+*kdm-4.3.3 (02 Nov 2009)
+
+  02 Nov 2009; Alex Alexander <wired@gentoo.org> +kdm-4.3.3.ebuild:
+  Version bump
+
+  01 Nov 2009; Jonathan Callen <abcd@gentoo.org> -kdm-4.2.4.ebuild,
+  -kdm-4.3.1.ebuild, -kdm-4.3.1-r1.ebuild:
+  Drop old revisions
+
+  23 Oct 2009; Jonathan Callen <abcd@gentoo.org> kdm-3.5.10.ebuild:
+  Make "make install" die on failure
+
+  18 Oct 2009; Markus Meier <maekke@gentoo.org> kdm-4.3.1-r2.ebuild:
+  x86 stable, bug #287697
+
+  13 Oct 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/kdm-3.5.7-bsd-shutdown.patch,
+  -files/kdm-3.5.9-respect-cflags.patch,
+  -files/kdm-4.3.0-oxygen-theme-installation.patch:
+  Clean out old patches
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> -kdm-3.5.9.ebuild:
+  KDE 3.5.9 removal
+
+  12 Oct 2009; Jonathan Callen <abcd@gentoo.org> kdm-3.5.9.ebuild:
+  Fix QA issues
+
+  10 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> kdm-4.3.1-r2.ebuild:
+  amd64 stable wrt #287697
+
+  08 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.3.0.ebuild,
+  -kdm-4.3.0-r1.ebuild:
+  Drop KDE 4.3.0
+
+*kdm-4.3.1-r2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.3.1-r2.ebuild,
+  +files/kdm-4.3.1-set-grub-default.patch, kdm-4.3.2.ebuild:
+  Backport set default in grub patch, fixes bug 242736
+
+*kdm-4.3.2 (06 Oct 2009)
+
+  06 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.3.2.ebuild:
+  Version bump
+
+*kdm-4.3.1-r1 (02 Oct 2009)
+
+  02 Oct 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +kdm-4.3.1-r1.ebuild, +files/kdm-4-gentoo-xinitrc.d.patch, metadata.xml:
+  Moved updated kdm ebuild from kde-testing overlay to the tree - thanks to
+  Maciej Mrozowski (reavertm).
+  Added Fabio kdm patch to 4.3.1 version (invoke xinirc.d scripts).
+
+*kdm-4.3.1 (01 Sep 2009)
+
+  01 Sep 2009; Theo Chatzimichos <tampakrap@gentoo.org> +kdm-4.3.1.ebuild:
+  Version bump
+
+*kdm-4.3.0-r1 (05 Aug 2009)
+
+  05 Aug 2009; Alex Alexander <wired@gentoo.org> +kdm-4.3.0-r1.ebuild,
+  +files/kdm-4.3.0-oxygen-theme-installation.patch:
+  fixed oxygen-air kdm theme installation
+
+*kdm-4.2.4-r1 (05 Aug 2009)
+
+  05 Aug 2009; Alex Alexander <wired@gentoo.org> +kdm-4.2.4-r1.ebuild:
+  rev bump, fixes bug 272664
+
+  04 Aug 2009; Alex Alexander <wired@gentoo.org> ChangeLog:
+  manifest update (upstream tarball changed)
+
+*kdm-4.3.0 (04 Aug 2009)
+
+  04 Aug 2009; Alex Alexander <wired@gentoo.org> +kdm-4.3.0.ebuild:
+  Version bump
+
+  12 Jul 2009; Raúl Porcel <armin76@gentoo.org> kdm-3.5.10.ebuild:
+  alpha/ia64/sparc stable wrt #271889
+
+  08 Jul 2009; Alexey Shvetsov <alexxy@gentoo.org> kdm-3.5.10.ebuild:
+  Add ~mips keywords
+
+  18 Jun 2009; Jeroen Roovers <jer@gentoo.org> kdm-3.5.10.ebuild:
+  Stable for HPPA (bug #271889).
+
+  14 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  -files/kdm-3.5.8-login.diff, -files/kdm-4.2.0-qt4.5_h.patch,
+  -files/kdm-4.2.0-qt4.5.patch:
+  Clean unneeded patches
+
+  14 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.3.ebuild:
+  Drop KDE 4.2.3
+
+  06 Jun 2009; Markus Meier <maekke@gentoo.org> kdm-3.5.10.ebuild:
+  amd64/x86 stable, bug #271889
+
+  04 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> kdm-4.2.4.ebuild:
+  Fix accidently added keywords
+
+*kdm-4.2.4 (04 Jun 2009)
+
+  04 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.2.4.ebuild:
+  Version bump
+
+  03 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.2.ebuild:
+  Drop KDE 4.2.2
+
+  03 Jun 2009; Brent Baude <ranger@gentoo.org> kdm-3.5.10.ebuild:
+  Marking kdm-3.5.10 ppc64 stable for bug 271889
+
+  31 May 2009; nixnut <nixnut@gentoo.org> kdm-3.5.10.ebuild:
+  ppc stable #271889
+
+*kdm-4.2.3 (06 May 2009)
+
+  06 May 2009; Tomas Chvatal <scarabeus@gentoo.org> +kdm-4.2.3.ebuild:
+  Version bump
+
+  17 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> kdm-4.2.2:
+  Restore ~hppa keywords
+
+  16 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.1.ebuild:
+  Drop KDE 4.2.1
+
+*kdm-4.2.2 (11 Apr 2009)
+
+  11 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.2.2.ebuild:
+  Add KDE 4.2.2
+
+  11 Apr 2009; Raúl Porcel <armin76@gentoo.org> kdm-4.2.1.ebuild:
+  Add ~alpha/~ia64 wrt #260777
+
+  11 Apr 2009; Jeroen Roovers <jer@gentoo.org> kdm-4.2.1.ebuild:
+  Marked ~hppa (bug #260777).
+
+  08 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.0.ebuild,
+  -kdm-4.2.0-r1.ebuild:
+  Drop KDE 4.2.0
+
+  08 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.2.0.ebuild,
+  -kdm-4.2.0-r1.ebuild:
+  Drop KDE 4.2.0
+
+  08 Mar 2009; Tomas Chvatal <scarabeus@gentoo.org> kdm-4.2.1.ebuild:
+  Semi-automatic merge, Update deps.
+
+  08 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  kdm-4.2.1.ebuild:
+  Changed the harddep on sys-libs/pam for virtual/pam.
+
+*kdm-4.2.1 (04 Mar 2009)
+
+  04 Mar 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.2.1.ebuild:
+  Bump KDE 4.2.1
+
+  17 Feb 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.1.4.ebuild:
+  Drop KDE 4.1.4
+
+*kdm-4.2.0-r1 (10 Feb 2009)
+
+  10 Feb 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/kdm-4.2.0-qt4.5_h.patch, +files/kdm-4.2.0-qt4.5.patch,
+  +kdm-4.2.0-r1.ebuild:
+  Apply patches to prevent crashes with Qt-4.5
+
+  01 Feb 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  kdm-4.2.0.ebuild:
+  Restored ~ppc and ~ppc64 keywords to KDE-4.2.0
+
+*kdm-4.2.0 (27 Jan 2009)
+
+  27 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.2.0.ebuild:
+  Bump KDE-4.2.0
+
+  14 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> -kdm-4.1.2.ebuild,
+  -kdm-4.1.3.ebuild:
+  Drop KDE 4.1.2 and 4.1.3
+
+*kdm-4.1.4 (13 Jan 2009)
+
+  13 Jan 2009; Alexey Shvetsov <alexxy@gentoo.org> +kdm-4.1.4.ebuild:
+  Bump to 4.1.4
+
+  15 Nov 2008; Mike Frysinger <vapier@gentoo.org> kdm-4.1.3.ebuild:
+  Add ppc/ppc64 love #244306.
+
+  15 Nov 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  kdm-4.1.3.ebuild:
+  Added a note on the ServerTimeout option in case kdm dies for X taking too
+  long to startup.
+
+*kdm-4.1.3 (08 Nov 2008)
+
+  08 Nov 2008; Tomas Chvatal <scarabeus@gentoo.org> +kdm-4.1.3.ebuild:
+  Version bump.
+
+  21 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  -kdm-4.0.4.ebuild, -kdm-4.0.5.ebuild:
+  Removing KDE-4.0.X packages now that 4.1.2 was put in the tree.
+
+*kdm-4.1.2 (02 Oct 2008)
+
+  02 Oct 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +kdm-4.1.2.ebuild:
+  Add kde-4.1.2 into the tree from the kde-testing overlay.
+
+*kdm-3.5.10 (13 Sep 2008)
+
+  13 Sep 2008; Carsten Lohrke <carlo@gentoo.org> +kdm-3.5.10.ebuild:
+  Version bump.
+
+  07 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org> -kdm-3.5.8-r1.ebuild,
+  -kdm-4.0.2.ebuild, -kdm-4.0.3.ebuild:
+  Removed old versions.
+
+  07 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org> -kdm-4.0.2.ebuild,
+  -kdm-4.0.3.ebuild:
+  Removed old versions.
+
+*kdm-4.0.5 (05 Jun 2008)
+
+  05 Jun 2008; Tobias Heinlein <keytoaster@gentoo.org> +kdm-4.0.5.ebuild:
+  Added the KDE 4.0.5 version of kdm.
+
+  18 May 2008; Markus Meier <maekke@gentoo.org> kdm-3.5.9.ebuild:
+  amd64/x86 stable, bug #221063
+
+*kdm-4.0.4 (15 May 2008)
+
+  15 May 2008; Ingmar Vanhassel <ingmar@gentoo.org> +kdm-4.0.4.ebuild:
+  Added KDE 4.0.4 version of kdm. Thanks to Jorge Manuel B. S. Vicetto.
+
+  15 May 2008; Markus Rothe <corsair@gentoo.org> kdm-3.5.9.ebuild:
+  Stable on ppc64; bug #221063
+
+  13 May 2008; Jeroen Roovers <jer@gentoo.org> kdm-3.5.9.ebuild:
+  Stable for HPPA (bug #221063).
+
+  12 May 2008; Brent Baude <ranger@gentoo.org> kdm-3.5.9.ebuild:
+  Marking kdm-3.5.9 ppc stable for bug 221063
+
+  12 May 2008; Raúl Porcel <armin76@gentoo.org> kdm-3.5.9.ebuild:
+  alpha/ia64/sparc stable wrt #221063
+
+*kdm-4.0.3 (03 Apr 2008)
+
+  03 Apr 2008; Wulf C. Krueger <philantrop@gentoo.org> +kdm-4.0.3.ebuild:
+  Version bump to KDE 4.0.3. This is still not intended for mainstream so DO
+  NOT KEYWORD IT without talking to the KDE herd first.
+
+  20 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -files/kdebase-4.0.1-pam-optional.patch, -kdm-4.0.1.ebuild:
+  Old.
+
+  20 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -files/kdebase-4.0.1-pam-optional.patch, -kdm-4.0.1.ebuild:
+  Old.
+
+  20 Mar 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -files/kdebase-4.0.1-pam-optional.patch, -kdm-4.0.1.ebuild:
+  Old.
+
+*kdm-4.0.2 (10 Mar 2008)
+
+  10 Mar 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdebase-4.0.2-pam-optional.patch, +kdm-4.0.2.ebuild:
+  Version bump to KDE 4.0.2
+
+  04 Mar 2008; Jeroen Roovers <jer@gentoo.org> kdm-3.5.8-r1.ebuild,
+  kdm-3.5.9.ebuild, kdm-4.0.1.ebuild:
+  Keyword split KDE for HPPA.
+
+*kdm-3.5.9 (20 Feb 2008)
+
+  20 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdm-3.5.9-respect-cflags.patch, +kdm-3.5.9.ebuild:
+  Version bump to KDE 3.5.9.
+
+  17 Feb 2008; Ingmar Vanhassel <ingmar@gentoo.org>
+  -files/kdm-3.5.5-grub-patch.diff, -files/kdm-3.5.7-login.diff,
+  -files/kdm-4.0.0-genkdmconf.patch,
+  -files/kdebase-4.0.0-pam-optional.patch, -kdm-3.5.5-r1.ebuild,
+  -kdm-3.5.6.ebuild, -kdm-3.5.6-r1.ebuild, -kdm-3.5.7.ebuild,
+  -kdm-3.5.7-r1.ebuild, -kdm-3.5.7-r2.ebuild, -kdm-3.5.7-r3.ebuild,
+  -kdm-3.5.8.ebuild, -kdm-4.0.0.ebuild:
+  Spring cleaning
+
+*kdm-4.0.1 (06 Feb 2008)
+
+  06 Feb 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdebase-4.0.1-pam-optional.patch, +kdm-4.0.1.ebuild:
+  Version bump to KDE 4.0.1.
+
+  31 Jan 2008; Brent Baude <ranger@gentoo.org> kdm-3.5.8-r1.ebuild:
+  Marking kdm-3.5.8-r1 ppc for bug 207634
+
+  30 Jan 2008; Brent Baude <ranger@gentoo.org> kdm-3.5.8-r1.ebuild:
+  Marking kdm-3.5.8-r1 ppc64 for bug 207634
+
+  30 Jan 2008; Christian Faulhammer <opfer@gentoo.org> kdm-3.5.8-r1.ebuild:
+  stable x86, bug 207634
+
+  29 Jan 2008; Raúl Porcel <armin76@gentoo.org> kdm-3.5.8-r1.ebuild:
+  alpha/ia64/sparc stable wrt #207634
+
+  28 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> kdm-3.5.8-r1.ebuild:
+  Marked stable on amd64 as per bug 207634.
+
+  18 Jan 2008; Ingmar Vanhassel <ingmar@gentoo.org> kdm-4.0.0.ebuild:
+  RDEPEND on >=x11-apps/xinit-1.0.5-r2, which has a patch that allows users to
+  specify what version of kdm they want to start.
+
+  18 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdm-4.0.0-genkdmconf.patch,
+  +files/kdebase-4.0.0-pam-optional.patch:
+  Added patches.
+
+*kdm-4.0.0 (17 Jan 2008)
+
+  17 Jan 2008; Wulf C. Krueger <philantrop@gentoo.org> +kdm-4.0.0.ebuild:
+  Added KDE 4.0.0's kdm.
+
+  05 Dec 2007; Peter Weller <welp@gentoo.org> kdm-3.5.7-r3.ebuild:
+  Stable on amd64
+
+  04 Dec 2007; Raúl Porcel <armin76@gentoo.org> kdm-3.5.7-r3.ebuild:
+  alpha/ia64/sparc stable
+
+  04 Dec 2007; Dawid Węgliński <cla@gentoo.org> kdm-3.5.7-r3.ebuild:
+  Stable on x86
+
+  02 Dec 2007; Markus Rothe <corsair@gentoo.org> kdm-3.5.7-r3.ebuild:
+  Stable on ppc64
+
+  02 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org> kdm-3.5.7-r3.ebuild:
+  ppc stable, bug #200856
+
+*kdm-3.5.7-r3 (01 Dec 2007)
+
+  01 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org> +kdm-3.5.7-r3.ebuild:
+  Added an upstream patch to fix some KDM login issues. Fixes bug 200856.
+
+*kdm-3.5.8-r1 (01 Dec 2007)
+
+  01 Dec 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdm-3.5.8-login.diff, +kdm-3.5.8-r1.ebuild:
+  Added an upstream patch to fix some login issues. Fixes bug 200856.
+
+*kdm-3.5.8 (19 Oct 2007)
+
+  19 Oct 2007; Wulf C. Krueger <philantrop@gentoo.org> +kdm-3.5.8.ebuild:
+  Bump to KDE 3.5.8.
+
+  26 Sep 2007; Raúl Porcel <armin76@gentoo.org> kdm-3.5.7-r2.ebuild:
+  sparc stable wrt security #185603
+
+  20 Sep 2007; Tobias Scherbaum <dertobi123@gentoo.org> kdm-3.5.7-r2.ebuild:
+  ppc stable, bug #192373
+
+  14 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org> kdm-3.5.7-r2.ebuild:
+  Marked stable on amd64 as per bug 192373.
+
+  13 Sep 2007; Markus Rothe <corsair@gentoo.org> kdm-3.5.7-r2.ebuild:
+  Stable on ppc64
+
+  13 Sep 2007; Raúl Porcel <armin76@gentoo.org> kdm-3.5.7-r2.ebuild:
+  alpha/ia64/x86 stable wrt #192373
+
+*kdm-3.5.7-r2 (12 Sep 2007)
+
+  12 Sep 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  +files/kdm-3.5.7-login.diff, +kdm-3.5.7-r2.ebuild:
+  Added an upstream patch to correct a potential login issue.
+
+*kdm-3.5.7-r1 (20 Aug 2007)
+
+  20 Aug 2007; Roy Marples <uberlord@gentoo.org>
+  +files/kdm-3.5.7-bsd-shutdown.patch, +kdm-3.5.7-r1.ebuild:
+  Fix shutdown on BSD, #165838
+
+  11 Aug 2007; Raúl Porcel <armin76@gentoo.org> kdm-3.5.7.ebuild:
+  x86 stable wrt #185823
+
+  10 Aug 2007; Christoph Mende <angelos@gentoo.org> kdm-3.5.7.ebuild:
+  Stable on amd64 wrt bug #176297
+
+  09 Aug 2007; Markus Rothe <corsair@gentoo.org> kdm-3.5.7.ebuild:
+  Stable on ppc64; bug #176297
+
+  08 Aug 2007; Raúl Porcel <armin76@gentoo.org> kdm-3.5.7.ebuild:
+  alpha/ia64 stable wrt #176297
+
+  08 Aug 2007; Joseph Jezak <josejx@gentoo.org> kdm-3.5.7.ebuild:
+  Marked ppc stable.
+
+  07 Aug 2007; Gustavo Zacarias <gustavoz@gentoo.org> kdm-3.5.7.ebuild:
+  Stable on sparc wrt #176297
+
+  22 Jul 2007; David Shakaryan <omp@gentoo.org> kdm-3.5.5-r1.ebuild,
+  kdm-3.5.6.ebuild:
+  Remove virtual/x11 from dependencies.
+
+*kdm-3.5.7 (22 May 2007)
+
+  22 May 2007; Carsten Lohrke <carlo@gentoo.org> +kdm-3.5.7.ebuild:
+  Version bump.
+
+*kdm-3.5.6-r1 (30 Apr 2007)
+
+  30 Apr 2007; Carsten Lohrke <carlo@gentoo.org> +kdm-3.5.6-r1.ebuild:
+  Remove virtual/x11 dependency, use new patch set. Minor fixes.
+
+  05 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
+  -files/kdebase-3.4.3-noimake.patch, -files/kdebase-3.4.3-xdmcp.patch,
+  -files/post-3.5.0-kdebase-kdm.diff,
+  -files/kdm-3.5.3-strict-aliasing.patch, -files/kdm-3.5.4-grub-patch.diff,
+  -files/kdm-3.5.4-strict-aliasing.patch:
+  Remove unneeded patches.
+
+  04 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.5.2-r1.ebuild:
+  Remove old versions.
+
+  17 Jan 2007; Carsten Lohrke <carlo@gentoo.org> kdm-3.5.6.ebuild:
+  Hardcode patch.
+
+*kdm-3.5.6 (16 Jan 2007)
+
+  16 Jan 2007; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5.6.ebuild:
+  Bump to 3.5.6 (prerelease).
+
+  11 Dec 2006; <kloeri@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Stable on ia64.
+
+  06 Dec 2006; <kloeri@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Stable on Alpha.
+
+  01 Dec 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.2-r1.ebuild,
+  kdm-3.5.5-r1.ebuild:
+  Make support for hidden visibility explicit.
+
+  26 Nov 2006; Markus Rothe <corsair@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Stable on ppc64
+
+  18 Nov 2006; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.5.3-r2.ebuild,
+  -kdm-3.5.4.ebuild, -kdm-3.5.4-r1.ebuild, -kdm-3.5.4-r2.ebuild,
+  -kdm-3.5.5.ebuild:
+  Remove old versions.
+
+  16 Nov 2006; Joseph Jezak <josejx@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Marked ppc stable for bug #147570.
+
+  14 Nov 2006; Gustavo Zacarias <gustavoz@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Stable on sparc wrt #147570
+
+  13 Nov 2006; Danny van Dyk <kugelfang@gentoo.org> kdm-3.5.5-r1.ebuild:
+  Marked stable on amd64 wrt bug #147570.
+
+  13 Nov 2006; Christian Faulhammer <opfer@gentoo.org> kdm-3.5.5-r1.ebuild:
+  "Stable x86, bug #147570"
+
+*kdm-3.5.5-r1 (05 Nov 2006)
+
+  05 Nov 2006; Ioannis Aslanidis <deathwing00@gentoo.org>
+  +files/kdm-3.5.5-grub-patch.diff, +kdm-3.5.5-r1.ebuild:
+  Regenerated and included a new grub-set-default patch as requested in bug
+  #153544.
+
+  07 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> Manifest:
+  Regenerate digest (this time hopefully..).
+
+  07 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
+  Regenerate digest.
+
+  05 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> files/digest-kdm-3.5.5,
+  Manifest:
+  Regenerate digest.
+
+*kdm-3.5.5 (03 Oct 2006)
+
+  03 Oct 2006; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5.5.ebuild:
+  Bump to 3.5.5 (pre-release).
+
+*kdm-3.5.4-r2 (18 Sep 2006)
+
+  18 Sep 2006; Carsten Lohrke <carlo@gentoo.org> +kdm-3.5.4-r2.ebuild:
+  Fix a mem leak. Dependency changes, fixes bug #140582.
+
+  17 Sep 2006; Carsten Lohrke <carlo@gentoo.org> -kdm-3.4.3-r1.ebuild,
+  -kdm-3.4.3-r2.ebuild:
+  Drop KDE 3.4.
+
+  03 Sep 2006; Bryan Østergaard <kloeri@gentoo.org> kdm-3.5.2-r1.ebuild:
+  Stable on ia64.
+
+*kdm-3.5.4-r1 (30 Aug 2006)
+
+  30 Aug 2006; Ioannis Aslanidis <deathwing00@gentoo.org>
+  +files/kdm-3.5.4-grub-patch.diff, +kdm-3.5.4-r1.ebuild:
+  Added a new patch that parses the grub configuration file correctly and
+  allows to reboot into the kernel or operating system of choice using the
+  grub-set-default feature. Fixes bug #139603.
+
+  25 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/kdm-3.5.4-strict-aliasing.patch, kdm-3.5.4.ebuild:
+  Fix patch for strict aliasing as the old one won't apply (half applied
+  upstream).
+
+*kdm-3.5.4 (25 Jul 2006)
+
+  25 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5.4.ebuild:
+  Bump to 3.5.4 (pre-release).
+
+  15 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.3-r2.ebuild:
+  Patch also the latest version that I forgot yesterday.
+
+  14 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.2-r1.ebuild:
+  Don't enable shadow when pam is disabled on anything but glibc, as that is a
+  GNU extension. Thanks to Timothy Redaelli for reporting.
+
+  09 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.2-r1.ebuild,
+  kdm-3.5.3-r2.ebuild:
+  Pinpoint virtual/x11 version to less than 7.
+
+  01 Jul 2006; Daniel Black <dragonheart@gentoo.org> Manifest:
+  removed stray kdm-3.5.2-r1.ebuild.orig ended up in manifest. Thanks to Bread
+  on #gentoo-bugs
+
+  28 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.5.2.ebuild,
+  kdm-3.5.2-r1.ebuild, -kdm-3.5.3.ebuild, -kdm-3.5.3-r1.ebuild,
+  kdm-3.5.3-r2.ebuild:
+  Add dependency over xinit or x11 for the xdm init.d script. Thanks to
+  Michael Weyershäuser for reporting.
+
+*kdm-3.5.3-r2 (17 Jun 2006)
+
+  17 Jun 2006; Diego Pettenò <flameeyes@gentoo.org>
+  +files/kdm-3.5.3-strict-aliasing.patch, +kdm-3.5.3-r2.ebuild:
+  Add patch to fix strict-aliasing breakages.
+
+  17 Jun 2006; Carsten Lohrke <carlo@gentoo.org> kdm-3.4.3-r2.ebuild,
+  kdm-3.5.2-r1.ebuild:
+  Stable on x86.
+
+  15 Jun 2006; Markus Rothe <corsair@gentoo.org> kdm-3.4.3-r2.ebuild,
+  kdm-3.5.2-r1.ebuild:
+  Stable on ppc64; bug #136201
+
+  15 Jun 2006; Thomas Cort <tcort@gentoo.org> kdm-3.4.3-r2.ebuild,
+  kdm-3.5.2-r1.ebuild:
+  Stable on alpha and amd64 wrt security Bug #136201.
+
+  14 Jun 2006; Carsten Lohrke <carlo@gentoo.org>
+  +files/post-3.5.0-kdebase-kdm.diff:
+  Missed to commit patch.
+
+*kdm-3.5.3-r1 (14 Jun 2006)
+*kdm-3.5.2-r1 (14 Jun 2006)
+*kdm-3.4.3-r2 (14 Jun 2006)
+
+  14 Jun 2006; Carsten Lohrke <carlo@gentoo.org> +kdm-3.4.3-r2.ebuild,
+  +kdm-3.5.2-r1.ebuild, +kdm-3.5.3-r1.ebuild:
+  Fix KDM symlink attack vulnerability, bug #136201.
+
+  11 Jun 2006; Carsten Lohrke <carlo@gentoo.org> kdm-3.5.2.ebuild:
+  Restore keywords.
+
+  11 Jun 2006; Carsten Lohrke <carlo@gentoo.org> kdm-3.5.2.ebuild,
+  kdm-3.5.3.ebuild:
+  Adjust ebuilds to kde_src_unpack() patch handling changes.
+
+*kdm-3.5.3 (01 Jun 2006)
+
+  01 Jun 2006; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5.3.ebuild:
+  Update to new release.
+
+  01 Jun 2006; Thomas Cort <tcort@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on alpha wrt Bug #132213.
+
+  29 May 2006; Jason Wever <weeve@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on SPARC wrt bug #132213.
+
+  29 May 2006; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.4.1.ebuild,
+  -kdm-3.4.2.ebuild, -kdm-3.4.3.ebuild:
+  Drop old versions.
+
+  26 May 2006; Markus Rothe <corsair@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on ppc64
+
+  26 May 2006; Chris Gianelloni <wolf31o2@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on amd64 wrt bug #132213
+
+  26 May 2006; Markus Rothe <corsair@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on ppc64
+
+  25 May 2006; Chris Gianelloni <wolf31o2@gentoo.org> kdm-3.5.2.ebuild:
+  Stable on x86 wrt bug #132213
+
+  22 Apr 2006; Carsten Lohrke <carlo@gentoo.org> kdm-3.5.2.ebuild:
+  Missing dependency, bug #120258.
+
+  05 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.5.0.ebuild,
+  -kdm-3.5.1.ebuild:
+  Removed old 3.5.0/3.5.1 packages.
+
+  01 Apr 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.2.ebuild:
+  Add ~x86-fbsd keyword.
+
+  27 Mar 2006; Aron Griffis <agriffis@gentoo.org> kdm-3.5.0.ebuild,
+  kdm-3.5.1.ebuild, kdm-3.5.2.ebuild:
+  Mark 3.5.2 3.5.1 3.5.0 ~ia64
+
+  27 Mar 2006; Aron Griffis <agriffis@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Mark 3.4.3-r1 stable on ia64. #112842
+
+  24 Mar 2006; Diego Pettenò <flameeyes@gentoo.org> kdm-3.5.2.ebuild:
+  Respect user-defined LDFLAGS.
+
+*kdm-3.5.2 (22 Mar 2006)
+
+  22 Mar 2006; Dan Armak <danarmak@gentoo.org> +kdm-3.5.2.ebuild:
+  KDE 3.5.2. Not yet released upstream, and so package.masked for now.
+
+*kdm-3.5.1 (23 Jan 2006)
+
+  23 Jan 2006; Dan Armak <danarmak@gentoo.org> +kdm-3.5.1.ebuild:
+  Version 3.5.1. Not yet released upstream, so package.masked for now.
+
+  14 Jan 2006; Diego Pettenò <flameeyes@gentoo.org>
+  -files/kdebase-3.5.0_beta2-noimake.patch, kdm-3.5.0.ebuild:
+  Use patch from tarball in mirrors.
+
+  17 Dec 2005; Markus Rothe <corsair@gentoo.org> kdm-3.5.0.ebuild:
+  Added ~ppc64
+
+  10 Dec 2005; Bryan Østergaard <kloeri@gentoo.org kdm-3.4.3-r1.ebuild:
+  Stable on alpha.
+
+  10 Dec 2005; Chris White <chriswhite@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Marked x86 stable for bug #112842.
+
+  09 Dec 2005; Joseph Jezak <josejx@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Marked ppc stable for bug #112842.
+
+  04 Dec 2005; Bryan Østergaard <kloeri@gentoo.org> kdm-3.5.0.ebuild:
+  ~alpha keyword.
+
+  29 Nov 2005; Jason Wever <weeve@gentoo.org> kdm-3.5.0.ebuild:
+  Added ~sparc keyword.
+
+  24 Nov 2005; Marcus D. Hanwell <cryos@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Stable on amd64, bug 112842.
+
+  24 Nov 2005; Markus Rothe <corsair@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Stable on ppc64
+
+  24 Nov 2005; Gustavo Zacarias <gustavoz@gentoo.org> kdm-3.4.3-r1.ebuild:
+  Stable on sparc wrt #112842
+
+*kdm-3.5.0 (22 Nov 2005)
+
+  22 Nov 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.5.0.ebuild:
+  Ebuilds for KDE 3.5.0 final. It is not yet released, and is package.masked.
+
+*kdm-3.5.0_rc1 (12 Nov 2005)
+
+  12 Nov 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.5.0_rc1.ebuild:
+  Ebuild for new version 3.5.0_rc1.
+
+*kdm-3.5.0_rc1 (12 Nov 2005)
+
+  12 Nov 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.5.0_rc1.ebuild:
+  Ebuild for new version 3.5.0_rc1.
+
+  21 Oct 2005; Douglas Russell <puggy@gentoo.org> kdm-3.5.0_beta2.ebuild:
+  Keyword ~ppc
+
+*kdm-3.4.3-r1 (19 Oct 2005)
+
+  19 Oct 2005; Gregorio Guidi <greg_g@gentoo.org>
+  +files/kdebase-3.4.3-noimake.patch, +files/kdebase-3.4.3-xdmcp.patch,
+  +files/kdebase-3.5.0_beta2-noimake.patch, +kdm-3.4.3-r1.ebuild,
+  kdm-3.5.0_beta2.ebuild:
+  Add patch to fix segfault in XDMCP (#109528). Add patch to compile without
+  imake (#102780).
+
+*kdm-3.5.0_beta2 (14 Oct 2005)
+
+  14 Oct 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.5.0_beta2.ebuild:
+  New version.
+
+*kdm-3.4.3 (13 Oct 2005)
+
+  13 Oct 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.4.3.ebuild:
+  New version.
+
+  09 Oct 2005; Petteri Räty <betelgeuse@gentoo.org> kdm-3.5_beta1.ebuild:
+  Added ~x86 keyword.
+
+  24 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> -kdm-3.5_alpha1.ebuild:
+  Removed 3.5_alpha1.
+
+*kdm-3.5_beta1 (22 Sep 2005)
+
+  22 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5_beta1.ebuild:
+  Bump to 3.5 beta1.
+
+*kdm-3.5_alpha1 (07 Sep 2005)
+
+  07 Sep 2005; Diego Pettenò <flameeyes@gentoo.org> +kdm-3.5_alpha1.ebuild:
+  Added 3.5_alpha1 split ebuild.
+
+  08 Aug 2005; Bryan Østergaard <kloeri@gentoo.org> kdm-3.4.2.ebuild:
+  ~alpha keyword.
+
+*kdm-3.4.2 (28 Jul 2005)
+
+  28 Jul 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.4.2.ebuild:
+  Version bump to 3.4.2.
+
+  08 Jul 2005; Jason Wever <weeve@gentoo.org> kdm-3.4.1.ebuild:
+  Stable on SPARC.
+
+  02 Jul 2005; Lars Weiler <pylon@gentoo.org> kdm-3.4.1.ebuild:
+  Stable on ppc; Bug #97544.
+
+  01 Jul 2005; Markus Rothe <corsair@gentoo.org> kdm-3.4.1.ebuild:
+  Stable on ppc64 (bug #97544)
+
+*kdm-3.4.1 (25 May 2005)
+
+  25 May 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.4.1.ebuild:
+  Ebuilds for KDE 3.4.1. These are package.masked until 3.4.1 is actually
+  released. You can't get the tarballs yet.
+
+  27 Apr 2005; Markus Rothe <corsair@gentoo.org> kdm-3.4.0.ebuild:
+  Added ~ppc64 to KEYWORDS
+
+  20 Mar 2005; Jason Wever <weeve@gentoo.org> kdm-3.4.0.ebuild:
+  Added ~sparc keyword.
+
+  18 Mar 2005; Daniel Goller <morfic@gentoo.org> kdm-3.4.0.ebuild:
+  Added to ~ppc
+
+  13 Mar 2005; Dan Armak <danarmak@gentoo.org> kdm-3.4.0.ebuild:
+  KDE 3.4.0 ebuilds. Note that the tarballs won't be officially released for a
+  few more days.
+
+  02 Mar 2005; Marcus D. Hanwell <cryos@gentoo.org> kdm-3.4.0_rc1.ebuild:
+  Marked ~amd64, keywording KDE split ebuilds, bug 80944.
+
+*kdm-3.4.0_rc1 (27 Feb 2005)
+
+  27 Feb 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.4.0_rc1.ebuild:
+  Ebuild for 3.4.0 RC1.
+
+*kdm-3.4.0_beta2 (05 Feb 2005)
+
+  05 Feb 2005; Dan Armak <danarmak@gentoo.org> +kdm-3.4.0_beta2.ebuild:
+  Ebuild for 3.4.0_beta2. Note that beta2 has NOT been released as of this
+  date. This ebuild is for inside testing by the KDE team, and is of course
+  package.masked.
+
+  02 Feb 2005; Dan Armak <danarmak@gentoo.org> kdm-3.4.0_beta1.ebuild:
+  Add support for SVG files; closes bug #80272.
+
+*kdm-3.4.0_beta1 (15 Jan 2005)
+
+  15 Jan 2005; Dan Armak <danarmak@gentoo.org> +metadata.xml,
+  +files/agent-shutdown.sh, +files/agent-startup.sh, +files/kde-np.pam,
+  +files/kde.pam, +kdm-3.4.0_beta1.ebuild:
+  Adding the split ebuilds to portage. For KDE 3.4, we've created separate
+  ebuilds for all the KDE apps.
+

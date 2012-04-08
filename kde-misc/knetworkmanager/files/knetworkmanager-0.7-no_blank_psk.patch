@@ -1,0 +1,18 @@
+diff -r -u knetworkmanager.orig/knetworkmanager-0.7/src/knetworkmanager-connection_setting_wireless_security.cpp knetworkmanager/knetworkmanager-0.7/src/knetworkmanager-connection_setting_wireless_security.cpp
+--- knetworkmanager.orig/knetworkmanager-0.7/src/knetworkmanager-connection_setting_wireless_security.cpp	2008-11-04 14:53:45.000000000 +0000
++++ knetworkmanager/knetworkmanager-0.7/src/knetworkmanager-connection_setting_wireless_security.cpp	2010-01-14 22:52:35.882729431 +0000
+@@ -290,14 +290,9 @@
+ 			map.insert(NM_SETTING_WIRELESS_SECURITY_PAIRWISE, QDBusData::fromQValueList(ciphers));
+ 	}
+ 
+-	if (!_psk.isNull())
+-		map.insert(NM_SETTING_WIRELESS_SECURITY_PSK, QDBusData::fromString(""));
+-
+ 	if (!_leapUsername.isEmpty())
+ 		map.insert(NM_SETTING_WIRELESS_SECURITY_LEAP_USERNAME, QDBusData::fromString(_leapUsername));
+ 
+-	if (!_leapPassword.isEmpty())
+-		map.insert(NM_SETTING_WIRELESS_SECURITY_LEAP_PASSWORD, QDBusData::fromString(""));
+ 	return map;
+ }
+ 

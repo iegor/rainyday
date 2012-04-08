@@ -1,0 +1,24 @@
+diff -Naur showimg-0.9.5.old/showimg/kexi/kexidb/queryschema.h showimg-0.9.5/showimg/kexi/kexidb/queryschema.h
+--- showimg-0.9.5.old/showimg/kexi/kexidb/queryschema.h	2006-01-07 00:47:47.000000000 -0800
++++ showimg-0.9.5/showimg/kexi/kexidb/queryschema.h	2009-10-18 13:04:36.000000000 -0700
+@@ -492,7 +492,7 @@
+  There can be one asterisk of 2nd type defined for given single query.
+ */
+ 
+-class KEXI_DB_EXPORT QueryAsterisk : protected Field
++class KEXI_DB_EXPORT QueryAsterisk : public Field
+ {
+ 	public:
+ 		/*! Constructs query asterisk definition object.
+diff -Naur showimg-0.9.5.old/showimg/showimg/misc/exif.cpp showimg-0.9.5/showimg/showimg/misc/exif.cpp
+--- showimg-0.9.5.old/showimg/showimg/misc/exif.cpp	2006-01-07 00:47:58.000000000 -0800
++++ showimg-0.9.5/showimg/showimg/misc/exif.cpp	2009-10-18 13:03:57.000000000 -0700
+@@ -409,7 +409,7 @@
+     // If the filename contains substring "&i", then substitute the
+     // filename for that.  This gives flexibility in terms of processing
+     // multiple files at a time.
+-    char * Subst;
++    const char * Subst;
+     Subst = strstr(NamePattern, "&i");
+     if (Subst){
+         strncpy(OutFileName, NamePattern, Subst-NamePattern);

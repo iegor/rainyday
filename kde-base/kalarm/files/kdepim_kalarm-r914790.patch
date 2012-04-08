@@ -1,0 +1,921 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r914790.
+Only looking at subdirectory kdepim/kalarm here.
+Logs since r849627 of the branch but this might be wrong.
+
+r856010 | djarvie
+Require a real double click to select a template
+  M Changelog
+  M kalarm.h
+  M templatepickdlg.cpp
+r870942 | djarvie
+Fix inability to change or cancel alarm deferral times.
+  M Changelog
+  M editdlg.cpp
+r870961 | djarvie
+Prevent defer dialog date being set outside the allowed range
+  M Changelog
+  M lib/dateedit.cpp
+r895458 | djarvie
+Fix failure to update alarms in KOrganizer when Kontact is running.
+  M Changelog
+  M functions.cpp
+r895873 | djarvie
+Make mouse wheel work, and fix highlighting, for left-hand time spinbox buttons in Plastik style.
+  M Changelog
+  M lib/spinbox.cpp
+  M lib/spinbox.h
+  M lib/spinbox2.cpp
+  M lib/spinbox2private.h
+r900917 | djarvie
+Remove obsolete i18n string
+  M recurrenceedit.cpp
+r902304 | djarvie
+Ensure alarm windows show on top of full-screen windows.
+  M Changelog
+  M messagewin.cpp
+r906337 | djarvie
+Fix invalid alarm remaining in calendar when pre-alarm action failure message is acknowledged before the alarm is...
+  M Changelog
+  M messagewin.cpp
+r907395 | djarvie
+Prevent corrupt alarms if deferral reinstates from archived alarm instead of from the displaying calendar.
+  M Changelog
+  M alarmevent.cpp
+r908282 | djarvie
+Ignore events in calendar without usable alarms (which prevents them getting stuck in the alarm list, and fixes...
+  M Changelog
+  M alarmcalendar.cpp
+r914790 | djarvie
+Cancel screensaver when an alarm is displayed.
+  M Changelog
+  M Makefile.am
+  M functions.cpp
+  M functions.h
+  M kalarmapp.cpp
+
+
+Index: alarmevent.cpp
+===================================================================
+--- kdepim/kalarm/alarmevent.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/alarmevent.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  alarmevent.cpp  -  represents calendar alarms and events
+  *  Program:  kalarm
+- *  Copyright © 2001-2008 by David Jarvie <djarvie@kde.org>
++ *  Copyright © 2001-2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -149,8 +149,10 @@
+ 
+ inline void KAEvent::set_reminder(int minutes)
+ {
+-	if (!mReminderMinutes)
++	if (minutes  &&  !mReminderMinutes)
+ 		++mAlarmCount;
++	else if (!minutes  &&  mReminderMinutes)
++		--mAlarmCount;
+ 	mReminderMinutes        = minutes;
+ 	mArchiveReminderMinutes = 0;
+ }
+@@ -856,9 +858,12 @@
+ 
+ void KAEvent::setReminder(int minutes, bool onceOnly)
+ {
+-	set_reminder(minutes);
+-	mReminderOnceOnly = onceOnly;
+-	mUpdated          = true;
++	if (minutes != mReminderMinutes)
++	{
++		set_reminder(minutes);
++		mReminderOnceOnly = onceOnly;
++		mUpdated          = true;
++	}
+ }
+ 
+ /******************************************************************************
+Index: messagewin.cpp
+===================================================================
+--- kdepim/kalarm/messagewin.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/messagewin.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  messagewin.cpp  -  displays an alarm message
+  *  Program:  kalarm
+- *  Copyright © 2001-2007 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2001-2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -87,6 +87,8 @@
+ static const int proximityButtonDelay = 1000;    // (milliseconds)
+ static const int proximityMultiple = 10;         // multiple of button height distance from cursor for proximity
+ 
++static bool wantModal();
++
+ // A text label widget which can be scrolled and copied with the mouse
+ class MessageText : public QTextEdit
+ {
+@@ -143,7 +145,7 @@
+ */
+ MessageWin::MessageWin(const KAEvent& event, const KAAlarm& alarm, bool reschedule_event, bool allowDefer)
+ 	: MainWindowBase(0, "MessageWin", WFLAGS | Qt::WGroupLeader | Qt::WStyle_ContextHelp
+-	                                         | (Preferences::modalMessages() ? 0 : Qt::WX11BypassWM)),
++	                                         | (wantModal() ? 0 : Qt::WX11BypassWM)),
+ 	  mMessage(event.cleanText()),
+ 	  mFont(event.font()),
+ 	  mBgColour(event.bgColour()),
+@@ -598,8 +600,10 @@
+ 	topLayout->activate();
+ 	setMinimumSize(QSize(grid->sizeHint().width() + 2*KDialog::marginHint(), sizeHint().height()));
+ 
++	bool modal = !(getWFlags() & Qt::WX11BypassWM);
++
++	unsigned long wstate = (modal ? NET::Modal : 0) | NET::Sticky | NET::KeepAbove;
+ 	WId winid = winId();
+-	unsigned long wstate = (Preferences::modalMessages() ? NET::Modal : 0) | NET::Sticky | NET::StaysOnTop;
+ 	KWin::setState(winid, wstate);
+ 	KWin::setOnAllDesktops(winid, true);
+ }
+@@ -871,7 +875,6 @@
+ 		initAudio(true);
+ 		if (!mPlayObject->object().isNull())
+ 			checkAudioPlay();
+-#if KDE_VERSION >= 308
+ 		if (!mUsingKMix  &&  mVolume >= 0)
+ 		{
+ 			// Output error message now that everything else has been done.
+@@ -884,7 +887,6 @@
+ 				clearErrorMessage(ErrMsg_Volume);
+ 			}
+ 		}
+-#endif
+ 	}
+ #endif
+ }
+@@ -1395,7 +1397,7 @@
+ void MessageWin::closeEvent(QCloseEvent* ce)
+ {
+ 	// Don't prompt or delete the alarm from the display calendar if the session is closing
+-	if (!theApp()->sessionClosingDown())
++	if (!mErrorWindow  &&  !theApp()->sessionClosingDown())
+ 	{
+ 		if (mConfirmAck  &&  !mNoCloseConfirm)
+ 		{
+@@ -1639,6 +1641,26 @@
+ }
+ 
+ 
++/******************************************************************************
++* Check whether the message window should be modal, i.e. with title bar etc.
++* Normally this follows the Preferences setting, but if there is a full screen
++* window displayed, on X11 the message window has to bypass the window manager
++* in order to display on top of it (which has the side effect that it will have
++* no window decoration).
++*/
++bool wantModal()
++{
++	bool modal = Preferences::modalMessages();
++	if (modal)
++	{
++		KWinModule wm(0, KWinModule::INFO_DESKTOP);
++		KWin::WindowInfo wi = KWin::windowInfo(wm.activeWindow(), NET::WMState);
++		modal = !(wi.valid()  &&  wi.hasState(NET::FullScreen));
++	}
++	return modal;
++}
++
++
+ /*=============================================================================
+ = Class MWMimeSourceFactory
+ * Gets the mime type of a text file from not only its extension (as per
+Index: templatepickdlg.cpp
+===================================================================
+--- kdepim/kalarm/templatepickdlg.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/templatepickdlg.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  templatepickdlg.cpp  -  dialogue to choose an alarm template
+  *  Program:  kalarm
+- *  Copyright (C) 2004 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2004,2008 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -47,7 +47,8 @@
+ 	mTemplateList->setSelectionMode(QListView::Single);
+ 	mTemplateList->refresh();      // populate the template list
+ 	connect(mTemplateList, SIGNAL(selectionChanged()), SLOT(slotSelectionChanged()));
+-	connect(mTemplateList, SIGNAL(executed(QListViewItem*)), SLOT(slotOk()));
++	// Require a real double click (even if KDE is in single-click mode) to accept the selection
++	connect(mTemplateList, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)), SLOT(slotOk()));
+ 	topLayout->addWidget(mTemplateList);
+ 
+ 	slotSelectionChanged();        // enable or disable the OK button
+Index: editdlg.cpp
+===================================================================
+--- kdepim/kalarm/editdlg.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/editdlg.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1522,7 +1522,8 @@
+ 	bool limit = true;
+ 	int repeatInterval;
+ 	int repeatCount = mRecurrenceEdit->subRepeatCount(&repeatInterval);
+-	DateTime start = mTimeWidget->getDateTime(0, !repeatCount, !mExpiredRecurrence);
++	DateTime start = mSavedEvent->recurs() ? (mExpiredRecurrence ? DateTime() : mSavedEvent->mainDateTime())
++	               : mTimeWidget->getDateTime(0, !repeatCount, !mExpiredRecurrence);
+ 	if (!start.isValid())
+ 	{
+ 		if (!mExpiredRecurrence)
+Index: functions.h
+===================================================================
+--- kdepim/kalarm/functions.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/functions.h	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  functions.h  -  miscellaneous functions
+  *  Program:  kalarm
+- *  Copyright © 2004-2006 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2004-2006,2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -108,6 +108,7 @@
+ void                displayUpdateError(QWidget* parent, UpdateStatus, UpdateError, int nAlarms);
+ void                displayKOrgUpdateError(QWidget* parent, KOrgUpdateError, int nAlarms);
+ 
++void                cancelScreenSaver();
+ QString             stripAccel(const QString&);
+ 
+ int                 localeFirstDayOfWeek();
+Index: kalarm.h
+===================================================================
+--- kdepim/kalarm/kalarm.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/kalarm.h	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -26,7 +26,7 @@
+ #include <config.h>
+ #endif
+ 
+-#define KALARM_VERSION "1.5.4"
++#define KALARM_VERSION "1.5.5"
+ #define KALARM_NAME "KAlarm"
+ 
+ #include <kdeversion.h>
+Index: Changelog
+===================================================================
+--- kdepim/kalarm/Changelog	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/Changelog	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,6 +1,23 @@
+ KAlarm Change Log
+ 
+-=== Version 1.5.4 --- 18 August 2008 ===
++=== Version 1.5.5 --- 21 January 2009 ===
++- Require a real double click to accept the selected template in pick list.
++- Make mouse wheel work, and fix highlighting, for left-hand time spinbox
++  buttons in Plastik style.
++- Ensure alarm windows show on top of full-screen windows.
++- Fix failure to update alarms in KOrganizer when Kontact is running but
++  Kontact's calendar component is not loaded.
++- Fix inability to change or cancel alarm deferral times.
++- Fix invalid alarm remaining in calendar when pre-alarm action failure message
++  is acknowledged before the alarm is deferred.
++- Prevent corrupt alarms if deferral reinstates from archived alarm instead of
++  from the displaying calendar.
++- Ignore events in calendar without usable alarms, which prevents them getting
++  stuck in the alarm list).
++- Prevent defer dialogue date being set outside the allowed range.
++- Cancel screensaver when an alarm is displayed.
++
++=== Version 1.5.4 (KDE 3.5.10) --- 18 August 2008 ===
+ - Show background colour selector for file display alarms.
+ - Display default font correctly in alarm edit dialogue sample text.
+ - Expand font selection control when dialogue is expanded.
+Index: kalarmapp.cpp
+===================================================================
+--- kdepim/kalarm/kalarmapp.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/kalarmapp.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  kalarmapp.cpp  -  the KAlarm application object
+  *  Program:  kalarm
+- *  Copyright © 2001-2008 by David Jarvie <djarvie@kde.org>
++ *  Copyright © 2001-2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -1631,11 +1631,13 @@
+ 				if (win)
+ 					win->setRecreating();    // prevent post-alarm actions
+ 				delete win;
++				KAlarm::cancelScreenSaver();
+ 				(new MessageWin(event, alarm, reschedule, allowDefer))->show();
+ 			}
+ 			else
+ 			{
+ 				// Raise the existing message window and replay any sound
++				KAlarm::cancelScreenSaver();
+ 				win->repeat(alarm);    // N.B. this reschedules the alarm
+ 			}
+ 			break;
+Index: lib/spinbox.cpp
+===================================================================
+--- kdepim/kalarm/lib/spinbox.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/lib/spinbox.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  spinbox.cpp  -  spin box with read-only option and shift-click step value
+  *  Program:  kalarm
+- *  Copyright (C) 2002, 2004 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2002,2004,2008 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -76,7 +76,7 @@
+ 		mReadOnly = ro;
+ 		editor()->setReadOnly(ro);
+ 		if (ro)
+-			setShiftStepping(false);
++			setShiftStepping(false, mCurrentButton);
+ 	}
+ }
+ 
+@@ -203,38 +203,56 @@
+ {
+ 	if (obj == editor())
+ 	{
+-		if (e->type() == QEvent::KeyPress)
++		int step = 0;
++		bool shift = false;
++		switch (e->type())
+ 		{
+-			// Up and down arrow keys step the value
+-			QKeyEvent* ke = (QKeyEvent*)e;
+-			int key = ke->key();
+-			if (key == Qt::Key_Up  ||  key == Qt::Key_Down)
++			case QEvent::KeyPress:
+ 			{
+-				if (mReadOnly)
+-					return true;    // discard up/down arrow keys
+-				int step;
+-				if ((ke->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton)
+-				{
+-					// Shift stepping
+-					int val = value();
+-					if (key == Qt::Key_Up)
+-						step = mLineShiftStep - val % mLineShiftStep;
+-					else
+-						step = - ((val + mLineShiftStep - 1) % mLineShiftStep + 1);
+-				}
+-				else
+-					step = (key == Qt::Key_Up) ? mLineStep : -mLineStep;
+-				addValue(step, false);
+-				return true;
++				// Up and down arrow keys step the value
++				QKeyEvent* ke = (QKeyEvent*)e;
++				int key = ke->key();
++				if (key == Qt::Key_Up)
++					step = 1;
++				else if (key == Qt::Key_Down)
++					step = -1;
++				shift = ((ke->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton);
++				break;
+ 			}
++			case QEvent::Wheel:
++			{
++				QWheelEvent* we = (QWheelEvent*)e;
++				step = (we->delta() > 0) ? 1 : -1;
++				shift = ((we->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton);
++				break;
++			}
++#if KDE_IS_VERSION(3,1,90)
++			case QEvent::Leave:
++				if (mEdited)
++					interpretText();
++				break;
++#endif
++			default:
++				break;
+ 		}
+-#if KDE_IS_VERSION(3,1,90)
+-		else if (e->type() == QEvent::Leave)
++		if (step)
+ 		{
+-			if (mEdited)
+-				interpretText();
++			if (mReadOnly)
++				return true;    // discard up/down arrow keys or wheel
++			if (shift)
++			{
++				// Shift stepping
++				int val = value();
++				if (step > 0)
++					step = mLineShiftStep - val % mLineShiftStep;
++				else
++					step = - ((val + mLineShiftStep - 1) % mLineShiftStep + 1);
++			}
++			else
++				step = (step > 0) ? mLineStep : -mLineStep;
++			addValue(step, false);
++			return true;
+ 		}
+-#endif
+ 	}
+ 	else
+ 	{
+@@ -254,7 +272,7 @@
+ 					if (mCurrentButton == NO_BUTTON)
+ 						return true;
+ 					bool shift = (me->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton;
+-					if (setShiftStepping(shift))
++					if (setShiftStepping(shift, mCurrentButton))
+ 						return true;     // hide the event from the spin widget
+ 					return false;    // forward event to the destination widget
+ 				}
+@@ -265,7 +283,7 @@
+ 				QMouseEvent* me = (QMouseEvent*)e;
+ 				if (me->button() == Qt::LeftButton  &&  mShiftMouse)
+ 				{
+-					setShiftStepping(false);    // cancel shift stepping
++					setShiftStepping(false, mCurrentButton);    // cancel shift stepping
+ 					return false;    // forward event to the destination widget
+ 				}
+ 				break;
+@@ -285,13 +303,21 @@
+ 						// Set normal or shift stepping as appropriate.
+ 						mCurrentButton = newButton;
+ 						bool shift = (me->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton;
+-						if (setShiftStepping(shift))
++						if (setShiftStepping(shift, mCurrentButton))
+ 							return true;     // hide the event from the spin widget
+ 					}
+ 					return false;    // forward event to the destination widget
+ 				}
+ 				break;
+ 			}
++			case QEvent::Wheel:
++			{
++				QWheelEvent* we = (QWheelEvent*)e;
++				bool shift = (we->state() & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton;
++				if (setShiftStepping(shift, (we->delta() > 0 ? UP : DOWN)))
++					return true;     // hide the event from the spin widget
++				return false;    // forward event to the destination widget
++			}
+ 			case QEvent::KeyPress:
+ 			case QEvent::KeyRelease:
+ 			case QEvent::AccelOverride:      // this is needed to receive Shift presses!
+@@ -307,11 +333,11 @@
+ 						return true;   // discard the event
+ 					state ^= (key == Qt::Key_Shift) ? Qt::ShiftButton : Qt::AltButton;    // new state
+ 					bool shift = (state & (Qt::ShiftButton | Qt::AltButton)) == Qt::ShiftButton;
+-					if (!shift && mShiftMouse  ||  shift && !mShiftMouse)
++					if ((!shift && mShiftMouse)  ||  (shift && !mShiftMouse))
+ 					{
+ 						// The effective shift state has changed.
+ 						// Set normal or shift stepping as appropriate.
+-						if (setShiftStepping(shift))
++						if (setShiftStepping(shift, mCurrentButton))
+ 							return true;     // hide the event from the spin widget
+ 					}
+ 				}
+@@ -325,9 +351,9 @@
+ /******************************************************************************
+ * Set spin widget stepping to the normal or shift increment.
+ */
+-bool SpinBox::setShiftStepping(bool shift)
++bool SpinBox::setShiftStepping(bool shift, int currentButton)
+ {
+-	if (mCurrentButton == NO_BUTTON)
++	if (currentButton == NO_BUTTON)
+ 		shift = false;
+ 	if (shift  &&  !mShiftMouse)
+ 	{
+@@ -337,7 +363,7 @@
+ 		 * step by the shift amount.
+ 		 */
+ 		int val = value();
+-		int step = (mCurrentButton == UP) ? mLineShiftStep : (mCurrentButton == DOWN) ? -mLineShiftStep : 0;
++		int step = (currentButton == UP) ? mLineShiftStep : (currentButton == DOWN) ? -mLineShiftStep : 0;
+ 		int adjust = shiftStepAdjustment(val, step);
+ 		mShiftMouse = true;
+ 		if (adjust)
+Index: lib/spinbox2private.h
+===================================================================
+--- kdepim/kalarm/lib/spinbox2private.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/lib/spinbox2private.h	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  spinbox2private.h  -  private classes for SpinBox2 (for Qt 3)
+  *  Program:  kalarm
+- *  Copyright © 2005,2006 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2005,2006,2008 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -61,7 +61,7 @@
+ {
+ 		Q_OBJECT
+ 	public:
+-		explicit SpinMirror(SpinBox*, QWidget* parent = 0, const char* name = 0);
++		explicit SpinMirror(SpinBox*, QFrame* spinFrame, QWidget* parent = 0, const char* name = 0);
+ 		void         setReadOnly(bool ro)        { mReadOnly = ro; }
+ 		bool         isReadOnly() const          { return mReadOnly; }
+ 		void         setNormalButtons(const QPixmap&);
+@@ -69,17 +69,21 @@
+ 
+ 	public slots:
+ 		virtual void resize(int w, int h);
++		void         redraw();
+ 
+ 	protected:
+ 		virtual void contentsMousePressEvent(QMouseEvent* e)        { contentsMouseEvent(e); }
+ 		virtual void contentsMouseReleaseEvent(QMouseEvent* e)      { contentsMouseEvent(e); }
+ 		virtual void contentsMouseMoveEvent(QMouseEvent* e)         { contentsMouseEvent(e); }
+ 		virtual void contentsMouseDoubleClickEvent(QMouseEvent* e)  { contentsMouseEvent(e); }
++		virtual void contentsWheelEvent(QWheelEvent*);
++		virtual bool event(QEvent*);
+ 
+ 	private:
+ 		void         contentsMouseEvent(QMouseEvent*);
+ 
+ 		SpinBox*     mSpinbox;        // spinbox whose spin buttons are being mirrored
++		QFrame*      mSpinFrame;      // widget containing mSpinbox's spin buttons
+ 		QWidget*     mSpinWidget;     // spin buttons in mSpinbox
+ 		QPixmap      mNormalButtons;  // image of spin buttons in unpressed state
+ 		bool         mReadOnly;       // value cannot be changed
+Index: lib/spinbox2.cpp
+===================================================================
+--- kdepim/kalarm/lib/spinbox2.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/lib/spinbox2.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  spinbox2.cpp  -  spin box with extra pair of spin buttons (for Qt 3)
+  *  Program:  kalarm
+- *  Copyright (c) 2001 - 2005 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2001-2005,2008 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -26,6 +26,8 @@
+ #include <qobjectlist.h>
+ #include <qapplication.h>
+ #include <qpixmap.h>
++#include <qcursor.h>
++#include <qtimer.h>
+ #include <qwmatrix.h>
+ 
+ #include "spinbox2.moc"
+@@ -84,7 +86,7 @@
+ 	mUpdown2->setSelectOnStep(false);    // always false
+ 	setFocusProxy(mSpinbox);
+ 	mUpdown2->setFocusPolicy(QWidget::NoFocus);
+-	mSpinMirror = new SpinMirror(mUpdown2, this);
++	mSpinMirror = new SpinMirror(mUpdown2, mUpdown2Frame, this);
+ 	if (!mirrorStyle(style()))
+ 		mSpinMirror->hide();    // hide mirrored spin buttons when they are inappropriate
+ 	connect(mSpinbox, SIGNAL(valueChanged(int)), SLOT(valueChange()));
+@@ -322,8 +324,8 @@
+ 		}
+ 		int adjust = mSpinbox->shiftStepAdjustment(oldValue, step);
+ 		if (adjust == -step
+-		&&  (step > 0  &&  oldValue + step >= mSpinbox->maxValue()
+-		  || step < 0  &&  oldValue + step <= mSpinbox->minValue()))
++		&&  ((step > 0  &&  oldValue + step >= mSpinbox->maxValue())
++		  || (step < 0  &&  oldValue + step <= mSpinbox->minValue())))
+ 			adjust = 0;    // allow stepping to the minimum or maximum value
+ 		mSpinbox->addValue(adjust + step);
+ 	}
+@@ -389,9 +391,10 @@
+ = Class SpinMirror
+ =============================================================================*/
+ 
+-SpinMirror::SpinMirror(SpinBox* spinbox, QWidget* parent, const char* name)
++SpinMirror::SpinMirror(SpinBox* spinbox, QFrame* spinFrame, QWidget* parent, const char* name)
+ 	: QCanvasView(new QCanvas, parent, name),
+ 	  mSpinbox(spinbox),
++	  mSpinFrame(spinFrame),
+ 	  mReadOnly(false)
+ {
+ 	setVScrollBarMode(QScrollView::AlwaysOff);
+@@ -411,6 +414,11 @@
+ 	redraw(mNormalButtons);
+ }
+ 
++void SpinMirror::redraw()
++{
++	redraw(QPixmap::grabWidget(mSpinFrame, 0, 0));
++}
++
+ void SpinMirror::redraw(const QPixmap& px)
+ {
+ 	QCanvas* c = canvas();
+@@ -432,16 +440,57 @@
+ */
+ void SpinMirror::contentsMouseEvent(QMouseEvent* e)
+ {
+-	if (!mReadOnly)
++	if (mReadOnly)
++		return;
++	QPoint pt = contentsToViewport(e->pos());
++	pt.setX(pt.x() + mSpinbox->upRect().left());
++	QApplication::postEvent(mSpinWidget, new QMouseEvent(e->type(), pt, e->button(), e->state()));
++
++	// If the mouse button has been pressed or released, refresh the spin buttons
++	switch (e->type())
+ 	{
+-		QPoint pt = contentsToViewport(e->pos());
+-		pt.setX(pt.x() + mSpinbox->upRect().left());
+-		QApplication::postEvent(mSpinWidget, new QMouseEvent(e->type(), pt, e->button(), e->state()));
++		case QEvent::MouseButtonPress:
++		case QEvent::MouseButtonRelease:
++			QTimer::singleShot(0, this, SLOT(redraw()));
++			break;
++		default:
++			break;
++	}
++}
+ 
+-		// If the mouse button has been released, display unpressed spin buttons
+-		if (e->type() == QEvent::MouseButtonRelease)
+-			redraw(mNormalButtons);
++/******************************************************************************
++* Pass on all mouse events to the spinbox which we're covering up.
++*/
++void SpinMirror::contentsWheelEvent(QWheelEvent* e)
++{
++	if (mReadOnly)
++		return;
++	QPoint pt = contentsToViewport(e->pos());
++	pt.setX(pt.x() + mSpinbox->upRect().left());
++	QApplication::postEvent(mSpinWidget, new QWheelEvent(pt, e->delta(), e->state(), e->orientation()));
++}
++
++/******************************************************************************
++* Pass on to the main spinbox events which are needed to activate mouseover and
++* other graphic effects when the mouse cursor enters and leaves the widget.
++*/
++bool SpinMirror::event(QEvent* e)
++{
++	switch (e->type())
++	{
++		case QEvent::Leave:
++		case QEvent::Enter:
++			QApplication::postEvent(mSpinWidget, new QEvent(e->type()));
++			QTimer::singleShot(0, this, SLOT(redraw()));
++			break;
++		case QEvent::FocusIn:
++			mSpinbox->setFocus();
++			QTimer::singleShot(0, this, SLOT(redraw()));
++			break;
++		default:
++			break;
+ 	}
++	return QCanvasView::event(e);
+ }
+ 
+ 
+Index: lib/dateedit.cpp
+===================================================================
+--- kdepim/kalarm/lib/dateedit.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/lib/dateedit.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -61,11 +61,13 @@
+ 		{
+ 			pastLimitMessage(mMinDate, mMinDateErrString,
+ 					 i18n("Date cannot be earlier than %1"));
++			setDate(mMinDate);
+ 		}
+ 		else if (mMaxDate.isValid()  &&  newDate > mMaxDate)
+ 		{
+ 			pastLimitMessage(mMaxDate, mMaxDateErrString,
+ 					 i18n("Date cannot be later than %1"));
++			setDate(mMaxDate);
+ 		}
+ 	}
+ }
+Index: lib/spinbox.h
+===================================================================
+--- kdepim/kalarm/lib/spinbox.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/lib/spinbox.h	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  spinbox.h  -  spin box with shift-click step value and read-only option
+  *  Program:  kalarm
+- *  Copyright © 2002-2006 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2002-2006,2008 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -135,7 +135,7 @@
+ 		void         init();
+ 		void         addValue(int change, bool current);
+ 		int          whichButton(const QPoint&);
+-		bool         setShiftStepping(bool);
++		bool         setShiftStepping(bool, int currentButton);
+ 
+ 		enum { NO_BUTTON, UP, DOWN };
+ 
+Index: recurrenceedit.cpp
+===================================================================
+--- kdepim/kalarm/recurrenceedit.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/recurrenceedit.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1224,11 +1224,7 @@
+ DailyRule::DailyRule(bool readOnly, QWidget* parent, const char* name)
+ 	: DayWeekRule(i18n("day(s)"),
+ 	              i18n("Enter the number of days between repetitions of the alarm"),
+-#if KDE_IS_VERSION(3,9,0)
+ 	              i18n("Select the days of the week on which the alarm is allowed to occur"),
+-#else
+-	              i18n("Select the days of the week on which to repeat the alarm"),
+-#endif
+ 	              readOnly, parent, name)
+ { }
+ 
+Index: functions.cpp
+===================================================================
+--- kdepim/kalarm/functions.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/functions.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  functions.cpp  -  miscellaneous functions
+  *  Program:  kalarm
+- *  Copyright © 2001-2008 by David Jarvie <djarvie@kde.org>
++ *  Copyright © 2001-2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -47,6 +47,8 @@
+ #include <kmessagebox.h>
+ #include <kfiledialog.h>
+ #include <dcopclient.h>
++#include <dcopref.h>
++#include <kdcopservicestarter.h>
+ #include <kdebug.h>
+ 
+ #include <libkcal/event.h>
+@@ -61,14 +63,17 @@
+ bool        resetDaemonQueued = false;
+ QCString    korganizerName = "korganizer";
+ QString     korgStartError;
+-const char* KORG_DCOP_OBJECT  = "KOrganizerIface";
++#define     KORG_DCOP_OBJECT    "KOrganizerIface"
+ const char* KORG_DCOP_WINDOW  = "KOrganizer MainWindow";
+ const char* KMAIL_DCOP_WINDOW = "kmail-mainwindow#1";
+ 
+ bool sendToKOrganizer(const KAEvent&);
+ bool deleteFromKOrganizer(const QString& eventID);
+-inline bool runKOrganizer()   { return KAlarm::runProgram("korganizer", KORG_DCOP_WINDOW, korganizerName, korgStartError); }
++bool runKOrganizer();
+ }
++#ifdef HAVE_XTEST
++void x11_cancelScreenSaver();
++#endif
+ 
+ 
+ namespace KAlarm
+@@ -926,6 +931,17 @@
+ 	return out;
+ }
+ 
++/******************************************************************************
++* Cancel the screen saver, in case it is active.
++* Only implemented if the X11 XTest extension is installed.
++*/
++void cancelScreenSaver()
++{
++#ifdef HAVE_XTEST
++	x11_cancelScreenSaver();
++#endif // HAVE_XTEST
++}
++
+ } // namespace KAlarm
+ 
+ 
+@@ -1023,4 +1039,61 @@
+ 	return false;
+ }
+ 
++/******************************************************************************
++* Start KOrganizer if not already running, and create its DCOP interface.
++*/
++bool runKOrganizer()
++{
++	QString error;
++	QCString dcopService;
++	int result = KDCOPServiceStarter::self()->findServiceFor("DCOP/Organizer", QString::null, QString::null, &error, &dcopService);
++	if (result)
++	{
++		kdDebug(5950) << "Unable to start DCOP/Organizer: " << dcopService << " " << error << endl;
++		return false;
++	}
++	// If Kontact is running, there is be a load() method which needs to be called
++	// to load KOrganizer into Kontact. But if KOrganizer is running independently,
++	// the load() method doesn't exist.
++	QCString dummy;
++	if (!kapp->dcopClient()->findObject(dcopService, KORG_DCOP_OBJECT, "", QByteArray(), dummy, dummy))
++	{
++		DCOPRef ref(dcopService, dcopService); // talk to the KUniqueApplication or its Kontact wrapper
++		DCOPReply reply = ref.call("load()");
++		if (!reply.isValid() || !(bool)reply)
++		{
++			kdWarning(5950) << "Error loading " << dcopService << endl;
++			return false;
++		}
++		if (!kapp->dcopClient()->findObject(dcopService, KORG_DCOP_OBJECT, "", QByteArray(), dummy, dummy))
++		{
++			kdWarning(5950) << "Unable to access KOrganizer's "KORG_DCOP_OBJECT" DCOP object" << endl;
++			return false;
++		}
++	}
++	return true;
++}
++
+ } // namespace
++
++#ifdef HAVE_XTEST
++#include <X11/keysym.h>
++#include <X11/extensions/XTest.h>
++#include <qwindowdefs.h>
++
++/******************************************************************************
++* Cancel the screen saver, in case it is active.
++* Only implemented if the X11 XTest extension is installed.
++*/
++void x11_cancelScreenSaver()
++{
++	kdDebug(5950) << "KAlarm::cancelScreenSaver()" << endl;
++	Display* display = qt_xdisplay();
++	static int XTestKeyCode = 0;
++	if (!XTestKeyCode)
++		XTestKeyCode = XKeysymToKeycode(display, XK_Shift_L);
++	XTestFakeKeyEvent(display, XTestKeyCode, true, CurrentTime);
++	XTestFakeKeyEvent(display, XTestKeyCode, false, CurrentTime);
++	XSync(display, false);
++}
++#endif // HAVE_XTEST
+Index: alarmcalendar.cpp
+===================================================================
+--- kdepim/kalarm/alarmcalendar.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/alarmcalendar.cpp	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -1,7 +1,7 @@
+ /*
+  *  alarmcalendar.cpp  -  KAlarm calendar file access
+  *  Program:  kalarm
+- *  Copyright © 2001-2006 by David Jarvie <software@astrojar.org.uk>
++ *  Copyright © 2001-2006,2009 by David Jarvie <djarvie@kde.org>
+  *
+  *  This program is free software; you can redistribute it and/or modify
+  *  it under the terms of the GNU General Public License as published by
+@@ -506,8 +506,8 @@
+ 		for (Event::List::ConstIterator it = events.begin();  it != events.end();  ++it)
+ 		{
+ 			const Event* event = *it;
+-			if (event->alarms().isEmpty())
+-				continue;    // ignore events without alarms
++			if (event->alarms().isEmpty()  ||  !KAEvent(*event).valid())
++				continue;    // ignore events without alarms, or usable alarms
+ 			KAEvent::Status type = KAEvent::uidStatus(event->uid());
+ 			switch (type)
+ 			{
+@@ -821,7 +821,7 @@
+ }
+ 
+ /******************************************************************************
+-* Return all events in the calendar which contain alarms.
++* Return all events in the calendar which contain usable alarms.
+ */
+ KCal::Event::List AlarmCalendar::events()
+ {
+@@ -831,7 +831,8 @@
+ 	KCal::Event::List::Iterator it = list.begin();
+ 	while (it != list.end())
+ 	{
+-		if ((*it)->alarms().isEmpty())
++		KCal::Event* event = *it;
++		if (event->alarms().isEmpty()  ||  !KAEvent(*event).valid())
+ 			it = list.remove(it);
+ 		else
+ 			++it;
+@@ -846,10 +847,8 @@
+ {
+ 	kdDebug(5950) << "AlarmCalendar::eventsWithAlarms(" << from.toString() << " - " << to.toString() << ")\n";
+ 	Event::List evnts;
+-	if (!mCalendar)
+-		return evnts;
+ 	QDateTime dt;
+-	Event::List allEvents = mCalendar->rawEvents();
++	Event::List allEvents = events();   // ignore events without usable alarms
+ 	for (Event::List::ConstIterator it = allEvents.begin();  it != allEvents.end();  ++it)
+ 	{
+ 		Event* e = *it;
+Index: Makefile.am
+===================================================================
+--- kdepim/kalarm/Makefile.am	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kalarm/Makefile.am	 (.../branches/KDE/3.5)	(revision 914790)
+@@ -33,7 +33,7 @@
+ 	$(top_builddir)/kalarm/kalarmd/libkalarmd.la \
+ 	$(top_builddir)/libkdepim/libkdepim.la \
+ 	$(top_builddir)/libkpimidentities/libkpimidentities.la \
+-	-lkabc -lkutils $(LIB_KDEUI) $(ARTSLIB)
++	-lkabc -lkutils $(LIB_KDEUI) $(ARTSLIB) $(LIBXTST)
+ noinst_HEADERS = alarmcalendar.h alarmevent.h alarmlistview.h alarmtext.h \
+ 	alarmtimewidget.h birthdaydlg.h daemon.h dcophandler.h deferdlg.h \
+ 	editdlg.h editdlgprivate.h emailidcombo.h eventlistviewbase.h find.h \

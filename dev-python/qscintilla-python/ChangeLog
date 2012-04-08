@@ -1,0 +1,221 @@
+# ChangeLog for dev-python/qscintilla-python
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/qscintilla-python/ChangeLog,v 1.49 2010/01/11 17:17:00 arfrever Exp $
+
+  14 Jan 2010; Roman v. Gemmeren <strowi@hasnoname.de> qscintilla-python-2.4.ebuild:
+  Reverted to qt3-support, don't call python_need_rebuild().
+
+  11 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  Don't call python_need_rebuild().
+
+  06 Jan 2010; Brent Baude <ranger@gentoo.org> qscintilla-python-2.4.ebuild:
+  Marking qscintilla-python-2.4 ppc64 for bug 284707
+
+  02 Jan 2010; Ben de Groot <yngwin@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild, qscintilla-python-2.4.ebuild:
+  Drop no longer present qt4 use dep
+
+  02 Jan 2010; Ben de Groot <yngwin@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild, qscintilla-python-2.4.ebuild:
+  Removing qt3 support, dropping qt4 useflag as it is now the only option.
+
+  18 Oct 2009; Raúl Porcel <armin76@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  alpha/ia64/sparc stable wrt #284707
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> qscintilla-python-2.4.ebuild:
+  Stable for HPPA (bug #284707).
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> qscintilla-python-2.4.ebuild:
+  Stable for HPPA (bug #284707).
+
+  30 Sep 2009; Ben de Groot <yngwin@gentoo.org>
+  -qscintilla-python-2.3.2.ebuild, -qscintilla-python-2.3.2-r1.ebuild:
+  Remove old
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> qscintilla-python-2.4.ebuild:
+  ppc stable #284707
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  amd64 stable, bug #284707
+
+  22 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  stable x86, bug 284707
+
+  16 Sep 2009; Jesus Rivero <neurogeek@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  Reverted to ~x86 stable since qscintilla-2.4(rdep) is not stable yet
+
+  16 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  stable x86, bug 284707
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> qscintilla-python-2.3.2-r2.ebuild:
+  ppc stable #274063
+
+  02 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
+
+  02 Jul 2009; Markus Meier <maekke@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  amd64 stable, bug #274063
+
+  02 Jul 2009; Raúl Porcel <armin76@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  ia64/sparc stable wrt #274063
+
+  27 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  Stable on alpha, bug #274063
+
+  26 Jun 2009; Markos Chandras <hwoarang@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  Fix PyQt4 use deps ( bug 272150 )
+
+  25 Jun 2009; Jeroen Roovers <jer@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  Stable for HPPA (bug #274063).
+
+  22 Jun 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  qscintilla-python-2.4.ebuild:
+  Respect CC, CXX (bug #275018).
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  stable ppc64, bug 274063
+
+  18 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  qscintilla-python-2.3.2-r2.ebuild:
+  stable x86, bug 274063
+
+*qscintilla-python-2.3.2-r2 (18 Jun 2009)
+
+  18 Jun 2009; Markos Chandras <hwoarang@gentoo.org>
+  +files/qscintilla-gcc44.patch, +qscintilla-python-2.3.2-r2.ebuild:
+  Apply gcc-4.4 patch. bug 273007 . Thanks to Evan Teran
+  <eteran@alum.rit.edu> for
+  the patch
+
+  17 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  qscintilla-python-2.3.2-r1.ebuild:
+  stable x86, bug 274063
+
+  15 Jun 2009; Jeroen Roovers <jer@gentoo.org>
+  qscintilla-python-2.3.2-r1.ebuild:
+  Stable for HPPA (bug #274063).
+
+*qscintilla-python-2.4 (09 Jun 2009)
+
+  09 Jun 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qscintilla-python-2.4.ebuild, +files/qscintilla-python-2.4-nostrip.patch:
+  Version bump
+
+  01 Jun 2009; Ben de Groot <yngwin@gentoo.org>
+  qscintilla-python-2.3.2-r1.ebuild:
+  Correct use dep, move patching to src_prepare
+
+  27 Mar 2009; Ben de Groot <yngwin@gentoo.org>
+  -files/qscintilla-python-2.1-nostrip.patch, -qscintilla-python-2.1.ebuild,
+  -qscintilla-python-2.2.ebuild, -qscintilla-python-2.3.ebuild:
+  Remove old versions
+
+*qscintilla-python-2.3.2-r1 (07 Mar 2009)
+
+  07 Mar 2009; Patrick Lauer <patrick@gentoo.org>
+  +qscintilla-python-2.3.2-r1.ebuild:
+  Eapi2ification. USE-Deps for the win.
+
+  20 Feb 2009; Jeroen Roovers <jer@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  Stable for HPPA (bug #248083).
+
+  06 Feb 2009; Raúl Porcel <armin76@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  ia64/sparc stable wrt #248038
+
+  04 Feb 2009; Brent Baude <ranger@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  Marking qscintilla-python-2.3.2 ppc64 stable for bug 248038
+
+  31 Jan 2009; Tobias Klausmann <klausman@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  Stable on alpha, bug #248038
+
+  18 Jan 2009; Markus Meier <maekke@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  amd64/x86 stable, bug #248038
+
+  17 Jan 2009; nixnut <nixnut@gentoo.org> qscintilla-python-2.3.2.ebuild:
+  ppc stable #248038
+
+  12 Jan 2009; Ben de Groot <yngwin@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  Update PyQt4 dep to require minimal 4.4 version, to prevent build failure
+  in case the wrong order is used.
+
+  25 Nov 2008; Ben de Groot <yngwin@gentoo.org>
+  qscintilla-python-2.3.2.ebuild:
+  Fix PyQt-3 dep when USE=-qt4. Fixes bug 248044.
+
+*qscintilla-python-2.3.2 (21 Nov 2008)
+
+  21 Nov 2008; Ben de Groot <yngwin@gentoo.org>
+  +qscintilla-python-2.3.2.ebuild:
+  Version bump
+
+  27 Oct 2008; Ali Polatel <hawking@gentoo.org>
+  qscintilla-python-2.1.ebuild, qscintilla-python-2.2.ebuild,
+  qscintilla-python-2.3.ebuild:
+  Use python_need_rebuild.
+
+*qscintilla-python-2.3 (25 Sep 2008)
+
+  25 Sep 2008; Ali Polatel <hawking@gentoo.org>
+  +qscintilla-python-2.3.ebuild:
+  Version bump.
+
+  25 May 2008; Ben de Groot <yngwin@gentoo.org>
+  +files/qscintilla-python-2.2-nostrip.patch:
+  Adding patch I forgot to copy over yesterday.
+
+*qscintilla-python-2.2 (24 May 2008)
+
+  24 May 2008; Ben de Groot <yngwin@gentoo.org>
+  +qscintilla-python-2.2.ebuild:
+  Version bump. Updated homepage URL.
+
+  12 May 2008; Markus Rothe <corsair@gentoo.org>
+  qscintilla-python-2.1.ebuild:
+  Stable on ppc64
+
+  22 Mar 2008; Santiago M. Mola <coldwind@gentoo.org>
+  qscintilla-python-2.1.ebuild:
+  amd64 stable
+
+  21 Feb 2008; Raúl Porcel <armin76@gentoo.org>
+  qscintilla-python-2.1.ebuild:
+  alpha/ia64/sparc stable
+
+  09 Feb 2008; Markus Ullmann <jokey@gentoo.org>
+  qscintilla-python-2.1.ebuild:
+  Stable on x86
+
+  04 Dec 2007; Ali Polatel <hawking@gentoo.org>
+  +files/qscintilla-python-2.1-nostrip.patch, qscintilla-python-2.1.ebuild:
+  Added patch to disable stripping, #199925
+
+  21 Nov 2007; Ali Polatel <hawking@gentoo.org>
+  qscintilla-python-2.1.ebuild:
+  fixed dependency issue with qscintilla.
+
+*qscintilla-python-2.1 (20 Nov 2007)
+
+  20 Nov 2007; Ali Polatel <hawking@gentoo.org> +metadata.xml,
+  +qscintilla-python-2.1.ebuild:
+  split dev-python/qscintilla to x11-libs/qscintilla and
+  dev-python/qscintilla-python, to break circular dependency bug 199543.
+

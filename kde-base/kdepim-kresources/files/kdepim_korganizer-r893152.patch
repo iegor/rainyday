@@ -1,0 +1,221 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r893152.
+Only looking at subdirectory kdepim/korganizer here.
+Logs since r849627 of the branch but this might be wrong.
+
+r853610 | winterz
+probable crash fix Marc, please test if you can. This should be ported to the Enterprise3 branch.
+  M koincidencetooltip.cpp
+  M koincidencetooltip.h
+r874263 | scripty
+SVN_SILENT made messages (.desktop file)
+  M korganizer_configviews.desktop
+r893152 | scripty
+SVN_SILENT made messages (.desktop file)
+  M interfaces/calendar/calendardecoration.desktop
+  M interfaces/calendar/calendarplugin.desktop
+  M korganizer_configplugins.desktop
+  M plugins/datenums/datenums.desktop
+  M plugins/exchange/exchange.desktop
+  M plugins/printing/list/listprint.desktop
+  M plugins/printing/whatsnext/whatsnextprint.desktop
+  M plugins/printing/year/yearprint.desktop
+  M plugins/projectview/projectview.desktop
+  M plugins/timespanview/timespanview.desktop
+
+
+Index: korganizer_configplugins.desktop
+===================================================================
+--- kdepim/korganizer/korganizer_configplugins.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/korganizer_configplugins.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -100,7 +100,7 @@
+ Comment[nn]=Oppsett av KOrganizer-programtillegg
+ Comment[pl]=Konfiguracja wtyczek KOrganizera
+ Comment[pt]=Configuração de 'Plugins' do KOrganizer
+-Comment[pt_BR]=Configuração dos Plugins do KOrganizer
++Comment[pt_BR]=Configuração dos Plug-ins do KOrganizer
+ Comment[ru]=Настройки модуля KOrganizer
+ Comment[sk]=Nastavenie modulu KOrganizer
+ Comment[sl]=Nastavitve vstavka KOrganizerja
+Index: koincidencetooltip.h
+===================================================================
+--- kdepim/korganizer/koincidencetooltip.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/koincidencetooltip.h	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -39,7 +39,7 @@
+ class KOIncidenceToolTip : public QToolTip
+ {
+   public:
+-    KOIncidenceToolTip(QWidget * widget, QToolTipGroup * group = 0 ):QToolTip (widget, group) {}
++    KOIncidenceToolTip(QWidget * widget, QToolTipGroup * group = 0 ):QToolTip (widget, group),mText(0) {}
+ /*    ~KOIncidenceToolTip();*/
+ 
+   public:
+Index: interfaces/calendar/calendarplugin.desktop
+===================================================================
+--- kdepim/korganizer/interfaces/calendar/calendarplugin.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/interfaces/calendar/calendarplugin.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -47,7 +47,7 @@
+ Comment[nso]=Plugin ya Tshupamabaka
+ Comment[pl]=Wtyczka do kalendarza
+ Comment[pt]='Plugin' de Calendário
+-Comment[pt_BR]=Plugin de Calendário
++Comment[pt_BR]=Plug-in de Calendário
+ Comment[ro]=Modul calendar
+ Comment[ru]=Модуль календаря
+ Comment[se]=Kaleandarlassemoduvla
+Index: interfaces/calendar/calendardecoration.desktop
+===================================================================
+--- kdepim/korganizer/interfaces/calendar/calendardecoration.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/interfaces/calendar/calendardecoration.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -44,7 +44,7 @@
+ Comment[nso]=Plugin ya Kgabiso ya Tshupamabaka
+ Comment[pl]=Wtyczka do dekoracji kalendarza
+ Comment[pt]='Plugin' de Decoração do Calendário
+-Comment[pt_BR]=Plugin para Decoração do Calendário
++Comment[pt_BR]=Plug-in para Decoração do Calendário
+ Comment[ro]=Modul decorare calendar
+ Comment[ru]=Оформление календаря
+ Comment[se]=Kaleandarčiŋaid lassemoduvla
+Index: plugins/datenums/datenums.desktop
+===================================================================
+--- kdepim/korganizer/plugins/datenums/datenums.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/datenums/datenums.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -81,7 +81,7 @@
+ Comment[nn]=For kvar dag vil dette programtillegget visa nummeret til denne dagen i året øvst i tidsplanen. 1. februar vil til dømes visast som dag 32.
+ Comment[pl]=Ta wtyczka dla każdego dnia pokazuje jego numer kolejny w roku, na szczycie widoku planu. Na przykład, 1 luty to 32 dzień roku.
+ Comment[pt]=Para cada dia, este 'plugin' mostra o seu número de dia do ano no topo da agenda. Por exemplo, o dia 1 de Fevereiro é o dia 32 do ano.
+-Comment[pt_BR]=Para cada dia, esse plugin mostra o número do dia no topo da visão de agenda. Por exemplo, 1º de fevereiro é o dia 32 do ano.
++Comment[pt_BR]=Para cada dia, esse plug-in mostra o número do dia no topo da visão de agenda. Por exemplo, 1º de fevereiro é o dia 32 do ano.
+ Comment[ru]=Этот модуль показывает номер дня в году для каждой даты. Например, для 1 февраля будет показан номер 32.
+ Comment[sk]=Tento modul pre každý deň zobrazí jeho číslo dňa v roku navrchu pohľadu agendy. Napríklad 1. február je deň číslo 32 v roku.
+ Comment[sl]=Za vsak dan ta vstavek prikazuje številko dneva v letu na vrhu praikaza agende. Npr., 1. februar je 32. dan v letu.
+Index: plugins/projectview/projectview.desktop
+===================================================================
+--- kdepim/korganizer/plugins/projectview/projectview.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/projectview/projectview.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -42,7 +42,7 @@
+ Name[nso]=Plugin ya Pono ya Porojeke ya KMmeakanyi
+ Name[pl]=Wtyczka przeglądania projektów dla Organizatora
+ Name[pt]='Plugin' de Gestão de Projectos para o KOrganizer
+-Name[pt_BR]=Plugin de Visualização de Projetos para o KOrganizer
++Name[pt_BR]=Plug-in de Visualização de Projetos para o KOrganizer
+ Name[ro]=Modul vizualizare proiect pentru KOrganizer
+ Name[ru]=Просмотр проекта
+ Name[sk]=KOrganizer modul pre projektový pohľad
+@@ -92,7 +92,7 @@
+ Comment[nn]=Dette programtillegget lagar ei prosjektplanvising for KOrganizer (slik som oppgåve- eller månadsvisingane). Dersom du brukar dette programtillegget, kan du visa oppgåvelista som i ein prosjektplanleggjar.
+ Comment[pl]=Ta wtyczka tworzy widok planowania projektu w KOrganizerze (tak jak widok zadań do zrobienia lub widok miesiąca). Po włączeniu tej wtyczki możliwe jest przełączenie się na widok projektu zadań do zrobienia.
+ Comment[pt]=Este 'plugin' oferece uma vista de planeamento de projectos para o KOrganizer (como as vistas de itens por-fazer ou mensais). Se activar este 'plugin', poderá mudar para a vista de projecto e ver a sua lista de itens por-fazer como num planeador de projectos.
+-Comment[pt_BR]=Este plugin fornece uma visão de planejamento de projeto para o KOrganizer (como as visões de pendências ou de mês). Se você ativar este plugin, você pode mudar para a visão de projeto e ver a sua lista de pendências como num software de planejamento de projetos.
++Comment[pt_BR]=Este plug-in fornece uma visão de planejamento de projeto para o KOrganizer (como as visões de pendências ou de mês). Se você ativar este plugin, você pode mudar para a visão de projeto e ver a sua lista de pendências como num software de planejamento de projetos.
+ Comment[ru]=Этот модуль показывает проект для органайзера KDE. Если вы подключите этот модуль, вы можете посмотреть ваши задачи в виде проекта.
+ Comment[sk]=Tento modul poskytuje pohľad na plánovanie projektu pre KOrganizer (ako sú úlohy alebo mesačné pohľady). Ak povolíte tento modul, môžete prepínať projektový pohľad a pohľad na zoznam úloh ako plánovač projektu.
+ Comment[sl]=Ta vstavek prikazuje projektno načrtovanje za KOrganizer (kot prikaz opravil ali mesečni prikaz). Če omogočite ta vstavek, lahko preklopite na projektni prikaz in si ogledate seznam opravil kot v projektnem prikazu.
+Index: plugins/exchange/exchange.desktop
+===================================================================
+--- kdepim/korganizer/plugins/exchange/exchange.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/exchange/exchange.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -83,7 +83,7 @@
+ Comment[nn]=Dette programtillegget lèt KOrganizer-brukarar arbeida saman med Microsoft Exchange 2000-gruppevaretenarar.
+ Comment[pl]=Ta wtyczka pozwala KOrganizerowi współpracować z serwerami pracy grupowej Microsoft Exchange.
+ Comment[pt]=Este 'plugin' permite aos utilizadores do KOrganizer lidarem com servidores de 'groupware' do Microsoft Exchange 2000.
+-Comment[pt_BR]=Esse plugin permite que o KOrganizer conecte-se à servidores groupware Microsoft Exchance 2000
++Comment[pt_BR]=Esse plug-in permite que o KOrganizer conecte-se à servidores groupware Microsoft Exchance 2000
+ Comment[ru]=Этот модуль позволяет пользователям органайзера работать с серверами совместной работы Microsoft Exchange 2000.
+ Comment[sk]=Tento modul umožní, aby korganizer užívatelia pracovali s Microsoft Exchange 2000 groupware servermi.
+ Comment[sl]=Ta vstavke omogoča uporabnikom KOrganizerja delo s strežniki Microsoft Exchange 2000.
+Index: plugins/printing/year/yearprint.desktop
+===================================================================
+--- kdepim/korganizer/plugins/printing/year/yearprint.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/printing/year/yearprint.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -67,7 +67,7 @@
+ Comment[nl]=Deze plugin maakt het mogelijk om een jaarkalender af te drukken.
+ Comment[pl]=Ta wtyczka pozwala drukować roczny kalendarz.
+ Comment[pt]=Este 'plugin' permite-lhe imprimir um calendário anual.
+-Comment[pt_BR]=Este plugin permite imprimir um calendário anual.
++Comment[pt_BR]=Este plug-in permite imprimir um calendário anual.
+ Comment[ru]=Этот модуль позволяет печатать календарь на год.
+ Comment[sk]=Tento modul vám umožní vytlačiť kalendár na rok.
+ Comment[sl]=Ta vstavek vam omogoča natis letnega koledarja.
+Index: plugins/printing/whatsnext/whatsnextprint.desktop
+===================================================================
+--- kdepim/korganizer/plugins/printing/whatsnext/whatsnextprint.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/printing/whatsnext/whatsnextprint.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -77,7 +77,7 @@
+ Comment[nn]=Dette programtillegget lèt deg skriva ut ei liste over alle dei komande hendingane og oppføringane i hugselista.
+ Comment[pl]=Ta wtyczka pozwala wydrukować wszystkie przyszłe zdarzenia i zadania.
+ Comment[pt]=Este 'plugin' permite-lhe imprimir uma lista com todos os eventos e itens por-fazer próximos.
+-Comment[pt_BR]=Este plugin permite que você imprima uma lista de todos os eventos e pendências que estão por vir.
++Comment[pt_BR]=Este plug-in permite que você imprima uma lista de todos os eventos e pendências que estão por vir.
+ Comment[ru]=Этот модуль позволяет печатать список будущих событий и задач.
+ Comment[sk]=Tento modul umožní vytlačiť zoznam všetkých nadchádzajúcich udalostí a úloh.
+ Comment[sl]=Ta vstavek vam omogoča natis seznama vseh prihahajočih dogodkov in čakajočih opravil.
+Index: plugins/printing/list/listprint.desktop
+===================================================================
+--- kdepim/korganizer/plugins/printing/list/listprint.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/printing/list/listprint.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -77,7 +77,7 @@
+ Comment[nn]=Dette programtillegget lèt deg skriva ut hendingar og hugselister på listeform.
+ Comment[pl]=Ta wtyczka pozwala drukować zdarzenia i zadania w postaci listy.
+ Comment[pt]=Este 'plugin' permite-lhe imprimir os eventos e os itens por-fazer no formato de uma lista.
+-Comment[pt_BR]=Este plugin permite que você imprima eventos e pendências em forma de lista.
++Comment[pt_BR]=Este plug-in permite que você imprima eventos e pendências em forma de lista.
+ Comment[ru]=Этот модуль позволяет печатать список событий и задач.
+ Comment[sk]=Tento modul umožní vytlačiť udalosti a úlohy vo forme zoznamu.
+ Comment[sl]=Ta vstavek vam omogoča natis dogodkov in čakajočih opravil v obliki seznama.
+Index: plugins/timespanview/timespanview.desktop
+===================================================================
+--- kdepim/korganizer/plugins/timespanview/timespanview.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/plugins/timespanview/timespanview.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -33,7 +33,7 @@
+ Name[nn]=Programtillegg for tidsromsvising i KOrganizer
+ Name[pl]=Wtyczka widoku zakresu czasu dla KOrganizera
+ Name[pt]='Plugin' de Vista de Intervalo de Tempo para o KOrganizer
+-Name[pt_BR]=Plugin de Visualização de Período de Tempo Para o KOrganizer
++Name[pt_BR]=Plug-in de Visualização de Período de Tempo Para o KOrganizer
+ Name[ru]=Диаграмма Ганта для KOrganizer
+ Name[sk]=KOrganizer modul pre projektový pohľad
+ Name[sl]=Vstavek za časovni prikaz za KOrganizer
+@@ -76,7 +76,7 @@
+ Comment[nl]=Deze plugin biedt een weergave voor KOrganizer (zoals de takenlijst en de maandweergave). Wanneer u deze plugin inschakelt kunt u kiezen voor een weergave waarin u uw evenementen in een Gantt-diagram kunt bekijken.
+ Comment[pl]=Ta wtyczka tworzy widok zakresu czasu w KOrganizerze (tak jak widok zadań do zrobienia lub widok miesiąca). Po włączeniu tej wtyczki możliwe jest przełączenie się na widok zakresu czasu i przeglądanie zdarzeń jak na diagramie Gantta.
+ Comment[pt]=Este 'plugin' oferece uma vista de distribuição temporal para o KOrganizer (como as vistas de itens por-fazer ou mensais). Se activar este 'plugin', poderá mudar para a vista de distribuição temporal e ver os seus eventos como num diagrama de Gantt.
+-Comment[pt_BR]=Este plugin fornece uma visão de período de tempo para o KOrganizer (como a visão de pendências e do mês). Se você ativar este plugin, você pode mudar para a visão de período de tempo e ver seus eventos como num diagrama de Gantt.
++Comment[pt_BR]=Este plug-in fornece uma visão de período de tempo para o KOrganizer (como a visão de pendências e do mês). Se você ativar este plugin, você pode mudar para a visão de período de tempo e ver seus eventos como num diagrama de Gantt.
+ Comment[ru]=Этот модуль показывает диаграмму Ганта для органайзера KDE. Если вы подключите этот модуль, вы можете посмотреть ваши события в виде диаграммы Ганта.
+ Comment[sk]=Tento modul poskytuje projektový pohľad pre korganizer (ako sú úlohy alebo mesačné pohľady). Ak povolíte tento modul, môžete prepínať projektový pohľad a pohľad na udalosti ako je Gantt diagram.
+ Comment[sl]=Ta vstavek ponuja časovni prikaz za KOrganizer (kot prikaz opravil ali mesečni prikaz). Če omogočite ta vstavek, lahko preklopite na časovni prikaz in si ogledate dogodke kot v Ganttovem diagramu.
+Index: korganizer_configviews.desktop
+===================================================================
+--- kdepim/korganizer/korganizer_configviews.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/korganizer_configviews.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -37,7 +37,7 @@
+ Name[he]=תצוגות
+ Name[hi]=दृश्य
+ Name[hu]=Nézetek
+-Name[is]=Sýn
++Name[is]=Sýnir
+ Name[it]=Viste
+ Name[ja]=ビューア
+ Name[ka]=ხედები
+Index: koincidencetooltip.cpp
+===================================================================
+--- kdepim/korganizer/koincidencetooltip.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/korganizer/koincidencetooltip.cpp	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -34,7 +34,7 @@
+ */
+ 
+ void KOIncidenceToolTip::add ( QWidget * widget, Incidence *incidence,
+-        QToolTipGroup * group, const QString & longText )
++                               QToolTipGroup * group, const QString & longText )
+ {
+   if ( !widget || !incidence ) return;
+   QToolTip::add(widget, IncidenceFormatter::toolTipString( incidence ), group, longText);
+@@ -54,7 +54,7 @@
+   KOAgendaItem *item = dynamic_cast<KOAgendaItem*>( parentWidget() );
+   if ( !item )
+     return;
+-  if ( mText.isEmpty() )
++  if ( !mText )
+     mText = IncidenceFormatter::toolTipString( item->incidence() );
+   tip( QRect( QPoint( 0, 0 ), item->size() ), mText );
+ }

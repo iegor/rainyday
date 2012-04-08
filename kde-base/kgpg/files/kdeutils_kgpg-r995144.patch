@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r995144.
+Only looking at subdirectory kdeutils/kgpg here.
+Logs since r849627 of the branch but this might be wrong.
+
+r995144 | dakon
+warning--
+  M listkeys.h
+
+
+Index: listkeys.h
+===================================================================
+--- kdeutils/kgpg/listkeys.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeutils/kgpg/listkeys.h	 (.../branches/KDE/3.5)	(revision 995144)
+@@ -51,7 +51,7 @@
+ class KgpgInterface;
+ class KSelectAction;
+ 
+-typedef struct gpgKey
++struct gpgKey
+ {
+         QString gpgkeymail;
+         QString gpgkeyname;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<use>
+	<flag name="emoticons-manager">Enables emoticons theme manager so that the user can edit and remove emoticons or add custom ones etc</flag>
+		<!-- PLUGINS -->
+	<flag name="addbookmarks">Automaticaly add incoming urls to bookmarks.</flag>
+	<flag name="alias">Enables creating of your own aliases for commands.</flag>
+	<flag name="autoreplace">Automaticaly replace selected text</flag>
+	<flag name="connectionstatus">Builds Connection Status plugin</flag>
+	<flag name="contactnotes">Enables writing personal notes for contacts.</flag>
+	<flag name="highlight">Allows you to specify highlights on specific events.</flag>
+	<flag name="history">Enables saving chat history.</flag>
+	<flag name="latex">Embed latex formatted text into messages.</flag>
+	<flag name="nowlistening">Shows song you currently listen to in your status/etc. Bindings for many players.</flag>
+	<flag name="statistics">Everybody loves statistic graphs, especialy cake ones. ;]</flag>
+	<flag name="texteffect">Various fancy text effects for your messages (dont ever consider writing us with this enabled ;]).</flag>
+	<flag name="translator">Translate incoming and outgoing messages.</flag>
+	<flag name="webpresence">Show your status and some more informations on web.</flag>
+		<!-- PROTOCOLS -->
+	<flag name="gadu">Enable the Gadu protocol handler.</flag>
+	<flag name="groupwise">Enable the Groupwise protocol handler.</flag>
+	<flag name="irc">Enable the IRC protocol handler.</flag>
+	<flag name="jabber">Enable XMPP protocol handler (this is also gmail).</flag>
+	<flag name="msn">Enable "Windows live messenger" protocol support.</flag>
+	<flag name="netmeeting">Builds netmeeting plugin (require gnomemeeting)</flag>
+	<flag name="sametime">Enables support for the Sametime protocol for instant messaging</flag>
+	<flag name="sms">Enable the sms sending plugin.</flag>
+	<flag name="winpopup">Enable pop-up messages sending on windows. (same as good old "net send" messages ;])</flag>
+	<flag name="yahoo">Enable yahoo protocol support.</flag>
+</use>
+<herd>kde</herd>
+</pkgmetadata>

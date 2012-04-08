@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>kde</herd>
+	<use>
+		<flag name="auth">
+			Add dependency on authentization packages.
+		</flag>
+		<flag name="bookmarks">
+			Add dependency on bookmark package.
+		</flag>
+		<flag name="thumbnail">
+			Enables video thumbnails generation for <pkg>kde-base/konqueror</pkg> file manager.
+		</flag>
+	</use>
+</pkgmetadata>

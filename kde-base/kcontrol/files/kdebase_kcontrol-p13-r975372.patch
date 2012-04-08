@@ -1,0 +1,53 @@
+Changes between KDE 3.5.10 tag as modified by kdebase-3.5-patchset-13.tar.bz2
+and KDE 3.5 branch r975372. Only looking at subdirectory kdepim/kabc here.
+Logs since r849627 of the branch.
+
+r852629 | lunakl (= kcontrol-3.5-wp-change-fix.diff in Gentoo patchset 13)
+Update wallpapers correctly when adding new screen with xrandr1.2 (bnc#329221).
+  M background/bgrender.cpp
+r863251 | ianjo (= kcontrol-3.5-kde-bug-161839.diff in Gentoo patchset 13)
+Backport of r786315 to 3.5 branch: Fix rarely hit path where glXDestroyContext would be called twice.
+  M info/opengl.cpp
+r886803 | tyrerj
+BUG:84101
+  M arts/arts.cpp
+r975372 | dfaure
+apply gcc-4.4 compilation fix from http://cvs.pld-linux.org/cgi-bin/cvsweb.cgi/packages/kdebase/kdebase-gcc44.patch. ...
+  M kfontinst/kfontinst/Fontmap.cpp
+
+
+Index: arts/arts.cpp
+===================================================================
+--- kdebase/kcontrol/arts/arts.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kcontrol/arts/arts.cpp	 (.../branches/KDE/3.5)	(revision 975372)
+@@ -214,7 +214,7 @@
+ 	config = new KConfig("kcmartsrc");
+ 	load();
+ 
+-	suspendTime->setRange( 0, 999, 1, true );
++	suspendTime->setRange( 1, 999, 1, true );
+ 
+ 	connect(startServer,SIGNAL(clicked()),this,SLOT(slotChanged()));
+ 	connect(networkTransparent,SIGNAL(clicked()),this,SLOT(slotChanged()));
+Index: kfontinst/kfontinst/Fontmap.cpp
+===================================================================
+--- kdebase/kcontrol/kfontinst/kfontinst/Fontmap.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kcontrol/kfontinst/kfontinst/Fontmap.cpp	 (.../branches/KDE/3.5)	(revision 975372)
+@@ -44,7 +44,7 @@
+ 
+ using namespace std;
+ 
+-static char * findSpace(char *str)
++static const char * findSpace(const char *str)
+ {
+     while(str && *str!=' ' && *str!='\t')
+         str++;
+@@ -65,7 +65,7 @@
+     char a[constMaxLen+1],
+          b[constFileMaxLen+1];
+ 
+-    char *slash1=strchr(line, '/'),
++    const char *slash1=strchr(line, '/'),
+          *space1=slash1 ? findSpace(slash1) : NULL, //strchr(slash1, ' ') : NULL,
+          *ob=slash1 ? strchr(slash1, '(') : NULL,
+          *cb=ob ? strchr(ob, ')') : NULL,

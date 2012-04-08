@@ -1,0 +1,37 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r893152.
+Only looking at subdirectory kdepim/kaddressbook here.
+Logs since r849627 of the branch but this might be wrong.
+
+r851969 | scripty
+SVN_SILENT made messages (.desktop file)
+  M features/distributionlistng.desktop
+r893152 | scripty
+SVN_SILENT made messages (.desktop file)
+  M xxport/vcard_xxport.desktop
+
+
+Index: xxport/vcard_xxport.desktop
+===================================================================
+--- kdepim/kaddressbook/xxport/vcard_xxport.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kaddressbook/xxport/vcard_xxport.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -37,7 +37,7 @@
+ Name[nn]=KAB vCard XXPort programtillegg
+ Name[pl]=Wtyczka KAB do importu/eksportu z/do formatu vCard
+ Name[pt]='Plugin' XXPort para vCard do KAB
+-Name[pt_BR]=Plugin de Im/Exportação de vCard do KAB
++Name[pt_BR]=Plug-in de Im/Exportação de vCard do KAB
+ Name[ru]=Работа с vCard
+ Name[sk]=KAB modul pre xxport z vCard
+ Name[sl]=Vstavek KAB vCard XXPort
+Index: features/distributionlistng.desktop
+===================================================================
+--- kdepim/kaddressbook/features/distributionlistng.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/kaddressbook/features/distributionlistng.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -6,6 +6,7 @@
+ Name[da]=Næste generations-plugin til KAB-Distribution-liste
+ Name[de]=Verteilerlisten-Modul für neues Adressbuch
+ Name[el]=Πρόσθετο επόμενης γενιάς λίστας διανομής του KAB
++Name[es]=Complemento de nueva generación KAB para listas de distribución
+ Name[et]=KAB postiloendi järgmise põlvkonna plugin
+ Name[fr]=Module de liste de diffusion nouvelle génération pour KAB
+ Name[is]=Næstu kynslóðar íforrit fyrir KAB dreifilista

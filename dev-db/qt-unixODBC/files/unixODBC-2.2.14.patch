@@ -1,0 +1,39 @@
+unixODBC 2.2.14 defines SQLLEN and SQLULEN using the compiler typedef
+declaration instead of preprocessor #define macro definition.  This breaks
+the checks at the head of qsql_odbc.cpp, causing the source to fall back to
+older types instead, leading to compile time errors like this:
+
+qsql_odbc.cpp:285: error: cannot convert ‘SQLINTEGER*’ to ‘SQLLEN*’ for argument ‘6’ to
+‘SQLRETURN SQLGetData(void*, SQLUSMALLINT, SQLSMALLINT, void*, SQLLEN, SQLLEN*)’
+...
+qsql_odbc.cpp:1227: error: cannot convert ‘SQLINTEGER*’ to ‘SQLLEN*’ for argument ‘10’ to
+‘SQLRETURN SQLBindParameter(void*, SQLUSMALLINT, SQLSMALLINT, SQLSMALLINT, SQLSMALLINT, SQLULEN, SQLSMALLINT, void*, SQLLEN, SQLLEN*)’
+
+This change hard-wires the new names, breaking compatibility with older
+unixODBC versions (don't know what version number ranges) in favour of
+support for newer releases like 2.2.14.
+
+2010-03-23 Martin von Gagern
+
+Index: qt-x11-free-3.3.8b/src/sql/drivers/odbc/qsql_odbc.cpp
+===================================================================
+--- qt-x11-free-3.3.8b.orig/src/sql/drivers/odbc/qsql_odbc.cpp
++++ qt-x11-free-3.3.8b/src/sql/drivers/odbc/qsql_odbc.cpp
+@@ -61,17 +61,8 @@
+ #endif
+ 
+ // newer platform SDKs use SQLLEN instead of SQLINTEGER
+-#ifdef SQLLEN
+ # define QSQLLEN SQLLEN
+-#else
+-# define QSQLLEN SQLINTEGER
+-#endif
+-
+-#ifdef SQLULEN
+ # define QSQLULEN SQLULEN
+-#else
+-# define QSQLULEN SQLUINTEGER
+-#endif
+ 
+ 
+ static const QSQLLEN COLNAMESIZE = 256;

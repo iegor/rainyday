@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r893152.
+Only looking at subdirectory kdepim/wizards here.
+Logs since r849627 of the branch but this might be wrong.
+
+r893152 | scripty
+SVN_SILENT made messages (.desktop file)
+  M groupwarewizard.desktop
+
+
+Index: groupwarewizard.desktop
+===================================================================
+--- kdepim/wizards/groupwarewizard.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdepim/wizards/groupwarewizard.desktop	 (.../branches/KDE/3.5)	(revision 893152)
+@@ -34,7 +34,7 @@
+ Name[nn]=KDE-vegvisar for gruppevare
+ Name[pl]=Asystent KDE Groupware
+ Name[pt]=Assistente Groupware do KDE
+-Name[pt_BR]=Assistente de Groupware do KDE
++Name[pt_BR]=Assistente Groupware do KDE
+ Name[ru]=Мастер подключения к серверам совместной работы
+ Name[sk]=Sprievodca KDE Groupware
+ Name[sl]=Čarovnik za KDE Groupware

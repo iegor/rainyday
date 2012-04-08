@@ -1,0 +1,240 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r893885.
+Only looking at subdirectory kdemultimedia/kmix here.
+Logs since r849627 of the branch but this might be wrong.
+
+r853563 | esken
+Add second patch for OSS4 support, as seen in bug 166591 comment #10 CCBUGS: 166591
+  M mixer_oss4.cpp
+  M mixer_oss4.h
+r893863 | esken
+Fix compile error for the "#ifdef MIXT_MUTE" casae, as explained in https://bugs.kde.org/show_bug.cgi?id=166591#c18
+  M mixer_oss4.cpp
+r893885 | esken
+Allow to include OSS(3) support, even when OSS4 has been detected. The OSS(3) source is already "#include-d" before...
+  M kmix-platforms.cpp
+
+
+Index: mixer_oss4.h
+===================================================================
+--- kdemultimedia/kmix/mixer_oss4.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/kmix/mixer_oss4.h	 (.../branches/KDE/3.5)	(revision 893885)
+@@ -33,10 +33,10 @@
+   virtual int close();
+   virtual bool needsPolling() { return true; };
+ 
++  int     m_ossVersion;
+   int     m_fd;
+-  int	  m_numExtensions;
++  int     m_numExtensions;
++  int     m_numMixers;
+   QString m_deviceName;
+-
+-  oss_sysinfo m_backendSysinfo;
+ };
+ #endif
+Index: kmix-platforms.cpp
+===================================================================
+--- kdemultimedia/kmix/kmix-platforms.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/kmix/kmix-platforms.cpp	 (.../branches/KDE/3.5)	(revision 893885)
+@@ -86,7 +86,6 @@
+ #endif
+ #if SOUND_VERSION >= 0x040000
+ #define OSS4_MIXER
+-#undef OSS_MIXER
+ #endif
+ 
+ #endif
+Index: mixer_oss4.cpp
+===================================================================
+--- kdemultimedia/kmix/mixer_oss4.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/kmix/mixer_oss4.cpp	 (.../branches/KDE/3.5)	(revision 893885)
+@@ -113,6 +113,11 @@
+ 			*it = "Bass";
+ 			cType = MixDevice::BASS;
+ 		} else
++		if ( *it == "treble" )
++		{
++			*it = "Treble";
++			cType = MixDevice::TREBLE;
++		} else
+ 		if ( (*it).startsWith ( "pcm" ) )
+ 		{
+ 			(*it).replace ( "pcm","PCM" );
+@@ -126,9 +131,10 @@
+ 		{
+ 			*it = "Recording";
+ 		} else
+-		if( *it == "cd" )
++		if ( *it == "cd" )
+ 		{
+ 			*it = (*it).upper();
++			cType = MixDevice::CD;
+ 		}
+ 		if ( (*it).startsWith("vmix") )
+ 		{
+@@ -161,11 +167,21 @@
+ 			return Mixer::ERR_OPEN;
+ 	}
+ 
+-	wrapIoctl( ioctl (m_fd, SNDCTL_SYSINFO, &m_backendSysinfo) );
++	if (wrapIoctl( ioctl (m_fd, OSS_GETVERSION, &m_ossVersion) ) < 0)
++	{
++		return Mixer::ERR_READ;
++	}
++	if (m_ossVersion < 0x040000)
++	{
++		return Mixer::ERR_NOTSUPP;
++	}
+ 
++
++	wrapIoctl( ioctl (m_fd, SNDCTL_MIX_NRMIX, &m_numMixers) );
++
+ 	if ( m_mixDevices.isEmpty() )
+ 	{
+-		if ( m_devnum >= 0 && m_devnum < m_backendSysinfo.nummixers )
++		if ( m_devnum >= 0 && m_devnum < m_numMixers )
+ 		{
+ 			m_numExtensions = m_devnum;
+ 			bool masterChosen = false;
+@@ -175,6 +191,7 @@
+ 			if ( wrapIoctl( ioctl (m_fd, SNDCTL_MIX_NREXT, &m_numExtensions) ) < 0 )
+ 			{
+ 				//TODO: more specific error handling here
++				if ( errno == ENODEV ) return Mixer::ERR_NODEV;
+ 				return Mixer::ERR_READ;
+ 			}
+ 
+@@ -211,7 +228,11 @@
+ 
+ 				//skip vmix volume controls and mute controls
+ 				if ( (name.find("vmix") > -1 && name.find( "pcm") > -1) ||
+-				     name.find("mute") > -1 )
++				     name.find("mute") > -1
++#ifdef MIXT_MUTE
++				|| (ext.type == MIXT_MUTE)
++#endif
++				)
+ 				{
+ 					continue;
+ 				}
+@@ -222,7 +243,7 @@
+ 					name = name.section('_',1,1).lower();
+ 				}
+ 
+-				if ( ext.flags & MIXF_RECVOL || name.find(".in") > -1  )
++				if ( ext.flags & MIXF_RECVOL || ext.flags & MIXF_MONVOL || name.find(".in") > -1  )
+ 				{
+ 					isCapture = true;
+ 				}
+@@ -244,7 +265,7 @@
+ 					{
+ 						if ( isCapture )
+ 						{
+-							chMask = Volume::ChannelMask(Volume::MLEFTREC|Volume::MRIGHTREC);
++							chMask = Volume::ChannelMask(Volume::MLEFT|Volume::MRIGHT);
+ 						}
+ 						else
+ 						{
+@@ -255,7 +276,7 @@
+ 					{
+ 						if ( isCapture )
+ 						{
+-							chMask = Volume::MLEFTREC;
++							chMask = Volume::MLEFT;
+ 						}
+ 						else
+ 						{
+@@ -273,6 +294,7 @@
+ 					if ( !masterChosen && ext.flags & MIXF_MAINVOL )
+ 					{
+ 						m_recommendedMaster = md;
++						masterChosen = true;
+ 					}
+ 				}
+ 				else if ( ext.type == MIXT_ONOFF )
+@@ -312,6 +334,7 @@
+ 						m_mixDevices.append(md);
+ 					}
+ 				}
++
+ 			}
+ 		}
+ 		else
+@@ -346,8 +369,12 @@
+ 			                  "Please check that the soundcard is installed and the\n" \
+ 			                  "soundcard driver is loaded.\n" \
+ 			                  "On Linux you might need to use 'insmod' to load the driver.\n" \
+-			                  "Use 'soundon' when using commercial OSS.");
++			                  "Use 'soundon' when using OSS4 from 4front.");
+ 			break;
++		case Mixer::ERR_NOTSUPP:
++			l_s_errmsg = i18n("kmix expected an OSSv4 mixer module,\n" \
++			                   "but instead found an older version.");
++			break;
+ 		default:
+ 			l_s_errmsg = Mixer_Backend::errorText(mixer_error);
+ 	}
+@@ -394,25 +421,25 @@
+ 					break;
+ 
+ 				case MIXT_MONOSLIDER:
+-					vol.setVolume(Volume::LEFTREC, mv.value & 0xff);
++					vol.setVolume(Volume::LEFT, mv.value & 0xff);
+ 					break;
+ 
+ 				case MIXT_STEREOSLIDER:
+-					vol.setVolume(Volume::LEFTREC, mv.value & 0xff);
+-					vol.setVolume(Volume::RIGHTREC, ( mv.value >> 8 ) & 0xff);
++					vol.setVolume(Volume::LEFT, mv.value & 0xff);
++					vol.setVolume(Volume::RIGHT, ( mv.value >> 8 ) & 0xff);
+ 					break;
+ 
+ 				case MIXT_SLIDER:
+-					vol.setVolume(Volume::LEFTREC, mv.value);
++					vol.setVolume(Volume::LEFT, mv.value);
+ 					break;
+ 
+ 				case MIXT_MONOSLIDER16:
+-					vol.setVolume(Volume::LEFTREC, mv.value & 0xffff);
++					vol.setVolume(Volume::LEFT, mv.value & 0xffff);
+ 					break;
+ 
+ 				case MIXT_STEREOSLIDER16:
+-					vol.setVolume(Volume::LEFTREC, mv.value & 0xffff);
+-					vol.setVolume(Volume::RIGHTREC, ( mv.value >> 16 ) & 0xffff);
++					vol.setVolume(Volume::LEFT, mv.value & 0xffff);
++					vol.setVolume(Volume::RIGHT, ( mv.value >> 16 ) & 0xffff);
+ 					break;
+ 			}
+ 		}
+@@ -602,15 +629,17 @@
+ 		case EIO:
+ 		{
+ 			kdDebug ( 67100 ) << "A hardware level error occured" << endl;
++			break;
+ 		}
+ 		case EINVAL:
+ 		{
+-			kdDebug ( 67100 ) << "Operation caused an EINVAL, a not supported OSS version is used our you found a bug in kmix OSS4 module" << endl;
++			kdDebug ( 67100 ) << "Operation caused an EINVAL. You may have found a bug in kmix OSS4 module or in OSS4 itself" << endl;
+ 			break;
+ 		}
+ 		case ENXIO:
+ 		{
+ 			kdDebug ( 67100 ) << "Operation index out of bounds or requested device does not exist - you likely found a bug in the kmix OSS4 module" << endl;
++			break;
+ 		}
+ 		case EPERM:
+ 		case EACCES:
+@@ -618,6 +647,11 @@
+ 			kdDebug ( 67100 ) << errorText ( Mixer::ERR_PERM ) << endl;
+ 			break;
+ 		}
++		case ENODEV:
++		{
++			kdDebug ( 67100 ) << "kmix received an ENODEV errors - are the OSS4 drivers loaded?" << endl;
++			break;
++		}
+ 		case EPIPE:
+ 		case EIDRM:
+ 		{

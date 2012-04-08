@@ -1,0 +1,33 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r957058.
+Only looking at subdirectory kdesdk/kcachegrind here.
+Logs since r849627 of the branch but this might be wrong.
+
+r957058 | weidendo
+Fix bug 153926 (actually a backport of fix in r869387 for KDE4 to KDE3)
+  M kcachegrind/callgraphview.cpp
+
+
+Index: kcachegrind/callgraphview.cpp
+===================================================================
+--- kdesdk/kcachegrind/kcachegrind/callgraphview.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdesdk/kcachegrind/kcachegrind/callgraphview.cpp	 (.../branches/KDE/3.5)	(revision 957058)
+@@ -2073,13 +2073,12 @@
+       continue;
+     }
+ 
+-    // artifical calls should be blue
+-    bool isArtifical = false;
+-    TraceFunction* caller = e->fromNode()->function();
+-    TraceFunction* called = e->toNode()->function();
+-    if (caller->cycle() == caller) isArtifical = true;
+-    if (called->cycle() == called) isArtifical = true;
+-    QColor arrowColor = isArtifical ? Qt::blue : Qt::black;
++    // calls into/out of cycles are special: make them blue
++    QColor arrowColor = Qt::black;
++    TraceFunction* caller = e->fromNode() ? e->fromNode()->function() : 0;
++    TraceFunction* called = e->toNode() ? e->toNode()->function() : 0;
++    if ( (caller && (caller->cycle() == caller)) ||
++         (called && (called->cycle() == called)) ) arrowColor = Qt::blue;
+ 
+     sItem = new CanvasEdge(e, _canvas);
+     e->setCanvasEdge(sItem);

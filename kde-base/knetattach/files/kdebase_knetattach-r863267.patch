@@ -1,0 +1,22 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r863267.
+Only looking at subdirectory kdebase/knetattach here.
+Logs since r849627 of the branch but this might be wrong.
+
+r863267 | wstephens
+Fix https://bugzilla.novell.com/show_bug.cgi?id=335794 - allow the entire range of valid ports.
+  M knetattach.ui
+
+
+Index: knetattach.ui
+===================================================================
+--- kdebase/knetattach/knetattach.ui	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/knetattach/knetattach.ui	 (.../branches/KDE/3.5)	(revision 863267)
+@@ -236,7 +236,7 @@
+                     </sizepolicy>
+                 </property>
+                 <property name="maxValue">
+-                    <number>32768</number>
++                    <number>65535</number>
+                 </property>
+                 <property name="minValue">
+                     <number>1</number>

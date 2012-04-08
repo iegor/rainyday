@@ -1,0 +1,33 @@
+diff -Naur p7zip_9.13.orig/GUI/p7zipForFilemanager p7zip_9.13/GUI/p7zipForFilemanager
+--- p7zip_9.13.orig/GUI/p7zipForFilemanager	2008-08-06 23:19:34.000000000 +0200
++++ p7zip_9.13/GUI/p7zipForFilemanager	2010-08-15 13:28:53.000000000 +0200
+@@ -7,7 +7,7 @@
+ # program ad -tzip current_directory file1 ... fileN
+ 
+ P7ZIP="7zG"
+-
++list=
+ list=/tmp/p7zip.list.$$
+ rm -f ${list}
+ 
+@@ -55,9 +55,9 @@
+ #fi
+ 
+ argn="$#"
+-file1="$1"
++file1="$(echo $1|sed -e "s/^system:\/users/\/home/g" -e "s/^system:\/home/\/home\/${USER}/g")"
+ dir1=`dirname "${file1}"`
+-file2="$2"
++file2="$(echo $2|sed -e "s/^system:\/users/\/home/g" -e "s/^system:\/home/\/home\/${USER}/g")"
+ echo "argn=${argn}" >> ${trace}
+ echo "flag_type=${flag_type}" >> ${trace}
+ echo "file1=${file1}" >> ${trace}
+@@ -71,7 +71,7 @@
+ 
+ for file in "$@"
+ do
+-	file=`basename "${file}"`
++	file="$(echo ${file} |sed -e "s/^system:\/users/\/home/g" -e "s/^system:\/home/\/home\/${USER}/g")"
+ 	echo ${file} >> ${list}
+ 	echo "list=${file}" >> ${trace}
+ done

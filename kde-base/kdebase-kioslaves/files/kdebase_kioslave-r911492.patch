@@ -1,0 +1,114 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r911492.
+Only looking at subdirectory kdebase/kioslave here.
+Logs since r849627 of the branch but this might be wrong.
+
+r864963 | abizjak
+Fix the passing the 'locale' mount option: - read the real locale from the environment (including the charset), the...
+  M media/mediamanager/halbackend.cpp
+r911492 | tstaerk
+Backport 911280: make fish copy reliable. This will be in the KDE 3.5 branch. It was too late for 3.5.10. CCBUGS:147948
+  M fish/fish.cpp
+
+
+Index: media/mediamanager/halbackend.cpp
+===================================================================
+--- kdebase/kioslave/media/mediamanager/halbackend.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kioslave/media/mediamanager/halbackend.cpp	 (.../branches/KDE/3.5)	(revision 911492)
+@@ -851,13 +851,6 @@
+         result << tmp;
+     }
+ 
+-	if ( valids.contains("locale") )
+-	{
+-		value = config.readBoolEntry( "locale", true );
+-		tmp = QString( "locale=%1" ).arg( value ? "true" : "false" );
+-		result << tmp;
+-	}
+-
+     if (valids.contains("utf8"))
+     {
+         value = config.readBoolEntry("utf8", true);
+@@ -878,6 +871,17 @@
+             result << "shortname=lower";
+     }
+ 
++    // pass our locale to the ntfs-3g driver so it can translate local characters
++    if (valids.contains("locale") && fstype == "ntfs-3g")
++    {
++        // have to obtain LC_CTYPE as returned by the `locale` command
++        // check in the same order as `locale` does
++        char *cType;
++        if ( (cType = getenv("LC_ALL")) || (cType = getenv("LC_CTYPE")) || (cType = getenv("LANG")) ) {
++            result << QString("locale=%1").arg(cType);
++        }
++    }
++
+     if (valids.contains("sync"))
+     {
+         value = config.readBoolEntry("sync", ( valids.contains("flush") && !fstype.endsWith("fat") ) && removable);
+@@ -931,7 +935,7 @@
+ 
+     QMap<QString,QString> valids = MediaManagerUtils::splitOptions(options);
+ 
+-    const char *names[] = { "ro", "quiet", "atime", "uid", "utf8", "flush", "sync", "locale", 0 };
++    const char *names[] = { "ro", "quiet", "atime", "uid", "utf8", "flush", "sync", 0 };
+     for (int index = 0; names[index]; ++index)
+         if (valids.contains(names[index]))
+             config.writeEntry(names[index], valids[names[index]] == "true");
+@@ -951,10 +955,6 @@
+         config.writeEntry("automount", valids["automount"]);
+     }
+ 
+-	if (valids.contains("locale") ) {
+-		config.writeEntry("locale", valids["locale"]);
+-	}
+-
+     return true;
+ }
+ 
+@@ -1153,11 +1153,6 @@
+         soptions << QString("uid=%1").arg(getuid());
+     }
+ 
+-    if (valids["locale"] == "true")
+-	{
+-		soptions << QString("locale=%1").arg( KGlobal::locale()->language() ); 
+-	}
+-
+     if (valids["ro"] == "true")
+         soptions << "ro";
+ 
+@@ -1182,6 +1177,11 @@
+         soptions << QString("shortname=%1").arg(valids["shortname"]);
+     }
+ 
++    if (valids.contains("locale"))
++    {
++        soptions << QString("locale=%1").arg(valids["locale"]);
++    }
++
+     if (valids.contains("journaling"))
+     {
+         QString option = valids["journaling"];
+Index: fish/fish.cpp
+===================================================================
+--- kdebase/kioslave/fish/fish.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdebase/kioslave/fish/fish.cpp	 (.../branches/KDE/3.5)	(revision 911492)
+@@ -2,7 +2,7 @@
+                           fish.cpp  -  a FISH kioslave
+                              -------------------
+     begin                : Thu Oct  4 17:09:14 CEST 2001
+-    copyright            : (C) 2001-2003 by Jörg Walter
++    copyright            : (C) 2001-2003 by Jï¿½rg Walter
+     email                : jwalt-kde@garni.ch
+  ***************************************************************************/
+ 
+@@ -1430,7 +1430,7 @@
+                     sent();
+                 }
+             }
+-            if (FD_ISSET(childFd,&rfds)) {
++            else if (FD_ISSET(childFd,&rfds)) {
+                 rc = read(childFd,buf+offset,32768-offset);
+                 //myDebug( << "read " << rc << " bytes" << endl);
+                 if (rc > 0) {

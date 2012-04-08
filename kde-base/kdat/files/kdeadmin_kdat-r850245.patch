@@ -1,0 +1,57 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r850245.
+Only looking at subdirectory kdeadmin/kdat here.
+Logs since r849627 of the branch but this might be wrong.
+
+r850245 | gorlik
+BUG: 95625 fix the 99 bytes block size limit bug
+  M OptionsDlgWidget.ui
+  M kdat.h
+
+
+Index: kdat.h
+===================================================================
+--- kdeadmin/kdat/kdat.h	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeadmin/kdat/kdat.h	 (.../branches/KDE/3.5)	(revision 850245)
+@@ -20,7 +20,7 @@
+ #define _kdat_h_
+ 
+ // KDat program version.
+-#define KDAT_VERSION "2.0.1"
++#define KDAT_VERSION "2.0.2"
+ 
+ // Magic string.
+ #define KDAT_MAGIC "KDatMAGIC"
+Index: OptionsDlgWidget.ui
+===================================================================
+--- kdeadmin/kdat/OptionsDlgWidget.ui	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeadmin/kdat/OptionsDlgWidget.ui	 (.../branches/KDE/3.5)	(revision 850245)
+@@ -45,10 +45,13 @@
+                             </property>
+                             <property name="minimumSize">
+                                 <size>
+-                                    <width>48</width>
++                                    <width>96</width>
+                                     <height>0</height>
+                                 </size>
+                             </property>
++                            <property name="maxValue">
++                                <number>4096</number>
++                            </property>
+                             <property name="whatsThis" stdset="0">
+                                 <string>This setting determines the capacity that KDat assumes your backup tapes to be.  This is used when formatting the tapes.</string>
+                             </property>
+@@ -59,10 +62,13 @@
+                             </property>
+                             <property name="minimumSize">
+                                 <size>
+-                                    <width>48</width>
++                                    <width>96</width>
+                                     <height>0</height>
+                                 </size>
+                             </property>
++                            <property name="maxValue">
++                                <number>262144</number>
++                            </property>
+                             <property name="whatsThis" stdset="0">
+                                 <string>Tape drives read and write data in individual blocks.  This setting controls the size of each block, and should be set to your tape drive's block size.  For floppy tape drives this should be set to &lt;b&gt;10240&lt;/b&gt; bytes.</string>
+                             </property>

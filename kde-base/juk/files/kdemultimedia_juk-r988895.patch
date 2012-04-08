@@ -1,0 +1,64 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r988895.
+Only looking at subdirectory kdemultimedia/juk here.
+Logs since r849627 of the branch but this might be wrong.
+
+r933498 | mpyne
+Commit potential fix for improperly deleted PlaylistItems to 3.5 branch for user testing.
+  M collectionlist.cpp
+  M playlist.cpp
+r939942 | mpyne
+Fix JuK KDE 3.5 build
+  M collectionlist.cpp
+r988895 | mpyne
+Backport fix for JuK bug 118317 to KDE's 3.5 branch to be picked up by distros still on 3.5.
+  M tagrenameroptions.cpp
+
+
+Index: playlist.cpp
+===================================================================
+--- kdemultimedia/juk/playlist.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/juk/playlist.cpp	 (.../branches/KDE/3.5)	(revision 988895)
+@@ -758,7 +758,7 @@
+ 	    kdDebug(65432) << "Error while trying to refresh the tag.  "
+ 			   << "This file has probably been removed."
+ 			   << endl;
+-	    delete (*it)->collectionItem();
++	    clearItem((*it)->collectionItem());
+ 	}
+ 
+ 	processEvents();
+Index: tagrenameroptions.cpp
+===================================================================
+--- kdemultimedia/juk/tagrenameroptions.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/juk/tagrenameroptions.cpp	 (.../branches/KDE/3.5)	(revision 988895)
+@@ -51,6 +51,8 @@
+     switch(category.category) {
+     case Title:
+     case Artist:
++    case Genre:
++    case Year:
+     case Album:
+     case Track:
+         disabled = false;
+Index: collectionlist.cpp
+===================================================================
+--- kdemultimedia/juk/collectionlist.cpp	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdemultimedia/juk/collectionlist.cpp	 (.../branches/KDE/3.5)	(revision 988895)
+@@ -164,7 +164,7 @@
+ 	    if(item->file().fileInfo().exists())
+ 		item->repaint();
+ 	    else
+-		delete item;
++		clearItem(item);
+ 	}
+     }
+ 
+@@ -472,7 +472,7 @@
+ 	it != m_children.end();
+ 	++it)
+     {
+-	delete *it;
++        (*it)->playlist()->clearItem(*it);
+     }
+ 
+     CollectionList *l = CollectionList::instance();

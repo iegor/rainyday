@@ -1,0 +1,23 @@
+diff -u -r kdebase-3.5.10.orig/kicker/menuext/konsole/konsole_mnu.cpp kdebase-3.5.10/kicker/menuext/konsole/konsole_mnu.cpp
+--- kdebase-3.5.10.orig/kicker/menuext/konsole/konsole_mnu.cpp	2006-03-17 10:17:31.000000000 +0000
++++ kdebase-3.5.10/kicker/menuext/konsole/konsole_mnu.cpp	2010-01-16 22:50:38.035048819 +0000
+@@ -299,12 +299,19 @@
+     {
+         QString protocol = url.protocol();
+         QString host = url.host();
++        bool isSSH = (protocol == "ssh");
+         args << "-T" << title;
+         args << "-e" << protocol.latin1(); /* argv[0] == command to run. */
++        if (url.port() && isSSH) {
++            args << "-p" << QCString().setNum(url.port());
++        }
+         if (url.hasUser()) {
+             args << "-l" << url.user().latin1();
+         }
+         args << host.latin1();
++        if (url.port() && !isSSH) {
++            args << QCString().setNum(url.port());
++        }
+         KApplication::kdeinitExec("konsole", args);
+         return;
+     }

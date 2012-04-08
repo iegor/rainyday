@@ -1,0 +1,36 @@
+Changes between KDE 3.5.10 tag and KDE 3.5 branch r884099.
+Only looking at subdirectory kdeadmin/knetworkconf here.
+Logs since r849627 of the branch but this might be wrong.
+
+r884099 | lueck
+needs to be '.html', not '.docbook' to render properly in khelpcenter, this is a fix for BR 136977 in stable
+  M knetworkconf/kcm_knetworkconfmodule.desktop
+  M knetworkconf/knetworkconf.desktop
+
+
+Index: knetworkconf/kcm_knetworkconfmodule.desktop
+===================================================================
+--- kdeadmin/knetworkconf/knetworkconf/kcm_knetworkconfmodule.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeadmin/knetworkconf/knetworkconf/kcm_knetworkconfmodule.desktop	 (.../branches/KDE/3.5)	(revision 884099)
+@@ -8,7 +8,7 @@
+ Type=Application
+ Exec=kcmshell kcm_knetworkconfmodule
+ Icon=knetworkconf
+-DocPath=knetworkconf/index.docbook
++DocPath=knetworkconf/index.html
+ 
+ Comment=Configure Network Settings
+ Comment[ar]=إعداد تعيينات الشبكة
+Index: knetworkconf/knetworkconf.desktop
+===================================================================
+--- kdeadmin/knetworkconf/knetworkconf/knetworkconf.desktop	 (.../tags/KDE/3.5.10)	(revision 850549)
++++ kdeadmin/knetworkconf/knetworkconf/knetworkconf.desktop	 (.../branches/KDE/3.5)	(revision 884099)
+@@ -3,7 +3,7 @@
+ Type=Application
+ Exec=kdesu knetworkconf -caption "%c" %i %m
+ Icon=knetworkconf
+-DocPath=knetworkconf/index.docbook
++DocPath=knetworkconf/index.html
+ Comment=Configure TCP/IP settings
+ Comment[ar]=إعداد تعيينات ميفاق التحكم بلنقل/ميفاق الإنترنت
+ Comment[be]=Наставіць TCP/IP
