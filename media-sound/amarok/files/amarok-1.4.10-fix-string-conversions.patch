@@ -1,5 +1,14 @@
 --- amarok-1.4.10/amarok/src/engine/xine/xine-engine.cpp
 +++ amarok-1.4.10/amarok/src/engine/xine/xine-engine.cpp
+@@ -1131,7 +1131,7 @@
+ 
+ bool XineEngine::getAudioCDContents(const QString &device, KURL::List &urls)
+ {
+-    char **xine_urls = NULL;
++    const char **xine_urls = NULL;
+     int num;
+     int i = 0;
+ 
 @@ -1148,7 +1148,7 @@
  
      emit statusText(i18n("Getting AudioCD contents..."));
