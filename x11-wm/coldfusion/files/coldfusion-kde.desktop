@@ -4,5 +4,5 @@ Name=ColdFusion
 Comment="ColdFusion - is session based on compiz as stand alone wm"
 Exec=/usr/local/bin/start-cf.sh
 Type=Application
-Name[C]=coldfusion
-Name[en_US]=coldfusion.desktop
+Name[C]=coldfusion-kde-support
+Name[en_US]=coldfusion-kde-support.desktop

@@ -1,0 +1,11 @@
+--- kdbg/xsldbgdriver.cpp
++++ kdbg/xsldbgdriver.cpp
+@@ -767,7 +767,7 @@
+     } else if (strncmp(p, "= ", 2) == 0) {
+         /* we're processing the result of a "print command" */
+         /* find next line */
+-        char *nextLine = strchr(p, '\n');
++        const char *nextLine = strchr(p, '\n');
+ 
+ 	TRACE("Found print expr");
+         if (nextLine) {

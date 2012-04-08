@@ -78,6 +78,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-libmp4v2-2.patch"
 	"${FILESDIR}/${PN}-1.4.10-fix-autoconf-2.64.patch"
 	"${FILESDIR}/r5-constructors.patch"
+	"${FILESDIR}/amarok-1.4.10-fix-string-conversions.patch"
 	"${WORKDIR}/${PN}-1.4.10-post20090130.diff"
 	"${WORKDIR}/${PN}-1.4.10-desktop-entry.diff"
 )
