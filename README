@@ -1,3 +1,5 @@
 INSTALLATION:
 sudo layman -S && sudo layman -a rainyday
 
+now contains a mirrored packages from kde-sunset too.
+
