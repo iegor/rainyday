@@ -10,7 +10,7 @@ DESCRIPTION="Baghira - an OS-X like style for KDE"
 #SRC_URI="mirror://sourceforge/baghira/${P}.tar.bz2"
 
 EGIT_REPO_URI="git://github.com/iegor/x11-themes-baghira.git"
-EGIT_SOURCEDIR="${WORKDIR}/${PV}"
+EGIT_SOURCEDIR="${WORKDIR}/baghira-${PV}"
 EGIT_COMMIT="stable_8_0"
 
 LICENSE="GPL-2"
