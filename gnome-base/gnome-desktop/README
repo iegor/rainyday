@@ -1,0 +1,4 @@
+This is simply an edited gnome-meta ebuild.
+Purpose is to have one ebuild that could re-install
+or install on new machine all stuf that is usualy
+used and convinient.
