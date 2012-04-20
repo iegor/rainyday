@@ -33,7 +33,7 @@ S=${WORKDIR}
 # XXX: lower gdm to 2.20 since we still keep 2.28 masked
 # Lower epiphany to 2.26 since 2.28 is not ready to go stable
 # Lower ekiga since 3.x cannot be stabilized yet as talked with voip herd
-RDEPEND="!<x11-libs/gtk+-3.2.4-r1:3
+RDEPEND="
 	>=dev-libs/glib-2.26.1:2
 	>=x11-libs/gtk+-2.22.1-r1:2
 	>=x11-libs/gdk-pixbuf-2.22.1:2
