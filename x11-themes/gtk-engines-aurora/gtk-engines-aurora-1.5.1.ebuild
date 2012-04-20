@@ -23,14 +23,14 @@ RDEPEND=">=x11-libs/gtk+-2.10:2"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-S=${WORKDIR}/aurora-${MY_MAJ}
+S=${WORKDIR}/aurora-engine-${PV}
 
-#src_unpack() {
+# src_unpack() {
 #	unpack ${A}
 #	cd "${WORKDIR}"
 #	tar -xzf aurora-gtk-engine-${MY_MAJ}.tar.gz || die "unpack failed"
 #	tar -xjf Aurora.tar.bz2 || die "unpack failed"
-#}
+# }
 
 src_configure() {
 	econf --disable-dependency-tracking --enable-animation
