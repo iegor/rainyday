@@ -23,7 +23,7 @@ RDEPEND=">=x11-libs/gtk+-2.10:2"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-S=${WORKDIR}/aurora-engine-${PV}
+S=${WORKDIR}/aurora-engine
 
 # src_unpack() {
 #	unpack ${A}
@@ -40,5 +40,5 @@ src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README
 	insinto /usr/share/themes/Aurora
-	doins -r ../Aurora/* || die "doins failed"
+	doins -r ../aurora-theme/* || die "doins failed"
 }
