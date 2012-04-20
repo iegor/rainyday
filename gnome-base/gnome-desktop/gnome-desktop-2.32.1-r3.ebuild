@@ -121,7 +121,6 @@ RDEPEND="
 		>=x11-themes/gtk-engines-murrine-0.90.3-r1
 		>=x11-themes/gtk-engines-nimbus-0.1.4
 		>=x11-themes/gtk-engines-rezlooks-0.6
-		>=x11-themes/gtk-engines-ubuntulooks-0.9.12-r3
 		>=x11-themes/metacity-themes-1.2 )
 
 	>=x11-libs/vte-0.26.2:0
