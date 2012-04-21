@@ -42,6 +42,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-libnotify-0.7.patch
+  epatch "${FILESDIR}"/${P}-glib-h.patch
 	gnome2_src_prepare
 }
 
