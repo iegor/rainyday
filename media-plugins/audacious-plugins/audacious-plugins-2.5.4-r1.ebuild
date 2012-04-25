@@ -57,9 +57,6 @@ DEPEND="${RDEPEND}
 	nls? ( dev-util/intltool )
 	>=dev-util/pkgconfig-0.9.0"
 
-PATCHES=(
-	"${FILESDIR}/audacious-plugins-2.5.4.patch")
-
 mp3_warning() {
 	if ! use mp3 ; then
 		ewarn "MP3 support is optional, you may want to enable the mp3 USE-flag"
@@ -68,6 +65,8 @@ mp3_warning() {
 
 src_configure() {
 	mp3_warning
+
+	epatch "${FILESDIR}/audacious-plugins-2.5.4.patch"
 
 	econf \
 		--enable-chardet \
