@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+inherit eutils
+
 EAPI=3
 
 MY_PN="equinox"
@@ -23,6 +25,8 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_configure () {
+	epatch ${FILESDIR}/equinox-${PV}-glib.patch
+
 	econf --enable-animation
 }
 
