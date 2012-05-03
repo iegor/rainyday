@@ -37,9 +37,11 @@ src_install() {
 	insinto /usr/share/xsessions
 	doins ${FILESDIR}/spectrwm.desktop
 	doins ${FILESDIR}/spectrwm-kde.desktop
+	doins ${FILESDIR}/spectrwm-gnome.desktop
 
 	# Set executable script
 	exeinto /usr/local/bin
 	doexe ${FILESDIR}/spectrwm.sh
 	doexe ${FILESDIR}/spectrwm-kde.sh
+	doexe ${FILESDIR}/spectrwm-gnome.sh
 }
