@@ -13,7 +13,7 @@ sleep .2
 /usr/bin/gnome-power-manager &
 # /usr/bin/nm-applet &
 # /usr/bin/gkrellm &
-# /usr/bin/xscreensaver -no-splash &
+/usr/bin/xscreensaver -no-splash &
 
 # set xkb options
 setxkbmap -option grp:shift_caps_toggle
