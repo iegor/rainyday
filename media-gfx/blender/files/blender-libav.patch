@@ -1,0 +1,52 @@
+--- source/blender/blenkernel/intern/writeffmpeg.c	2012-02-09 18:29:54.000000000 -0700
++++ source/blender/blenkernel/intern/writeffmpeg.c	2012-02-09 18:29:05.000000000 -0700
+@@ -38,6 +38,8 @@
+ #include <libavutil/rational.h>
+ #include <libswscale/swscale.h>
+ #include <libavcodec/opt.h>
++#include <libavutil/mathematics.h>
++#include <libavutil/avstring.h>
+ 
+ #include "MEM_guardedalloc.h"
+ 
+--- intern/ffmpeg/ffmpeg_compat.h	2012-02-09 19:53:30.000000000 -0700
++++ intern/ffmpeg/ffmpeg_compat.h	2012-02-09 20:08:02.000000000 -0700
+@@ -36,6 +36,7 @@
+ #include <libavcodec/avcodec.h>
+ #include <libavutil/rational.h>
+ #include <libavutil/opt.h>
++#include <libavutil/mathematics.h>
+ 
+ #if (LIBAVFORMAT_VERSION_MAJOR > 52) || ((LIBAVFORMAT_VERSION_MAJOR >= 52) && (LIBAVFORMAT_VERSION_MINOR >= 101))
+ #define FFMPEG_HAVE_PARSE_UTILS 1
+
+--- intern/audaspace/ffmpeg/AUD_FFMPEGWriter.cpp	2011-10-24 20:09:01.000000000 +0200
++++ intern/audaspace/ffmpeg/AUD_FFMPEGWriter.cpp	2011-11-13 12:34:01.000000000 +0100
+@@ -40,6 +40,8 @@
+ #include <libavcodec/avcodec.h>
+ #include <libavformat/avformat.h>
+ #include <libavformat/avio.h>
++#include <libavutil/mathematics.h>
++#include <libavutil/avstring.h>
+ #include "ffmpeg_compat.h"
+ }
+ 
+@@ -57,10 +58,15 @@
+ {
+ 	static const char* formats[] = { NULL, "ac3", "flac", "matroska", "mp2", "mp3", "ogg", "wav" };
+ 
+-	if(avformat_alloc_output_context2(&m_formatCtx, NULL, formats[format], filename.c_str()))
+-		AUD_THROW(AUD_ERROR_FFMPEG, context_error);
++	m_formatCtx = avformat_alloc_context();
++        if (!m_formatCtx) AUD_THROW(AUD_ERROR_FFMPEG, context_error);
+ 
+-	m_outputFmt = m_formatCtx->oformat;
++	av_strlcpy(m_formatCtx->filename, filename.c_str(), sizeof(m_formatCtx->filename));
++	m_outputFmt = m_formatCtx->oformat = av_guess_format(formats[format], filename.c_str(), NULL);
++	if (!m_outputFmt) {
++            avformat_free_context(m_formatCtx);
++            AUD_THROW(AUD_ERROR_FFMPEG, context_error);
++        }
+ 
+ 	switch(codec)
+ 	{
