@@ -14,7 +14,7 @@ SLOT="2.0"
 # double check none of the deps are still masked !
 KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
-IUSE="accessibility cdr cups dvdr ldap mono policykit xscr extras"
+IUSE="accessibility cdr cups dvdr ldap mono policykit xscreensaver extras"
 
 S=${WORKDIR}
 
@@ -156,9 +156,9 @@ RDEPEND="
 		>=net-voip/ekiga-3.2.7
 		>=app-admin/sabayon-2.30.1 )
 
-  xscr? (
+  xscreensaver? (
     >=x11-misc/xscreensaver-5.15 )
-  !xscr? (
+  !xscreensaver? (
     >=gnome-extra/gnome-screensaver-2.30.2 )
 
 	>=x11-misc/alacarte-0.13.2
