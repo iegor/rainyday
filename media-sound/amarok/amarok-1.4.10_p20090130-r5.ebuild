@@ -67,7 +67,7 @@ DEPEND="${RDEPEND}"
 RDEPEND="${RDEPEND}
 	app-arch/unzip
 	daap? ( www-servers/mongrel )
-	python? ( dev-python/PyQt )
+	python? ( dev-python/PyQt4 )
 "
 
 PATCHES=(
