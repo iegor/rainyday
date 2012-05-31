@@ -40,8 +40,9 @@ fi
 #fi
 
 #TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
-EGIT_REPO_URI="git@github.com:iegor/$KMNAME.git"
-EGIT_SOURCEDIR="${WORKDIR}/${P}"
+
+EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
+EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
 unset SRC_URI
 
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
@@ -218,8 +219,8 @@ change_makefiles() {
 
 	# check if the dir is defined as KMEXTRACTONLY or if it was defined is KMEXTRACTONLY in the parent dir, this is valid only if it's not also defined as KMMODULE, KMEXTRA or KMCOMPILEONLY. They will ovverride KMEXTRACTONLY, but only in the current dir.
 	isextractonly="false"
-	if ( ( hasq "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ) && \
-		 ( ! hasq "$1" $KMMODULEFULLPATH $KMEXTRAFULLPATH $KMCOMPILEONLYFULLPATH ) ); then
+	if ( ( has "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ) && \
+		 ( ! has "$1" $KMMODULEFULLPATH $KMEXTRAFULLPATH $KMCOMPILEONLYFULLPATH ) ); then
 		isextractonly="true"
 	fi
 	debug-print "isextractonly = $isextractonly"
@@ -235,7 +236,7 @@ change_makefiles() {
 
 	for directory in $dirlistfullpath; do
 
-		if ( hasq "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ); then
+		if ( has "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ); then
 			change_makefiles $directory 'true'
 		else
 			change_makefiles $directory 'false'
@@ -280,6 +281,24 @@ set_common_variables() {
 	fi
 }
 
+# @FUNCTION: kde_git_unpack_sources
+# @USAGE:
+# @DESCRIPTION:
+# This function will create a temp folder /var/tmp/portage/${repo_name}
+# then download whole repo there, if already exist then will just update
+# or ignore
+kde_git_unpack_sources() {
+	debug-print-function $FUNCNAME "$@"
+
+	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+
+	# Call git clone
+	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+	[[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
+
+	return 0;
+}
+
 # @FUNCTION: kde-meta_src_unpack
 # @USAGE: [ unpack ] [ makefiles ]
 # @DESCRIPTION:
@@ -294,9 +313,10 @@ kde-meta_src_unpack() {
 	set_common_variables
 
 	sections="$@"
-
 	echo "sections: $sections"
-	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+
+	# Retrieve sources from git repo
+	kde_git_unpack_sources || die "uanble to git sources."
 
 	[[ -z "$sections" ]] && sections="unpack makefiles"
 	for section in $sections; do
@@ -309,30 +329,34 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
+		echo "S: $S"
+		echo "WORKDIR: $WORKDIR"
+		echo "pwd: $(pwd)"
+		echo "T: $T"
+
+		mkdir -p ${S}
+
 		# Create final list of stuff to extract
 		extractlist=""
 		for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
 					acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
-					$KMMODULE $KMEXTRA $KMCOMPILEONLY $KMEXTRACTONLY $DOCS
+					${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
 		do
 			extractlist="$extractlist $KMNAME/${item%/}"
+			echo "${S}/${item%}"
+ 			cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
 		done
 
-		echo "extract: $extractlist"
+# 		die "debug"
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL
 		KMTARPARAMS="$KMTARPARAMS -j"
 		cd "${WORKDIR}"
 
-		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
+# 		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
 		# Note that KMTARPARAMS is also used by an ebuild
-		echo "tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null"
-		echo "S: $S"
-		echo "WORKDIR: $WORKDIR"
-		echo "pwd: $(pwd)"
-		echo "T: $T"
-		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "could not untar."
+# 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
 
 		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
@@ -343,9 +367,9 @@ kde-meta_src_unpack() {
 		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
-		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
-		mv ${KMNAME} ${PN} || die "mv ${KMNAME} failed."
-		S="${WORKDIR}"/${P}
+# 		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
+# 		mv ${KMNAME} ${P} || die "mv ${KMNAME} failed."
+# 		S="${WORKDIR}"/${P}
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -477,6 +501,7 @@ kde-meta_src_install() {
 		shift
 	done
 }
+
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install;;
 	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install;;
