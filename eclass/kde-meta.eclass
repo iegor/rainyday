@@ -1,3 +1,5 @@
+ECLASS_DEBUG_OUTPUT=on
+
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.91 2009/10/15 22:18:17 abcd Exp $
@@ -14,7 +16,7 @@
 # This is the kde-meta eclass which supports broken-up kde-base packages.
 
 
-inherit kde multilib
+inherit kde multilib git-2
 
 # only broken-up ebuilds can use this eclass
 if [[ -z "$KMNAME" ]]; then
@@ -24,65 +26,68 @@ fi
 # Replace the $myPx mess - it was ugly as well as not general enough for 3.4.0-rc1
 # The following code should set TARBALLVER (the version in the tarball's name)
 # and TARBALLDIRVER (the version of the toplevel directory inside the tarball).
-case "$PV" in
-	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
-	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
-	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
-esac
-if [[ "${KMNAME}" = "koffice" ]]; then
-	case "$PV" in
-		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
-		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
-		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
-	esac
-fi
+#case "$PV" in
+#	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
+#	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
+#	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
+#esac
+#if [[ "${KMNAME}" = "koffice" ]]; then
+#	case "$PV" in
+#		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
+#		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
+#		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
+#	esac
+#fi
 
-TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
+#TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
+EGIT_REPO_URI="git@github.com:iegor/$KMNAME.git"
+EGIT_SOURCEDIR="${WORKDIR}/${P}"
+unset SRC_URI
 
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
-if [[ "$KDEBASE" = "true" ]]; then
-	unset SRC_URI
+# if [[ "$KDEBASE" = "true" ]]; then
+# 	unset SRC_URI
+# 
+# 	need-kde $PV
+# 
+# 	DESCRIPTION="KDE ${PV} - "
+# 	HOMEPAGE="http://www.kde.org/"
+# 	LICENSE="GPL-2"
+# 	SLOT="$KDEMAJORVER.$KDEMINORVER"
+# 
+# 	# Main tarball for normal downloading style
+# 	# Note that we set SRC_PATH, and add it to SRC_URI later on
+# 	case "$PV" in
+# 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
+# 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
+# 		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
+# 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
+# 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
+# 	esac
+# 
+# elif [[ "$KMNAME" == "koffice" ]]; then
+# 	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+# 	case $PV in
+# 		1.3.5)
+# 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+# 			;;
+# 		1.6_beta1)
+# 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
+# 			;;
+# 		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
+# 			;;
+# 		*)
+# 			# Identify beta and rc versions by underscore
+# 			if [[ ${PV/_/} != ${PV} ]]; then
+# 				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
+# 			fi
+# 			;;
+# 	esac
+# fi
 
-	need-kde $PV
+# SRC_URI="$SRC_URI $SRC_PATH"
 
-	DESCRIPTION="KDE ${PV} - "
-	HOMEPAGE="http://www.kde.org/"
-	LICENSE="GPL-2"
-	SLOT="$KDEMAJORVER.$KDEMINORVER"
-
-	# Main tarball for normal downloading style
-	# Note that we set SRC_PATH, and add it to SRC_URI later on
-	case "$PV" in
-		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
-		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
-		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
-		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
-		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
-	esac
-
-elif [[ "$KMNAME" == "koffice" ]]; then
-	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-	case $PV in
-		1.3.5)
-			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-			;;
-		1.6_beta1)
-			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
-			;;
-		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
-			;;
-		*)
-			# Identify beta and rc versions by underscore
-			if [[ ${PV/_/} != ${PV} ]]; then
-				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
-			fi
-			;;
-	esac
-fi
-
-SRC_URI="$SRC_URI $SRC_PATH"
-
-debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
+# debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
 
 # Add a blocking dep on the package we're derived from
 if [[ "${KMNAME}" != "koffice" ]]; then
@@ -283,9 +288,16 @@ set_common_variables() {
 kde-meta_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
+	# Creating temporary dir for kde app
+# 	mdkir $EGIT_SOURCEDIR
+
 	set_common_variables
 
 	sections="$@"
+
+	echo "sections: $sections"
+	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+
 	[[ -z "$sections" ]] && sections="unpack makefiles"
 	for section in $sections; do
 	case $section in
@@ -303,17 +315,24 @@ kde-meta_src_unpack() {
 					acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
 					$KMMODULE $KMEXTRA $KMCOMPILEONLY $KMEXTRACTONLY $DOCS
 		do
-			extractlist="$extractlist $KMNAME-$TARBALLDIRVER/${item%/}"
+			extractlist="$extractlist $KMNAME/${item%/}"
 		done
+
+		echo "extract: $extractlist"
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL
 		KMTARPARAMS="$KMTARPARAMS -j"
 		cd "${WORKDIR}"
 
-		echo ">>> Unpacking parts of ${TARBALL} to ${WORKDIR}"
+		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
 		# Note that KMTARPARAMS is also used by an ebuild
-		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null
+		echo "tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null"
+		echo "S: $S"
+		echo "WORKDIR: $WORKDIR"
+		echo "pwd: $(pwd)"
+		echo "T: $T"
+		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "could not untar."
 
 		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
@@ -324,7 +343,8 @@ kde-meta_src_unpack() {
 		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
-		mv $KMNAME-$TARBALLDIRVER $P || die "mv $KMNAME-$TARBallDIRVER failed."
+		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
+		mv ${KMNAME} ${PN} || die "mv ${KMNAME} failed."
 		S="${WORKDIR}"/${P}
 
 		# Copy over KMCOPYLIB items
