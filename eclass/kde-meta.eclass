@@ -294,9 +294,10 @@ kde_git_unpack_sources() {
 
 	# Call git clone
 	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
-	[[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
+#	[[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
+	git-2_src_unpack
 
-	return 0;
+#	return 0;
 }
 
 # @FUNCTION: kde-meta_src_unpack
