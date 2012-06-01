@@ -1,0 +1,15 @@
+--- /var/tmp/portage/media-video/kaffeine-0.8.6/work/kaffeine-0.8.6/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
++++ /var/tmp/portage/media-video/kaffeine-0.8.6/work/kaffeine-0.8.6/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
+@@ -2634,11 +2634,10 @@
+ 
+ bool KXineWidget::getAutoplayPluginURLS(const QString& plugin, QStringList& list)
+ {
+-   char** urls = NULL;
+    int num;
+    int i = 0;
+ 
+-   urls = xine_get_autoplay_mrls(m_xineEngine, plugin.ascii(), &num);
++   const char** urls = xine_get_autoplay_mrls(m_xineEngine, plugin.ascii(), &num);
+ 
+    if (urls)
+    {
