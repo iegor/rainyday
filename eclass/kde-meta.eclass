@@ -290,14 +290,37 @@ set_common_variables() {
 kde_git_unpack_sources() {
 	debug-print-function $FUNCNAME "$@"
 
-	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+ 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
 
 	# Call git clone
 	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
-#	[[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
-	git-2_src_unpack
 
-#	return 0;
+#   [[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
+
+    # If directory exists, just cd into it and update sources in there
+    # That kind of behaviour will be supported because we pull packages
+    # by modules {base, graphics, games, multimedia, etc}
+#     if [ -d ${EGIT_REPO_KMNAME_POOL} ]; then
+#         EGIT_STORE_DIR=${EGIT_REPO_KMNAME_POOL}
+#          git-2_init_variables
+#          git-2_prepare_storedir
+# #         git-2_migrate_repository
+# #         git-2_fetch "$@"
+# #         git-2_gc
+# #         git-2_submodules
+# #         git-2_bootstrap
+#         git-2_cleanup
+#         echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
+#     else
+#         git-2_src_unpack
+#     fi
+
+    debug-print "removing module: ${EGIT_REPO_KMNAME_POOL}"
+    [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
+
+    git-2_src_unpack
+
+	return 0;
 }
 
 # @FUNCTION: kde-meta_src_unpack
@@ -503,7 +526,31 @@ kde-meta_src_install() {
 	done
 }
 
+# @FUNCTION: kde-meta_pkg_postinst
+# @DESCRIPTION:
+# Calls kde_pkg_postinst
+kde-meta_pkg_postinst() {
+    # Remove dir with KMNAME module info
+    rm -rf ${EGIT_REPO_KMNAME_POOL}
+    unset EGIT_REPO_KMNAME_POOL
+    
+    # Call kde method
+    kde_pkg_postinst
+}
+
+# @FUNCTION: kde-meta_pkg_postrm
+# @DESCRIPTION:
+# Calls kde_pkg_postrm
+kde-meta_pkg_postrm() {
+    # Remove dir with KMNAME module info
+    rm -rf ${EGIT_REPO_KMNAME_POOL}
+    unset EGIT_REPO_KMNAME_POOL
+    
+    # Call kde method
+    kde_pkg_postrm
+}
+
 case ${EAPI:-0} in
-	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install;;
-	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install;;
+	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm;;
+	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_postinst pkg_postrm;;
 esac
