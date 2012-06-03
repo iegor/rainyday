@@ -46,18 +46,18 @@ EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
 unset SRC_URI
 
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
-# if [[ "$KDEBASE" = "true" ]]; then
-# 	unset SRC_URI
-# 
-# 	need-kde $PV
-# 
-# 	DESCRIPTION="KDE ${PV} - "
-# 	HOMEPAGE="http://www.kde.org/"
-# 	LICENSE="GPL-2"
-# 	SLOT="$KDEMAJORVER.$KDEMINORVER"
-# 
-# 	# Main tarball for normal downloading style
-# 	# Note that we set SRC_PATH, and add it to SRC_URI later on
+if [[ "$KDEBASE" = "true" ]]; then
+	unset SRC_URI
+
+	need-kde $PV
+
+	DESCRIPTION="KDE ${PV} - "
+	HOMEPAGE="http://www.kde.org/"
+	LICENSE="GPL-2"
+	SLOT="$KDEMAJORVER.$KDEMINORVER"
+
+	# Main tarball for normal downloading style
+	# Note that we set SRC_PATH, and add it to SRC_URI later on
 # 	case "$PV" in
 # 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
 # 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
@@ -65,9 +65,9 @@ unset SRC_URI
 # 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
 # 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
 # 	esac
-# 
+
 # elif [[ "$KMNAME" == "koffice" ]]; then
-# 	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+#	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
 # 	case $PV in
 # 		1.3.5)
 # 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
@@ -84,7 +84,7 @@ unset SRC_URI
 # 			fi
 # 			;;
 # 	esac
-# fi
+fi
 
 # SRC_URI="$SRC_URI $SRC_PATH"
 
