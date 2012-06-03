@@ -15,7 +15,6 @@ ECLASS_DEBUG_OUTPUT=on
 # @DESCRIPTION:
 # This is the kde-meta eclass which supports broken-up kde-base packages.
 
-
 inherit kde multilib git-2
 
 # only broken-up ebuilds can use this eclass
@@ -371,8 +370,6 @@ kde-meta_src_unpack() {
  			cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
 		done
 
-# 		die "debug"
-
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL
 		KMTARPARAMS="$KMTARPARAMS -j"
@@ -382,18 +379,18 @@ kde-meta_src_unpack() {
 		# Note that KMTARPARAMS is also used by an ebuild
 # 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
 
-		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
+#		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
 		# Avoid syncing if possible
 		# No idea what the above comment means...
-		if [[ -n "$RAWTARBALL" ]]; then
-			rm -f "${T}"/$RAWTARBALL
-		fi
+#		if [[ -n "$RAWTARBALL" ]]; then
+#			rm -f "${T}"/$RAWTARBALL
+#		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
 # 		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
 # 		mv ${KMNAME} ${P} || die "mv ${KMNAME} failed."
-# 		S="${WORKDIR}"/${P}
+ 		S="${WORKDIR}"/${P}
 
 		# Copy over KMCOPYLIB items
 		libname=""
