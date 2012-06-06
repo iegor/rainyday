@@ -1,3 +1,5 @@
+ECLASS_DEBUG_OUTPUT=on
+
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.91 2009/10/15 22:18:17 abcd Exp $
@@ -13,8 +15,7 @@
 # @DESCRIPTION:
 # This is the kde-meta eclass which supports broken-up kde-base packages.
 
-
-inherit kde multilib
+inherit kde multilib git-2
 
 # only broken-up ebuilds can use this eclass
 if [[ -z "$KMNAME" ]]; then
@@ -24,20 +25,24 @@ fi
 # Replace the $myPx mess - it was ugly as well as not general enough for 3.4.0-rc1
 # The following code should set TARBALLVER (the version in the tarball's name)
 # and TARBALLDIRVER (the version of the toplevel directory inside the tarball).
-case "$PV" in
-	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
-	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
-	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
-esac
-if [[ "${KMNAME}" = "koffice" ]]; then
-	case "$PV" in
-		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
-		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
-		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
-	esac
-fi
+#case "$PV" in
+#	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
+#	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
+#	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
+#esac
+#if [[ "${KMNAME}" = "koffice" ]]; then
+#	case "$PV" in
+#		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
+#		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
+#		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
+#	esac
+#fi
 
-TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
+#TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
+
+EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
+EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
+unset SRC_URI
 
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
 if [[ "$KDEBASE" = "true" ]]; then
@@ -52,37 +57,37 @@ if [[ "$KDEBASE" = "true" ]]; then
 
 	# Main tarball for normal downloading style
 	# Note that we set SRC_PATH, and add it to SRC_URI later on
-	case "$PV" in
-		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
-		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
-		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
-		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
-		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
-	esac
+# 	case "$PV" in
+# 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
+# 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
+# 		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
+# 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
+# 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
+# 	esac
 
-elif [[ "$KMNAME" == "koffice" ]]; then
-	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-	case $PV in
-		1.3.5)
-			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-			;;
-		1.6_beta1)
-			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
-			;;
-		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
-			;;
-		*)
-			# Identify beta and rc versions by underscore
-			if [[ ${PV/_/} != ${PV} ]]; then
-				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
-			fi
-			;;
-	esac
+# elif [[ "$KMNAME" == "koffice" ]]; then
+#	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+# 	case $PV in
+# 		1.3.5)
+# 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+# 			;;
+# 		1.6_beta1)
+# 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
+# 			;;
+# 		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
+# 			;;
+# 		*)
+# 			# Identify beta and rc versions by underscore
+# 			if [[ ${PV/_/} != ${PV} ]]; then
+# 				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
+# 			fi
+# 			;;
+# 	esac
 fi
 
-SRC_URI="$SRC_URI $SRC_PATH"
+# SRC_URI="$SRC_URI $SRC_PATH"
 
-debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
+# debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
 
 # Add a blocking dep on the package we're derived from
 if [[ "${KMNAME}" != "koffice" ]]; then
@@ -213,8 +218,8 @@ change_makefiles() {
 
 	# check if the dir is defined as KMEXTRACTONLY or if it was defined is KMEXTRACTONLY in the parent dir, this is valid only if it's not also defined as KMMODULE, KMEXTRA or KMCOMPILEONLY. They will ovverride KMEXTRACTONLY, but only in the current dir.
 	isextractonly="false"
-	if ( ( hasq "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ) && \
-		 ( ! hasq "$1" $KMMODULEFULLPATH $KMEXTRAFULLPATH $KMCOMPILEONLYFULLPATH ) ); then
+	if ( ( has "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ) && \
+		 ( ! has "$1" $KMMODULEFULLPATH $KMEXTRAFULLPATH $KMCOMPILEONLYFULLPATH ) ); then
 		isextractonly="true"
 	fi
 	debug-print "isextractonly = $isextractonly"
@@ -230,7 +235,7 @@ change_makefiles() {
 
 	for directory in $dirlistfullpath; do
 
-		if ( hasq "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ); then
+		if ( has "$1" $KMEXTRACTONLYFULLPATH || [[ $2 = "true" ]] ); then
 			change_makefiles $directory 'true'
 		else
 			change_makefiles $directory 'false'
@@ -275,6 +280,48 @@ set_common_variables() {
 	fi
 }
 
+# @FUNCTION: kde_git_unpack_sources
+# @USAGE:
+# @DESCRIPTION:
+# This function will create a temp folder /var/tmp/portage/${repo_name}
+# then download whole repo there, if already exist then will just update
+# or ignore
+kde_git_unpack_sources() {
+	debug-print-function $FUNCNAME "$@"
+
+ 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+
+	# Call git clone
+	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+
+#   [[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
+
+    # If directory exists, just cd into it and update sources in there
+    # That kind of behaviour will be supported because we pull packages
+    # by modules {base, graphics, games, multimedia, etc}
+#     if [ -d ${EGIT_REPO_KMNAME_POOL} ]; then
+#         EGIT_STORE_DIR=${EGIT_REPO_KMNAME_POOL}
+#          git-2_init_variables
+#          git-2_prepare_storedir
+# #         git-2_migrate_repository
+# #         git-2_fetch "$@"
+# #         git-2_gc
+# #         git-2_submodules
+# #         git-2_bootstrap
+#         git-2_cleanup
+#         echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
+#     else
+#         git-2_src_unpack
+#     fi
+
+    debug-print "removing module: ${EGIT_REPO_KMNAME_POOL}"
+    [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
+
+    git-2_src_unpack
+
+	return 0;
+}
+
 # @FUNCTION: kde-meta_src_unpack
 # @USAGE: [ unpack ] [ makefiles ]
 # @DESCRIPTION:
@@ -283,9 +330,17 @@ set_common_variables() {
 kde-meta_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
+	# Creating temporary dir for kde app
+# 	mdkir $EGIT_SOURCEDIR
+
 	set_common_variables
 
 	sections="$@"
+	echo "sections: $sections"
+
+	# Retrieve sources from git repo
+	kde_git_unpack_sources || die "uanble to git sources."
+
 	[[ -z "$sections" ]] && sections="unpack makefiles"
 	for section in $sections; do
 	case $section in
@@ -297,13 +352,24 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
+#		echo "S: $S"
+#		echo "WORKDIR: $WORKDIR"
+#		echo "pwd: $(pwd)"
+#		echo "T: $T"
+
+
+ 		S="${WORKDIR}"/${P}
+		mkdir -p ${S}
+
 		# Create final list of stuff to extract
 		extractlist=""
 		for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
 					acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
-					$KMMODULE $KMEXTRA $KMCOMPILEONLY $KMEXTRACTONLY $DOCS
+					${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
 		do
-			extractlist="$extractlist $KMNAME-$TARBALLDIRVER/${item%/}"
+			extractlist="$extractlist $KMNAME/${item%/}"
+			echo "${S}/${item%}"
+ 			cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
 		done
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
@@ -311,21 +377,22 @@ kde-meta_src_unpack() {
 		KMTARPARAMS="$KMTARPARAMS -j"
 		cd "${WORKDIR}"
 
-		echo ">>> Unpacking parts of ${TARBALL} to ${WORKDIR}"
+# 		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
 		# Note that KMTARPARAMS is also used by an ebuild
-		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null
+# 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
 
-		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
+#		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
 		# Avoid syncing if possible
 		# No idea what the above comment means...
-		if [[ -n "$RAWTARBALL" ]]; then
-			rm -f "${T}"/$RAWTARBALL
-		fi
+#		if [[ -n "$RAWTARBALL" ]]; then
+#			rm -f "${T}"/$RAWTARBALL
+#		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
-		mv $KMNAME-$TARBALLDIRVER $P || die "mv $KMNAME-$TARBallDIRVER failed."
-		S="${WORKDIR}"/${P}
+# 		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
+# 		mv ${KMNAME} ${P} || die "mv ${KMNAME} failed."
+# 		S="${WORKDIR}"/${P}
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -457,7 +524,32 @@ kde-meta_src_install() {
 		shift
 	done
 }
+
+# @FUNCTION: kde-meta_pkg_postinst
+# @DESCRIPTION:
+# Calls kde_pkg_postinst
+kde-meta_pkg_postinst() {
+    # Remove dir with KMNAME module info
+    rm -rf ${EGIT_REPO_KMNAME_POOL}
+    unset EGIT_REPO_KMNAME_POOL
+    
+    # Call kde method
+    kde_pkg_postinst
+}
+
+# @FUNCTION: kde-meta_pkg_postrm
+# @DESCRIPTION:
+# Calls kde_pkg_postrm
+kde-meta_pkg_postrm() {
+    # Remove dir with KMNAME module info
+    rm -rf ${EGIT_REPO_KMNAME_POOL}
+    unset EGIT_REPO_KMNAME_POOL
+    
+    # Call kde method
+    kde_pkg_postrm
+}
+
 case ${EAPI:-0} in
-	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install;;
-	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install;;
+	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm;;
+	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_postinst pkg_postrm;;
 esac
