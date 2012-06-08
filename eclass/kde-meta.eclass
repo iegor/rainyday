@@ -25,24 +25,24 @@ fi
 # Replace the $myPx mess - it was ugly as well as not general enough for 3.4.0-rc1
 # The following code should set TARBALLVER (the version in the tarball's name)
 # and TARBALLDIRVER (the version of the toplevel directory inside the tarball).
-#case "$PV" in
-#	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
-#	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
-#	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
-#esac
-#if [[ "${KMNAME}" = "koffice" ]]; then
-#	case "$PV" in
-#		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
-#		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
-#		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
-#	esac
-#fi
+case "$PV" in
+	3.5.0_beta2)		TARBALLDIRVER="3.4.92"; TARBALLVER="3.4.92" ;;
+	3.5.0_rc1)		TARBALLDIRVER="3.5.0"; TARBALLVER="3.5.0_rc1" ;;
+	*)				TARBALLDIRVER="$PV"; TARBALLVER="$PV" ;;
+esac
+
+if [[ "${KMNAME}" = "koffice" ]]; then
+	case "$PV" in
+		1.6_beta1)	TARBALLDIRVER="1.5.91"; TARBALLVER="1.5.91" ;;
+		1.6_rc1)	TARBALLDIRVER="1.5.92"; TARBALLVER="1.5.92" ;;
+		1.6.3_p*)	TARBALLDIRVER="1.6.3"; TARBALLVER="${PV}" ;;
+	esac
+fi
 
 #TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
 
 EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
 EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
-unset SRC_URI
 
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
 if [[ "$KDEBASE" = "true" ]]; then
@@ -57,37 +57,37 @@ if [[ "$KDEBASE" = "true" ]]; then
 
 	# Main tarball for normal downloading style
 	# Note that we set SRC_PATH, and add it to SRC_URI later on
-# 	case "$PV" in
-# 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
-# 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
-# 		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
-# 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
-# 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
-# 	esac
+ 	case "$PV" in
+ 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
+ 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
+ 		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
+ 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
+ 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
+ 	esac
 
-# elif [[ "$KMNAME" == "koffice" ]]; then
-#	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-# 	case $PV in
-# 		1.3.5)
-# 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
-# 			;;
-# 		1.6_beta1)
-# 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
-# 			;;
-# 		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
-# 			;;
-# 		*)
-# 			# Identify beta and rc versions by underscore
-# 			if [[ ${PV/_/} != ${PV} ]]; then
-# 				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
-# 			fi
-# 			;;
-# 	esac
+elif [[ "$KMNAME" == "koffice" ]]; then
+	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+ 	case $PV in
+ 		1.3.5)
+ 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+ 			;;
+ 		1.6_beta1)
+ 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
+ 			;;
+ 		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
+ 			;;
+ 		*)
+ 			# Identify beta and rc versions by underscore
+ 			if [[ ${PV/_/} != ${PV} ]]; then
+ 				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
+ 			fi
+ 			;;
+ 	esac
 fi
 
 # SRC_URI="$SRC_URI $SRC_PATH"
-
-# debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
+SRC_URI=""
+debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
 
 # Add a blocking dep on the package we're derived from
 if [[ "${KMNAME}" != "koffice" ]]; then
@@ -358,18 +358,20 @@ kde-meta_src_unpack() {
 
 # 		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
 		# Note that KMTARPARAMS is also used by an ebuild
+ 		debug-print "tar -xpf $TARFILE $KMTARPARAMS $extractlist 2> /dev/null || die can\'t untar."
 # 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
 
+		debug-print "[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}"
 #		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
 		# Avoid syncing if possible
 		# No idea what the above comment means...
-#		if [[ -n "$RAWTARBALL" ]]; then
-#			rm -f "${T}"/$RAWTARBALL
-#		fi
+		if [[ -n "$RAWTARBALL" ]]; then
+			rm -f "${T}"/$RAWTARBALL
+		fi
 
 		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
-# 		echo "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
+ 		debug-print "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
 # 		mv ${KMNAME} ${P} || die "mv ${KMNAME} failed."
 # 		S="${WORKDIR}"/${P}
 
