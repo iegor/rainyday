@@ -406,7 +406,7 @@ kde-meta_src_unpack() {
 # 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
 
 		debug-print "[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}"
-#		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
+		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
 		# Avoid syncing if possible
 		# No idea what the above comment means...
