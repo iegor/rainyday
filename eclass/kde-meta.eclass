@@ -295,26 +295,7 @@ kde_git_unpack_sources() {
 	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
 
 #   [[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
-
-    # If directory exists, just cd into it and update sources in there
-    # That kind of behaviour will be supported because we pull packages
-    # by modules {base, graphics, games, multimedia, etc}
-#     if [ -d ${EGIT_REPO_KMNAME_POOL} ]; then
-#         EGIT_STORE_DIR=${EGIT_REPO_KMNAME_POOL}
-#          git-2_init_variables
-#          git-2_prepare_storedir
-# #         git-2_migrate_repository
-# #         git-2_fetch "$@"
-# #         git-2_gc
-# #         git-2_submodules
-# #         git-2_bootstrap
-#         git-2_cleanup
-#         echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
-#     else
-#         git-2_src_unpack
-#     fi
-
-    debug-print "removing module: ${EGIT_REPO_KMNAME_POOL}"
+    debug-print "removing existing module: ${EGIT_REPO_KMNAME_POOL}"
     [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
 
     git-2_src_unpack
@@ -330,16 +311,10 @@ kde_git_unpack_sources() {
 kde-meta_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
-	# Creating temporary dir for kde app
-# 	mdkir $EGIT_SOURCEDIR
-
 	set_common_variables
 
 	sections="$@"
 	echo "sections: $sections"
-
-	# Retrieve sources from git repo
-	kde_git_unpack_sources || die "uanble to git sources."
 
 	[[ -z "$sections" ]] && sections="unpack makefiles"
 	for section in $sections; do
@@ -352,15 +327,17 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
-#		echo "S: $S"
-#		echo "WORKDIR: $WORKDIR"
-#		echo "pwd: $(pwd)"
-#		echo "T: $T"
-
-
  		S="${WORKDIR}"/${P}
 		mkdir -p ${S}
 
+		echo "S: $S"
+		echo "WORKDIR: $WORKDIR"
+		echo "pwd: $(pwd)"
+		echo "T: $T"
+
+		# Retrieve sources from git repo
+		kde_git_unpack_sources || die "uanble to git sources."
+		
 		# Create final list of stuff to extract
 		extractlist=""
 		for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
@@ -368,8 +345,9 @@ kde-meta_src_unpack() {
 					${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
 		do
 			extractlist="$extractlist $KMNAME/${item%/}"
-			echo "${S}/${item%}"
- 			cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
+			ebegin "Copying item: ${S}/${item%}"
+ 				cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
+			eend ${?}
 		done
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
