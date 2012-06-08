@@ -39,7 +39,7 @@ if [[ "${KMNAME}" = "koffice" ]]; then
 	esac
 fi
 
-#TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
+TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
 
 EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
 EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
@@ -200,6 +200,11 @@ create_fullpaths() {
 	for item in $KMEXTRACTONLY; do
 		KMEXTRACTONLYFULLPATH="$KMEXTRACTONLYFULLPATH ${S}/${item%/}"
 	done
+
+	debug-print "KMMODULEFULLPATH: $KMMODULEFULLPATH"
+	debug-print "KMEXTRAFULLPATH: $KMEXTRAFULLPATH"
+	debug-print "KMCOMPILEONLYFULLPATH: $KMCOMPILEONLYFULLPATH"
+	debug-print "KMEXTRACTONLYFULLPATH: $KMEXTRACTONLYFULLPATH"
 }
 
 # @FUNCTION: change_makefiles
@@ -289,16 +294,56 @@ set_common_variables() {
 kde_git_unpack_sources() {
 	debug-print-function $FUNCNAME "$@"
 
- 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+	fileslist=$@
+
+	debug-print "file list: $fileslist"
+
+# 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+ 	EGIT_SOURCEDIR="${S}"
 
 	# Call git clone
 	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
 
 #   [[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
     debug-print "removing existing module: ${EGIT_REPO_KMNAME_POOL}"
-    [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
+#    [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
 
-    git-2_src_unpack
+#	Simply put, the order is next
+#	1. cd to work/package dir
+#	2. and checkout everything that is required
+
+#    git-2_src_unpack
+
+	git-2_init_variables
+    git-2_prepare_storedir
+    git-2_migrate_repository
+    git-2_fetch
+    git-2_gc
+    git-2_submodules
+    git-2_move_source
+
+#	1.
+	cd $EGIT_SOURCEDIR
+#	git config core.sparseCheckout true
+
+#	2.
+#	touch "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
+
+	# read program will ignore last item, so
+	fileslist="$fileslist none"
+	echo $fileslist|while read -d ' ' line; do
+#		echo "./$line/" >> "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
+		git checkout ${EGIT_BRANCH} "./$line"
+	done
+#	cat "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
+	
+#	some test output
+	pwd
+	ls -la
+	git config --list
+#    git-2_branch
+#    git-2_bootstrap
+    git-2_cleanup
 
 	return 0;
 }
@@ -335,9 +380,6 @@ kde-meta_src_unpack() {
 		echo "WORKDIR: $WORKDIR"
 		echo "pwd: $(pwd)"
 		echo "T: $T"
-
-		# Retrieve sources from git repo
-		kde_git_unpack_sources || die "uanble to git sources."
 		
 		# Create final list of stuff to extract
 		extractlist=""
@@ -345,11 +387,13 @@ kde-meta_src_unpack() {
 					acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
 					${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
 		do
-			extractlist="$extractlist $KMNAME/${item%/}"
-			ebegin "Copying item: ${S}/${item%}"
- 				cp -Lr -t "${S}" "${EGIT_REPO_KMNAME_POOL}/${item%/}"
-			eend ${?}
+			extractlist="${extractlist} ${item%/}"
 		done
+		
+		# Retrieve sources from git repo
+		ebegin "Checking out:"
+			kde_git_unpack_sources ${extractlist} || die "uanble to git sources."
+		eend ${?}
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL
