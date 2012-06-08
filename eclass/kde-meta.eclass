@@ -331,6 +331,7 @@ kde-meta_src_unpack() {
 		mkdir -p ${S}
 
 		echo "S: $S"
+		echo "A: $A"
 		echo "WORKDIR: $WORKDIR"
 		echo "pwd: $(pwd)"
 		echo "T: $T"
