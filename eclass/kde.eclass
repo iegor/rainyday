@@ -17,7 +17,7 @@ ECLASS_DEBUG_OUTPUT=on
 
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
 
-inherit base eutils kde-functions flag-o-matic libtool autotools
+inherit base eutils kde-functions flag-o-matic libtool autotools git-2
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
@@ -137,6 +137,10 @@ kde_pkg_setup() {
 # For EAPI 0 and 1 it allso runs kde_src_prepare.
 kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
+	
+	# working with git repositories now
+	git-2_src_unpack
+
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
 	# Don't use base_src_unpack, as that will call base_src_prepare

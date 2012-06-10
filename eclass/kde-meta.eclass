@@ -285,69 +285,6 @@ set_common_variables() {
 	fi
 }
 
-# @FUNCTION: kde_git_unpack_sources
-# @USAGE:
-# @DESCRIPTION:
-# This function will create a temp folder /var/tmp/portage/${repo_name}
-# then download whole repo there, if already exist then will just update
-# or ignore
-kde_git_unpack_sources() {
-	debug-print-function $FUNCNAME "$@"
-
-	fileslist=$@
-
-	debug-print "file list: $fileslist"
-
-# 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
- 	EGIT_SOURCEDIR="${S}"
-
-	# Call git clone
-	echo "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
-
-#   [[ ! -d ${EGIT_REPO_KMNAME_POOL} ]] && git-2_src_unpack
-    debug-print "removing existing module: ${EGIT_REPO_KMNAME_POOL}"
-#    [[ -d ${EGIT_REPO_KMNAME_POOL} ]] && rm -rf ${EGIT_REPO_KMNAME_POOL}
-
-#	Simply put, the order is next
-#	1. cd to work/package dir
-#	2. and checkout everything that is required
-
-#    git-2_src_unpack
-
-	git-2_init_variables
-    git-2_prepare_storedir
-    git-2_migrate_repository
-    git-2_fetch
-    git-2_gc
-    git-2_submodules
-    git-2_move_source
-
-#	1.
-	cd $EGIT_SOURCEDIR
-#	git config core.sparseCheckout true
-
-#	2.
-#	touch "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
-
-	# read program will ignore last item, so
-	fileslist="$fileslist none"
-	echo $fileslist|while read -d ' ' line; do
-#		echo "./$line/" >> "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
-		git checkout ${EGIT_BRANCH} "./$line"
-	done
-#	cat "$EGIT_SOURCEDIR/.git/info/sparse-checkout"
-	
-#	some test output
-	pwd
-	ls -la
-	git config --list
-#    git-2_branch
-#    git-2_bootstrap
-    git-2_cleanup
-
-	return 0;
-}
-
 # @FUNCTION: kde-meta_src_unpack
 # @USAGE: [ unpack ] [ makefiles ]
 # @DESCRIPTION:
@@ -375,11 +312,11 @@ kde-meta_src_unpack() {
  		S="${WORKDIR}"/${P}
 		mkdir -p ${S}
 
-		echo "S: $S"
-		echo "A: $A"
-		echo "WORKDIR: $WORKDIR"
-		echo "pwd: $(pwd)"
-		echo "T: $T"
+		debug-print "S: $S"
+		debug-print "A: $A"
+		debug-print "WORKDIR: $WORKDIR"
+		debug-print "pwd: $(pwd)"
+		debug-print "T: $T"
 		
 		# Create final list of stuff to extract
 		extractlist=""
@@ -391,20 +328,57 @@ kde-meta_src_unpack() {
 		done
 		
 		# Retrieve sources from git repo
-		ebegin "Checking out:"
-			kde_git_unpack_sources ${extractlist} || die "uanble to git sources."
-		eend ${?}
+		ebegin "Checking out module: $KMNAME"
+			#	Simply put, the order is next
+			#	1. cd to work/package dir
+			#	2. and checkout everything that is required
+
+#			kde_git_unpack_sources ${extractlist} || die "uanble to git sources."
+
+#		 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
+			EGIT_SOURCEDIR="${S}"
+
+			debug-print "files list: $extractlist"
+			debug-print "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+			debug-print "EGIT_BRANCH: $EGIT_BRANCH"
+
+#			git-2_src_unpack
+
+			git-2_init_variables
+			git-2_prepare_storedir
+			git-2_migrate_repository
+			git-2_fetch
+			git-2_gc
+			git-2_submodules
+			git-2_move_source
+			
+			# 1.
+				cd $EGIT_SOURCEDIR
+			# 2.
+			# read program will ignore last item, so
+			extractlist="${extractlist} none"
+			echo ${extractlist}|while read -d ' ' line; do
+				git checkout ${EGIT_BRANCH} "./${line}"
+			done
+
+			#	some debug output
+			pwd
+			ls -la
+			git config --list
+			git-2_cleanup
+
+			# At this point we did all we wanted with git, so clean after ourselves
+			# to prevent kde:kde_src_unpack mess our build
+			EGIT_REPO_URI=""
+			EGIT_SOURCEDIR=""
+		eend ${?} # gitting sources
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL
 		KMTARPARAMS="$KMTARPARAMS -j"
 		cd "${WORKDIR}"
 
-# 		echo "Unpacking parts of ${TARBALL} to ${WORKDIR}"
-		# Note that KMTARPARAMS is also used by an ebuild
- 		debug-print "tar -xpf $TARFILE $KMTARPARAMS $extractlist 2> /dev/null || die can\'t untar."
-# 		tar -xpf $TARFILE $KMTARPARAMS $extractlist	2> /dev/null || die "can't untar." 
-
+		# unpack patchsets, usually
 		debug-print "[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}"
 		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
 
@@ -413,11 +387,6 @@ kde-meta_src_unpack() {
 		if [[ -n "$RAWTARBALL" ]]; then
 			rm -f "${T}"/$RAWTARBALL
 		fi
-
-		# Default $S is based on $P not $myP; rename the extracted dir to fit $S
- 		debug-print "mv ${KMNAME} ${PN} || die mv ${KMNAME} failed."
-# 		mv ${KMNAME} ${P} || die "mv ${KMNAME} failed."
-# 		S="${WORKDIR}"/${P}
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -447,7 +416,6 @@ kde-meta_src_unpack() {
 		if [[ "$KMNAME" == "kdebase" ]]; then
 			sed -i -e s:"bin_SCRIPTS = startkde.*"::g "${S}"/Makefile.am.in
 		fi
-
 	;;
 	makefiles)
 
