@@ -23,6 +23,7 @@ DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
 IUSE="debug elibc_FreeBSD"
 
+kdesrc_downloaded=0
 
 if [[ ${CATEGORY} == "kde-base" ]]; then
 	if [[ ${PV##*.} -lt 10 ]] ; then
