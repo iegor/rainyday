@@ -139,7 +139,7 @@ kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 	
 	# working with git repositories now
-	git-2_src_unpack
+	[[ kdesrc_downloaded == 1 ]] && git-2_src_unpack
 
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"

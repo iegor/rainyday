@@ -371,6 +371,7 @@ kde-meta_src_unpack() {
 			# to prevent kde:kde_src_unpack mess our build
 			EGIT_REPO_URI=""
 			EGIT_SOURCEDIR=""
+			kdesrc_downloaded = 1
 		eend ${?} # gitting sources
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
