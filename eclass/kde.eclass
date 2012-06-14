@@ -140,7 +140,12 @@ kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 	
 	# working with git repositories now
-	[[ kdesrc_downloaded == 1 ]] && git-2_src_unpack
+	# getting source only if not used kde-meta.eclass routine.
+	debug-print "kdesrc_downloaded: $kdesrc_downloaded"
+	if [ $kdesrc_downloaded == 0 ]; then
+		debug-print "gitting source code."
+		git-2_src_unpack
+	fi
 
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
