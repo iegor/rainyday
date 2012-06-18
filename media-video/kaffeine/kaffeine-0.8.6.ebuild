@@ -6,7 +6,11 @@ inherit eutils kde flag-o-matic
 
 DESCRIPTION="Media player for KDE using xine and gstreamer backends."
 HOMEPAGE="http://kaffeine.sourceforge.net/"
-SRC_URI="mirror://sourceforge/kaffeine/${P}.tar.bz2"
+SRC_URI=""
+EGIT_REPO_URI="git://github.com/iegor/${PN}.git"
+EGIT_SOURCEDIR="${WORKDIR}/${PN}-${PV}"
+EGIT_COMMIT="v_0.8.6"
+EGIT_BRANCH="master"
 LICENSE="GPL-2"
 
 SLOT="3.5"

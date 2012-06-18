@@ -86,6 +86,7 @@ elif [[ "$KMNAME" == "koffice" ]]; then
 fi
 
 # SRC_URI="$SRC_URI $SRC_PATH"
+debug-print "SRC_URI: $SRC_PATH"
 SRC_URI=""
 debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
 
