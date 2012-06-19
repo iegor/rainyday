@@ -11,6 +11,7 @@ HOMEPAGE="http://www.kde.org/"
 
 EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
 EGIT_SOURCEDIR=${WORKDIR}/${P}
+EGIT_BRANCH="qt4port"
 
 SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
