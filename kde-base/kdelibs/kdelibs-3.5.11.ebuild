@@ -148,9 +148,6 @@ src_unpack() {
 	# http://ktown.kde.org/~seli/xinerama/
 	epatch "${WORKDIR}/${PN}-xinerama.patch"
 
-	# patch that fixes kde4 in menus (adapted from archlinux)
-	epatch "${FILESDIR}/${P}-kde4-apps.patch"
-
 	# bug 247817
 	epatch "${FILESDIR}/${PN}-3.5-perl.xml.patch"
 
