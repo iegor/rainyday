@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
 
 EAPI="4"
-inherit kde flag-o-matic eutils multilib
+inherit kde-3.5.11 flag-o-matic eutils multilib
 set-kdedir 3.5
 
 DESCRIPTION="KDE libraries needed by all KDE programs."

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
 
-EAPI="2"
+EAPI="1"
 inherit kde flag-o-matic eutils multilib
 set-kdedir 3.5
 

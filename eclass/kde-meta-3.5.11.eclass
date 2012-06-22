@@ -15,7 +15,7 @@ ECLASS_DEBUG_OUTPUT=on
 # @DESCRIPTION:
 # This is the kde-meta eclass which supports broken-up kde-base packages.
 
-inherit kde multilib git-2
+inherit kde-3.5.11 multilib git-2
 
 # only broken-up ebuilds can use this eclass
 if [[ -z "$KMNAME" ]]; then

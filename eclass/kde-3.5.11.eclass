@@ -17,7 +17,7 @@ ECLASS_DEBUG_OUTPUT=on
 
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
 
-inherit base eutils kde-functions flag-o-matic libtool autotools git-2
+inherit base eutils kde-functions-3.5.11 flag-o-matic libtool autotools git-2
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
