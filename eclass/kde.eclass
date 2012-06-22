@@ -144,6 +144,14 @@ kde_src_unpack() {
 	debug-print "kdesrc_downloaded: $kdesrc_downloaded"
 	if [ $kdesrc_downloaded == 0 ]; then
 		debug-print "gitting source code."
+
+		if [ -z ${EGIT_REPO_URI} ]; then
+			debug-print "Empty EGIT_REPO_URI: setting to default: git://github.com/iegor/${PN}.git"
+			ebegin "Set egit_repo_uri to: git://github.com/iegor/${PN}.git"
+				EGIT_REPO_URI="git://github.com/iegor/${PN}.git"
+			eend 0
+		fi
+
 		git-2_src_unpack
 	fi
 

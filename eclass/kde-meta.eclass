@@ -41,9 +41,6 @@ fi
 
 TARBALL="$KMNAME-$TARBALLVER.tar.bz2"
 
-EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
-EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
-
 # BEGIN adapted from kde-dist.eclass, code for older versions removed for cleanness
 if [[ "$KDEBASE" = "true" ]]; then
 	unset SRC_URI
@@ -334,16 +331,17 @@ kde-meta_src_unpack() {
 			#	1. cd to work/package dir
 			#	2. and checkout everything that is required
 
-#			kde_git_unpack_sources ${extractlist} || die "uanble to git sources."
+			if [ -z ${EGIT_REPO_URI} ]; then
+				EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
+			fi
 
+			EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
 #		 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
 			EGIT_SOURCEDIR="${S}"
 
 			debug-print "files list: $extractlist"
 			debug-print "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
 			debug-print "EGIT_BRANCH: $EGIT_BRANCH"
-
-#			git-2_src_unpack
 
 			git-2_init_variables
 			git-2_prepare_storedir
@@ -355,23 +353,23 @@ kde-meta_src_unpack() {
 			
 			# 1.
 				cd $EGIT_SOURCEDIR
+			
 			# 2.
-			# read program will ignore last item, so
+			# read program will ignore last item, so add a dummy item.
 			extractlist="${extractlist} none"
 			echo ${extractlist}|while read -d ' ' line; do
 				git checkout ${EGIT_BRANCH} "./${line}"
 			done
 
 			#	some debug output
-			pwd
-			ls -la
-			git config --list
+#			pwd
+#			ls -la
+#			git config --list
+			
 			git-2_cleanup
 
 			# At this point we did all we wanted with git, so clean after ourselves
 			# to prevent kde:kde_src_unpack mess our build
-			EGIT_REPO_URI=""
-			EGIT_SOURCEDIR=""
 			kdesrc_downloaded=1
 		eend ${?} # gitting sources
 
