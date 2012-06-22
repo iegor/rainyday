@@ -15,7 +15,7 @@ SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 LICENSE="GPL-2 LGPL-2"
 SLOT="3.5"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE="acl qt3 qt4  alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
+IUSE="acl alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
 	avahi kernel_linux fam lua kdehiddenvisibility"
 
 # Added aspell-en as dependency to work around bug 131512.
@@ -53,7 +53,7 @@ RDEPEND="
 	>=sys-apps/portage-2.1.2.11
 	app-text/ghostscript-gpl
 	x11-libs/libXext
-	qt4? ( >=x11-libs/qt-meta-4.7:4 )
+	>=x11-libs/qt-meta-4.7:4
 	acl? (
 		virtual/acl
 	)
