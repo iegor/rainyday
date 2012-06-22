@@ -2,16 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
 
-EAPI="1"
+EAPI="4"
 inherit kde flag-o-matic eutils multilib
 set-kdedir 3.5
 
 DESCRIPTION="KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
-
-EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
-EGIT_SOURCEDIR=${WORKDIR}/${P}
-EGIT_BRANCH="qt4port"
 
 SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
@@ -19,7 +15,7 @@ SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 LICENSE="GPL-2 LGPL-2"
 SLOT="3.5"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE="acl alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
+IUSE="acl qt3 qt4  alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
 	avahi kernel_linux fam lua kdehiddenvisibility"
 
 # Added aspell-en as dependency to work around bug 131512.
@@ -57,7 +53,7 @@ RDEPEND="
 	>=sys-apps/portage-2.1.2.11
 	app-text/ghostscript-gpl
 	x11-libs/libXext
-	>=x11-libs/qt-meta-4.7:4
+	qt4? ( >=x11-libs/qt-meta-4.7:4 )
 	acl? (
 		virtual/acl
 	)
@@ -105,6 +101,10 @@ RESTRICT="test"
 PATCHES=( "${FILESDIR}/${PN}-p15-r1074156.patch"
 	"${FILESDIR}/${PN}-3.5-openssl-1.0.0.patch" )
 
+# EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
+EGIT_SOURCEDIR=${WORKDIR}/${P}
+EGIT_BRANCH="qt4port"
+
 pkg_setup() {
 	if use legacyssl ; then
 		echo ""
@@ -138,18 +138,6 @@ src_unpack() {
 		# Bug #135818 is the eternal reference.
 		epatch "${WORKDIR}/patches/kdelibs-3.5_libutempter.patch"
 	fi
-
-	if use branding ; then
-		# Add "(Gentoo)" to khtml user agent.
-		epatch "${WORKDIR}/patches/kdelibs_3.5-cattlebrand.diff"
-	fi
-
-	# Xinerama patch by Lubos Lunak.
-	# http://ktown.kde.org/~seli/xinerama/
-	epatch "${WORKDIR}/${PN}-xinerama.patch"
-
-	# bug 247817
-	epatch "${FILESDIR}/${PN}-3.5-perl.xml.patch"
 
 	# bug 267018
 	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.{am,in}

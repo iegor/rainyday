@@ -2,15 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
 
-EAPI="1"
+EAPI="2"
 inherit kde flag-o-matic eutils multilib
 set-kdedir 3.5
 
 DESCRIPTION="KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
 
-EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
+# EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
 EGIT_SOURCEDIR=${WORKDIR}/${P}
+EGIT_BRANCH="master"
 
 SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
