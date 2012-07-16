@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/ksim/ksim-3.5.10.ebuild,v 1.8 2009/10/12 05:43:12 abcd Exp $
-
-KMNAME=kdeutils
 EAPI="1"
+KMNAME=kdeutils
 inherit kde-meta eutils
 
 DESCRIPTION="KDE system monitoring applets."

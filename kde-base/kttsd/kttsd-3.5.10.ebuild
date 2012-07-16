@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kttsd/kttsd-3.5.10.ebuild,v 1.6 2009/07/12 13:16:34 armin76 Exp $
-KMNAME=kdeaccessibility
 EAPI="1"
+KMNAME=kdeaccessibility
 inherit kde-meta
 
 DESCRIPTION="KDE text-to-speech subsystem"

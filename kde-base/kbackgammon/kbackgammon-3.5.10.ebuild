@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kbackgammon/kbackgammon-3.5.10.ebuild,v 1.7 2009/07/12 11:41:54 armin76 Exp $
-KMNAME=kdegames
 EAPI="1"
+KMNAME=kdegames
 inherit kde-meta
 
 DESCRIPTION="A Backgammon program for KDE"

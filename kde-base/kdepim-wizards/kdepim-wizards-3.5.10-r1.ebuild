@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-wizards/kdepim-wizards-3.5.10.ebuild,v 1.7 2009/07/12 13:45:52 armin76 Exp $
 
+EAPI="1"
 KMNAME=kdepim
 KMMODULE=wizards
-EAPI="1"
 inherit kde-meta eutils
 
 DESCRIPTION="KDEPIM wizards"

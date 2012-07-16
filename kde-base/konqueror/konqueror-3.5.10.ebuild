@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/konqueror/konqueror-3.5.10.ebuild,v 1.8 2009/07/12 13:12:39 armin76 Exp $
 
-KMNAME=kdebase
 EAPI="1"
-
+KMNAME=kdebase
 inherit kde-meta eutils
 
 DESCRIPTION="KDE: Web browser, file manager, ..."

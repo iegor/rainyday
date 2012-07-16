@@ -2,8 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-im/kopete-otr/kopete-otr-0.7.ebuild,v 1.3 2008/09/14 21:57:09 carlo Exp $
 
-ARTS_REQUIRED="never"
 EAPI=1
+
+ARTS_REQUIRED="never"
 
 inherit kde
 

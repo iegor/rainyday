@@ -1,9 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/kopete-3.5.10-r4.ebuild,v 1.11 2009/07/08 14:33:06 alexxy Exp $
-
-KMNAME=kdenetwork
 EAPI="2"
+KMNAME=kdenetwork
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}

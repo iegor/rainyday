@@ -2,9 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdepim-kresources/kdepim-kresources-3.5.10.ebuild,v 1.9 2009/10/12 05:37:45 abcd Exp $
 
+EAPI="2"
 KMNAME=kdepim
 KMMODULE=kresources
-EAPI="2"
+
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}

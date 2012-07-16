@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/smb4k/smb4k-0.9.9.ebuild,v 1.4 2009/07/19 11:41:16 nixnut Exp $
 
-ARTS_REQUIRED="never"
-
 EAPI="1"
+ARTS_REQUIRED="never"
 
 inherit kde
 

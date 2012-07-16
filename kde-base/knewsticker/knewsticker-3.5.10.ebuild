@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/knewsticker/knewsticker-3.5.10.ebuild,v 1.7 2009/07/12 11:37:59 armin76 Exp $
 
-KMNAME=kdenetwork
 EAPI="1"
+KMNAME=kdenetwork
 inherit kde-meta eutils
 
 DESCRIPTION="kicker plugin: rss news ticker"

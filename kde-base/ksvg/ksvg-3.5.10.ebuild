@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/ksvg/ksvg-3.5.10.ebuild,v 1.10 2009/10/04 15:08:29 ssuominen Exp $
-
-KMNAME=kdegraphics
 EAPI="1"
+KMNAME=kdegraphics
 inherit kde-meta eutils flag-o-matic
 
 DESCRIPTION="SVG viewer library and embeddable kpart"

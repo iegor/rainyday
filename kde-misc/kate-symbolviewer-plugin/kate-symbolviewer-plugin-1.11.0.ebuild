@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kate-symbolviewer-plugin/kate-symbolviewer-plugin-1.11.0.ebuild,v 1.2 2009/11/08 21:05:31 ssuominen Exp $
 
-ARTS_REQUIRED="never"
 EAPI="1"
+ARTS_REQUIRED="never"
 
 inherit kde
 

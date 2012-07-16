@@ -1,9 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kpdf/kpdf-3.5.10-r1.ebuild,v 1.5 2009/10/10 18:21:58 armin76 Exp $
-
-KMNAME=kdegraphics
 EAPI="2"
+KMNAME=kdegraphics
 inherit kde-meta flag-o-matic
 
 DESCRIPTION="kpdf, a kde pdf viewer based on xpdf"

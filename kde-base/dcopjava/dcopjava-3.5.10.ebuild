@@ -6,11 +6,10 @@
 # in keeping with policy
 
 # Do NOT stable this package!
-
+EAPI="1"
 KMNAME=kdebindings
 KMEXTRACTONLY="kdejava/configure.in.in"
 KM_MAKEFILESREV=1
-EAPI="1"
 inherit kde-meta
 
 DESCRIPTION="Java bindings for DCOP"

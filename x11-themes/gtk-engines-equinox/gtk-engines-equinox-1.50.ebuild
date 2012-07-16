@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils
-
 EAPI=3
+
+inherit eutils
 
 MY_PN="equinox"
 ODTAG="121881"

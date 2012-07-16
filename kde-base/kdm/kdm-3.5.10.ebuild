@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/kdm-3.5.10.ebuild,v 1.8 2009/10/23 18:25:12 abcd Exp $
 
-KMNAME=kdebase
 EAPI="1"
+KMNAME=kdebase
 inherit kde-meta eutils
 
 SRC_URI="${SRC_URI}

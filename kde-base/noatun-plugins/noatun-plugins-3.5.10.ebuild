@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/noatun-plugins/noatun-plugins-3.5.10.ebuild,v 1.6 2009/07/12 13:05:20 armin76 Exp $
-KMNAME=kdeaddons
 EAPI="1"
+KMNAME=kdeaddons
 inherit db-use kde-meta
 
 DESCRIPTION="Various plugins for Noatun."
