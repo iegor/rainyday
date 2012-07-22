@@ -14,8 +14,8 @@ EGIT_SOURCEDIR=${WORKDIR}/${P}
 EGIT_BRANCH="master"
 #EGIT_COMMIT="2bb68ea8123991ce3401ebfc7281be4aed8ede19"
 
-SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
-	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
+#SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
+#	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="3.5"
@@ -103,8 +103,8 @@ PDEPEND="
 # Testing code is rather broken and merely for developer purposes, so disable it.
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${PN}-p15-r1074156.patch"
-	"${FILESDIR}/${PN}-3.5-openssl-1.0.0.patch" )
+#PATCHES=( "${FILESDIR}/${PN}-p15-r1074156.patch"
+#	"${FILESDIR}/${PN}-3.5-openssl-1.0.0.patch" )
 
 pkg_setup() {
 	if use legacyssl ; then
@@ -149,22 +149,22 @@ src_unpack() {
 
 	# Xinerama patch by Lubos Lunak.
 	# http://ktown.kde.org/~seli/xinerama/
-	epatch "${WORKDIR}/${PN}-xinerama.patch"
+#	epatch "${WORKDIR}/${PN}-xinerama.patch"
 
 	# patch that fixes kde4 in menus (adapted from archlinux)
-	epatch "${FILESDIR}/${P}-kde4-apps.patch"
+#	epatch "${FILESDIR}/${P}-kde4-apps.patch"
 
 	# bug 247817
-	epatch "${FILESDIR}/${PN}-3.5-perl.xml.patch"
+#	epatch "${FILESDIR}/${PN}-3.5-perl.xml.patch"
 
 	# bug 270926
-	epatch "${FILESDIR}/${P}-kjs-gcc44.patch"
+#	epatch "${FILESDIR}/${P}-kjs-gcc44.patch"
 
 	# bug 243476
-	epatch "${FILESDIR}/${P}-khtml.patch"
+#	epatch "${FILESDIR}/${P}-khtml.patch"
 
 	# googlemaps
-	epatch "${FILESDIR}/${P}-62_fix_googlemaps_backport.diff"
+#	epatch "${FILESDIR}/${P}-62_fix_googlemaps_backport.diff"
 
 	# bug 267018
 	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.{am,in}
