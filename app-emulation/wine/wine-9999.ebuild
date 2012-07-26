@@ -42,8 +42,6 @@ MLIB_DEPS="amd64? (
 	truetype? ( >=app-emulation/emul-linux-x86-xlibs-2.1 )
 	X? (
 		>=app-emulation/emul-linux-x86-xlibs-2.1
-		pulseaudio? ( >=app-emulation/emul-linux-x86-soundlibs-2.1[pulseaudio(+)?] )
-		!pulseaudio? ( >=app-emulation/emul-linux-x86-soundlibs-2.1 )
 	)
 	mp3? ( app-emulation/emul-linux-x86-soundlibs )
 	odbc? ( app-emulation/emul-linux-x86-db )
