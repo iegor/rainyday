@@ -43,12 +43,12 @@ MLIB_DEPS="amd64? (
 	X? (
 		>=app-emulation/emul-linux-x86-xlibs-2.1
 	)
-	odbc? ( app-emulation/emul-linux-x86-db )
-	openal? ( app-emulation/emul-linux-x86-sdl )
-	opengl? ( app-emulation/emul-linux-x86-opengl )
-	scanner? ( app-emulation/emul-linux-x86-medialibs )
-	v4l? ( app-emulation/emul-linux-x86-medialibs )
-	app-emulation/emul-linux-x86-baselibs
+	odbc? ( >=app-emulation/emul-linux-x86-db-20120520 )
+	openal? ( >=app-emulation/emul-linux-x86-sdl-20120520 )
+	opengl? ( >=app-emulation/emul-linux-x86-opengl-20120520 )
+	scanner? ( >=app-emulation/emul-linux-x86-medialibs-20120520 )
+	v4l? ( >=app-emulation/emul-linux-x86-medialibs-20120520 )
+	>=app-emulation/emul-linux-x86-baselibs-20120520
 	>=sys-kernel/linux-headers-2.6
 	)"
 RDEPEND="truetype? ( >=media-libs/freetype-2.0.0 media-fonts/corefonts )
