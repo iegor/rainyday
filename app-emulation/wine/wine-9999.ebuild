@@ -43,7 +43,6 @@ MLIB_DEPS="amd64? (
 	X? (
 		>=app-emulation/emul-linux-x86-xlibs-2.1
 	)
-	mp3? ( app-emulation/emul-linux-x86-soundlibs )
 	odbc? ( app-emulation/emul-linux-x86-db )
 	openal? ( app-emulation/emul-linux-x86-sdl )
 	opengl? ( app-emulation/emul-linux-x86-opengl )
