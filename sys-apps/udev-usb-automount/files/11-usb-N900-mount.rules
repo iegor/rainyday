@@ -1,0 +1,12 @@
+#SUBSYTEM!="block", GOTO="exitmount"
+# Check if N900 is inserted
+#ATTRS{idVendor}!="Nokia   ", ATTRS{model}!="N900            ", GOTO="exitmount"
+#ATTRS{idVendor}!="0421", ATTRS{idProduct}!="01c7", GOTO="exitmount"
+#ACTION=="add", KERNEL=="sd[b-z]", RUN+="/usr/bin/touch /dev/%k"
+#ACTION=="change", KERNEL=="sd[b-z]", ATTR{size}!="0", RUN+="/bin/mount /dev/%k /mnt/N900/"
+ACTION=="change", KERNEL=="sd[b-z]", RUN+="/usr/bin/touch /dev/%k"
+ACTION=="change", KERNEL=="sd[b-z]", RUN+="/usr/local/bin/mount_usb.sh '%k' 'vfat' 'N900'"
+#ACTION=="remove", KERNEL=="sd[b-z]", RUN+="/bin/umount -l /dev/%k"
+#ACTION=="remove", KERNEL=="sd[b-z]", RUN+="/bin/rmdir /mnt/N900"
+ACTION=="remove", KERNEL=="sd[b-z]", RUN+="/usr/local/bin/umount_usb.sh '%k' 'N900'"
+LABEL="exitmount"

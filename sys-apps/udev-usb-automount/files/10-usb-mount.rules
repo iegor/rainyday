@@ -1,0 +1,8 @@
+# SUBSYTEM!="block", GOTO="exitmount"
+KERNEL!="sd[a-z][0-9]", GOTO="exitmount"
+# ACTION=="add", ENV{ID_FS_TYPE}!="vfat|ntfs-3g|ext[2-4]", GOTO="exitmount"
+ACTION=="add", ENV{ID_USB_DRIVER}="usb-storage", GROUP="storage"
+IMPORT{program}="/sbin/blkid -o udev -p %N"
+ACTION=="add", KERNEL=="sd[b-z][0-9]", RUN+="/usr/local/bin/mount_usb.sh '%k' '$env{ID_FS_TYPE}' '%E{ID_VENDOR}_%E{ID_MODEL}_%n'"
+ACTION=="remove", KERNEL=="sd[b-z][0-9]", RUN+="/usr/local/bin/umount_usb.sh '%k' '%E{ID_VENDOR}_%E{ID_MODEL}_%n'"
+LABEL="exitmount"
