@@ -21,13 +21,13 @@ kde? ( >=kde-base/kdelibs-3.5.10-r9999 )"
 
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${PN}"
- 
-pkg_setup()
-{
-	# make error with $S go away.
-	mkdir ${S}
-}
+S="${WORKDIR}"
+
+# src_prepare()
+# {
+# 	# make error with $S go away.
+# 	mkdir ${S}
+# }
 
 src_install()
 {
@@ -39,13 +39,15 @@ src_install()
 	doins ${FILESDIR}/10-usb-mount.rules
 	doins ${FILESDIR}/11-usb-N900-mount.rules
 
-	die "debug"
+# 	die "debug"
 }
 
 pkg_postinst()
 {
 	# reload udev rules
+	ebegin "Reload udev rules"
 	/sbin/udevadm control --reload-rules
+	eend 0
 
 	einfo "udev rules was reloaded. Please try now to insert your usb device."	
 	einfo "Please use only konqueror mount dialog to mount your drives."	
