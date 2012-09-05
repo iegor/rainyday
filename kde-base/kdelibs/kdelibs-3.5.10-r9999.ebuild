@@ -142,10 +142,11 @@ src_unpack() {
 		epatch "${WORKDIR}/patches/kdelibs-3.5_libutempter.patch"
 	fi
 
-	if use branding ; then
-		# Add "(Gentoo)" to khtml user agent.
-		epatch "${WORKDIR}/patches/kdelibs_3.5-cattlebrand.diff"
-	fi
+ 	if use branding ; then
+		einfo "will be branded. patch already aplied."
+ 		# Add "(Gentoo)" to khtml user agent.
+# 		epatch "${WORKDIR}/patches/kdelibs_3.5-cattlebrand.diff"
+ 	fi
 
 	# Xinerama patch by Lubos Lunak.
 	# http://ktown.kde.org/~seli/xinerama/

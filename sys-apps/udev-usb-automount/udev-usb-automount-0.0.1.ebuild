@@ -38,8 +38,6 @@ src_install()
 	insinto /etc/udev/rules.d
 	doins ${FILESDIR}/10-usb-mount.rules
 	doins ${FILESDIR}/11-usb-N900-mount.rules
-
-# 	die "debug"
 }
 
 pkg_postinst()
