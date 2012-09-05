@@ -14,7 +14,7 @@ EGIT_SOURCEDIR=${WORKDIR}/${P}
 EGIT_BRANCH="master"
 #EGIT_COMMIT="2bb68ea8123991ce3401ebfc7281be4aed8ede19"
 
-#SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
+SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2"
 #	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
