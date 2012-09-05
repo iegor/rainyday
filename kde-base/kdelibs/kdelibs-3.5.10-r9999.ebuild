@@ -14,7 +14,7 @@ EGIT_SOURCEDIR=${WORKDIR}/${P}
 EGIT_BRANCH="master"
 #EGIT_COMMIT="2bb68ea8123991ce3401ebfc7281be4aed8ede19"
 
-SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2"
+# SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 #	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
@@ -268,8 +268,8 @@ EOF
 	# Merge KDE prefix and LDPATH
 	sed -e "s#@REPLACE_PREFIX@#${PREFIX}#" \
 		-e  "s#@REPLACE_LIBS@#${_libdirs}#" \
-		-i "${WORKDIR}/patches/kde3" || die "sed failed"
-	dobin "${WORKDIR}/patches/kde3"
+		-i "${FILESDIR}/kde3" || die "sed failed"
+	dobin "${FILESDIR}/kde3"
 
 	# Make sure the target for the revdep-rebuild stuff exists. Fixes bug 184441.
 	dodir /etc/revdep-rebuild

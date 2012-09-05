@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+#  Script for launching KDE3 applications from outside of the KDE3 desktop
+#
+#  Modify this to match your specific needs, such as setting up needed env. variables,
+#  and make sure this script is in $PATH (e.g. make a symlink if necessary).
+#
+
+_KDEDIR=@REPLACE_PREFIX@
+export KDEDIRS=${_KDEDIR}:/usr:/usr/local
+export PATH=${_KDEDIR}/bin:$(echo ${PATH} | sed 's#/usr/kde/[^/]*/s\?bin:##g')
+export ROOTPATH=${_KDEDIR}/sbin:${_KDEDIR}/bin:$(echo ${PATH} | sed 's#/usr/kde/[^/]*/s\?bin:##g')
+export LDPATH=@REPLACE_LIBS@:${LDPATH}
+
+exec "$@"
