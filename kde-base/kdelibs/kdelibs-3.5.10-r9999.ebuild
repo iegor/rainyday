@@ -122,6 +122,9 @@ pkg_setup() {
 		elog "behaviour, try to rebuild kde-base/kdelibs with utempter use-flag enabled."
 		echo ""
 	fi
+
+	# moving kde file from ${FILESDIR} to ${WORKDIR}/
+	cp -L ${FILESDIR}/kde ${WORKDIR}/
 }
 
 src_unpack() {
@@ -268,8 +271,8 @@ EOF
 	# Merge KDE prefix and LDPATH
 	sed -e "s#@REPLACE_PREFIX@#${PREFIX}#" \
 		-e  "s#@REPLACE_LIBS@#${_libdirs}#" \
-		-i "${FILESDIR}/kde3" || die "sed failed"
-	dobin "${FILESDIR}/kde3"
+		-i "${WORKDIR}/kde3" || die "sed failed"
+	dobin "${WORKDIR}/kde3"
 
 	# Make sure the target for the revdep-rebuild stuff exists. Fixes bug 184441.
 	dodir /etc/revdep-rebuild
