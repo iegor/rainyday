@@ -20,6 +20,7 @@ IUSE=""
 DEPEND="=kde-base/kwin-3.5*"
 RDEPEND=""
 
-KMEXTRA="kstyles/equinox"
+KMEXTRA="kstyles/equinox kde.pot libltdl kdefx"
+# KMCOPYLIB="libltdl"
 
 need-kde 3.2

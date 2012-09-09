@@ -352,7 +352,7 @@ kde-meta_src_unpack() {
 			git-2_move_source
 			
 			# 1.
-				cd $EGIT_SOURCEDIR
+			cd $EGIT_SOURCEDIR
 			
 			# 2.
 			# read program will ignore last item, so add a dummy item.
