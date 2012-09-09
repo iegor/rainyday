@@ -362,8 +362,8 @@ kde-meta_src_unpack() {
 			done
 
 			#	some debug output
-#			pwd
-#			ls -la
+			debug-print "we are in:  $(pwd)"
+			debug-print "files: $(ls -la)"
 #			git config --list
 			
 			git-2_cleanup
