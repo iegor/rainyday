@@ -19,6 +19,8 @@ inherit qt3 eutils
 # map of the monolithic->split ebuild derivation; used to build deps describing
 # the relationships between them
 KDE_DERIVATION_MAP='
+kde-base/kdestyles x11-themes/equinox
+kde-base/kdestyles x11-themes/qinx
 kde-base/kdeaccessibility kde-base/kbstateapplet
 kde-base/kdeaccessibility kde-base/kdeaccessibility-iconthemes
 kde-base/kdeaccessibility kde-base/kmag
