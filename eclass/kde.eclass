@@ -17,7 +17,7 @@ ECLASS_DEBUG_OUTPUT=on
 
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
 
-inherit base eutils kde-functions flag-o-matic libtool autotools git-2 feature
+inherit base eutils kde-functions flag-o-matic libtool autotools git-2
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
@@ -146,16 +146,17 @@ kde_src_unpack() {
 		debug-print "gitting source code."
 
 		# Check if git_install feature is enabled, then download
-		if [ feature "git_install" ]; then
+		#property "git_install" && einfo "$? got property."
+		
+		if [ "$KDE_DOWNLOAD_SOURCE" == "git_repo" ]; then
 			if [ -z ${EGIT_REPO_URI} ]; then
 				debug-print "Empty EGIT_REPO_URI: setting to default: git://github.com/iegor/${PN}.git"
 				ebegin "Set egit_repo_uri to: git://github.com/iegor/${PN}.git"
 					EGIT_REPO_URI="git://github.com/iegor/${PN}.git"
 				eend 0
 			fi
+			git-2_src_unpack
 		fi
-
-		git-2_src_unpack
 	fi
 
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
