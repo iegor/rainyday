@@ -15,6 +15,10 @@ ECLASS_DEBUG_OUTPUT=on
 # @DESCRIPTION:
 # This eclass is inherited by all kde-* eclasses. Few ebuilds inherit straight from here.
 
+STRING_ERROR_KDE_UNPACK_NO_SOURCE="[V]KDE_DOWNLOAD_SOURCE is empty. Download from where ?
+	Use next syntax in your ebuild\n\
+	KDE_DOWNLOAD_SOURCE=\"<download source>\" [git_repo, src_uri]\n"
+
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools git-2
@@ -147,6 +151,8 @@ kde_src_unpack() {
 
 		# Check if git_install feature is enabled, then download
 		#property "git_install" && einfo "$? got property."
+
+		[[ -z "${KDE_DOWNLOAD_SOURCE}" ]] && die "${STRING_ERROR_KDE_UNPACK_NO_SOURCE}"
 		
 		if [ "$KDE_DOWNLOAD_SOURCE" == "git_repo" ]; then
 			if [ -z ${EGIT_REPO_URI} ]; then

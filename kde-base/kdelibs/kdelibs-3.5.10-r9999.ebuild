@@ -106,6 +106,8 @@ RESTRICT="test"
 #PATCHES=( "${FILESDIR}/${PN}-p15-r1074156.patch"
 #	"${FILESDIR}/${PN}-3.5-openssl-1.0.0.patch" )
 
+KDE_DOWNLOAD_SOURCE="git_repo"
+
 pkg_setup() {
 	if use legacyssl ; then
 		echo ""
