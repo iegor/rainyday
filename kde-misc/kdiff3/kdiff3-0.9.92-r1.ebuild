@@ -3,6 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdiff3/kdiff3-0.9.92-r1.ebuild,v 1.2 2008/06/21 14:05:05 mr_bones_ Exp $
 
 ARTS_REQUIRED="never"
+KDE_DOWNLOAD_SOURCE="src_uri"
 
 inherit kde
 
