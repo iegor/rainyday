@@ -15,11 +15,27 @@ ECLASS_DEBUG_OUTPUT=on
 # @DESCRIPTION:
 # This eclass is inherited by all kde-* eclasses. Few ebuilds inherit straight from here.
 
+################################ SOME BASIC GIT SETTINGS ##################################
+
+# One repo for whole kde
+EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
+# Default location check and set
+[[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
+# Default branch check and set
+[[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="master"
+
+################################ SOME ERROR STRINGS #######################################
+
 STRING_ERROR_KDE_UNPACK_NO_SOURCE="[V]KDE_DOWNLOAD_SOURCE is empty. Download from where ?
 	Use next syntax in your ebuild\n\
 	KDE_DOWNLOAD_SOURCE=\"<download source>\" [git_repo, src_uri]\n"
 
+###########################################################################################
+
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
+
+# Default download method check
+#[[ -z "${KDE_DOWNLOAD_SOURCE}" ]] && die "${STRING_ERROR_KDE_UNPACK_NO_SOURCE}"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools git-2
 
@@ -143,27 +159,105 @@ kde_pkg_setup() {
 kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 	
-	# working with git repositories now
-	# getting source only if not used kde-meta.eclass routine.
-	debug-print "kdesrc_downloaded: $kdesrc_downloaded"
-	if [ $kdesrc_downloaded == 0 ]; then
-		debug-print "gitting source code."
+	# Working with git repositories now !
 
-		# Check if git_install feature is enabled, then download
-		#property "git_install" && einfo "$? got property."
+	# Create final list of stuff to extract
+	extractlist=""
+	for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
+				acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
+				${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
+	do
+		extractlist="${extractlist} ${item%/}"
+	done
 
-		[[ -z "${KDE_DOWNLOAD_SOURCE}" ]] && die "${STRING_ERROR_KDE_UNPACK_NO_SOURCE}"
-		
-		if [ "$KDE_DOWNLOAD_SOURCE" == "git_repo" ]; then
-			if [ -z ${EGIT_REPO_URI} ]; then
-				debug-print "Empty EGIT_REPO_URI: setting to default: git://github.com/iegor/${PN}.git"
-				ebegin "Set egit_repo_uri to: git://github.com/iegor/${PN}.git"
-					EGIT_REPO_URI="git://github.com/iegor/${PN}.git"
-				eend 0
-			fi
-			git-2_src_unpack
+	EGIT_SOURCEDIR="${S}"
+
+	case "${KDE_DOWNLOAD_SOURCE}" in
+	# Check if user ebuild wants to download from git repo
+	# That should be behaviour by fefault, to centralise  all work with sources
+	"git")
+		if [ -z ${EGIT_REPO_URI} ]; then
+			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
+			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 		fi
-	fi
+
+		# Short debug messagin, log
+		debug-print "S: $S"
+		debug-print "A: $A"
+		debug-print "WORKDIR: $WORKDIR"; [[ -d ${WORKDIR} ]] && ( einfo "exist."; ls -la ${WORKDIR} )
+		debug-print "pwd: $(pwd)"
+		debug-print "T: $T"
+		debug-print "KMNAME: ${KMNAME}"
+		debug-print "KMMODULE: ${KMMODULE}"
+		debug-print "files list: $extractlist"
+		debug-print "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
+		debug-print "EGIT_BRANCH: $EGIT_BRANCH"
+
+		ebegin "Gitting sources from ${EGIT_REPO_URI} repo."
+
+			# We will not need t checkout everything, just specified files and folders
+			# so using "git-2_src_unpack" won't help us, use instead
+			git-2_init_variables
+			git-2_prepare_storedir
+			git-2_migrate_repository
+			git-2_fetch
+			git-2_gc
+			git-2_submodules
+			git-2_move_source
+
+		eend ${?}
+
+		# To make sure we are checking out into workdir
+		S="${WORKDIR}"/${P}
+		mkdir -p ${S}
+
+		#	Simply put, the order is next
+		#	1. cd to work/package dir
+		#	2. and checkout everything that is required
+		ebegin "Checking out files to build module: '${KMNAME}'"
+			# 1.
+			cd $EGIT_SOURCEDIR
+
+			# 2.
+			# Independently of module we need to obtain kde-common
+			git checkout ${EGIT_BRANCH} kdecommon
+			mv ./kdecommon ${WORKDIR}/
+
+			# Gather files depending on module
+			case "${KMNAME}" in
+			# When checking out kdelibs module we don't need to do anything super
+			# we just checkout KMNAME
+			"kdelibs")
+				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
+				git checkout ${EGIT_BRANCH} "./${KMNAME}"
+
+				mv ./${KMNAME}/* ./
+				rmdir "./${KMNAME}"
+			;;
+			# Other modules
+			*)
+				# read program will ignore last item, so add a dummy item.
+				extractlist="${extractlist} none"
+				echo ${extractlist}|while read -d ' ' line; do
+					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
+					git checkout ${EGIT_BRANCH} "./${line}"
+				done
+			;;
+			esac
+
+			#	some debug output
+			debug-print "we are in:  $(pwd)"
+			debug-print "files: $(ls -la)"
+#			git config --list
+			
+			git-2_cleanup
+		eend ${?}
+	;; # KDE_DOWNLOAD_SOURCE is git
+
+	# Here all the rest sources will be used [src_uri, etc.]
+	*)
+	;;
+	esac
 
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"

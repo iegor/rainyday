@@ -306,87 +306,15 @@ kde-meta_src_unpack() {
 		if [[ "$KMNAME" == "kdepim" ]]; then
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
-
- 		S="${WORKDIR}"/${P}
-		mkdir -p ${S}
-
-		debug-print "S: $S"
-		debug-print "A: $A"
-		debug-print "WORKDIR: $WORKDIR"
-		debug-print "pwd: $(pwd)"
-		debug-print "T: $T"
-		
-		# Create final list of stuff to extract
-		extractlist=""
-		for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
-					acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
-					${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
-		do
-			extractlist="${extractlist} ${item%/}"
-		done
 		
 		# Retrieve sources from git repo
-		ebegin "Checking out module: $KMNAME"
-			#	Simply put, the order is next
-			#	1. cd to work/package dir
-			#	2. and checkout everything that is required
-
-			if [ -z ${EGIT_REPO_URI} ]; then
-				EGIT_REPO_URI="git://github.com/iegor/$KMNAME.git"
-			fi
-
-			EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
-#		 	EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
-			EGIT_SOURCEDIR="${S}"
-
-			debug-print "files list: $extractlist"
-			debug-print "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
-			debug-print "EGIT_BRANCH: $EGIT_BRANCH"
-
-			git-2_init_variables
-			git-2_prepare_storedir
-			git-2_migrate_repository
-			git-2_fetch
-			git-2_gc
-			git-2_submodules
-			git-2_move_source
-			
-			# 1.
-			cd $EGIT_SOURCEDIR
-			
-			# 2.
-			# read program will ignore last item, so add a dummy item.
-			extractlist="${extractlist} none"
-			echo ${extractlist}|while read -d ' ' line; do
-				git checkout ${EGIT_BRANCH} "./${line}"
-			done
-
-			#	some debug output
-			debug-print "we are in:  $(pwd)"
-			debug-print "files: $(ls -la)"
-#			git config --list
-			
-			git-2_cleanup
-
+		#ebegin "Checking out module: $KMNAME"
+			#EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
+		 	#EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
 			# At this point we did all we wanted with git, so clean after ourselves
 			# to prevent kde:kde_src_unpack mess our build
-			kdesrc_downloaded=1
-		eend ${?} # gitting sources
-
-		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
-		TARFILE=$DISTDIR/$TARBALL
-		KMTARPARAMS="$KMTARPARAMS -j"
-		cd "${WORKDIR}"
-
-		# unpack patchsets, usually
-		debug-print "[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}"
-		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
-
-		# Avoid syncing if possible
-		# No idea what the above comment means...
-		if [[ -n "$RAWTARBALL" ]]; then
-			rm -f "${T}"/$RAWTARBALL
-		fi
+			#kdesrc_downloaded=1
+		#eend ${?} # gitting sources
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -411,6 +339,21 @@ kde-meta_src_unpack() {
 
 		# Don't add a param here without looking at its implementation.
 		kde_src_unpack
+
+		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
+		TARFILE=$DISTDIR/$TARBALL
+		KMTARPARAMS="$KMTARPARAMS -j"
+		cd "${WORKDIR}"
+
+		# unpack patchsets, usually
+		debug-print "[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}"
+		[[ -n ${A/${TARBALL}/} ]] && unpack ${A/${TARBALL}/}
+
+		# Avoid syncing if possible
+		# No idea what the above comment means...
+		if [[ -n "$RAWTARBALL" ]]; then
+			rm -f "${T}"/$RAWTARBALL
+		fi
 
 		# kdebase: Remove the installation of the "startkde" and "kde3" scripts.
 		if [[ "$KMNAME" == "kdebase" ]]; then
@@ -523,8 +466,8 @@ kde-meta_src_install() {
 # Calls kde_pkg_postinst
 kde-meta_pkg_postinst() {
     # Remove dir with KMNAME module info
-    rm -rf ${EGIT_REPO_KMNAME_POOL}
-    unset EGIT_REPO_KMNAME_POOL
+    #rm -rf ${EGIT_REPO_KMNAME_POOL}
+    #unset EGIT_REPO_KMNAME_POOL
     
     # Call kde method
     kde_pkg_postinst
@@ -535,8 +478,8 @@ kde-meta_pkg_postinst() {
 # Calls kde_pkg_postrm
 kde-meta_pkg_postrm() {
     # Remove dir with KMNAME module info
-    rm -rf ${EGIT_REPO_KMNAME_POOL}
-    unset EGIT_REPO_KMNAME_POOL
+    #rm -rf ${EGIT_REPO_KMNAME_POOL}
+    #unset EGIT_REPO_KMNAME_POOL
     
     # Call kde method
     kde_pkg_postrm
