@@ -19,10 +19,12 @@ ECLASS_DEBUG_OUTPUT=on
 
 # One repo for whole kde
 EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
-# Default location check and set
+# Default location check and set, if wasn't set in ebuild
 [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
-# Default branch check and set
+# Default branch check and set, if wasn't set in ebuild
 [[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="master"
+# Source directory to clone repo into it
+EGIT_SOURCEDIR=${S}
 
 ################################ SOME ERROR STRINGS #######################################
 
@@ -161,42 +163,37 @@ kde_src_unpack() {
 	
 	# Working with git repositories now !
 
-	# Create final list of stuff to extract
-	extractlist=""
-	for item in admin Makefile.am Makefile.am.in configure.in.in configure.in.mid configure.in.bot \
-				acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL README NEWS ChangeLog \
-				${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} ${KMEXTRACTONLY} ${DOCS}
-	do
-		extractlist="${extractlist} ${item%/}"
-	done
-
-	EGIT_SOURCEDIR="${S}"
-
 	case "${KDE_DOWNLOAD_SOURCE}" in
 	# Check if user ebuild wants to download from git repo
 	# That should be behaviour by fefault, to centralise  all work with sources
 	"git")
+		einfo "Your package is in git repo, it will fetched via git routines."
+
 		if [ -z ${EGIT_REPO_URI} ]; then
 			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
 			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 		fi
 
-		# Short debug messagin, log
+		# Short debug messaging, log
 		debug-print "S: $S"
 		debug-print "A: $A"
+		debug-print "P: $P"
+		debug-print "PN: $PN"
+		debug-print "PV: $PV"
+		debug-print "DISTDIR: ${DISTDIR}"
+		debug-print "D: ${D}"
 		debug-print "WORKDIR: $WORKDIR"; [[ -d ${WORKDIR} ]] && ( einfo "exist."; ls -la ${WORKDIR} )
 		debug-print "pwd: $(pwd)"
 		debug-print "T: $T"
 		debug-print "KMNAME: ${KMNAME}"
 		debug-print "KMMODULE: ${KMMODULE}"
-		debug-print "files list: $extractlist"
-		debug-print "EGIT_SOURCEDIR: $EGIT_SOURCEDIR"
-		debug-print "EGIT_BRANCH: $EGIT_BRANCH"
+# 		debug-print "files list: ${extractlist}"
+		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
+		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
 
+		# We will not need t checkout everything, just specified files and folders
+		# so using "git-2_src_unpack" won't help us, use instead
 		ebegin "Gitting sources from ${EGIT_REPO_URI} repo."
-
-			# We will not need t checkout everything, just specified files and folders
-			# so using "git-2_src_unpack" won't help us, use instead
 			git-2_init_variables
 			git-2_prepare_storedir
 			git-2_migrate_repository
@@ -204,58 +201,74 @@ kde_src_unpack() {
 			git-2_gc
 			git-2_submodules
 			git-2_move_source
-
 		eend ${?}
 
 		# To make sure we are checking out into workdir
-		S="${WORKDIR}"/${P}
+		#S="${WORKDIR}"/${P}
 		mkdir -p ${S}
 
-		#	Simply put, the order is next
-		#	1. cd to work/package dir
-		#	2. and checkout everything that is required
 		ebegin "Checking out files to build module: '${KMNAME}'"
-			# 1.
 			cd $EGIT_SOURCEDIR
 
-			# 2.
-			# Independently of module we need to obtain kde-common
+			# Check out assets required for build to be conducted
 			git checkout ${EGIT_BRANCH} kdecommon
 			mv ./kdecommon ${WORKDIR}/
 
-			# Gather files depending on module
-			case "${KMNAME}" in
-			# When checking out kdelibs module we don't need to do anything super
-			# we just checkout KMNAME
-			"kdelibs")
+# TYPE A ebuild checkout process
+			if [ -z "${KMMODULE}" ]; then
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
 
-				mv ./${KMNAME}/* ./
-				rmdir "./${KMNAME}"
-			;;
-			# Other modules
-			*)
-				# read program will ignore last item, so add a dummy item.
-				extractlist="${extractlist} none"
-				echo ${extractlist}|while read -d ' ' line; do
-					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
-					git checkout ${EGIT_BRANCH} "./${line}"
+# TYPE B ebuild checkout process
+			else	
+				# Create final list of stuff to extract
+				extractlist=""
+				for item in admin \
+										Makefile.am \
+										Makefile.am.in \
+										configure.in.in \
+										configure.in.mid \
+										configure.in.bot \
+										acinclude.m4 \
+										aclocal.m4 \
+										AUTHORS \
+										COPYING \
+										INSTALL \
+										README \
+										NEWS \
+										ChangeLog \
+										${KMMODULE} \
+										${KMEXTRA} \
+										${KMCOMPILEONLY} \
+										${KMEXTRACTONLY} \
+										${DOCS}
+				do
+# 					extractlist="${extractlist} ${KMNAME}/${item%/}"
+					einfo "Checkout: ${item%/} into '${EGIT_SOURCEDIR}'"
+					git checkout ${EGIT_BRANCH} "${KMNAME}/${item%/}"
 				done
-			;;
-			esac
+	
+				# read program will ignore last item, so add a dummy item.
+# 				extractlist="${extractlist} none"
+# 				echo ${extractlist}|while read -d ' ' line; do
+# 					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
+# 					git checkout ${EGIT_BRANCH} "./${line}"
+# 				done
+			fi
+
+			mv ./${KMNAME}/* ./
+			rm -rf "./${KMNAME}"
 
 			#	some debug output
 			debug-print "we are in:  $(pwd)"
 			debug-print "files: $(ls -la)"
 #			git config --list
-			
+
 			git-2_cleanup
 		eend ${?}
 	;; # KDE_DOWNLOAD_SOURCE is git
-
-	# Here all the rest sources will be used [src_uri, etc.]
-	*)
+	*) # Here all the rest sources will be used [src_uri, etc.]
+		einfo "Your package is not in git repo, it will fetched via SRC_URI var."
 	;;
 	esac
 

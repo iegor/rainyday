@@ -66,6 +66,8 @@ PATCHES=(
     "${FILESDIR}/${KMNAME}_${PN}-composer-crash-fix.patch"
 )
 
+KDE_DOWNLOAD_SOURCE="git"
+
 src_install() {
 	kde-meta_src_install
 	# Install KMail icons with libkdepim to work around bug #136810.

@@ -306,15 +306,9 @@ kde-meta_src_unpack() {
 		if [[ "$KMNAME" == "kdepim" ]]; then
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
-		
-		# Retrieve sources from git repo
-		#ebegin "Checking out module: $KMNAME"
-			#EGIT_REPO_KMNAME_POOL="/var/tmp/portage/${KMNAME}"
-		 	#EGIT_SOURCEDIR="${EGIT_REPO_KMNAME_POOL}"
-			# At this point we did all we wanted with git, so clean after ourselves
-			# to prevent kde:kde_src_unpack mess our build
-			#kdesrc_downloaded=1
-		#eend ${?} # gitting sources
+
+		# Don't add a param here without looking at its implementation.
+		kde_src_unpack
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -336,9 +330,6 @@ kde-meta_src_unpack() {
 				libname=""
 			fi
 		done
-
-		# Don't add a param here without looking at its implementation.
-		kde_src_unpack
 
 		# $KMTARPARAMS is also available for an ebuild to use; currently used by kturtle
 		TARFILE=$DISTDIR/$TARBALL

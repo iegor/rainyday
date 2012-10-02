@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/katapult/katapult-0.3.2.1.ebuild,v 1.4 2008/02/08 18:12:04 maekke Exp $
 
+EAPI=2
+
 USE_KEG_PACKAGING="1"
 LANGS="ar br cs de es fr gl it nb pl pt_BR sk tr bg ca da el et ga hu ja nl pt ru sv uk"
 LANGS_DOC=""
@@ -16,5 +18,7 @@ SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="amd64 ppc x86"
 IUSE=""
+
+KDE_DOWNLOAD_SOURCE="src_uri"
 
 need-kde 3.3

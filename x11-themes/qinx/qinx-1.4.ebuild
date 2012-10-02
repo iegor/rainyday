@@ -19,6 +19,6 @@ IUSE=""
 
 DEPEND="=kde-base/kwin-3.5*"
 RDEPEND=""
-KMEXTRA="kstyles/qinxstyle kstyles/qinxclient"
+KMEXTRA="kstyles/qinxstyle kstyles/qinxclient libltdl kdeui dcop kdecore kinit"
 
 need-kde 3.2

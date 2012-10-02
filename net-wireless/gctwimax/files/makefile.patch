@@ -1,0 +1,20 @@
+--- Makefile
++++ Makefile
+@@ -33,11 +33,13 @@
+ 	$(LDO) $(LDFLAGS) -o gctwimax $(OBJS_ex) -leap -lusb-1.0 -lcrypto -lz -ldbus-1
+ 
+ install:
+-	cp ./gctwimax /sbin/gctwimax
++	[ ! -d $(DESTDIR)sbin ] && mkdir -p $(DESTDIR)sbin
++	cp -r ./gctwimax $(DESTDIR)sbin/gctwimax
+ 
+-	if [ ! -d $(CONFDIR) ] ; then mkdir $(CONFDIR) ; fi
+-	cp ./src/event.sh $(CONFDIR)/event.sh
+-	cp ./src/gctwimax.conf $(CONFDIR)/gctwimax.conf
++	[ ! -d $(DESTDIR)$(CONFDIR) ] && mkdir -p $(DESTDIR)$(CONFDIR)
++	cp ./src/event.sh $(DESTDIR)$(CONFDIR)/event.sh
++	cp ./src/gctwimax.conf $(DESTDIR)$(CONFDIR)/gctwimax.conf
++	cp ./src/gctwimax.conf $(DESTDIR)$(CONFDIR)/gctwimax.conf.example
+ 
+ uninstall:
+ 	rm /sbin/gctwimax

@@ -9,13 +9,10 @@ set-kdedir 3.5
 DESCRIPTION="KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
 
-# EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
-EGIT_SOURCEDIR=${WORKDIR}/${P}
-EGIT_BRANCH="master"
-#EGIT_COMMIT="2bb68ea8123991ce3401ebfc7281be4aed8ede19"
-
 # SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
 #	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
+
+KMNAME=kdelibs
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="3.5"
@@ -103,10 +100,7 @@ PDEPEND="
 # Testing code is rather broken and merely for developer purposes, so disable it.
 RESTRICT="test"
 
-#PATCHES=( "${FILESDIR}/${PN}-p15-r1074156.patch"
-#	"${FILESDIR}/${PN}-3.5-openssl-1.0.0.patch" )
-
-KDE_DOWNLOAD_SOURCE="git_repo"
+KDE_DOWNLOAD_SOURCE="git"
 
 pkg_setup() {
 	if use legacyssl ; then
@@ -132,9 +126,9 @@ pkg_setup() {
 }
 
 src_unpack() {
-	pwd
+# 	pwd
 	kde_src_unpack
-	pwd
+# 	pwd
 
 	# remove this symlink, bug 264767
 	rm -f "${WORKDIR}/${P}"/kdeprint/kdeprint
@@ -149,11 +143,11 @@ src_unpack() {
 		epatch "${WORKDIR}/patches/kdelibs-3.5_libutempter.patch"
 	fi
 
- 	if use branding ; then
-		einfo "will be branded. patch already aplied."
+#  	if use branding ; then
+# 		einfo "will be branded. patch already aplied."
  		# Add "(Gentoo)" to khtml user agent.
 # 		epatch "${WORKDIR}/patches/kdelibs_3.5-cattlebrand.diff"
- 	fi
+#  	fi
 
 	# Xinerama patch by Lubos Lunak.
 	# http://ktown.kde.org/~seli/xinerama/
