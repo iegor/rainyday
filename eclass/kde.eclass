@@ -207,22 +207,23 @@ kde_src_unpack() {
 		#S="${WORKDIR}"/${P}
 		mkdir -p ${S}
 
-		ebegin "Checking out files to build module: '${KMNAME}'"
-			cd $EGIT_SOURCEDIR
+		cd $EGIT_SOURCEDIR
 
+		ebegin "Checking out files to build module: '${KMNAME}'"
 			# Check out assets required for build to be conducted
 			git checkout ${EGIT_BRANCH} kdecommon
 			mv ./kdecommon ${WORKDIR}/
 
-# TYPE A ebuild checkout process
-			if [ -z "${KMMODULE}" ]; then
+			case "${KMNAME}" in
+			# KDE Libs needs to be extracted fully to build it.
+			"kdelibs")
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
-
-# TYPE B ebuild checkout process
-			else	
+			;;
+			# Everything else must be handled in the same way
+			*)
 				# Create final list of stuff to extract
-				extractlist=""
+# 				extractlist=""
 				for item in admin \
 										Makefile.am \
 										Makefile.am.in \
@@ -247,21 +248,21 @@ kde_src_unpack() {
 					einfo "Checkout: ${item%/} into '${EGIT_SOURCEDIR}'"
 					git checkout ${EGIT_BRANCH} "${KMNAME}/${item%/}"
 				done
-	
-				# read program will ignore last item, so add a dummy item.
+
+				# Read program will ignore last item, so add a dummy item.
 # 				extractlist="${extractlist} none"
 # 				echo ${extractlist}|while read -d ' ' line; do
 # 					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
 # 					git checkout ${EGIT_BRANCH} "./${line}"
 # 				done
-			fi
+			;;
+			esac
 
-			mv ./${KMNAME}/* ./
-			rm -rf "./${KMNAME}"
-
-			#	some debug output
-			debug-print "we are in:  $(pwd)"
-			debug-print "files: $(ls -la)"
+			# After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
+			debug-print "We are in:  $(pwd)"
+			mv -v ./${KMNAME}/* ./
+			rm -rfv "./${KMNAME}"
+			debug-print "files: $(ls -la ./)"
 #			git config --list
 
 			git-2_cleanup
