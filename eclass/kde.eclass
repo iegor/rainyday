@@ -18,7 +18,8 @@ ECLASS_DEBUG_OUTPUT=on
 ################################ SOME BASIC GIT SETTINGS ##################################
 
 # One repo for whole kde
-EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
+# EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
+EGIT_KDE_REPO_DIR="/home/rainman/projects/kde/.git"
 # Default location check and set, if wasn't set in ebuild
 [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 # Default branch check and set, if wasn't set in ebuild
@@ -216,9 +217,12 @@ kde_src_unpack() {
 
 			case "${KMNAME}" in
 			# KDE Libs needs to be extracted fully to build it.
-			"kdelibs")
+			"kdelibs"|\
+			"kdevelop"|\
+			"kaffeine")
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
+				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
 			;;
 			# Everything else must be handled in the same way
 			*)
@@ -260,8 +264,8 @@ kde_src_unpack() {
 
 			# After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
 			debug-print "We are in:  $(pwd)"
-			mv -v ./${KMNAME}/* ./
-			rm -rfv "./${KMNAME}"
+			mv -v ./${KMNAME}_TMP/* ./
+			rm -rfv ./${KMNAME}_TMP
 			debug-print "files: $(ls -la ./)"
 #			git config --list
 
