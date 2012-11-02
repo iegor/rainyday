@@ -17,6 +17,8 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86"
 
 IUSE="emoticons-manager jingle ssl xscreensaver slp kernel_linux
 kdehiddenvisibility opengl"
+KDE_DOWNLOAD_SOURCE="git"
+
 PLUGINS="addbookmarks alias autoreplace connectionstatus contactnotes crypt highlight history latex netmeeting nowlistening
 	statistics texteffect translator webpresence"
 PROTOCOLS="gadu groupwise irc jabber oscar msn sametime sms v4l2 winpopup yahoo"
