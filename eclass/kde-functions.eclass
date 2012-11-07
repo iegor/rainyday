@@ -467,6 +467,7 @@ set-kdedir() {
 			case $KDEMAJORVER.$KDEMINORVER in
 				3*) export PREFIX="/usr/kde/3.5";;
 				5.0) export PREFIX="/usr/kde/svn";;
+				9999.0) export PREFIX="/usr/kde/git";;
 				*) die "failed to set PREFIX";;
 			esac
 		fi
@@ -491,6 +492,7 @@ set-kdedir() {
 			case $KDEMAJORVER.$KDEMINORVER in
 				3*) export KDEDIR="/usr/kde/3.5";;
 				5.0) export KDEDIR="/usr/kde/svn";;
+				9999.0) export KDEDIR="/usr/kde/git";;
 				*) die "failed to set KDEDIR";;
 			esac
 		fi
@@ -549,6 +551,7 @@ qtver-from-kdever() {
 		3.5*)	ver=3.3;;
 		3*)	ver=3.0.5;;
 		5)	ver=3.3;; # cvs version
+		9999) ver=3.3;; # git version
 		*)	echo "!!! error: $FUNCNAME called with invalid parameter: \"$1\", please report bug" && exit 1;;
 	esac
 

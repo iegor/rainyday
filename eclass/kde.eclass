@@ -223,6 +223,9 @@ kde_src_unpack() {
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
 				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
+
+				mv -v ./${KMNAME}_TMP/* ./
+				rm -rfv ./${KMNAME}_TMP
 			;;
 			# Everything else must be handled in the same way
 			*)
@@ -259,13 +262,14 @@ kde_src_unpack() {
 # 					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
 # 					git checkout ${EGIT_BRANCH} "./${line}"
 # 				done
+
+				mv -v ./${KMNAME}/* ./
+				rm -rfv ./${KMNAME}
 			;;
 			esac
 
 			# After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
 			debug-print "We are in:  $(pwd)"
-			mv -v ./${KMNAME}_TMP/* ./
-			rm -rfv ./${KMNAME}_TMP
 			debug-print "files: $(ls -la ./)"
 #			git config --list
 
