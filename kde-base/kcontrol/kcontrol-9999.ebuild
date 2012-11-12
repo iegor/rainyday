@@ -2,17 +2,28 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kcontrol/kcontrol-3.5.10.ebuild,v 1.9 2009/07/12 13:06:11 armin76 Exp $
 
-EAPI="1"
+EAPI=2
 KMNAME=kdebase
+KDE_DOWNLOAD_SOURCE="git"
+KMEXTRACTONLY="kwin/kwinbindings.cpp
+	kicker/kicker/core/kickerbindings.cpp
+	kicker/taskbar/taskbarbindings.cpp
+	kdesktop/kdesktopbindings.cpp
+	klipper/klipperbindings.cpp
+	kxkb/kxkbbindings.cpp
+	kicker/taskmanager"
+
+KMEXTRA="doc/kinfocenter"
+KMCOMPILEONLY="kicker/libkicker
+	kicker/taskbar"
+KMCOPYLIB="libkonq libkonq
+	libkicker kicker/libkicker
+	libtaskbar kicker/taskbar
+	libtaskmanager kicker/taskmanager"
 inherit kde-meta eutils
-
-SRC_URI="${SRC_URI}
-	mirror://gentoo/kdebase-3.5-patchset-13.tar.bz2"
-
 DESCRIPTION="[GIT] The KDE Control Center"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="arts ieee1394 joystick logitech-mouse opengl kdehiddenvisibility"
-KDE_DOWNLOAD_SOURCE="git"
 
 DEPEND="x11-libs/libXext
 	x11-libs/libXtst
@@ -24,34 +35,15 @@ DEPEND="x11-libs/libXext
 	opengl? ( virtual/opengl )
 	ieee1394? ( sys-libs/libraw1394 )
 	logitech-mouse? ( =virtual/libusb-0* )
-	>=kde-base/libkonq-${PV}:${SLOT}
-	>=kde-base/kicker-${PV}:${SLOT}"
+	=kde-base/libkonq-${PV}:${SLOT}
+	=kde-base/kicker-${PV}:${SLOT}"
 RDEPEND="${DEPEND}
 	sys-apps/usbutils
-	>=kde-base/kcminit-${PV}:${SLOT}
-	>=kde-base/kdebase-data-${PV}:${SLOT}
-	>=kde-base/kdesu-${PV}:${SLOT}
-	>=kde-base/khelpcenter-${PV}:${SLOT}
-	>=kde-base/khotkeys-${PV}:${SLOT}"
-
-KMEXTRACTONLY="kwin/kwinbindings.cpp
-		kicker/kicker/core/kickerbindings.cpp
-		kicker/taskbar/taskbarbindings.cpp
-		kdesktop/kdesktopbindings.cpp
-		klipper/klipperbindings.cpp
-		kxkb/kxkbbindings.cpp
-		kicker/taskmanager"
-
-KMEXTRA="doc/kinfocenter"
-KMCOMPILEONLY="kicker/libkicker
-	kicker/taskbar"
-KMCOPYLIB="libkonq libkonq
-	libkicker kicker/libkicker
-	libtaskbar kicker/taskbar
-	libtaskmanager kicker/taskmanager"
-
-PATCHES=( "${FILESDIR}/${KMNAME}_${PN}-p13-r975372.patch"
-	"${FILESDIR}/${PN}-openssl-1.0.0.patch" )
+	=kde-base/kcminit-${PV}:${SLOT}
+	=kde-base/kdebase-data-${PV}:${SLOT}
+	=kde-base/kdesu-${PV}:${SLOT}
+	=kde-base/khelpcenter-${PV}:${SLOT}
+	=kde-base/khotkeys-${PV}:${SLOT}"
 
 src_unpack() {
 	kde-meta_src_unpack unpack

@@ -1,37 +1,30 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdebase-kioslaves/kdebase-kioslaves-3.5.10-r1.ebuild,v 1.6 2009/07/08 13:36:05 alexxy Exp $
-EAPI="1"
+
+EAPI=2
 KMNAME=kdebase
 KMMODULE=kioslave
-
+KMEXTRA="kdesktop/init"	# see bug #143375
+KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
-
-SRC_URI="${SRC_URI}
-	mirror://gentoo/kdebase-3.5-patchset-13.tar.bz2"
-
 DESCRIPTION="[GIT] kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="hal kdehiddenvisibility ldap openexr samba"
-KDE_DOWNLOAD_SOURCE="git"
 
 DEPEND="x11-libs/libXcursor
 	ldap? ( net-nds/openldap )
 	samba? ( >=net-fs/samba-3.0.1 )
 	>=dev-libs/cyrus-sasl-2
-	hal? ( dev-libs/dbus-qt3-old =sys-apps/hal-0.5* )
+	hal? (	dev-libs/dbus-qt3-old
+					=sys-apps/hal-0.5* )
 	openexr? ( >=media-libs/openexr-1.2.2-r2 )
 	!<kde-base/kdesktop-3.5.6-r1"
 RDEPEND="${DEPEND}
 	virtual/ssh
-	>=kde-base/kdialog-${PV}:${SLOT}"	# for the kdeeject script used by the devices/mounthelper ioslave
+	=kde-base/kdialog-${PV}:${SLOT}"	# for the kdeeject script used by the devices/mounthelper ioslave
 DEPEND="${DEPEND}
 	x11-apps/xhost"
-
-PATCHES=( "${FILESDIR}/${KMNAME}_${KMMODULE}-r911492.patch" )
-
-# see bug #143375
-KMEXTRA="kdesktop/init"
 
 pkg_setup() {
 	kde_pkg_setup

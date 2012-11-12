@@ -2,14 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kappfinder/kappfinder-3.5.10.ebuild,v 1.7 2009/07/12 12:24:17 armin76 Exp $
 
-EAPI="1"
+EAPI=2
 KMNAME=kdebase
-
-inherit kde-meta eutils
-
-DESCRIPTION="[GIT] KDE tool looking for well-known apps in your path and creates entries for them in the KDE menu"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE="kdehiddenvisibility"
 KDE_DOWNLOAD_SOURCE="git"
+inherit kde-meta eutils
+DESCRIPTION="[GIT] KDE tool looking for well-known apps in your path and creates entries for them in the KDE menu"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+IUSE="kdehiddenvisibility"
 
 RDEPEND=">=kde-base/kicker-${PV}:${SLOT}"

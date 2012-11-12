@@ -2,34 +2,29 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/kdm-3.5.10.ebuild,v 1.8 2009/10/23 18:25:12 abcd Exp $
 
-EAPI="1"
+EAPI=2
 KMNAME=kdebase
-inherit kde-meta eutils
-
-SRC_URI="${SRC_URI}
-	mirror://gentoo/kdebase-3.5-patchset-13.tar.bz2"
-
-DESCRIPTION="[GIT] KDE login manager, similar to xdm and gdm"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE="elibc_glibc kdehiddenvisibility pam"
-KDE_DOWNLOAD_SOURCE="git"
-
 KMEXTRA="kdmlib/"
 KMEXTRACTONLY="libkonq/konq_defaults.h"
 KMCOMPILEONLY="kcontrol/background"
+KDE_DOWNLOAD_SOURCE="git"
+inherit kde-meta eutils
+DESCRIPTION="[GIT] KDE login manager, similar to xdm and gdm"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+IUSE="elibc_glibc kdehiddenvisibility pam"
 
 DEPEND="pam? ( kde-base/kdebase-pam )
 	x11-libs/libXau
 	x11-libs/libXtst
-	>=kde-base/kcontrol-${PV}:${SLOT}"
+	=kde-base/kcontrol-${PV}:${SLOT}"
 	# Requires the desktop background settings and kdm kcontrol modules
 RDEPEND="${DEPEND}
-	>=kde-base/kdepasswd-${PV}:${SLOT}
+	=kde-base/kdepasswd-${PV}:${SLOT}
 	x11-apps/xinit
     >=x11-misc/imake-1.0.5
 	x11-apps/xmessage
 	>=x11-misc/xorg-cf-files-1.0.4"
-PDEPEND=">=kde-base/kdesktop-${PV}:${SLOT}"
+PDEPEND="=kde-base/kdesktop-${PV}:${SLOT}"
 
 src_compile() {
 	local myconf="--with-x-binaries-dir=/usr/bin $(use_with pam)"

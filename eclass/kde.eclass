@@ -219,7 +219,8 @@ kde_src_unpack() {
 			# KDE Libs needs to be extracted fully to build it.
 			"kdelibs"|\
 			"kdevelop"|\
-			"kaffeine")
+			"kaffeine"|\
+			"kdnssd-avahi")
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
 				mv -v "./${KMNAME}" "./${KMNAME}_TMP"

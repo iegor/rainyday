@@ -2,17 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdebase-startkde/kdebase-startkde-3.5.10-r5.ebuild,v 1.7 2009/07/12 13:40:00 armin76 Exp $
 
-EAPI="1"
+EAPI=2
 KMNAME=kdebase
 KMNOMODULE=true
-KMEXTRACTONLY="kdm/kfrontend/sessions/kde.desktop.in startkde"
-
-inherit multilib kde-meta eutils
-
-DESCRIPTION="[GIT] startkde script, which starts a complete KDE session, and associated scripts"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE=""
 KDE_DOWNLOAD_SOURCE="git"
+KMEXTRACTONLY="kdm/kfrontend/sessions/kde.desktop.in startkde"
+inherit multilib kde-meta eutils
+DESCRIPTION="[GIT] startkde script, which starts a complete KDE session, and associated scripts"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+IUSE=""
 
 # The kde apps called from the startkde script.
 # kdesktop, kicker etc are started because they put files in $KDEDIR/share/autostart
@@ -23,13 +21,13 @@ RDEPEND="x11-apps/xmessage
 	x11-apps/xrandr
 	x11-apps/mkfontdir
 	x11-apps/xprop
-	>=kde-base/kdesktop-${PV}:${SLOT}
-	>=kde-base/kcminit-${PV}:${SLOT}
-	>=kde-base/ksmserver-${PV}:${SLOT}
-	>=kde-base/kwin-${PV}:${SLOT}
-	>=kde-base/kpersonalizer-${PV}:${SLOT}
-	>=kde-base/kreadconfig-${PV}:${SLOT}
-	>=kde-base/ksplashml-${PV}:${SLOT}"
+	=kde-base/kdesktop-${PV}:${SLOT}
+	=kde-base/kcminit-${PV}:${SLOT}
+	=kde-base/ksmserver-${PV}:${SLOT}
+	=kde-base/kwin-${PV}:${SLOT}
+	=kde-base/kpersonalizer-${PV}:${SLOT}
+	=kde-base/kreadconfig-${PV}:${SLOT}
+	=kde-base/ksplashml-${PV}:${SLOT}"
 
 PATCHES=( "${FILESDIR}/${PN}-3.5-gentoo.patch" )
 

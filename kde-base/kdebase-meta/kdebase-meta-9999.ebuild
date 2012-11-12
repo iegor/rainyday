@@ -2,14 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdebase-meta/kdebase-meta-3.5.10.ebuild,v 1.8 2009/08/09 21:03:44 zmedico Exp $
 
-EAPI="1"
+EAPI=2
+SLOT=0
 inherit kde-functions
 DESCRIPTION="[GIT] kdebase - merge this to pull in all kdebase-derived packages"
 HOMEPAGE="http://www.kde.org/"
-
 LICENSE="GPL-2"
-SLOT="9999.0"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE=""
 
 RDEPEND="=kde-base/kdebase-startkde-${PV}:${SLOT}

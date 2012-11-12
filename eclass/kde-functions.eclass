@@ -447,10 +447,15 @@ set-kdedir() {
 	IFSBACKUP="$IFS"
 	IFS=".-_"
 	for x in $1; do
-		if [[ -z "$KDEMAJORVER" ]]; then KDEMAJORVER=$x
-		else if [[ -z "$KDEMINORVER" ]]; then KDEMINORVER=$x
-		else if [[ -z "$KDEREVISION" ]]; then KDEREVISION=$x
-		fi; fi; fi
+		if [[ -z "$KDEMAJORVER" ]]; then
+			KDEMAJORVER=$x
+			else if [[ -z "$KDEMINORVER" ]]; then
+				KDEMINORVER=$x
+				else if [[ -z "$KDEREVISION" ]]; then
+					KDEREVISION=$x
+				fi;
+			fi;
+		fi
 	done
 	[[ -z "$KDEMINORVER" ]] && KDEMINORVER="0"
 	[[ -z "$KDEREVISION" ]] && KDEREVISION="0"
@@ -461,16 +466,16 @@ set-kdedir() {
 	if [[ -n "$KDEPREFIX" ]]; then
 		export PREFIX="$KDEPREFIX"
 	else
-		if  [[ -z "$KDEBASE" ]]; then
-			PREFIX="/usr/kde/3.5"
-		else
+#		if  [[ -z "$KDEBASE" ]]; then
+#			PREFIX="/usr/kde/3.5"
+#		else
 			case $KDEMAJORVER.$KDEMINORVER in
 				3*) export PREFIX="/usr/kde/3.5";;
 				5.0) export PREFIX="/usr/kde/svn";;
 				9999.0) export PREFIX="/usr/kde/git";;
 				*) die "failed to set PREFIX";;
 			esac
-		fi
+#		fi
 	fi
 
 	# kdelibs location
@@ -479,10 +484,10 @@ set-kdedir() {
 	else
 		if [[ -z "$KDEBASE" ]]; then
 			# find the latest kdelibs installed
-			for x in /usr/kde/{svn,3.5} "${PREFIX}" \
+			for x in /usr/kde/{git,svn,3.5} "${PREFIX}" \
 				"${KDE3LIBSDIR}" "${KDELIBSDIR}" "${KDE3DIR}" "${KDEDIR}" /usr/kde/*; do
 				if [[ -f "${x}/include/kwin.h" ]]; then
-					debug-print found
+					debug-print found "${KDEDIR}"
 					export KDEDIR="$x"
 					break
 				fi
@@ -524,7 +529,6 @@ need-qt() {
 			;;
 		*)	echo "!!! error: $FUNCNAME() called with invalid parameter: \"$QTVER\", please report bug" && exit 1;;
 	esac
-
 }
 
 # @FUNCTION: set-qtdir
@@ -571,6 +575,7 @@ min-kde-ver() {
 		3.5*)			selected_version="3.5";;
 		3*)			selected_version="3.0";;
 		5)			selected_version="5";;
+		9999)			selected_version="9999";;
 		*)			echo "!!! error: $FUNCNAME() called with invalid parameter: \"$1\", please report bug" && exit 1;;
 	esac
 

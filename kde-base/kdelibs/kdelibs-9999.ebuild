@@ -4,7 +4,9 @@
 
 EAPI="1"
 inherit kde flag-o-matic eutils multilib
-set-kdedir 3.5
+
+# Calling this here to ensure we install into git prefix directory
+set-kdedir 9999.0
 
 DESCRIPTION="[GIT] KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
@@ -24,8 +26,8 @@ KDE_DOWNLOAD_SOURCE="git"
 # Added aspell-en as dependency to work around bug 131512.
 # Made openssl and zeroconf mandatory dependencies, see bug #172972 and #175984
 RDEPEND="
-	!=kde-base/artsplugin-mpeglib-3.5*
-	!=kde-base/artsplugin-mpg123-3.5*
+	!=kde-base/artsplugin-mpeglib-9999*
+	!=kde-base/artsplugin-mpg123-9999*
 	!kde-base/kdeaccessibility
 	!kde-base/kdeaddons
 	!kde-base/kdeadmin
@@ -43,7 +45,7 @@ RDEPEND="
 	!kde-base/kdeutils
 	!kde-base/kdewebdev
 	!kde-base/ksync
-	!=kde-base/mpeglib-3.5*
+	!=kde-base/mpeglib-9999*
 	app-arch/bzip2
 	>=dev-libs/libxslt-1.1.16
 	>=dev-libs/libxml2-2.6.6
@@ -61,10 +63,10 @@ RDEPEND="
 		virtual/acl
 	)
 	alsa? ( media-libs/alsa-lib )
-	arts? ( ~kde-base/arts-3.5.10 )
+	arts? ( ~kde-base/arts-9999 )
 	!avahi? (
 		!bindist? (
-			!kde-misc/kdnssd-avahi
+			!=kde-misc/kdnssd-avahi-9999
 			net-misc/mDNSResponder
 		)
 	)
@@ -88,14 +90,14 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 "
 RDEPEND="${RDEPEND}
-	!<=kde-base/kdebase-startkde-3.5.10-r3
+	!<kde-base/kdebase-startkde-9999
 	x11-apps/rgb
 	x11-apps/iceauth
 	>=x11-misc/xdg-utils-1.0.2-r3
 "
 PDEPEND="
-	avahi? ( kde-misc/kdnssd-avahi )
-	bindist? ( kde-misc/kdnssd-avahi )
+	avahi? ( =kde-misc/kdnssd-avahi-9999 )
+	bindist? ( =kde-misc/kdnssd-avahi-9999 )
 "
 
 # Testing code is rather broken and merely for developer purposes, so disable it.
@@ -125,9 +127,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-# 	pwd
 	kde_src_unpack
-# 	pwd
 
 	# remove this symlink, bug 264767
 	rm -f "${WORKDIR}/${P}"/kdeprint/kdeprint
@@ -202,7 +202,7 @@ src_compile() {
 	use ppc64 && append-flags "-mminimal-toc"
 
 	# work around bug #120858, gcc 3.4.x -Os miscompilation
-	use x86 && replace-flags "-Os" "-O2" # see bug #120858
+	# use x86 && replace-flags "-Os" "-O2" # see bug #120858
 
 	replace-flags "-O3" "-O2" # see bug #148180
 
