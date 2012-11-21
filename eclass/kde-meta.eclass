@@ -59,7 +59,10 @@ if [[ "$KDEBASE" = "true" ]]; then
  		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
  		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
  		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
-		9999) SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
+		9999)
+			SRC_PATH=""
+			SLOT="0"
+		;;
  		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
  	esac
 

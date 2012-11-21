@@ -264,7 +264,9 @@ kde_src_unpack() {
 # 					git checkout ${EGIT_BRANCH} "./${line}"
 # 				done
 
+				debug-print "mv -v ./${KMNAME}/* ./"
 				mv -v ./${KMNAME}/* ./
+				debug-print "rm -rfv ./${KMNAME}"
 				rm -rfv ./${KMNAME}
 			;;
 			esac

@@ -29,8 +29,6 @@ RDEPEND="x11-apps/xmessage
 	=kde-base/kreadconfig-${PV}:${SLOT}
 	=kde-base/ksplashml-${PV}:${SLOT}"
 
-PATCHES=( "${FILESDIR}/${PN}-3.5-gentoo.patch" )
-
 src_compile() {
 	# Patch the startkde script to setup the environment for KDE 4.0
 	# Add our KDEDIR

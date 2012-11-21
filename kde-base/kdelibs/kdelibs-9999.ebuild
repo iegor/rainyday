@@ -2,26 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
 
-EAPI="1"
+EAPI=2
+# SLOT="9999.0"
+KMNAME=kdelibs
+KDE_DOWNLOAD_SOURCE="git"
 inherit kde flag-o-matic eutils multilib
-
-# Calling this here to ensure we install into git prefix directory
-set-kdedir 9999.0
-
+set-kdedir 9999 # Calling this here to ensure we install into git prefix directory
 DESCRIPTION="[GIT] KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
-
-# SRC_URI="mirror://gentoo/kdelibs-3.5-patchset-15.tar.bz2
-#	mirror://gentoo/kde-3.5.9-seli-xinerama.tar.bz2"
-
-KMNAME=kdelibs
-
 LICENSE="GPL-2 LGPL-2"
-SLOT="9999.0"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="acl alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
 	avahi kernel_linux fam lua kdehiddenvisibility"
-KDE_DOWNLOAD_SOURCE="git"
 
 # Added aspell-en as dependency to work around bug 131512.
 # Made openssl and zeroconf mandatory dependencies, see bug #172972 and #175984
@@ -84,7 +76,6 @@ RDEPEND="
 	utempter? ( sys-libs/libutempter )
 	>=x11-themes/hicolor-icon-theme-0.12
 "
-
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	doc? ( app-doc/doxygen )
@@ -134,38 +125,13 @@ src_unpack() {
 
 	if use legacyssl ; then
 		# This patch won't be included upstream, see bug #128922.
-		epatch "${WORKDIR}/patches/kdelibs_3.5.4-kssl-3des.patch"
+		epatch "${FILESDIR}/kdelibs_3.5.4-kssl-3des.patch"
 	fi
 
 	if use utempter ; then
 		# Bug #135818 is the eternal reference.
-		epatch "${WORKDIR}/patches/kdelibs-3.5_libutempter.patch"
+		epatch "${FILESDIR}/kdelibs-3.5_libutempter.patch"
 	fi
-
-#  	if use branding ; then
-# 		einfo "will be branded. patch already aplied."
- 		# Add "(Gentoo)" to khtml user agent.
-# 		epatch "${WORKDIR}/patches/kdelibs_3.5-cattlebrand.diff"
-#  	fi
-
-	# Xinerama patch by Lubos Lunak.
-	# http://ktown.kde.org/~seli/xinerama/
-#	epatch "${WORKDIR}/${PN}-xinerama.patch"
-
-	# patch that fixes kde4 in menus (adapted from archlinux)
-#	epatch "${FILESDIR}/${P}-kde4-apps.patch"
-
-	# bug 247817
-#	epatch "${FILESDIR}/${PN}-3.5-perl.xml.patch"
-
-	# bug 270926
-#	epatch "${FILESDIR}/${P}-kjs-gcc44.patch"
-
-	# bug 243476
-#	epatch "${FILESDIR}/${P}-khtml.patch"
-
-	# googlemaps
-#	epatch "${FILESDIR}/${P}-62_fix_googlemaps_backport.diff"
 
 	# bug 267018
 	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.{am,in}
