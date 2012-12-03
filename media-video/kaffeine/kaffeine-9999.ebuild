@@ -2,28 +2,20 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/kaffeine/kaffeine-0.8.8.ebuild,v 1.4 2009/06/09 14:16:40 tampakrap Exp $
 
-EAPI="2"
-
+EAPI=2
+SLOT=0
+KMNAME=kaffeine
 ARTS_REQUIRED="never"
-
 USE_KEG_PACKAGING="1"
-
 LANGS="ar bg bn br ca cs da de el es et fi fr ga gl he hu it ja ka \
 	km lt mk nb nl nn pa pl pt_BR pt ru se sk sr@Latn sr sv tg tr \
 	uk uz zh_CN zh_TW"
-
 LANGS_DOC=""
-
-inherit eutils kde flag-o-matic
-
-DESCRIPTION="Media player for KDE using xine and gstreamer backends."
-HOMEPAGE="http://kaffeine.sourceforge.net/"
-SRC_URI=""
 KDE_DOWNLOAD_SOURCE="git"
-KMNAME=kaffeine
+inherit eutils kde flag-o-matic
+DESCRIPTION="[GIT] Media player for KDE using xine and gstreamer backends."
+HOMEPAGE="http://kaffeine.sourceforge.net/"
 LICENSE="GPL-2"
-
-SLOT="3.5"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="dvb gstreamer xinerama vorbis encode xcb"
 # kdehiddenvisibility removed due to bug 207002.
@@ -42,7 +34,7 @@ DEPEND="${RDEPEND}
 		>=sys-kernel/linux-headers-2.6.28 )
 	x11-proto/inputproto"
 
-need-kde 3.5.4
+need-kde 9999
 
 src_configure() {
 	# see bug #143168
