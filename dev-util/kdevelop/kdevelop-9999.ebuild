@@ -2,35 +2,28 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/kdevelop-3.5.4-r1.ebuild,v 1.9 2009/09/27 14:57:18 ranger Exp $
 
-EAPI="2"
-
+EAPI=2
+# SLOT="9999.0"
 ARTS_REQUIRED="never"
-
-inherit kde eutils db-use
-
-DESCRIPTION="Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
-HOMEPAGE="http://www.kdevelop.org"
-SRC_URI=""
-LICENSE="GPL-2"
-
-SLOT="3.5"
-KEYWORDS="amd64 hppa ppc ppc64 sparc x86"
-IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python ruby sql subversion git"
+KMNAME=kdevelop
 KDE_DOWNLOAD_SOURCE="git"
-EGIT_COMMIT="v_3.5.4"
-KMNAME="kdevelop"
+inherit kde eutils db-use
+DESCRIPTION="[GIT] Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
+HOMEPAGE="http://www.kdevelop.org"
+LICENSE="GPL-2"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python ruby sql subversion git"
 
 DEPEND="!<dev-util/kdevelop-3.5.4-r1
 	sys-devel/gdb
 	>=sys-libs/db-4.1
-	cvs? ( kde-base/cervisia:3.5 )"
-
+	cvs? ( =kde-base/cervisia-${PV}:${SLOT} )"
 RDEPEND="${DEPEND}
-	subversion? ( kde-base/kdesdk-kioslaves:3.5 )"
+	subversion? ( =kde-base/kdesdk-kioslaves-${PV}:${SLOT} )"
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
-need-kde 3.5
+need-kde 9999
 
 pkg_setup() {
 	elog

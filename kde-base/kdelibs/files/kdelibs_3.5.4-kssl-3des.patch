@@ -1,0 +1,12 @@
+diff -urN kdelibs-3.5.4-patched/kio/kssl/ksslsettings.cc kdelibs-3.5.4/kio/kssl/ksslsettings.cc
+--- kdelibs-3.5.4-patched/kio/kssl/ksslsettings.cc	2006-08-05 21:38:13.000000000 +0930
++++ kdelibs-3.5.4/kio/kssl/ksslsettings.cc	2006-08-05 21:40:05.000000000 +0930
+@@ -183,7 +183,7 @@
+ 	for (unsigned int i = 0; i < cipherList.count(); i++) {
+ 		CipherNode *j = 0L;
+ 		while ((j = cipherList.at(i)) != 0L) {
+-			if (j->name.contains("ADH-") || j->name.contains("NULL-") || j->name.contains("DES-CBC3-SHA") || j->name.contains("FZA")) {
++		  if (j->name.contains("ADH-")) {
+ 				cipherList.remove(j);
+ 			} else {
+ 				break;

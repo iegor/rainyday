@@ -218,6 +218,7 @@ kde_src_unpack() {
 			case "${KMNAME}" in
 			# KDE Libs needs to be extracted fully to build it.
 			"kdelibs"|\
+			"amarok"|\
 			"kdevelop"|\
 			"kaffeine"|\
 			"kdnssd-avahi")

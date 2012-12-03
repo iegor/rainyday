@@ -1,0 +1,86 @@
+diff -Naur kdelibs-3.5.8/kdecore/kpty.cpp kdelibs-3.5.8-rerolled/kdecore/kpty.cpp
+--- kdelibs-3.5.8/kdecore/kpty.cpp	2006-05-22 20:14:21.000000000 +0200
++++ kdelibs-3.5.8-rerolled/kdecore/kpty.cpp	2007-10-16 23:01:29.000000000 +0200
+@@ -80,6 +80,10 @@
+ # include <utmp.h>
+ #endif
+ 
++#ifdef HAVE_UTEMPTER
++# include <utempter.h>
++#endif
++
+ #ifdef HAVE_TERMIOS_H
+ /* for HP-UX (some versions) the extern C is needed, and for other
+    platforms it doesn't hurt */
+@@ -138,21 +142,6 @@
+ // private functions //
+ ///////////////////////
+ 
+-#ifdef HAVE_UTEMPTER
+-class KProcess_Utmp : public KProcess
+-{
+-public:
+-   int commSetupDoneC()
+-   {
+-     dup2(cmdFd, 0);
+-     dup2(cmdFd, 1);
+-     dup2(cmdFd, 3);
+-     return 1;
+-   }
+-   int cmdFd;
+-};
+-#endif
+-
+ #define BASE_CHOWN "kgrantpty"
+ 
+ 
+@@ -399,12 +388,8 @@
+ void KPty::login(const char *user, const char *remotehost)
+ {
+ #ifdef HAVE_UTEMPTER
+-    KProcess_Utmp utmp;
+-    utmp.cmdFd = d->masterFd;
+-    utmp << "/usr/sbin/utempter" << "-a" << d->ttyName << "";
+-    utmp.start(KProcess::Block);
++    addToUtmp(d->ttyName, remotehost, d->masterFd);
+     Q_UNUSED(user);
+-    Q_UNUSED(remotehost);
+ #elif defined(USE_LOGIN)
+     const char *str_ptr;
+     struct utmp l_struct;
+@@ -442,10 +427,7 @@
+ void KPty::logout()
+ {
+ #ifdef HAVE_UTEMPTER
+-    KProcess_Utmp utmp;
+-    utmp.cmdFd = d->masterFd;
+-    utmp << "/usr/sbin/utempter" << "-d" << d->ttyName;
+-    utmp.start(KProcess::Block);
++    removeLineFromUtmp(d->ttyName, d->masterFd);
+ #elif defined(USE_LOGIN)
+     const char *str_ptr = d->ttyName.data();
+     if (!memcmp(str_ptr, "/dev/", 5))
+diff -Naur kdelibs-3.5.8/kdecore/Makefile.am kdelibs-3.5.8-rerolled/kdecore/Makefile.am
+--- kdelibs-3.5.8/kdecore/Makefile.am	2006-10-01 19:33:38.000000000 +0200
++++ kdelibs-3.5.8-rerolled/kdecore/Makefile.am	2007-10-16 23:01:29.000000000 +0200
+@@ -115,7 +115,7 @@
+ 	kuser.cpp kconfigskeleton.cpp kconfigdialogmanager.cpp klockfile.cpp \
+ 	kqiodevicegzip_p.cpp ktimezones.cpp
+ 
+-libkdecore_la_LDFLAGS = $(QT_LDFLAGS) $(KDE_RPATH) $(KDE_MT_LDFLAGS) $(X_LDFLAGS) $(USER_LDFLAGS) -version-info 6:0:2 -no-undefined
++libkdecore_la_LDFLAGS = $(QT_LDFLAGS) $(KDE_RPATH) $(KDE_MT_LDFLAGS) $(LIBUTEMPTER) $(X_LDFLAGS) $(USER_LDFLAGS) -version-info 6:0:2 -no-undefined
+ libkdecore_la_LIBADD = malloc/libklmalloc.la network/libkdecorenetwork.la $(SVGICON_LIB) ../dcop/libDCOP.la ../libltdl/libltdlc.la $(LIB_XEXT) $(LIBRESOLV) $(LIBUTIL) $(LIBART_LIBS) $(LIB_IDN) ../kdefx/libkdefx.la
+ libkdecore_la_NMCHECK = $(srcdir)/libkdecore.nmcheck
+ libkdecore_la_NMCHECKWEAK = $(srcdir)/libkdecore_weak.nmcheck $(srcdir)/libqt-mt_weak.nmcheck \
+diff -Naur kdelibs-3.5.8/kdecore/Makefile.in kdelibs-3.5.8-rerolled/kdecore/Makefile.in
+--- kdelibs-3.5.8/kdecore/Makefile.in	2007-10-08 16:42:13.000000000 +0200
++++ kdelibs-3.5.8-rerolled/kdecore/Makefile.in	2007-10-16 23:04:27.000000000 +0200
+@@ -696,7 +696,7 @@
+ 	kuser.cpp kconfigskeleton.cpp kconfigdialogmanager.cpp klockfile.cpp \
+ 	kqiodevicegzip_p.cpp ktimezones.cpp ksycoca_skel.cpp kappdcopiface_skel.cpp kdebugdcopiface_skel.cpp
+ 
+-libkdecore_la_LDFLAGS = $(QT_LDFLAGS) $(KDE_RPATH) $(KDE_MT_LDFLAGS) $(X_LDFLAGS) $(USER_LDFLAGS) -version-info 6:0:2 -no-undefined
++libkdecore_la_LDFLAGS = $(QT_LDFLAGS) $(KDE_RPATH) $(KDE_MT_LDFLAGS) $(LIBUTEMPTER) $(X_LDFLAGS) $(USER_LDFLAGS) -version-info 6:0:2 -no-undefined
+ libkdecore_la_LIBADD = malloc/libklmalloc.la network/libkdecorenetwork.la $(SVGICON_LIB) ../dcop/libDCOP.la ../libltdl/libltdlc.la $(LIB_XEXT) $(LIBRESOLV) $(LIBUTIL) $(LIBART_LIBS) $(LIB_IDN) ../kdefx/libkdefx.la
+ libkdecore_la_NMCHECK = $(srcdir)/libkdecore.nmcheck
+ libkdecore_la_NMCHECKWEAK = $(srcdir)/libkdecore_weak.nmcheck $(srcdir)/libqt-mt_weak.nmcheck \
