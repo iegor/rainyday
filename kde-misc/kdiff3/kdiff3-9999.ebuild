@@ -3,11 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdiff3/kdiff3-0.9.92-r1.ebuild,v 1.2 2008/06/21 14:05:05 mr_bones_ Exp $
 
 EAPI=2
-SLOT="9999.0"
+SLOT=0
+KMNAME=kdesdk
 ARTS_REQUIRED="never"
 KDE_DOWNLOAD_SOURCE="git"
-KMNAME=kdesdk
-inherit kde
+inherit kde-meta
 DESCRIPTION="[GIT] KDE-based frontend to diff3"
 HOMEPAGE="http://kdiff3.sourceforge.net/"
 # SRC_URI="mirror://sourceforge/kdiff3/${P}.tar.gz"
@@ -19,9 +19,11 @@ RDEPEND="sys-apps/diffutils"
 
 need-kde 9999
 
-PATCHES=( "${FILESDIR}/kdiff3-0.9.92-desktop-entry-fix.diff" )
+# src_compile(){
+# 	rm "${S}"/configure
+# 	kde_src_compile
+# }
 
-src_compile(){
-	rm "${S}"/configure
-	kde_src_compile
+src_compile() {
+	kde_src_compile make
 }
