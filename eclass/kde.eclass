@@ -224,8 +224,9 @@ kde_src_unpack() {
 			"kdnssd-avahi")
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
 				git checkout ${EGIT_BRANCH} "./${KMNAME}"
-				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
 
+				# rename and move KMNAME to WORKDIR
+				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
 				mv -v ./${KMNAME}_TMP/* ./
 				rm -rfv ./${KMNAME}_TMP
 			;;
@@ -254,8 +255,9 @@ kde_src_unpack() {
 										${DOCS}
 				do
 # 					extractlist="${extractlist} ${KMNAME}/${item%/}"
-					einfo "Checkout: ${item%/} into '${EGIT_SOURCEDIR}'"
-					git checkout ${EGIT_BRANCH} "${KMNAME}/${item%/}"
+					ebegin "Checkout: ${KMNAME}/${item%/}"
+						git checkout ${EGIT_BRANCH} "${KMNAME}/${item%/}" &> /dev/null
+					eend ${?}
 				done
 
 				# Read program will ignore last item, so add a dummy item.
@@ -269,6 +271,10 @@ kde_src_unpack() {
 				mv -v ./${KMNAME}/* ./
 				debug-print "rm -rfv ./${KMNAME}"
 				rm -rfv ./${KMNAME}
+
+# 				ebegin "Linking admin dir to module: ${KMNAME}"
+# 					[[ ! -d "./admin" || ! -h "./admin" ]] && ln -s "../kdecommon/admin" "admin"
+# 				eend ${?}
 			;;
 			esac
 
@@ -291,7 +297,7 @@ kde_src_unpack() {
 	# in the wrong place
 	[[ -d "${KDE_S}" ]] || unpack ${A}
 	case ${EAPI:-0} in
-		0|1) kde_src_prepare ;;
+		0|2) kde_src_prepare ;;
 	esac
 }
 
@@ -437,7 +443,7 @@ kde_src_configure() {
 				else
 					myconf="$myconf --disable-debug --without-debug"
 				fi
-				if hasq kdeenablefinal ${IUSE}; then
+				if has kdeenablefinal ${IUSE}; then
 					myconf="$myconf $(use_enable kdeenablefinal final)"
 				fi
 				if [[ ${ARTS_REQUIRED} == "never" ]]; then
@@ -480,66 +486,15 @@ export WHICH="which"
 EOF
 					fi
 
-					# Make build succeed with >=autoconf-2.65, see http://tinyurl.com/yc4nbhq
-					if [[ -f admin/acinclude.m4.in ]] && \
-						[[ ! -f ${T}/acinclude.m4.in ]]; then
-						cp admin/acinclude.m4.in "${T}"
-						einfo "Patching admin/acinclude.m4.in"
-						patch -f --ignore-whitespace admin/acinclude.m4.in <<'EOF'
---- admin/acinclude.m4.in
-+++ admin/acinclude.m4.in
-@@ -3081,6 +3081,13 @@
- fi
- ])
-
-+AC_DEFUN([GENTOO_DUMMY_CFLAGS],
-+[
-+  dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
-+  CFLAGS=" $CFLAGS"
-+])
-+AC_BEFORE([GENTOO_DUMMY_CFLAGS],[AC_PROG_CC])
-+
- AC_DEFUN([AC_CHECK_COMPILERS],
- [
-   AC_ARG_ENABLE(debug,
-@@ -3141,12 +3148,10 @@
-	 [kde_use_profiling="no"]
-   )
-
--  dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
--  CFLAGS=" $CFLAGS"
--
--  AC_PROG_CC
-+  AC_REQUIRE([GENTOO_DUMMY_CFLAGS])
-+  AC_REQUIRE([AC_PROG_CC])
-
--  AC_PROG_CPP
-+  AC_REQUIRE([AC_PROG_CPP])
-
-   if test "$GCC" = "yes"; then
-	 if test "$kde_use_debug_code" != "no"; then
-@@ -3176,7 +3181,7 @@
-
-   CXXFLAGS=" $CXXFLAGS"
-
--  AC_PROG_CXX
-+  AC_REQUIRE([AC_PROG_CXX])
-
-   KDE_CHECK_FOR_BAD_COMPILER
-
-EOF
-						if [[ $? != 0 ]]; then
-							ewarn "Failed to patch admin/acinclude.m4.in"
-							cp "${T}/acinclude.m4.in" admin/acinclude.m4.in
-						fi
-					fi
 					for x in Makefile.cvs admin/Makefile.common; do
 						if [[ -f "$x" && -z "$makefile" ]]; then makefile="$x"; fi
 					done
+
 					if [[ -f "$makefile" ]]; then
 						debug-print "$FUNCNAME: configure: generating configure script, running make -f $makefile"
 						emake -f $makefile
 					fi
+
 					[[ -f "./configure" ]] || die "no configure script found, generation unsuccessful"
 				fi
 
@@ -553,7 +508,7 @@ EOF
 				# Visiblity stuff is broken. Just disable it when it's present.
 				export kde_cv_prog_cxx_fvisibility_hidden=no
 
-				if hasq kdehiddenvisibility ${IUSE} && use kdehiddenvisibility; then
+				if has kdehiddenvisibility ${IUSE} && use kdehiddenvisibility; then
 					if [[ $(gcc-major-version)$(gcc-minor-version) -ge 41 ]]; then
 						if [[ ${PN} != "kdelibs" && ${PN} != "arts" ]] && \
 							! fgrep -q "#define __KDE_HAVE_GCC_VISIBILITY" "${KDEDIR}/include/kdemacros.h"; then
@@ -651,13 +606,13 @@ kde_src_compile() {
 				;;
 			all)
 				case ${EAPI:-0} in
-					0|1) kde_src_configure all ;;
+					0|2) kde_src_configure all ;;
 				esac
 				kde_src_compile make
 				;;
 			*)
 				case ${EAPI:-0} in
-					0|1) kde_src_configure $1 ;;
+					0|2) kde_src_configure $1 ;;
 				esac
 			;;
 		esac
