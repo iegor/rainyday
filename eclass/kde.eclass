@@ -18,8 +18,7 @@ ECLASS_DEBUG_OUTPUT=on
 ################################ SOME BASIC GIT SETTINGS ##################################
 
 # One repo for whole kde
-# EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
-EGIT_KDE_REPO_DIR="/home/rainman/projects/kde/.git"
+EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 # Default location check and set, if wasn't set in ebuild
 [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 # Default branch check and set, if wasn't set in ebuild
