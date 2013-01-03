@@ -1,0 +1,4 @@
+#!/bin/bash
+#uxterm -u8 -bg "#001900"  -fg white -fa "Monospace" -fs 8 -geometry 180x47+0+0
+#uxterm -u8 -bg "#001900" -fg white -fa "04B08" -fs 6 -geometry 208x47+0+0
+uxterm -geometry 208x47 $@

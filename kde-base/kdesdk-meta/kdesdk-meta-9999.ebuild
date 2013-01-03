@@ -27,6 +27,7 @@ RDEPEND="
 	=kde-base/kspy-${PV}:${SLOT}
 	=kde-base/kuiviewer-${PV}:${SLOT}
 	=kde-base/umbrello-${PV}:${SLOT}
-	develop? ( =dev-util/kdevelop-${PV}
-	=dev-util/codeblocks-${PV}
-	>=dev-util/kdbg-2.2.0 )"
+	develop? (
+		=dev-util/kdevelop-${PV}
+		>=dev-util/kdbg-2.2.0
+	)"

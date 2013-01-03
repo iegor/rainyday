@@ -1,0 +1,2 @@
+#!/bin/bash
+gksudo --  gnome-terminal --working-directory ~/ --hide-menubar --geometry 180x47

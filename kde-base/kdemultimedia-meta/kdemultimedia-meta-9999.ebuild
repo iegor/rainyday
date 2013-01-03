@@ -28,7 +28,6 @@ arts? ( =kde-base/artsplugin-akode-${PV}:${SLOT}
 =kde-base/kmix-${PV}:${SLOT}
 =kde-base/kscd-${PV}:${SLOT}
 =kde-base/libkcddb-${PV}:${SLOT}
->=media-sound/musicman-0.16
 =media-sound/amarok-${PV}:${SLOT}
 =media-video/kaffeine-${PV}:${SLOT}
 "

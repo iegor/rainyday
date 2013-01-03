@@ -38,14 +38,15 @@ src_install()
 	insinto /etc/udev/rules.d
 	doins ${FILESDIR}/10-usb-mount.rules
 	doins ${FILESDIR}/11-usb-N900-mount.rules
+	doins ${FILESDIR}/12-sd-mount.rules
 }
 
 pkg_postinst()
 {
 	# reload udev rules
-	ebegin "Reload udev rules"
-	/sbin/udevadm control --reload-rules
-	eend 0
+	ebegin "Reloading udev rules..."
+		$(which udevadm) control --reload-rules
+	eend ${?}
 
 	einfo "udev rules was reloaded. Please try now to insert your usb device."	
 	einfo "Please use only konqueror mount dialog to mount your drives."	

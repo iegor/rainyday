@@ -3,3 +3,14 @@ sudo layman -S && sudo layman -a rainyday
 
 now contains a mirrored packages from kde-sunset too.
 
+CURRENT STATE:
+Workig on moving kde completely to "9999" usage model.
+i.e. all changes will be available not through some 3.5.XXXX version
+ebuild, but via kde-...../......-9999.ebuild installation.
+To acquire new changes simply update overlay and rebuild required packages.
+
+CHANGELOG:
+
+01.03.2013 - Added Tiny and Big indie game ebuild
+01.03.2013 - Copied vdrift ebuilds from tree
+01.03.2013 - Copied torcs ebuilds from tree

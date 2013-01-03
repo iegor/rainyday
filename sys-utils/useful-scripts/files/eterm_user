@@ -1,0 +1,2 @@
+#!/bin/bash
+Eterm --trans --geometry 208x47+0+0 --tint green --shade 64 --cache 256 --double-buffer --save-lines 500 --foreground-color white --font-fx none

@@ -58,7 +58,7 @@ RDEPEND="
 	arts? ( ~kde-base/arts-9999 )
 	!avahi? (
 		!bindist? (
-			!=kde-misc/kdnssd-avahi-9999
+			!kde-misc/kdnssd-avahi
 			net-misc/mDNSResponder
 		)
 	)
@@ -87,7 +87,7 @@ RDEPEND="${RDEPEND}
 	>=x11-misc/xdg-utils-1.0.2-r3
 "
 PDEPEND="
-	avahi? ( =kde-misc/kdnssd-avahi-9999 )
+	avahi? ( kde-misc/kdnssd-avahi )
 	bindist? ( =kde-misc/kdnssd-avahi-9999 )
 "
 
