@@ -112,6 +112,10 @@ fi
 # overridden in other places like kde-dist, kde-source and some individual ebuilds
 SLOT="0"
 
+if [[ ${PV} == 9999 ]]; then
+	KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+fi
+
 # @ECLASS-VARIABLE: ARTS_REQUIRED
 # @DESCRIPTION:
 # Is aRTs-support required or not? Possible values are 'yes', 'never'. Otherwise
