@@ -4,7 +4,6 @@
 
 EAPI=2
 KMNAME=kdnssd-avahi
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde
 
 need-kde 9999

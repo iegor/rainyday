@@ -1,6 +1,75 @@
 # ChangeLog for x11-wm/compiz
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/compiz/ChangeLog,v 1.62 2011/11/11 22:54:51 ssuominen Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/compiz/ChangeLog,v 1.77 2012/10/11 07:45:27 pinkbyte Exp $
+
+  11 Oct 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8-r1.ebuild:
+  Add missing virtual/glu dependency wrt bug #437922
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -compiz-0.8.6-r3.ebuild,
+  -files/compiz-0.8.6-gdk-display-deprecated.patch,
+  -files/compiz-0.8.6-r2-fontcorruption.patch:
+  Drop old compiz version
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> files/compiz-gcc-4.7.patch:
+  Updated version of gcc 4.7 compatibility patch
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8-r1.ebuild,
+  +files/compiz-gcc-4.7.patch:
+  Add patch for compatibility with gcc 4.7 or higher, wrt bug #433870. Thanks
+  to Christian for discovering this issue and megabaks - for providing solution
+  to it
+
+*compiz-0.8.8-r1 (12 Sep 2012)
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -compiz-0.8.8.ebuild,
+  +compiz-0.8.8-r1.ebuild:
+  Revision bump, add missing run-time dependencies, needed for compiz-manager
+  script
+
+  12 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8.ebuild:
+  Add missing dependency on dev-libs/dbus-glib when building compiz with dbus
+  USE-flag
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -files/compiz-0.6.2-CVE-2007-3920.patch, -files/compiz-0.7.8-framesvg.patch,
+  -files/compiz-0.8.2-gtk-gnome-missing-gconf-flags.patch,
+  -files/compiz-0.8.4-crash-on-opening-windows.patch,
+  -files/compiz-0.8.4-gtk+-2.20-build.patch, -files/compiz-0.8.4-kde44.patch,
+  -files/compiz-0.8.4-libpng14.patch, -files/compiz-0.8.4-place-plugin.patch,
+  -files/compiz-0.8.4-window-region-calculation.patch:
+  Remove unneeded files
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -files/0.3.6/compiz-start:
+  Remove old script
+
+  11 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-0.8.8.ebuild,
+  +files/compiz-kde-4.9.patch:
+  Add compatibility patch for KDE 4.9
+
+  31 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+  31 Jul 2012; Naohiro Aota <naota@gentoo.org> compiz-0.8.6-r3.ebuild,
+  compiz-0.8.8.ebuild:
+  Remove warning about AddARGBGLXVisuals. #427608
+
+  23 Jul 2012; Naohiro Aota <naota@gentoo.org> compiz-0.8.6-r3.ebuild,
+  compiz-0.8.8.ebuild, metadata.xml:
+  Add notifcation to use AddARGBGLXVisuals options with nvidia-drivers. #427608;
+  Update maintainer mail addres.
+
+  18 Jun 2012; Samuli Suominen <ssuominen@gentoo.org> compiz-0.8.8.ebuild:
+  Update to EAPI4 and prune_libtool_files.
+
+  04 May 2012; Jeff Horelick <jdhore@gentoo.org> compiz-0.8.6-r3.ebuild,
+  compiz-0.8.8.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+*compiz-0.8.8 (09 Apr 2012)
+
+  09 Apr 2012; Naohiro Aota <naota@gentoo.org> +compiz-0.8.8.ebuild,
+  +files/compiz-kde-4.8.patch, metadata.xml:
+  Bump to 0.8.8; Assign new maintainer. Bug #363321
 
   11 Nov 2011; Samuli Suominen <ssuominen@gentoo.org> compiz-0.8.6-r3.ebuild:
   Remove support for DBUS wrt #365121
@@ -319,4 +388,3 @@
   +files/06-glfinish.patch, +files/07-cow.patch, +files/compiz-aiglx,
   +compiz-0.0.13_pre20060916.ebuild:
   Initial commit of compiz.
-

@@ -1,0 +1,20 @@
+# KDE ADDONS 9999
+=kde-base/kdeaddons-meta-9999:3.5		~x86
+=kde-base/kicker-applets-9999:3.5		~x86
+=kde-base/atlantik-9999:3.5			~x86
+=kde-base/atlantikdesigner-9999:3.5		~x86
+=kde-base/kaddressbook-9999:3.5			~x86
+=kde-base/knewsticker-scripts-9999:3.5		~x86
+=kde-base/knewsticker-9999:3.5			~x86
+=kde-base/ksig-9999:3.5				~x86
+=kde-base/konq-plugins-9999:3.5			~x86
+=kde-base/libkdegames-9999:3.5			~x86
+=kde-base/kdeaddons-docs-konq-plugins-9999:3.5 	~x86
+=kde-base/librss-9999:3.5			~x86
+=kde-base/renamedlg-images-9999:3.5		~x86
+=kde-base/kate-plugins-9999:3.5			~x86
+=kde-base/kaddressbook-plugins-9999:3.5		~x86
+=kde-base/renamedlg-audio-9999:3.5		~x86
+=kde-base/konqueror-akregator-9999:3.5		~x86
+=kde-base/kdeaddons-kfile-plugins-9999:3.5	~x86
+=kde-base/akregator-9999:3.5			~x86

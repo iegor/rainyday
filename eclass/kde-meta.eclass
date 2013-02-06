@@ -55,41 +55,59 @@ if [[ "$KDEBASE" = "true" ]]; then
 	# Main tarball for normal downloading style
 	# Note that we set SRC_PATH, and add it to SRC_URI later on
  	case "$PV" in
- 		3.5.0_*)	SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL" ;;
- 		3.5_*)		SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL" ;;
- 		3.5.0)		SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL" ;;
- 		3*)		SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL" ;;
+		3.5.0_*)
+			SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL"
+			SRC_URI="$SRC_URI $SRC_PATH"
+		;;
+		3.5_*)
+			SRC_PATH="mirror://kde/unstable/${PV/_/-}/src/$TARBALL"
+			SRC_URI="$SRC_URI $SRC_PATH"
+			;;
+		3.5.0)
+			SRC_PATH="mirror://kde/stable/3.5/src/$TARBALL"
+			SRC_URI="$SRC_URI $SRC_PATH"
+		;;
+		3*)
+			SRC_PATH="mirror://kde/stable/$TARBALLVER/src/$TARBALL"
+			SRC_URI="$SRC_URI $SRC_PATH"
+		;;
 		9999)
 			SRC_PATH=""
-			SLOT="0"
+			SRC_URI=""
+			SLOT="3.5" # We are developing for kde 3.5
 		;;
- 		*)		die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI" ;;
+		*)
+			die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI"
+		;;
  	esac
-
 elif [[ "$KMNAME" == "koffice" ]]; then
 	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
- 	case $PV in
- 		1.3.5)
- 			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
- 			;;
- 		1.6_beta1)
- 			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
- 			;;
- 		1.6.3_p*) SRC_PATH="mirror://gentoo/${TARBALL}"
- 			;;
- 		*)
- 			# Identify beta and rc versions by underscore
- 			if [[ ${PV/_/} != ${PV} ]]; then
- 				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
- 			fi
- 			;;
- 	esac
+
+	case $PV in
+		1.3.5)
+			SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
+		;;
+		1.6_beta1)
+			SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/koffice-${TARBALLVER}.tar.bz2"
+		;;
+		1.6.3_p*)
+			SRC_PATH="mirror://gentoo/${TARBALL}"
+		;;
+		*)
+			# Identify beta and rc versions by underscore
+			if [[ ${PV/_/} != ${PV} ]]; then
+				SRC_PATH="mirror://kde/unstable/koffice-${PV/_/-}/src/koffice-${TARBALLVER}.tar.bz2"
+			fi
+		;;
+	esac
+
+	SRC_URI="$SRC_URI $SRC_PATH"
 fi
 
 # SRC_URI="$SRC_URI $SRC_PATH"
-debug-print "SRC_URI: $SRC_PATH"
-SRC_URI=""
-debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
+# debug-print "SRC_PATH: $SRC_PATH"
+# SRC_URI=""
+# debug-print "$ECLASS: finished, SRC_URI=$SRC_URI"
 
 # Add a blocking dep on the package we're derived from
 if [[ "${KMNAME}" != "koffice" ]]; then

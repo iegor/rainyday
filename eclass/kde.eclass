@@ -26,18 +26,9 @@ EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 # Source directory to clone repo into it
 EGIT_SOURCEDIR=${S}
 
-################################ SOME ERROR STRINGS #######################################
-
-STRING_ERROR_KDE_UNPACK_NO_SOURCE="[V]KDE_DOWNLOAD_SOURCE is empty. Download from where ?
-	Use next syntax in your ebuild\n\
-	KDE_DOWNLOAD_SOURCE=\"<download source>\" [git_repo, src_uri]\n"
-
 ###########################################################################################
 
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
-
-# Default download method check
-#[[ -z "${KDE_DOWNLOAD_SOURCE}" ]] && die "${STRING_ERROR_KDE_UNPACK_NO_SOURCE}"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools git-2
 
@@ -111,10 +102,6 @@ fi
 # overridden in other places like kde-dist, kde-source and some individual ebuilds
 SLOT="0"
 
-if [[ ${PV} == 9999 ]]; then
-	KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-fi
-
 # @ECLASS-VARIABLE: ARTS_REQUIRED
 # @DESCRIPTION:
 # Is aRTs-support required or not? Possible values are 'yes', 'never'. Otherwise
@@ -167,10 +154,10 @@ kde_src_unpack() {
 	
 	# Working with git repositories now !
 
-	case "${KDE_DOWNLOAD_SOURCE}" in
+	case "${PV}" in
 	# Check if user ebuild wants to download from git repo
 	# That should be behaviour by fefault, to centralise  all work with sources
-	"git")
+	9999)
 		einfo "Your package is in git repo, it will fetched via git routines."
 
 		if [ -z ${EGIT_REPO_URI} ]; then
@@ -195,7 +182,7 @@ kde_src_unpack() {
 		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
 		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
 
-		# We will not need t checkout everything, just specified files and folders
+		# We will not need to checkout everything, just specified files and folders
 		# so using "git-2_src_unpack" won't help us, use instead
 		ebegin "Gitting sources from ${EGIT_REPO_URI} repo."
 			git-2_init_variables
@@ -213,9 +200,9 @@ kde_src_unpack() {
 
 		cd $EGIT_SOURCEDIR
 
-		ebegin "Checking out files to build module: '${KMNAME}'"
+		ebegin "Checking out '${KMNAME}' module files from ${EGIT_BRANCH}."
 			# Check out assets required for build to be conducted
-			git checkout ${EGIT_BRANCH} kdecommon
+			git checkout origin/${EGIT_BRANCH} kdecommon
 			mv ./kdecommon ${WORKDIR}/
 
 			case "${KMNAME}" in
@@ -226,7 +213,7 @@ kde_src_unpack() {
 			"kaffeine"|\
 			"kdnssd-avahi")
 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
-				git checkout ${EGIT_BRANCH} "./${KMNAME}"
+				git checkout origin/${EGIT_BRANCH} "./${KMNAME}"
 
 				# rename and move KMNAME to WORKDIR
 				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
@@ -258,8 +245,8 @@ kde_src_unpack() {
 										${DOCS}
 				do
 # 					extractlist="${extractlist} ${KMNAME}/${item%/}"
-					ebegin "Checkout: ${KMNAME}/${item%/}"
-						git checkout ${EGIT_BRANCH} "${KMNAME}/${item%/}" &> /dev/null
+					ebegin "Checkout:  ${EGIT_BRANCH}:${KMNAME}/${item%/}"
+						git checkout origin/${EGIT_BRANCH} "${KMNAME}/${item%/}" &> /dev/null
 					eend ${?}
 				done
 
@@ -281,6 +268,11 @@ kde_src_unpack() {
 			;;
 			esac
 
+			# Let's create a subdirs file in ${S} to keep configure happy
+# 			cat <<EOF > ./subdirs
+# ${KMMODULE}
+# EOF
+
 			# After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
 			debug-print "We are in:  $(pwd)"
 			debug-print "files: $(ls -la ./)"
@@ -288,8 +280,8 @@ kde_src_unpack() {
 
 			git-2_cleanup
 		eend ${?}
-	;; # KDE_DOWNLOAD_SOURCE is git
-	*) # Here all the rest sources will be used [src_uri, etc.]
+	;; # Acquiring sources for 9999 ebuild
+	*) # The rest
 		einfo "Your package is not in git repo, it will fetched via SRC_URI var."
 	;;
 	esac
@@ -463,11 +455,13 @@ kde_src_configure() {
 				debug-print-section configure
 				debug-print "$FUNCNAME::configure: myconf=$myconf"
 
-				export WANT_AUTOMAKE
+				export WANT_AUTOMAKE="1.11"
 
 				# rebuild configure script, etc
 				# This can happen with e.g. a cvs snapshot
 				if [[ ! -f "./configure" ]]; then
+# 					die "no conf script $(pwd)"
+
 					# This is needed to fix building with autoconf 2.60.
 					# Many thanks to who preferred such a stupid check rather
 					# than a working arithmetic comparison.
@@ -609,13 +603,13 @@ kde_src_compile() {
 				;;
 			all)
 				case ${EAPI:-0} in
-					0|2) kde_src_configure all ;;
+					0|1) kde_src_configure all ;;
 				esac
 				kde_src_compile make
 				;;
 			*)
 				case ${EAPI:-0} in
-					0|2) kde_src_configure $1 ;;
+					0|1) kde_src_configure $1 ;;
 				esac
 			;;
 		esac

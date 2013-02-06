@@ -1,16 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdm/kdm-3.5.10.ebuild,v 1.8 2009/10/23 18:25:12 abcd Exp $
+# $Header: $
 
 EAPI=2
 KMNAME=kdebase
 KMEXTRA="kdmlib/"
 KMEXTRACTONLY="libkonq/konq_defaults.h"
 KMCOMPILEONLY="kcontrol/background"
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE login manager, similar to xdm and gdm"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="elibc_glibc kdehiddenvisibility pam"
 
 DEPEND="pam? ( kde-base/kdebase-pam )

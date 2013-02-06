@@ -1,0 +1,21 @@
+: package.use
+
+# KDE MULTIMEDIA 9999
+
+: package.keywords
+
+# KDE MULTIMEDIA 9999
+=kde-base/kdemultimedia-meta-9999		~x86
+=kde-base/kmix-9999				~x86
+=media-sound/musicman-0.16			~x86
+=kde-base/kdemultimedia-kappfinder-data-9999	~x86
+=media-video/kaffeine-9999			~x86
+=kde-base/kdemultimedia-kfile-plugins-9999	~x86
+=media-video/kplayer-0.6.3			~x86
+=kde-base/kscd-9999 				~x86
+=kde-base/libkcddb-9999				~x86
+=media-sound/amarok-9999			~x86
+=kde-base/kmid-9999				~x86
+=kde-base/kdemultimedia-kioslaves-9999		~x86
+# =media-video/kmplayer-9999:3.5		~x86
+=media-video/kmplayer-0.10.0c-r2		~x86

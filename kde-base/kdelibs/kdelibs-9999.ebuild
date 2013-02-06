@@ -1,17 +1,16 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
+# $Header: $
 
 EAPI=2
-# SLOT="9999.0"
 KMNAME=kdelibs
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde flag-o-matic eutils multilib
-set-kdedir 9999 # Calling this here to ensure we install into git prefix directory
+# Calling this here to ensure we install into git prefix directory
+set-kdedir 9999
 DESCRIPTION="[GIT] KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2 LGPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+SLOT="3.5"
 IUSE="acl alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff
 	avahi kernel_linux fam lua kdehiddenvisibility"
 

@@ -1,0 +1,18 @@
+# KDE GRAPHICS 9999
+=kde-base/kfax-9999:3.5				~x86
+=kde-base/kgamma-9999:3.5			~x86
+=kde-base/kdvi-9999:3.5				~x86
+=kde-base/kview-9999:3.5			~x86
+=kde-base/kdegraphics-meta-9999:3.5		~x86
+=kde-base/kolourpaint-9999:3.5			~x86
+=kde-base/kcoloredit-9999:3.5			~x86
+=kde-base/kdegraphics-kfile-plugins-9999:3.5	~x86
+=kde-base/kviewshell-9999:3.5			~x86
+=kde-base/ksvg-9999:3.5				~x86
+=kde-base/kruler-9999:3.5			~x86
+=kde-base/ksnapshot-9999:3.5			~x86
+=kde-base/kiconedit-9999:3.5			~x86
+=kde-base/kuickshow-9999:3.5			~x86
+=kde-base/kooka-9999:3.5			~x86
+=kde-base/libkscan-9999:3.5			~x86
+

@@ -14,7 +14,7 @@ SRC_URI="http://www.riverbankcomputing.co.uk/static/Downloads/QScintilla2/${MY_P
 
 LICENSE="|| ( GPL-2 GPL-3 )"
 SLOT="0"
-KEYWORDS="alpha amd64 hppa ia64 ppc ~ppc64 sparc x86 ~x86-fbsd"
+KEYWORDS="alpha ~amd64 hppa ia64 ppc ~ppc64 sparc ~x86 ~x86-fbsd"
 IUSE="doc python +qt4"
 
 RDEPEND="qt4? ( x11-libs/qt-gui:4 )

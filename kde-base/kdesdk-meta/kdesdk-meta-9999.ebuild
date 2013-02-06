@@ -1,14 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdesdk-meta/kdesdk-meta-3.5.10.ebuild,v 1.6 2009/07/12 12:16:53 armin76 Exp $
+# $Header: $
 
 EAPI=2
-SLOT=0
 inherit kde-functions
 DESCRIPTION="[GIT] kdesdk - merge this to pull in all kdesdk-derived packages"
 HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+SLOT="3.5"
 IUSE="develop subversion elibc_glibc"
 
 RDEPEND="
@@ -28,6 +27,6 @@ RDEPEND="
 	=kde-base/kuiviewer-${PV}:${SLOT}
 	=kde-base/umbrello-${PV}:${SLOT}
 	develop? (
-		=dev-util/kdevelop-${PV}
-		>=dev-util/kdbg-2.2.0
+		=dev-util/kdevelop-${PV}:${SLOT}
+		=dev-util/kdbg-${PV}:${SLOT}
 	)"

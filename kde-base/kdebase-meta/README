@@ -1,0 +1,53 @@
+: package.use
+
+# KDE BASE 9999
+=kde-base/kdelibs-9999 branding openexr
+=kde-base/kdesktop-9999 xscreensaver
+
+: package.keywords
+
+# KDE BASE 9999 build
+=kde-base/kdelibs-9999                  ~x86
+=kde-base/drkonqi-9999                  ~x86
+=kde-base/kappfinder-9999               ~x86
+=kde-base/kate-9999                     ~x86
+=kde-base/kcheckpass-9999               ~x86
+=kde-base/kcminit-9999                  ~x86
+=kde-base/kdcop-9999                    ~x86
+=kde-base/kdebase-data-9999             ~x86
+=kde-base/kdebase-kioslaves-9999        ~x86
+=kde-base/kdebase-meta-9999             ~x86
+=kde-base/kdebase-startkde-9999         ~x86
+=kde-base/kdebugdialog-9999             ~x86
+=kde-base/kdepasswd-9999                ~x86
+=kde-base/kdeprint-9999                 ~x86
+=kde-base/kdesktop-9999                 ~x86
+=kde-base/kdesu-9999                    ~x86
+=kde-base/kdialog-9999                  ~x86
+=kde-base/kdm-9999                      ~x86
+=kde-base/kfind-9999                    ~x86
+=kde-base/khelpcenter-9999              ~x86
+=kde-base/khotkeys-9999                 ~x86
+=kde-base/kicker-9999                   ~x86
+=kde-base/klipper-9999                  ~x86
+=kde-base/kmenuedit-9999                ~x86
+=kde-base/knetattach-9999               ~x86
+=kde-base/konqueror-9999                ~x86
+=kde-base/konsole-9999                  ~x86
+=kde-base/kpager-9999                   ~x86
+=kde-base/kpersonalizer-9999            ~x86
+=kde-base/kreadconfig-9999              ~x86
+=kde-base/kscreensaver-9999             ~x86
+=kde-base/ksmserver-9999                ~x86
+=kde-base/ksplashml-9999                ~x86
+=kde-base/kstart-9999                   ~x86
+=kde-base/ksysguard-9999                ~x86
+=kde-base/ksystraycmd-9999              ~x86
+=kde-base/ktip-9999                     ~x86
+=kde-base/kwin-9999                     ~x86
+=kde-base/kxkb-9999                     ~x86
+=kde-base/libkonq-9999                  ~x86
+=kde-base/nsplugins-9999                ~x86
+=kde-base/kcontrol-9999                 ~x86
+=kde-misc/kdnssd-avahi-9999             ~x86
+=kde-base/kghostview-9999               ~x86

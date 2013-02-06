@@ -8,7 +8,6 @@ inherit kde-meta eutils
 DESCRIPTION="VNC-compatible server to share KDE desktops"
 KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="kdehiddenvisibility slp"
-KDE_DOWNLOAD_SOURCE="git"
 
 DEPEND="slp? ( net-libs/openslp )
 	x11-libs/libXtst"

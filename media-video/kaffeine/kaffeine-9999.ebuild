@@ -3,7 +3,6 @@
 # $Header: /var/cvsroot/gentoo-x86/media-video/kaffeine/kaffeine-0.8.8.ebuild,v 1.4 2009/06/09 14:16:40 tampakrap Exp $
 
 EAPI=2
-SLOT=0
 KMNAME=kaffeine
 ARTS_REQUIRED="never"
 USE_KEG_PACKAGING="1"
@@ -11,12 +10,11 @@ LANGS="ar bg bn br ca cs da de el es et fi fr ga gl he hu it ja ka \
 	km lt mk nb nl nn pa pl pt_BR pt ru se sk sr@Latn sr sv tg tr \
 	uk uz zh_CN zh_TW"
 LANGS_DOC=""
-KDE_DOWNLOAD_SOURCE="git"
 inherit eutils kde flag-o-matic
 DESCRIPTION="[GIT] Media player for KDE using xine and gstreamer backends."
 HOMEPAGE="http://kaffeine.sourceforge.net/"
 LICENSE="GPL-2"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
+SLOT="3.5"
 IUSE="dvb gstreamer xinerama vorbis encode xcb"
 # kdehiddenvisibility removed due to bug 207002.
 

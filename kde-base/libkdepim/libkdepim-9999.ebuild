@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/libkdepim/libkdepim-3.5.10.ebuild,v 1.7 2009/07/12 12:20:22 armin76 Exp $
+# $Header: $
 
-EAPI="1"
+EAPI=2
 KMNAME=kdepim
 KMCOPYLIB="libkcal libkcal
 	libkmime libkmime"
@@ -15,9 +15,8 @@ KMEXTRACTONLY="kmail/hi16-app-kmail.png
 		kmail/hi64-app-kmail.png
 		kmail/hi128-app-kmail.png
 		libkmime/kmime_util.h"
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
-DESCRIPTION="Common library for KDE PIM applications."
+DESCRIPTION="[GIT] Common library for KDE PIM applications."
 IUSE=""
 
 RDEPEND="=kde-base/libkcal-${PV}:${SLOT}

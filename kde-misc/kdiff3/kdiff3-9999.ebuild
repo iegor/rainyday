@@ -6,7 +6,6 @@ EAPI=2
 SLOT=0
 KMNAME=kdesdk
 ARTS_REQUIRED="never"
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta
 DESCRIPTION="[GIT] KDE-based frontend to diff3"
 HOMEPAGE="http://kdiff3.sourceforge.net/"

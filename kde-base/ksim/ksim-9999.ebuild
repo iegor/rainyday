@@ -1,13 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/ksim/ksim-3.5.10.ebuild,v 1.8 2009/10/12 05:43:12 abcd Exp $
+# $Header: $
 
 EAPI=2
 KMNAME=kdeutils
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE system monitoring applets."
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="kdehiddenvisibility snmp"
 
 DEPEND="x11-libs/libXext

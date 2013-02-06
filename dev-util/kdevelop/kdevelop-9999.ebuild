@@ -3,14 +3,14 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/kdevelop-3.5.4-r1.ebuild,v 1.9 2009/09/27 14:57:18 ranger Exp $
 
 EAPI=2
-# SLOT="9999.0"
 ARTS_REQUIRED="never"
 KMNAME=kdevelop
-KDE_DOWNLOAD_SOURCE="git"
+EGIT_BRANCH="kdevelop_dev"
 inherit kde eutils db-use
 DESCRIPTION="[GIT] Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
 HOMEPAGE="http://www.kdevelop.org"
 LICENSE="GPL-2"
+SLOT="3.5"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python ruby sql subversion git"
 

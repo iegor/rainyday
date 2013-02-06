@@ -1,10 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kcontrol/kcontrol-3.5.10.ebuild,v 1.9 2009/07/12 13:06:11 armin76 Exp $
+# $Header: $
 
 EAPI=2
 KMNAME=kdebase
-KDE_DOWNLOAD_SOURCE="git"
 KMEXTRACTONLY="kwin/kwinbindings.cpp
 	kicker/kicker/core/kickerbindings.cpp
 	kicker/taskbar/taskbarbindings.cpp
@@ -12,7 +11,6 @@ KMEXTRACTONLY="kwin/kwinbindings.cpp
 	klipper/klipperbindings.cpp
 	kxkb/kxkbbindings.cpp
 	kicker/taskmanager"
-
 KMEXTRA="doc/kinfocenter"
 KMCOMPILEONLY="kicker/libkicker
 	kicker/taskbar"
@@ -22,7 +20,6 @@ KMCOPYLIB="libkonq libkonq
 	libtaskmanager kicker/taskmanager"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] The KDE Control Center"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="arts ieee1394 joystick logitech-mouse opengl kdehiddenvisibility"
 
 DEPEND="x11-libs/libXext

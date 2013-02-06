@@ -1,0 +1,20 @@
+# KDE SDK 9999
+=kde-base/kdesdk-meta-9999		~x86
+=kde-base/cervisia-9999			~x86
+=kde-base/kcachegrind-9999		~x86
+=kde-base/kapptemplate-9999		~x86
+=kde-base/kuiviewer-9999		~x86
+=kde-base/kdesdk-kfile-plugins-9999	~x86
+=dev-util/kdevelop-9999			~x86
+=dev-util/kdbg-9999			~x86
+=kde-base/kdesdk-kioslaves-9999		~x86
+=dev-util/bouml-9999			~x86
+=kde-base/kdesdk-scripts-9999		~x86
+=kde-base/kmtrace-9999			~x86
+=kde-base/kompare-9999			~x86
+=kde-base/kbugbuster-9999		~x86
+=kde-base/kspy-9999			~x86
+=kde-base/kdesdk-misc-9999		~x86
+=kde-base/umbrello-9999			~x86
+=kde-base/kbabel-9999			~x86
+=kde-misc/kdiff3-9999			~x86

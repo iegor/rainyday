@@ -1,0 +1,14 @@
+Title: kdbg_is_available
+Author: Iegor <rmtdev@gmail.com>
+Content-Type: text/plain
+Posted: 2013-01-24
+Revision: 1
+News-Item-Format: 1.0
+
+Now we have the opportunity towork with kdbg 9999 atom.
+I moved it to main development tree, and now I will consider it to be a part
+of kdesdk module, it will be pulled with other deps.
+
+Have a few bugs for now... fixing them.
+
+:)

@@ -1,13 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/amarok/amarok-1.4.10_p20090130-r3.ebuild,v 1.8 2009/11/07 00:39:24 ssuominen Exp $
+# $Header: $
 
 # kde: enables compilation of the konqueror sidebar plugin
 
 EAPI=2
-SLOT=0
 KMNAME=amarok
-LICENSE="GPL-2"
 ARTS_REQUIRED="never"
 LANGS="af ar az be bg bn br ca cs cy da de el en_GB eo es et eu fa fi
 fr ga gl he hi hu id is it ja km ko ku lo lt mk ms nb nds ne nl nn pa
@@ -15,13 +13,12 @@ pl pt pt_BR ro ru rw se sk sl sq sr sr@Latn ss sv ta tg th tr uk uz
 zh_CN zh_TW"
 LANGS_DOC="da de es et fr it nl pl pt pt_BR ru sv"
 USE_KEG_PACKAGING="1"
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde
-
 PKG_SUFFIX=""
-
 DESCRIPTION="[GIT] Advanced audio player based on KDE framework."
 HOMEPAGE="http://amarok.kde.org/"
+LICENSE="GPL-2"
+SLOT="3.5"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="mp4 mysql +amazon opengl postgres visualization ipod ifp real njb mtp musicbrainz daap python"
 

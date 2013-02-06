@@ -1,15 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdeartwork-iconthemes/kdeartwork-iconthemes-3.5.10.ebuild,v 1.7 2009/07/12 10:09:15 armin76 Exp $
+# $Header: $
 
 EAPI=2
 RESTRICT="binchecks strip"
 KMMODULE=IconThemes
 KMNAME=kdeartwork
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta
 DESCRIPTION="[GIT] Icon themes for kde"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE=""
 
 DEPEND=""

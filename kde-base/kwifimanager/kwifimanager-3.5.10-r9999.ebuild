@@ -9,7 +9,6 @@ inherit kde-meta eutils
 DESCRIPTION="KDE wifi (wireless network) gui"
 KEYWORDS="amd64 ppc ppc64 x86"
 IUSE="kdehiddenvisibility"
-KDE_DOWNLOAD_SOURCE="git"
 
 DEPEND="net-wireless/wireless-tools"
 RDEPEND="${DEPEND}"

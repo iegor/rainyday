@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/enlightenment-0.16.9999.ebuild,v 1.36 2010/08/09 06:45:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/enlightenment-0.16.9999.ebuild,v 1.40 2012/11/08 07:56:38 vapier Exp $
 
-EAPI="2"
+EAPI="4"
 if [[ ${PV} == *9999 ]] ; then
 	ESVN_REPO_URI="http://svn.enlightenment.org/svn/e/trunk/E16/e"
 	inherit subversion autotools
@@ -16,15 +16,14 @@ else
 fi
 inherit eutils
 
-DESCRIPTION="Enlightenment Window Manager"
+DESCRIPTION="Enlightenment Window Manager (e16)"
 HOMEPAGE="http://www.enlightenment.org/"
 
 LICENSE="BSD"
 SLOT="0"
-IUSE="dbus doc esd nls pango pulseaudio xcomposite xinerama xrandr"
+IUSE="dbus doc nls pango pulseaudio xcomposite xinerama xrandr"
 
-RDEPEND="esd? ( >=media-sound/esound-0.2.19 )
-	pulseaudio? ( media-sound/pulseaudio )
+RDEPEND="pulseaudio? ( media-sound/pulseaudio )
 	dbus? ( sys-apps/dbus )
 	pango? ( x11-libs/pango )
 	=media-libs/freetype-2*
@@ -45,7 +44,7 @@ RDEPEND="esd? ( >=media-sound/esound-0.2.19 )
 	nls? ( virtual/libintl )
 	virtual/libiconv"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	x11-proto/xextproto
 	x11-proto/xf86vidmodeproto
 	xinerama? ( x11-proto/xineramaproto )
@@ -66,7 +65,7 @@ src_configure() {
 		$(use_enable nls) \
 		$(use_enable dbus) \
 		$(use_enable pulseaudio sound-pulse) \
-		$(use_enable esd sound-esound) \
+		--disable-sound-esound \
 		$(use_enable pango) \
 		$(use_enable xinerama) \
 		$(use_enable xrandr) \
@@ -76,8 +75,7 @@ src_configure() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
-	rmdir "${D}"/usr/share/doc/e16 || die #294456
-	dodoc AUTHORS ChangeLog COMPLIANCE TODO sample-scripts/*
+	default
+	dodoc COMPLIANCE sample-scripts/*
 	dohtml docs/e16.html
 }

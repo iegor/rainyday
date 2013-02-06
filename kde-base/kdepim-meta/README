@@ -1,0 +1,23 @@
+# KDE PIM
+=kde-base/kdepim-meta-9999:3.5			~x86
+=kde-base/korganizer-9999:3.5			~x86
+=kde-base/korn-9999:3.5				~x86
+=kde-base/kontact-specialdates-9999:3.5		~x86
+=kde-base/kandy-9999:3.5			~x86
+=kde-base/networkstatus-9999:3.5		~x86
+=kde-base/libkpimexchange-9999:3.5		~x86
+=kde-base/kdepim-kresources-9999:3.5		~x86
+=kde-base/kode-9999:3.5				~x86
+=kde-base/libkholidays-9999:3.5			~x86
+=kde-base/knode-9999:3.5			~x86
+=kde-base/kdepim-wizards-9999:3.5		~x86
+=kde-base/karm-9999:3.5				~x86
+=kde-base/kalarm-9999:3.5			~x86
+=kde-base/konsolekalendar-9999:3.5		~x86
+=kde-base/knotes-9999:3.5			~x86
+=kde-base/kdepim-kioslaves-9999:3.5		~x86
+=kde-base/kmailcvt-9999:3.5			~x86
+=kde-base/libksieve-9999:3.5			~x86
+=kde-base/kmail-9999:3.5			~x86
+=kde-base/libkpgp-9999:3.5			~x86
+=kde-base/mimelib-9999:3.5			~x86

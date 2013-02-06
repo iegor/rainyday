@@ -1,0 +1,10 @@
+# KDE ADMIN 9999
+=kde-base/kdeadmin-meta-9999:3.5		~x86
+=kde-base/kdeadmin-kfile-plugins-9999:3.5	~x86
+=kde-base/kcron-9999:3.5			~x86
+=kde-base/kdeadmin-kfile-pluginsns-9999:3.5	~x86
+=kde-base/kuser-9999:3.5			~x86
+=kde-base/lilo-baseconfig-9999:3.5		~x86
+=kde-base/lilo-config-9999:3.5			~x86
+=kde-base/secpolicy-9999:3.5			~x86
+=kde-base/knetworkconf-9999:3.5			~x86

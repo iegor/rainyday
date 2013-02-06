@@ -1,0 +1,48 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+EAPI=2
+KMNAME=kdegraphics
+inherit kde-meta eutils elisp-common
+DESCRIPTION="[GIT] KDE DVI viewer"
+IUSE="emacs kpathsea"
+
+DEPEND="
+=kde-base/kviewshell-${PV}:${SLOT}
+>=media-libs/freetype-2.3
+emacs? ( virtual/emacs )"
+RDEPEND="
+${DEPEND}
+kpathsea? ( virtual/tex-base )"
+
+KMCOMPILEONLY="kviewshell/"
+SITEFILE=50${PN}-gentoo.el
+
+src_compile() {
+	kde-meta_src_compile
+
+	if use emacs; then
+		cd "${S}/doc/kdvi"
+		elisp-compile kdvi-search.el
+	fi
+}
+
+src_install() {
+	kde-meta_src_install
+
+	if use emacs; then
+		elisp-install ${PN} doc/kdvi/kdvi-search.el*
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
+	fi
+}
+
+pkg_postinst() {
+	kde_pkg_postinst
+	use emacs && elisp-site-regen
+}
+
+pkg_postrm() {
+	kde_pkg_postrm
+	use emacs && elisp-site-regen
+}

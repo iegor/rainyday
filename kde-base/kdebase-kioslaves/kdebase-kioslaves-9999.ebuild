@@ -1,15 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdebase-kioslaves/kdebase-kioslaves-3.5.10-r1.ebuild,v 1.6 2009/07/08 13:36:05 alexxy Exp $
+# $Header: $
 
 EAPI=2
 KMNAME=kdebase
 KMMODULE=kioslave
 KMEXTRA="kdesktop/init"	# see bug #143375
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="hal kdehiddenvisibility ldap openexr samba"
 
 DEPEND="x11-libs/libXcursor

@@ -1,3 +1,4 @@
+===================================================================
 --- libkdenetwork/gpgmepp/context.cpp
 +++ libkdenetwork/gpgmepp/context.cpp
 @@ -53,6 +53,10 @@
@@ -11,6 +12,7 @@
    const char * Error::source() const {
      return gpgme_strsource( (gpgme_error_t)mErr );
    }
+===================================================================
 --- libkdenetwork/gpgmepp/context.h
 +++ libkdenetwork/gpgmepp/context.h
 @@ -287,6 +287,8 @@
@@ -22,6 +24,7 @@
    KDE_EXPORT GpgME::Error setDefaultLocale( int category, const char * value );
  
    KDE_EXPORT Context * wait( GpgME::Error & e, bool hang=true );
+===================================================================
 --- libkdenetwork/gpgmepp/Makefile.am
 +++ libkdenetwork/gpgmepp/Makefile.am
 @@ -46,7 +46,7 @@

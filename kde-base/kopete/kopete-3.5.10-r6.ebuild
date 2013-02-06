@@ -8,7 +8,6 @@ inherit kde-meta eutils
 SRC_URI="${SRC_URI}
 	http://www.thel.ro/kde-sunset/kdenetwork-3.5-patchset-02.tar.bz2"
 
-KDE_DOWNLOAD_SOURCE="git"
 
 DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="http://kopete.kde.org/"

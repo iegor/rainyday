@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kaudiocreator/kaudiocreator-3.5.10.ebuild,v 1.7 2009/10/12 05:33:23 abcd Exp $
+# $Header: $
 
 EAPI=2
 KMNAME=kdemultimedia
@@ -8,10 +8,8 @@ KMCOPYLIB="libkcddb libkcddb"
 KMEXTRACTONLY="libkcddb"
 KMCOMPILEONLY="kscd
 	libkcddb/"
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE CD ripper and audio encoder frontend"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="encode flac mp3 vorbis"
 
 DEPEND="

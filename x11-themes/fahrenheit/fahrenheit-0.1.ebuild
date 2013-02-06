@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/fahrenheit/fahrenheit-0.1.ebuild,v 1.8 2008/06/30 00:55:10 carlo Exp $
+# $Header: $
 
 ARTS_REQUIRED="never"
 

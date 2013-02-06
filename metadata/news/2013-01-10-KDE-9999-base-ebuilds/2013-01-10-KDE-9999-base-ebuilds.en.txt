@@ -1,0 +1,8 @@
+Title: KDE-9999-base-ebuilds
+Author: Iegor <rmtdev@gmail.com>
+Content-Type: text/plain
+Posted: 2013-01-10
+Revision: 1
+News-Item-Format: 1.0
+
+There are 9999 ebuilds available for KDE packages

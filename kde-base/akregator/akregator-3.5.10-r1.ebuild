@@ -10,12 +10,13 @@ SRC_URI="${SRC_URI}
 
 DESCRIPTION="KDE news feed aggregator."
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE=""
+IUSE="konqueror"
 
 DEPEND=">=kde-base/libkdepim-${PV}:${SLOT}
 	>=kde-base/kontact-${PV}:${SLOT}
 	!net-www/akregator"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	konqueror? ( kde-base/konqueror-akregator )"
 
 KMCOPYLIB="libkdepim libkdepim
 	libkpinterfaces kontact/interfaces"

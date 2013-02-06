@@ -1,17 +1,15 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kde-i18n/kde-i18n-3.5.10.ebuild,v 1.9 2009/07/12 11:27:12 armin76 Exp $
+# $Header: $
 
 EAPI=2
-SLOT=0
 KMNAME="kde-i18n"
 LICENSE="GPL-2"
 WANT_AUTOMAKE="1.11"
-KDE_DOWNLOAD_SOURCE="git"
 inherit eutils kde
 DESCRIPTION="[GIT] KDE internationalization package"
 HOMEPAGE="http://www.kde.org/"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+SLOT="3.5"
 IUSE=""
 # DEPEND="sys-devel/automake"
 # RDEPEND="${DEPEND}"

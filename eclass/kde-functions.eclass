@@ -327,6 +327,22 @@ app-office/koffice app-office/kugar
 app-office/koffice app-office/kword
 '
 
+# Quit if we have SRC_URI defined in 9999 ebuild.
+# If we are 9999, then we should not have any SRC_URI
+# That is the purpose of 9999 to install without any side sources
+if [[ ! -z "${SRC_URI}" ]]; then
+	ewarn "Your ebuil have ${PV} version mark, that means that it is fresh enough and should
+not \"drag\" anything behind it"
+	die "SRC_URI defined in 9999 ebuild."
+fi
+
+# Is this 9999 ebuild ?
+# If so, then make keywords the same for them all.
+# because they are all unstable.
+if [[ ${PV} == 9999 ]]; then
+	KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+fi
+
 # @FUNCTION: get-parent-package
 # @USAGE: < name of split-ebuild >
 # @DESCRIPTION:
@@ -410,9 +426,21 @@ need-kde() {
 	need-qt ${selected_version}
 
 	if [[ -n "${KDEBASE}" ]]; then
-		SLOT="$KDEMAJORVER.$KDEMINORVER"
-	else
-		: ${SLOT="0"}
+		case "$PV" in
+			3.5.0_*|\
+			3.5_*|\
+			3.5.0|\
+			3*)
+				SLOT="$KDEMAJORVER.$KDEMINORVER"
+			;;
+			9999)
+				SLOT="3.5" # We are developing for kde 3.5
+			;;
+			*)
+				: ${SLOT="0"}
+				die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI"
+			;;
+		esac
 	fi
 }
 

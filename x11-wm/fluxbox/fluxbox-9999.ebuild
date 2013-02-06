@@ -1,9 +1,9 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-9999.ebuild,v 1.10 2011/11/29 14:08:31 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-9999.ebuild,v 1.13 2013/01/08 21:32:50 lack Exp $
 
 EAPI=4
-inherit eutils git-2 prefix
+inherit eutils flag-o-matic toolchain-funcs git-2 prefix
 
 IUSE="nls xinerama bidi +truetype +imlib +slit +toolbar vim-syntax"
 
@@ -18,16 +18,17 @@ RDEPEND="x11-libs/libXpm
 	x11-libs/libXext
 	x11-libs/libXft
 	x11-libs/libXrender
-	|| ( x11-misc/gkmessage x11-apps/xmessage )
+	|| ( x11-misc/gxmessage x11-apps/xmessage )
 	xinerama? ( x11-libs/libXinerama )
 	truetype? ( media-libs/freetype )
-	bidi? ( dev-libs/fribidi )
+	bidi? ( >=dev-libs/fribidi-0.19.2 )
 	imlib? ( >=media-libs/imlib2-1.2.0[X] )
 	vim-syntax? ( app-vim/fluxbox-syntax )
 	!!<x11-themes/fluxbox-styles-fluxmod-20040809-r1
 	!!<=x11-misc/fluxconf-0.9.9
 	!!<=x11-misc/fbdesk-1.2.1"
-DEPEND="nls? ( sys-devel/gettext )
+DEPEND="bidi? ( virtual/pkgconfig )
+	nls? ( sys-devel/gettext )
 	x11-proto/xextproto
 	${RDEPEND}"
 
@@ -56,8 +57,9 @@ src_prepare() {
 }
 
 src_configure() {
+	use bidi && append-cppflags "$($(tc-getPKG_CONFIG) --cflags fribidi)"
+
 	econf \
-		--disable-dependency-tracking \
 		$(use_enable nls) \
 		$(use_enable xinerama) \
 		$(use_enable truetype xft) \
@@ -71,7 +73,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake || die "make failed"
+	emake
 
 	ebegin "Creating a menu file (may take a while)"
 	mkdir -p "${T}/home/.fluxbox" || die "mkdir home failed"
@@ -84,22 +86,22 @@ src_compile() {
 
 src_install() {
 	dodir /usr/share/fluxbox
-	emake DESTDIR="${D}" STRIP="" install || die "install failed"
+	emake DESTDIR="${D}" STRIP="" install
 	dodoc README* AUTHORS TODO* ChangeLog NEWS
 
 	dodir /usr/share/xsessions
 	insinto /usr/share/xsessions
-	doins "${FILESDIR}/${PN}.desktop"
+	doins "${FILESDIR}"/${PN}.desktop
 
 	exeinto /etc/X11/Sessions
-	newexe "${FILESDIR}/${PN}.xsession" fluxbox
+	newexe "${FILESDIR}"/${PN}.xsession fluxbox
 
 	dodir /usr/share/fluxbox/menu.d
 
 	# Styles menu framework
 	dodir /usr/share/fluxbox/menu.d/styles
 	insinto /usr/share/fluxbox/menu.d/styles
-	doins "${FILESDIR}/styles-menu-fluxbox" || die
-	doins "${FILESDIR}/styles-menu-commonbox" || die
-	doins "${FILESDIR}/styles-menu-user" || die
+	doins "${FILESDIR}"/styles-menu-fluxbox
+	doins "${FILESDIR}"/styles-menu-commonbox
+	doins "${FILESDIR}"/styles-menu-user
 }

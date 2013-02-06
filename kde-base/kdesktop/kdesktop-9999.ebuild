@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdesktop/kdesktop-3.5.10.ebuild,v 1.7 2009/07/12 13:18:12 armin76 Exp $
+# $Header: $
+
 EAPI=2
 KMNAME=kdebase
 KMCOPYLIB="libkonq libkonq/"
@@ -11,12 +12,9 @@ KMEXTRACTONLY="kcheckpass/kcheckpass.h
 KMCOMPILEONLY="kcontrol/background
 	kdmlib/"
 KMNODOCS=true
-KDE_DOWNLOAD_SOURCE="git"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDesktop is the KDE interface that handles the icons, desktop popup menus and screensaver system."
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="kdehiddenvisibility xscreensaver"
-
 
 DEPEND="x11-libs/libXext
 	x11-libs/libXcursor
