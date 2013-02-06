@@ -23,3 +23,4 @@ CHANGELOG:
 01.24.2013 - Switched {kmail,kdevelop,kdbg} atoms to _dev branches
 02.02.2013 - Fixed 9999 kopete ebuild
 04.02.2013 - Added KDE GRAPHICS 9999 atoms.
+04.02.2013 - Added KDE PIM 9999 atoms.

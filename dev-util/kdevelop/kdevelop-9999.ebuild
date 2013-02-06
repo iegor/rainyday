@@ -5,7 +5,6 @@
 EAPI=2
 ARTS_REQUIRED="never"
 KMNAME=kdevelop
-EGIT_BRANCH="kdevelop_dev"
 inherit kde eutils db-use
 DESCRIPTION="[GIT] Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
 HOMEPAGE="http://www.kdevelop.org"
