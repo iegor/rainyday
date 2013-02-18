@@ -1,12 +1,10 @@
-ECLASS_DEBUG_OUTPUT=on
-
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.223 2009/05/12 12:55:46 tampakrap Exp $
 
 # @ECLASS: kde.eclass
-# @MAINTAINER:
-# kde@gentoo.org
+# @MAINTAINER: iegor
+# rmtdev@gmail.com
 #
 # original author Dan Armak <danarmak@gentoo.org>
 #
@@ -25,6 +23,7 @@ EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 [[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="master"
 # Source directory to clone repo into it
 EGIT_SOURCEDIR=${S}
+# ECLASS_DEBUG_OUTPUT=on
 
 ###########################################################################################
 
