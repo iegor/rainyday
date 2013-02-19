@@ -1,0 +1,34 @@
+: package.use
+
+: package.keywords
+
+=kde-base/kwin4-9999:3.5				~x86
+=kde-base/kshisen-9999:3.5				~x86
+=kde-base/kfouleggs-9999:3.5			~x86
+=kde-base/ksame-9999:3.5				~x86
+=kde-base/kbattleship-9999:3.5			~x86
+=kde-base/ksokoban-9999:3.5				~x86
+=kde-base/knetwalk-9999:3.5				~x86
+=kde-base/kbackgammon-9999:3.5			~x86
+=kde-base/lskat-9999:3.5				~x86
+=kde-base/klines-9999:3.5				~x86
+=kde-base/kpoker-9999:3.5				~x86
+=kde-base/ksirtet-9999:3.5				~x86
+=kde-base/kdegames-meta-9999:3.5		~x86
+=kde-base/ktron-9999:3.5				~x86
+=kde-base/konquest-9999:3.5				~x86
+=kde-base/kblackbox-9999:3.5			~x86
+=kde-base/kpat-9999:3.5					~x86
+=kde-base/ksnake-9999:3.5				~x86
+=kde-base/klickety-9999:3.5				~x86
+=kde-base/kmahjongg-9999:3.5			~x86
+=kde-base/kjumpingcube-9999:3.5			~x86
+=kde-base/kspaceduel-9999:3.5			~x86
+=kde-base/kbounce-9999:3.5				~x86
+=kde-base/katomic-9999:3.5				~x86
+=kde-base/ksmiletris-9999:3.5			~x86
+=kde-base/kmines-9999:3.5				~x86
+=kde-base/kgoldrunner-9999:3.5			~x86
+=kde-base/kenolaba-9999:3.5				~x86
+=kde-base/ktuberling-9999:3.5			~x86
+=kde-base/kreversi-9999:3.5				~x86
