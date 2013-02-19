@@ -1,15 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-base/kdenetwork-meta/kdenetwork-meta-3.5.10.ebuild,v 1.8 2009/10/20 16:55:18 ssuominen Exp $
+# $Header: $
 
-EAPI="1"
+EAPI=2
 inherit kde-functions
-DESCRIPTION="kdenetwork - merge this to pull in all kdenetwork-derived packages"
+DESCRIPTION="[GIT] kdenetwork - merge this to pull in all kdenetwork-derived packages"
 HOMEPAGE="http://www.kde.org/"
-
 LICENSE="GPL-2"
 SLOT="3.5"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="wifi"
 
 RDEPEND="=kde-base/dcoprss-${PVR}:${SLOT}
