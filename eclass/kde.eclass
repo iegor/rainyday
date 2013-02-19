@@ -25,6 +25,13 @@ EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 EGIT_SOURCEDIR=${S}
 # ECLASS_DEBUG_OUTPUT=on
 
+# Set some debugging options to see what was moved
+if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+    TRANSPORT_DEBUG_OPTS="-v"
+else
+    TRANSPORT_DEBUG_OPTS=""
+fi
+
 ###########################################################################################
 
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
@@ -215,9 +222,9 @@ kde_src_unpack() {
 				git checkout origin/${EGIT_BRANCH} "./${KMNAME}"
 
 				# rename and move KMNAME to WORKDIR
-				mv -v "./${KMNAME}" "./${KMNAME}_TMP"
-				mv -v ./${KMNAME}_TMP/* ./
-				rm -rfv ./${KMNAME}_TMP
+				mv ${TRANSPORT_DEBUG_OPTS} "./${KMNAME}" "./${KMNAME}_TMP"
+				mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP/* ./
+				rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP
 			;;
 			# Everything else must be handled in the same way
 			*)
@@ -257,9 +264,9 @@ kde_src_unpack() {
 # 				done
 
 				debug-print "mv -v ./${KMNAME}/* ./"
-				mv -v ./${KMNAME}/* ./
+				mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}/* ./
 				debug-print "rm -rfv ./${KMNAME}"
-				rm -rfv ./${KMNAME}
+				rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}
 
 # 				ebegin "Linking admin dir to module: ${KMNAME}"
 # 					[[ ! -d "./admin" || ! -h "./admin" ]] && ln -s "../kdecommon/admin" "admin"
@@ -269,12 +276,18 @@ kde_src_unpack() {
 
 			# Let's create a subdirs file in ${S} to keep configure happy
 # 			cat <<EOF > ./subdirs
-# ${KMMODULE}
-# EOF
+#${KMMODULE}
+#EOF
 
-			# After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
-			debug-print "We are in:  $(pwd)"
-			debug-print "files: $(ls -la ./)"
+		    # After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
+            if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+                einfo "========================================="
+                einfo "We are in:  $(pwd)"
+                einfo "Let's see what is in here..."
+                ls -la ./
+                einfo "========================================="
+            fi
+
 #			git config --list
 
 			git-2_cleanup

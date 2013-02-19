@@ -1,5 +1,3 @@
-ECLASS_DEBUG_OUTPUT=on
-
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.91 2009/10/15 22:18:17 abcd Exp $
@@ -344,7 +342,9 @@ kde-meta_src_unpack() {
 				cd ${dirname}
 				search_path=$(echo "${PREFIX}"/$(get_libdir)/{,kde3/{,plugins/{designer,styles}}})
 				if [[ ! "$(find ${search_path} -maxdepth 1 -name "${libname}*" 2>/dev/null)" == "" ]]; then
-					echo "Symlinking library ${libname} under ${PREFIX}/$(get_libdir)/ in source dir"
+                    if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+					    einfo "Symlinking library: \"${PREFIX}/$(get_libdir)/${libname}\" -> ./"
+                    fi
 					ln -s "${PREFIX}"/$(get_libdir)/${libname}* .
 				else
 					die "Can't find library ${libname} under ${PREFIX}/$(get_libdir)/"
