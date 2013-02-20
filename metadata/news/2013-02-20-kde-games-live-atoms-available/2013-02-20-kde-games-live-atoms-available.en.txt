@@ -1,0 +1,10 @@
+Title: kde-games-live-atoms-available
+Author: Iegor <rmtdev@gmail.com>
+Content-Type: text/plain
+Posted: 2013-02-20
+Revision: 1
+News-Item-Format: 1.0
+# Display-If-Installed:
+
+This night was verry productive.
+Atoms for live build for kde games are ready
