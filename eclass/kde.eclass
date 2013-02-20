@@ -20,7 +20,7 @@ EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 # Default location check and set, if wasn't set in ebuild
 [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 # Default branch check and set, if wasn't set in ebuild
-[[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="master"
+[[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="live"
 # Source directory to clone repo into it
 EGIT_SOURCEDIR=${S}
 # ECLASS_DEBUG_OUTPUT=on
