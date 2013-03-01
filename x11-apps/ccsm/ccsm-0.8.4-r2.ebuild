@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/ccsm/ccsm-0.8.4-r1.ebuild,v 1.5 2012/08/29 10:14:37 naota Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/ccsm/ccsm-0.8.4-r2.ebuild,v 1.1 2012/08/30 17:39:47 pinkbyte Exp $
 
-EAPI="3"
+EAPI="4"
 PYTHON_DEPEND="2"
 
 inherit distutils
@@ -21,10 +21,7 @@ DEPEND="
 	>=dev-python/pygtk-2.12:2
 	gnome-base/librsvg
 "
-RDEPEND="${DEPEND}
-	x11-themes/hicolor-icon-theme"
-DEPEND="${DEPEND}
-	dev-util/intltool"
+RDEPEND="${DEPEND}"
 
 DOCS="AUTHORS"
 PYTHON_MODNAME="ccm"

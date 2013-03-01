@@ -1,6 +1,41 @@
 # ChangeLog for x11-plugins/compiz-plugins-main
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-main/ChangeLog,v 1.15 2011/03/21 19:50:33 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-main/ChangeLog,v 1.23 2012/10/09 19:28:28 pinkbyte Exp $
+
+  09 Oct 2012; Sergey Popov <pinkbyte@gentoo.org>
+  compiz-plugins-main-0.8.8.ebuild:
+  Add missing virtual/glu dependency wrt bug #437656. Thanks to Anatoly for
+  discovering this issue
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -files/compiz-plugins-main-0.8.4-put-plugin.patch,
+  -compiz-plugins-main-0.8.6-r1.ebuild:
+  Drop old
+
+  31 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org>
+  compiz-plugins-main-0.8.8.ebuild:
+  disable-dependency-tracking is unneeded for EAPI 4
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org>
+  compiz-plugins-main-0.8.8.ebuild:
+  Use prune_libtool_files instead of simple 'find ... -delete'
+
+*compiz-plugins-main-0.8.8 (13 Jun 2012)
+
+  13 Jun 2012; Naohiro Aota <naota@gentoo.org>
+  +compiz-plugins-main-0.8.8.ebuild, metadata.xml:
+  Version bump. #416025. Assign Sergey Popov as a proxy maintainer.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  compiz-plugins-main-0.8.6-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Apr 2012; Justin Lecher <jlec@gentoo.org>
+  compiz-plugins-main-0.8.6-r1.ebuild:
+  Drop unnessecary die
 
   21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
   -compiz-plugins-main-0.8.4.ebuild, -compiz-plugins-main-0.8.4-r1.ebuild,

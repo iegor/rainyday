@@ -1,6 +1,36 @@
 # ChangeLog for dev-python/compizconfig-python
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/compizconfig-python/ChangeLog,v 1.21 2010/09/08 22:18:08 flameeyes Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/compizconfig-python/ChangeLog,v 1.28 2012/11/10 11:44:49 pinkbyte Exp $
+
+  10 Nov 2012; Sergey Popov <pinkbyte@gentoo.org>
+  compizconfig-python-0.8.4-r4.ebuild:
+  Restrict usage of jython wrt bug #442424. Thanks to Ian Whyman for reporting
+  this issue
+
+  19 Oct 2012; Patrick Lauer <patrick@gentoo.org>
+  compizconfig-python-0.8.4-r4.ebuild:
+  Restricting pypy
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -compizconfig-python-0.8.4-r3.ebuild:
+  Drop old revision
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+*compizconfig-python-0.8.4-r4 (30 Aug 2012)
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -compizconfig-python-0.8.4.ebuild, -compizconfig-python-0.8.4-r1.ebuild,
+  +compizconfig-python-0.8.4-r4.ebuild:
+  Add new EAPI4 revision, drop old
+
+  04 May 2012; Patrick Lauer <patrick@gentoo.org>
+  compizconfig-python-0.8.4-r3.ebuild:
+  Migrating dev-util/pkgconfig -> virtual/pkgconfig
+
+  20 Apr 2012; Naohiro Aota <naota@gentoo.org> metadata.xml:
+  Assign Pinkbyte as maintainer.
 
 *compizconfig-python-0.8.4-r3 (08 Sep 2010)
 
@@ -103,4 +133,3 @@
   23 Oct 2007; Hanno Boeck <hanno@gentoo.org> +metadata.xml,
   +compizconfig-python-0.6.0.1.ebuild:
   Initial compiz-fusion commit, ebuild based on xeffects overlay.
-

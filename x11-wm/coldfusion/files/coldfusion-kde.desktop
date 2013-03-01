@@ -1,8 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=ColdFusion
+Name=ColdFusion (KDE)
 Comment="ColdFusion - is session based on compiz as stand alone wm"
-Exec=/usr/local/bin/start-cf.sh
+TryExec=/usr/local/bin/cfstart-kde.sh
+Exec=/usr/local/bin/cfstart-kde.sh
 Type=Application
 Name[C]=coldfusion-kde-support
 Name[en_US]=coldfusion-kde-support.desktop

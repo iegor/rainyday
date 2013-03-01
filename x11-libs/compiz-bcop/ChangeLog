@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/compiz-bcop
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/compiz-bcop/ChangeLog,v 1.15 2009/12/20 15:53:54 mrpouet Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/compiz-bcop/ChangeLog,v 1.21 2012/09/25 14:40:53 pinkbyte Exp $
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org> -compiz-bcop-0.8.4.ebuild:
+  Drop old
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> compiz-bcop-0.8.8.ebuild:
+  Update DOCS variable
+
+  21 Jul 2012; Samuli Suominen <ssuominen@gentoo.org> compiz-bcop-0.8.8.ebuild:
+  Use virtual/pkgconfig.
+
+*compiz-bcop-0.8.8 (06 Jul 2012)
+
+  06 Jul 2012; Naohiro Aota <naota@gentoo.org> +compiz-bcop-0.8.8.ebuild,
+  metadata.xml:
+  Version bump. #421377; Assign Sergey Popov as a maintainer.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org> compiz-bcop-0.8.4.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   20 Dec 2009; Romain Perier <mrpouet@gentoo.org> -compiz-bcop-0.6.0.ebuild,
   -compiz-bcop-0.8.2.ebuild:
@@ -64,4 +85,3 @@
 
   23 Oct 2007; Hanno Boeck <hanno@gentoo.org> +compiz-bcop-0.6.0.ebuild:
   Initial compiz-fusion commit, ebuild based on xeffects overlay.
-

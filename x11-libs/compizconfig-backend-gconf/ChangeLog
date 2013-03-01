@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/compizconfig-backend-gconf
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/compizconfig-backend-gconf/ChangeLog,v 1.17 2011/03/21 19:55:08 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/compizconfig-backend-gconf/ChangeLog,v 1.19 2012/09/25 14:40:52 pinkbyte Exp $
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -compizconfig-backend-gconf-0.8.4-r2.ebuild:
+  Drop old
+
+*compizconfig-backend-gconf-0.8.8 (30 Aug 2012)
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org>
+  +compizconfig-backend-gconf-0.8.8.ebuild:
+  Version bump
 
   21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
   -compizconfig-backend-gconf-0.8.4.ebuild,

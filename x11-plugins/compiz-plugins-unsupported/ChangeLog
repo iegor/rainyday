@@ -1,6 +1,27 @@
 # ChangeLog for x11-plugins/compiz-plugins-unsupported
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-unsupported/ChangeLog,v 1.10 2011/03/21 19:51:02 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-unsupported/ChangeLog,v 1.15 2012/09/25 14:35:30 pinkbyte Exp $
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -compiz-plugins-unsupported-0.8.4-r1.ebuild:
+  Drop old
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org>
+  compiz-plugins-unsupported-0.8.8.ebuild:
+  Bump EAPI to 4, add DOCS variable
+
+*compiz-plugins-unsupported-0.8.8 (07 May 2012)
+
+  07 May 2012; Naohiro Aota <naota@gentoo.org>
+  +compiz-plugins-unsupported-0.8.8.ebuild, metadata.xml:
+  Version bump. Assign Pinkbyte as maintainer.
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  compiz-plugins-unsupported-0.8.4-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
 
   21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
   -compiz-plugins-unsupported-0.8.4.ebuild,

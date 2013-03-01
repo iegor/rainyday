@@ -1,6 +1,30 @@
 # ChangeLog for x11-plugins/compiz-plugins-extra
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-extra/ChangeLog,v 1.16 2011/03/21 19:47:45 nirbheek Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/compiz-plugins-extra/ChangeLog,v 1.21 2012/09/25 14:35:30 pinkbyte Exp $
+
+  25 Sep 2012; Sergey Popov <pinkbyte@gentoo.org>
+  -compiz-plugins-extra-0.8.6-r1.ebuild,
+  -files/compiz-plugins-extra-0.8.6-libnotify.patch:
+  Drop old
+
+  16 Aug 2012; Maxim Koltsov <maksbotan@gentoo.org>
+  +files/compiz-plugins-extra-0.8.8-libnotify.patch,
+  compiz-plugins-extra-0.8.8.ebuild:
+  Add correct libnotify patch for 0.8.8
+
+*compiz-plugins-extra-0.8.8 (10 Aug 2012)
+
+  10 Aug 2012; Maxim Koltsov <maksbotan@gentoo.org>
+  +compiz-plugins-extra-0.8.8.ebuild:
+  Bump to 0.8.8, bug 429988. Thanks to Pinkbyte
+
+  05 May 2012; Jeff Horelick <jdhore@gentoo.org>
+  compiz-plugins-extra-0.8.6-r1.ebuild:
+  dev-util/pkgconfig -> virtual/pkgconfig
+
+  25 Apr 2012; Justin Lecher <jlec@gentoo.org>
+  compiz-plugins-extra-0.8.6-r1.ebuild:
+  Drop unnessecary die
 
   21 Mar 2011; Nirbheek Chauhan <nirbheek@gentoo.org>
   -compiz-plugins-extra-0.8.4-r1.ebuild,
@@ -86,4 +110,3 @@
   03 Apr 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   +metadata.xml, +compiz-plugins-extra-0.8.2.ebuild:
   Bumped compiz to the 0.8.2 release.
-

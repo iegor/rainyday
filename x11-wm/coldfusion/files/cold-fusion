@@ -1,41 +1,70 @@
 #/bin/bash
 
-current_user=$(whoami)
-
-DIR=${HOME}/.coldfusion
-cf_dir=/home/${current_user}/.coldfusion
+#determine who is our current user
+current_user_home="/home/$(whoami)"
+cf_dir=${current_user_home}/.coldfusion
 cf_cfgd=${cf_dir}/config
+
+# WORKAROUND !!!
+# reown config files and some of dirs that was set by installation
+#if [ -f ${cf_dir}/status/first_time_run ]; then
+#    sudo chown -r ${cf_dir}
+#fi
+
+# Copy gtk look settings file from config dir
+cp -L ${cf_cfgd}/gtk.conf ${current_user_home}/.gtkrc-2.0
+# Copy coldfusion config to compiz config dir
+cp -L ${cf_cfgd}/compiz.ini ${current_user_home}/.config/compiz/compizconfig/Default.ini
+
+# Start Compiz WM
+compiz --replace --use-root-window ccp &
+# emerald &
+# fusion-icon &
+
+# Start wireless connection manager
+# wicd-client &
+
+sleep 5
+# Start our screen saver
+xscreensaver &
+
+# Start up a clock
+xclock -digital &
+xcalendar &
+pavucontrol &
+trayer --widthtype pixel --width 800 --heighttype pixel --height 48 --SetDockType false --align left --edge bottom &
+
+# launch some gkrellm
+# gkrellm &
+
+# docky &
+
+# set xkb options
+setxkbmap -option grp:shift_caps_toggle
+setxkbmap -model pc104 -layout us,ru -variant .winkeys
+if [ "$?" = "0" ]; then
+	notify-send "keyboard options xkb are set"
+fi
+
+sleep 5
 
 # Update to see if we are intending to quit
 while true; do
 	sleep 1
 
 	# Checking if we need to exit
-	if [ -f ${DIR}/status/ext ]; then
-		#zenity --question --text='Are you shure' --ok-label='quit' --cancel-label='stay' && break
-		# print some options
-		case $(zenity --list --text='exit options' --radiolist --column='' --column='text' 1 'shutdown' 2 'restart' 3 'logout' --hide-header) in
-		'shudown')
-		;;
-		'restart')
-		;;
-		'logout')
-			break
-		;;
-		*)
-		;;
-		esac
-
-		# Cleaning after ourselves
-		rm -rf ${DIR}/status/ext
+	if [ -f ${cf_dir}/status/ext ]; then
+		break
 	fi
 
 	# Check if compiz is alive
 #	if [ !(ps -e|grep "compiz") ]; then
-#	   cp -L ${cf_cfgd}/compiz.ini /home/${current_user}/.config/compiz/compizconfig/Default.ini
+#	   cp -L ${cf_cfgd}/compiz.ini ${current_user_home}/.config/compiz/compizconfig/Default.ini
 #	   compiz --replace --use-root-window ccp &7
 #	fi
 done
 
-# Cleaning after ourselves
-rm -rf ${DIR}/status/ext
+# Cleaning after ourselves and save configs
+rm -rf ${cf_dir}/status/ext
+cp -L ${current_user_home}/.config/compiz/compizconfig/Default.ini ${cf_cfgd}/compiz.ini
+cp -L ${current_user_home}/.gtkrc-2.0 ${cf_cfgd}/gtk.conf

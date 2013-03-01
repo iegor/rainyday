@@ -1,6 +1,28 @@
 # ChangeLog for x11-apps/ccsm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/ccsm/ChangeLog,v 1.20 2011/04/11 19:51:07 arfrever Exp $
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/ccsm/ChangeLog,v 1.26 2012/08/30 17:41:06 pinkbyte Exp $
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> metadata.xml:
+  Remove myself and proxy maintainer from maintainers
+
+*ccsm-0.8.4-r2 (30 Aug 2012)
+
+  30 Aug 2012; Sergey Popov <pinkbyte@gentoo.org> +ccsm-0.8.4-r2.ebuild:
+  Add new EAPI4 revision
+
+  29 Aug 2012; Naohiro Aota <naota@gentoo.org> ccsm-0.8.4-r1.ebuild:
+  Add missing dependency x11-themes/hicolor-icon-theme #291533; Drop dev-
+  util/intltools from RDEPEND
+
+  01 Jul 2012; Naohiro Aota <naota@gentoo.org> ccsm-0.8.4-r1.ebuild,
+  metadata.xml:
+  Drop sexy-python dependency. #381215; Update maintainer mail address.
+
+  20 Apr 2012; Naohiro Aota <naota@gentoo.org> metadata.xml:
+  Assign Pinkbyte as maintainer.
+
+  20 Apr 2012; Naohiro Aota <naota@gentoo.org> ccsm-0.8.4-r1.ebuild:
+  Add missing dependency: dev-util/intltool
 
   11 Apr 2011; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   ccsm-0.8.4-r1.ebuild:
@@ -90,4 +112,3 @@
   23 Oct 2007; Hanno Boeck <hanno@gentoo.org> +metadata.xml,
   +ccsm-0.6.0.ebuild:
   Initial compiz-fusion commit, ebuild based on xeffects overlay.
-
