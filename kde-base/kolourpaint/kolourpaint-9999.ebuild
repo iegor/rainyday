@@ -4,7 +4,6 @@
 
 EAPI=2
 KMNAME=kdegraphics
-EGIT_BRANCH="graphics"
 
 KMCOPYLIB="
 libkdefx kolourpaint/libkdefx

@@ -4,7 +4,6 @@
 
 EAPI=2
 KMNAME=kdegraphics
-EGIT_BRANCH=graphics
 inherit kde-meta eutils flag-o-matic
 DESCRIPTION="[GIT] SVG viewer library and embeddable kpart"
 IUSE=""

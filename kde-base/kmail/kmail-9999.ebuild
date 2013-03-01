@@ -34,7 +34,6 @@ KMEXTRA="plugins/kmail/"
 # We add here the kontact's plugin instead of compiling
 # it with kontact because it needs a lot of this programs deps.
 KMEXTRA="${KMEXTRA} kontact/plugins/kmail/"
-EGIT_BRANCH="kmail_dev"
 inherit kde-meta eutils
 RESTRICT="test"
 DESCRIPTION="[GIT] KMail is the email component of Kontact, the integrated personal information manager of KDE."

@@ -6,7 +6,6 @@ EAPI=2
 KMNAME=kdenetwork
 KMMODULE=wifi
 KMEXTRA="doc/kwifimanager"
-EGIT_BRANCH="network"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE wifi (wireless network) gui"
 IUSE="kdehiddenvisibility"
