@@ -1,0 +1,11 @@
+--- old/src/defaultsettings.cpp	2011-11-17 20:07:32.999849804 +0100
++++ new/src/defaultsettings.cpp	2011-11-17 20:08:18.286404109 +0100
+@@ -67,7 +67,7 @@
+ 	settings->setDefault("smooth_lighting", "true");
+ 	settings->setDefault("frametime_graph", "false");
+ 	settings->setDefault("enable_texture_atlas", "true");
+-	settings->setDefault("texture_path", "");
++	settings->setDefault("texture_path", "/usr/share/games/minetest");
+ 	settings->setDefault("video_driver", "opengl");
+ 	settings->setDefault("free_move", "false");
+ 	settings->setDefault("continuous_forward", "false");

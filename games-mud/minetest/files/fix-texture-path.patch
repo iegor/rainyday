@@ -1,0 +1,11 @@
+--- old/src/defaultsettings.cpp	2011-08-14 02:47:35.583388389 +0200
++++ new/src/defaultsettings.cpp	2011-08-14 02:58:53.541917154 +0200
+@@ -63,7 +63,7 @@
+ 	g_settings.setDefault("smooth_lighting", "true");
+ 	g_settings.setDefault("frametime_graph", "false");
+ 	g_settings.setDefault("enable_texture_atlas", "true");
+-	g_settings.setDefault("texture_path", "");
++	g_settings.setDefault("texture_path", "/usr/share/games/minetest");
+ 	g_settings.setDefault("video_driver", "opengl");
+ 	g_settings.setDefault("free_move", "false");
+ 	g_settings.setDefault("continuous_forward", "false");

@@ -1,0 +1,11 @@
+--- cmake/Modules/FindIrrlicht.cmake
++++ cmake/Modules/FindIrrlicht.cmake
+@@ -50,7 +50,7 @@
+ 		/usr/include/irrlicht
+ 	)
+
+-	FIND_LIBRARY(IRRLICHT_LIBRARY NAMES libIrrlicht.a Irrlicht
++	FIND_LIBRARY(IRRLICHT_LIBRARY NAMES libIrrlicht.so
+ 		PATHS
+ 		/usr/local/lib
+ 		/usr/lib
