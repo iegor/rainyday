@@ -1,0 +1,11 @@
+Title: minetest
+Author: Iegor <rmtdev@gmail.com>
+Content-Type: text/plain
+Posted: 2013-03-17
+Revision: 1
+News-Item-Format: 1.0
+# Display-If-Installed:
+
+Minetest is a great game!
+
+it is now added to games-mud

@@ -11,4 +11,4 @@ DESCRIPTION="[GIT] KDialog can be used to show nice dialog boxes from shell scri
 IUSE="kdehiddenvisibility"
 
 # Uses cdcontrol on FreeBSD
-RDEPEND="kernel_linux? ( || ( >=sys-block/eject-2.1.5 sys-block/unieject ) ) "
+RDEPEND="kernel_linux? ( || ( >=sys-apps/util-linux-2.22.2 ) ) "

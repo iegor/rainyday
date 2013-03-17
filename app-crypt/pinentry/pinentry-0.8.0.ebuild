@@ -20,7 +20,7 @@ DEPEND="static? ( sys-libs/ncurses )
 		gtk? ( x11-libs/gtk+:2 )
 		ncurses? ( sys-libs/ncurses )
 		qt3? ( x11-libs/qt-meta:3 )
-		qt4? ( >=x11-libs/qt-gui-4.4.1 )
+		qt4? ( >=dev-qt/qtgui-4.4.1 )
 		!gtk? ( !qt4? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) ) )
 	)
 	caps? ( sys-libs/libcap )"
