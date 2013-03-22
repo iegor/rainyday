@@ -1,0 +1,9 @@
+Title: dwm
+Author: Iegor <rmtdev@gmail.com>
+Content-Type: text/plain
+Posted: 2013-03-22
+Revision: 1
+News-Item-Format: 1.0
+# Display-If-Installed:
+
+DWM atoms are in overlay now, including 9999.
