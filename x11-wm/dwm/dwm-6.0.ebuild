@@ -13,7 +13,7 @@ SRC_URI="http://dl.suckless.org/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
-IUSE="xinerama"
+IUSE="xinerama systray"
 
 DEPEND="x11-libs/libX11
 	xinerama? (
@@ -23,6 +23,10 @@ DEPEND="x11-libs/libX11
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	if use systray; then
+		epatch ${FILESDIR}/dwm-6.0-systray.diff
+	fi
+
 	sed -i \
 		-e "s/CFLAGS = -std=c99 -pedantic -Wall -Os/CFLAGS += -std=c99 -pedantic -Wall/" \
 		-e "/^LDFLAGS/{s|=|+=|g;s|-s ||g}" \
