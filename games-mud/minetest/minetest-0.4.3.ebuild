@@ -9,7 +9,7 @@ SRC_URI="http://github.com/minetest/minetest/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1+ CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
-KEYWORDS="~*"
+KEYWORDS="~x86 ~amd64"
 IUSE="dedicated nls +server"
 
 RDEPEND="dev-db/sqlite:3
