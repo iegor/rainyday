@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/warzone2100/warzone2100-2.3.9.ebuild,v 1.7 2012/07/29 21:18:01 hasufell Exp $
+# $Header: $
 
 EAPI=2
 inherit autotools eutils versionator games git-2
@@ -10,7 +10,10 @@ VIDEOS_PV=9999
 VIDEOS_P=${PN}-videos-${VIDEOS_PV}.wz
 DESCRIPTION="[GIT] 3D real-time strategy game"
 HOMEPAGE="http://wz2100.net/"
-SRC_URI="videos? ( mirror://sourceforge/project/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz ) -> ${PN}-vidsequences.wz"
+SRC_URI="
+videos? (
+http://downloads.sourceforge.net/project/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz
+-> ${PN}-vidsequences.wz )"
 EGIT_REPO_URI="git://github.com/Warzone2100/warzone2100.git"
 EGIT_BRANCH="master"
 LICENSE="GPL-2 CCPL-Attribution-ShareAlike-3.0 public-domain"
