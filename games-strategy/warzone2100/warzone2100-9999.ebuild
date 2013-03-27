@@ -10,10 +10,7 @@ VIDEOS_PV=9999
 VIDEOS_P=${PN}-videos-${VIDEOS_PV}.wz
 DESCRIPTION="[GIT] 3D real-time strategy game"
 HOMEPAGE="http://wz2100.net/"
-SRC_URI="
-videos? (
-http://downloads.sourceforge.net/project/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz
--> ${PN}-vidsequences.wz )"
+SRC_URI="videos? ( http://downloads.sourceforge.net/project/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz -> ${PN}-vidsequences.wz )"
 EGIT_REPO_URI="git://github.com/Warzone2100/warzone2100.git"
 EGIT_BRANCH="master"
 LICENSE="GPL-2 CCPL-Attribution-ShareAlike-3.0 public-domain"

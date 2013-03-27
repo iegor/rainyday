@@ -11,8 +11,9 @@ VIDEOS_P=${PN}-videos-${VIDEOS_PV}.wz
 DESCRIPTION="3D real-time strategy game"
 HOMEPAGE="http://wz2100.net/"
 # http://downloads.sourceforge.net/project/warzone2100/releases/3.1.0/warzone2100-3.1.0.tar.xz
-SRC_URI="mirror://sourceforge/project/warzone2100/releases/${PV}/${PN}-${PV}.tar.xz
-	videos? ( mirror://sourceforge/warzone2100/warzone2100/Videos/${VIDEOS_PV}/high-quality-en/sequences.wz ) -> ${PN}-vidsequences.wz"
+SRC_URI="
+mirror://sourceforge/project/warzone2100/releases/${PV}/${PN}-${PV}.tar.xz
+videos? ( http://downloads.sourceforge.net/project/warzone2100/warzone2100/Videos/high-quality-en/sequences.wz -> ${PN}-vidsequences.wz )"
 
 LICENSE="GPL-2 CCPL-Attribution-ShareAlike-3.0 public-domain"
 SLOT="0"
