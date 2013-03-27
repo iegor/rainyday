@@ -7,6 +7,7 @@ KMNAME=kdebase
 inherit kde-meta eutils flag-o-matic
 DESCRIPTION="[GIT] KDE: gui for su(1)"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 src_compile() {
 	kde-meta_src_compile

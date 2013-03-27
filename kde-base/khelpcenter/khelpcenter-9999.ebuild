@@ -12,6 +12,7 @@ KMEXTRA="doc/faq
 inherit kde-meta eutils
 DESCRIPTION="[GIT] The KDE help center."
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="=kde-base/kdebase-kioslaves-${PV}:${SLOT}
 		>=www-misc/htdig-3.2.0_beta6-r1"

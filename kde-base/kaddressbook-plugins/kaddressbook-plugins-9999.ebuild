@@ -9,6 +9,7 @@ KMEXTRA=kaddressbook-plugins/
 inherit kde-meta
 DESCRIPTION="[GIT] Plugins for KAB"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="|| ( =kde-base/kaddressbook-${PV}:${SLOT} =kde-base/kdepim-${PV}:${SLOT} )"
 RDEPEND="${DEPEND}"

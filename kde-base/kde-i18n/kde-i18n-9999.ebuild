@@ -11,6 +11,7 @@ DESCRIPTION="[GIT] KDE internationalization package"
 HOMEPAGE="http://www.kde.org/"
 SLOT="3.5"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 # DEPEND="sys-devel/automake"
 # RDEPEND="${DEPEND}"
 

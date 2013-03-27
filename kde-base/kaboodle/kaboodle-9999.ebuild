@@ -8,6 +8,7 @@ KMEXTRACTONLY="arts/"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] The Lean KDE Media Player"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 # OLDRDEPEND="~kde-base/kdemultimedia-arts-${PV}"
 RDEPEND="

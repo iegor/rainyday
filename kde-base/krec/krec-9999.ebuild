@@ -8,6 +8,7 @@ KMCOMPILEONLY="arts"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE sound recorder"
 IUSE="encode mp3 vorbis"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/kdemultimedia-arts-${PV}:${SLOT}
 	encode? ( mp3? ( media-sound/lame )

@@ -7,6 +7,7 @@ KMNAME=kdebase
 inherit kde-meta eutils flag-o-matic
 DESCRIPTION="[GIT] A simple password checker, used by any software in need of user authentication."
 IUSE="pam kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="pam? ( kde-base/kdebase-pam )"
 RDEPEND="${DEPEND}"

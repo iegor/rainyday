@@ -8,5 +8,6 @@ KMMODULE=xine_artsplugin
 inherit kde-meta eutils
 DESCRIPTION="[GIT] arts xine plugin"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXext >=media-libs/xine-lib-1.0"

@@ -10,6 +10,7 @@ KMEXTRA="doc/artsbuilder"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] aRts pipeline builder and other tools"
 IUSE="alsa"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )"
 

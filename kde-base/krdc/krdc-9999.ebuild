@@ -7,6 +7,7 @@ KMNAME=kdenetwork
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE remote desktop connection (RDP and VNC) client"
 IUSE="kdehiddenvisibility rdesktop slp"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND=">=dev-libs/openssl-0.9.6b
 	slp? ( net-libs/openslp )

@@ -11,8 +11,8 @@ DESCRIPTION="[GIT] KDE-based frontend to diff3"
 HOMEPAGE="http://kdiff3.sourceforge.net/"
 # SRC_URI="mirror://sourceforge/kdiff3/${P}.tar.gz"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="sys-apps/diffutils"
 

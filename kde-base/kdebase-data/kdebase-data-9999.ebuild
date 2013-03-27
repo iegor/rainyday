@@ -10,6 +10,7 @@ KMEXTRA="l10n pics applnk"
 inherit kde-meta
 DESCRIPTION="[GIT] Icons, localization data and .desktop files from kdebase. Includes l10n, pics and applnk subdirs."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="
 !kde-base/kdebase-l10n !kde-base/kdebase-applnk !kde-base/kdebase-pics" # replaced these three ebuilds

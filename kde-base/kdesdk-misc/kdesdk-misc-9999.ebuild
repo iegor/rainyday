@@ -14,3 +14,4 @@ KMEXTRA="kdepalettes/
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kdesdk-misc - Various files and utilities"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"

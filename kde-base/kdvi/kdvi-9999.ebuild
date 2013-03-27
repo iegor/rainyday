@@ -7,6 +7,7 @@ KMNAME=kdegraphics
 inherit kde-meta eutils elisp-common
 DESCRIPTION="[GIT] KDE DVI viewer"
 IUSE="emacs kpathsea"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="
 =kde-base/kviewshell-${PV}:${SLOT}

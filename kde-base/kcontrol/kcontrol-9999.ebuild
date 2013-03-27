@@ -21,6 +21,7 @@ KMCOPYLIB="libkonq libkonq
 inherit kde-meta eutils
 DESCRIPTION="[GIT] The KDE Control Center"
 IUSE="arts ieee1394 joystick logitech-mouse opengl kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXext
 	x11-libs/libXtst

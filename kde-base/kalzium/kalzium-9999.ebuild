@@ -11,6 +11,7 @@ KMCOPYLIB="libkdeeduplot libkdeedu/kdeeduplot
 inherit flag-o-matic kde-meta eutils
 DESCRIPTION="[GIT] KDE: periodic table of the elements"
 IUSE="solver"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 HOMEPAGE="http://edu.kde.org/kalzium/"
 
 DEPEND="=kde-base/libkdeedu-${PV}:${SLOT}

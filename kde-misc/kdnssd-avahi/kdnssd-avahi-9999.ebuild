@@ -11,8 +11,8 @@ need-kde 9999
 DESCRIPTION="[GIT] DNS Service Discovery kioslave using Avahi (rather than mDNSResponder)"
 HOMEPAGE="http://wiki.kde.org/tiki-index.php?page=Zeroconf+in+KDE"
 LICENSE="GPL-2"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="net-dns/avahi[qt3,dbus]"
 DEPEND="${RDEPEND}"

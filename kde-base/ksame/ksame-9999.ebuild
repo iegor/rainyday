@@ -9,6 +9,7 @@ KMCOPYLIB="libkdegames libkdegames"
 inherit kde-meta
 DESCRIPTION="[GIT] KDE: Same Game - a little game about balls and how to get rid of them"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkdegames-${PV}:${SLOT}"
 RDEPEND="${DEPEND}"

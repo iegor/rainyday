@@ -8,6 +8,7 @@ KMEXTRA="kfile-plugins/pdf"
 inherit kde-meta flag-o-matic
 DESCRIPTION="[GIT] kpdf, a kde pdf viewer based on xpdf"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND=">=media-libs/freetype-2.3
 	media-libs/t1lib

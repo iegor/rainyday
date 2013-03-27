@@ -7,6 +7,7 @@ KMNAME=kdeutils
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE system monitoring applets."
 IUSE="kdehiddenvisibility snmp"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXext
 	snmp? ( net-analyzer/net-snmp )"

@@ -11,6 +11,7 @@ KMCOMPILEONLY="kdmlib/"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] Kicker is the KDE application starter panel, also capable of some useful applets and extensions."
 IUSE="kdehiddenvisibility xcomposite"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkonq-${PV}:${SLOT}
 	=kde-base/kdebase-data-${PV}:${SLOT}

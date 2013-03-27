@@ -7,4 +7,6 @@ KMNAME=kdetoys
 inherit kde-meta
 DESCRIPTION="[GIT] KDE: measure the desktop mileage of your mouse pointer"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND=""

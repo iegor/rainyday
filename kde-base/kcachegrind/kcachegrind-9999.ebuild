@@ -7,6 +7,7 @@ KMNAME=kdesdk
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE Frontend for Cachegrind"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 #DEPEND="!alpha? ( !sparc? ( !x86-fbsd? ( >=dev-util/valgrind-3.2.0 ) ) )"
 RDEPEND="${DEPEND}

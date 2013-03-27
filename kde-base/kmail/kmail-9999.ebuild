@@ -38,6 +38,7 @@ inherit kde-meta eutils
 RESTRICT="test"
 DESCRIPTION="[GIT] KMail is the email component of Kontact, the integrated personal information manager of KDE."
 IUSE="crypt"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkdenetwork-${PV}:${SLOT}
 	=kde-base/libkdepim-${PV}:${SLOT}

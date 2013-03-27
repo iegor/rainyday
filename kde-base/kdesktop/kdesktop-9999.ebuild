@@ -15,6 +15,7 @@ KMNODOCS=true
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDesktop is the KDE interface that handles the icons, desktop popup menus and screensaver system."
 IUSE="kdehiddenvisibility xscreensaver"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXext
 	x11-libs/libXcursor

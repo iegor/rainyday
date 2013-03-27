@@ -13,6 +13,7 @@ KMEXTRA="doc/kleopatra
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE certificate manager gui."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkdenetwork-${PV}:${SLOT}
 	>=app-crypt/gpgme-1.1.2-r1

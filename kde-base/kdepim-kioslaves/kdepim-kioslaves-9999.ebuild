@@ -11,6 +11,7 @@ KMCOMPILEONLY="libemailfunctions"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kioslaves from kdepim package"
 IUSE="sasl"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="sasl? ( >=dev-libs/cyrus-sasl-2 )
 	=kde-base/libkmime-${PV}:${SLOT}"

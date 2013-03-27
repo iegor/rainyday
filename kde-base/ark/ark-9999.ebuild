@@ -7,6 +7,7 @@ KMNAME=kdeutils
 inherit kde-meta
 DESCRIPTION="[GIT] KDE Archiving tool"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 pkg_postinst(){
 	kde_pkg_postinst

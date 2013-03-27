@@ -7,5 +7,6 @@ KMNAME=kdebase
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE tool looking for well-known apps in your path and creates entries for them in the KDE menu"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="=kde-base/kicker-${PV}:${SLOT}"

@@ -10,6 +10,7 @@ inherit eutils kde-meta
 
 DESCRIPTION="[GIT] kate plugins and docs"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="|| ( =kde-base/kate-${PV}:${SLOT} =kde-base/kdebase-${PV}:${SLOT} )"
 RDEPEND="${DEPEND}"

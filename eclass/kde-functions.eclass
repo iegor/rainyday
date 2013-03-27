@@ -334,13 +334,6 @@ not \"drag\" anything behind it"
 	die "SRC_URI defined in 9999 ebuild."
 fi
 
-# Is this 9999 ebuild ?
-# If so, then make keywords the same for them all.
-# because they are all unstable.
-if [[ ${PV} == 9999 ]]; then
-	KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-fi
-
 # @FUNCTION: get-parent-package
 # @USAGE: < name of split-ebuild >
 # @DESCRIPTION:

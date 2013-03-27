@@ -10,6 +10,7 @@ KMCOMPILEONLY="kcontrol/background"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE login manager, similar to xdm and gdm"
 IUSE="elibc_glibc kdehiddenvisibility pam"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="pam? ( kde-base/kdebase-pam )
 	x11-libs/libXau

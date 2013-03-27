@@ -12,6 +12,8 @@ KMEXTRA="kontact/plugins/akregator"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE news feed aggregator."
 IUSE="konqueror"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND="=kde-base/libkdepim-${PV}:${SLOT}
 	=kde-base/kontact-${PV}:${SLOT}
 	!net-www/akregator"

@@ -7,6 +7,8 @@ KMNAME=kdeadmin
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE user (/etc/passwd and other methods) manager"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND=""
 
 # TODO add NIS support

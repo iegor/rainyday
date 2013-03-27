@@ -7,6 +7,7 @@ KMNAME=kdebase
 inherit kde-meta eutils
 DESCRIPTION="[GIT] X terminal for use with KDE."
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="x11-libs/libX11
 		x11-libs/libXext

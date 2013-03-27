@@ -8,6 +8,7 @@ KMEXTRACTONLY="arts/configure.in.in"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] Jukebox and music manager for KDE."
 IUSE="akode gstreamer"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="media-libs/taglib
 	gstreamer? ( media-libs/gst-plugins-base:0.10 )

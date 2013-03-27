@@ -18,6 +18,7 @@ KMEXTRACTONLY="kmail/hi16-app-kmail.png
 inherit kde-meta eutils
 DESCRIPTION="[GIT] Common library for KDE PIM applications."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="=kde-base/libkcal-${PV}:${SLOT}
 	=kde-base/libkmime-${PV}:${SLOT}

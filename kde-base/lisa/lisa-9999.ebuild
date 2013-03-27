@@ -9,7 +9,7 @@ KMEXTRA="doc/kcontrol/lanbrowser"
 inherit kde-meta eutils flag-o-matic
 DESCRIPTION="[GIT] KDE Lan Information Server - allows KDE desktops to share information over a network."
 IUSE="kdehiddenvisibility"
-
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 src_compile() {
 	kde-meta_src_compile

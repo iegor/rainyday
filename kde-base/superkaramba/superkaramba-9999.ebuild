@@ -7,6 +7,7 @@ KMNAME=kdeutils
 inherit kde-meta eutils
 DESCRIPTION="[GIT] A tool to create interactive applets for the KDE desktop."
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="!x11-misc/superkaramba"
 

@@ -7,4 +7,6 @@ KMNAME=kdeadmin
 inherit kde-meta
 DESCRIPTION="[GIT] KDE LiLo kcontrol module"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND=""

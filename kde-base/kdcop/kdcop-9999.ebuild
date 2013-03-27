@@ -8,3 +8,4 @@ KMNODOCS="true"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE: graphical DCOP browser/client"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"

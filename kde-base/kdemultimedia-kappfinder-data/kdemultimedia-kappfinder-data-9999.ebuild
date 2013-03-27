@@ -9,3 +9,4 @@ inherit kde-meta eutils
 
 DESCRIPTION="[GIT] kappfinder data from kdemultimedia"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"

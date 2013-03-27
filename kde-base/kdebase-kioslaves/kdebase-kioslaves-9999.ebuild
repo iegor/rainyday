@@ -9,6 +9,7 @@ KMEXTRA="kdesktop/init"	# see bug #143375
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
 IUSE="hal kdehiddenvisibility ldap openexr samba"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXcursor
 	ldap? ( net-nds/openldap )

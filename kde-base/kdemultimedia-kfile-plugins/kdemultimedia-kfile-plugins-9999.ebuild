@@ -8,6 +8,8 @@ KMMODULE=kfile-plugins
 inherit kde-meta eutils
 DESCRIPTION="kfile plugins from kdemultimedia package"
 IUSE="vorbis theora"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND="media-libs/taglib
 	vorbis? ( media-libs/libvorbis )
 	theora? (

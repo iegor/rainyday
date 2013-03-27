@@ -7,6 +7,7 @@ KMNAME=kdeutils
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kded module that can support various types of hardware input devices, such as those on keyboards."
 IUSE="kdehiddenvisibility pbbuttonsd"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXtst
 	pbbuttonsd? ( app-laptop/pbbuttonsd )"

@@ -9,6 +9,7 @@ KMCOPYLIB="libartsbuilder arts/runtime"
 inherit kde-meta eutils
 DESCRIPTION="[GIT] aKode aRts plugin."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="media-libs/akode
 	=kde-base/kdemultimedia-arts-${PV}:${SLOT}"

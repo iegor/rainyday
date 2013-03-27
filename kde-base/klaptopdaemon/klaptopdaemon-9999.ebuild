@@ -7,6 +7,7 @@ KMNAME=kdeutils
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KLaptopdaemon - KDE battery monitoring and management for laptops."
 IUSE="kdehiddenvisibility xscreensaver"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="x11-libs/libXtst
 	xscreensaver? ( x11-libs/libXScrnSaver )"

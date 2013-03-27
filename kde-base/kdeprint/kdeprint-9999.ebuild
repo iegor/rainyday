@@ -7,6 +7,7 @@ KMNAME=kdebase
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE printer queue/device manager"
 IUSE="cups kde kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 # TODO Makefile reads ppd models from /usr/share/cups/model	 (hardcoded !!)
 DEPEND="cups? ( net-print/cups )"

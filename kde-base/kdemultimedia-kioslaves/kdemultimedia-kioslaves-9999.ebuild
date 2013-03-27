@@ -14,6 +14,7 @@ KMCOMPILEONLY="
 inherit kde-meta eutils
 DESCRIPTION="[GIT] kioslaves from kdemultimedia package"
 IUSE="encode flac mp3 vorbis"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkcddb-${PV}:${SLOT}
 	media-sound/cdparanoia

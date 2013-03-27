@@ -9,6 +9,7 @@ KMNODOCS=true
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE GUI for passwd"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkonq-${PV}:${SLOT}"
 RDEPEND="${DEPEND}"

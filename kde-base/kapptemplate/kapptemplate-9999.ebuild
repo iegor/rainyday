@@ -8,6 +8,7 @@ KMNAME=kdesdk
 inherit kde-meta eutils
 DESCRIPTION="[GIT] A shell script that will create the necessary framework to develop various KDE applications."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 src_install() {
 	kde-meta_src_install

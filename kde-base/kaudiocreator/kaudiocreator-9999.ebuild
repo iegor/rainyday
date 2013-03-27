@@ -11,6 +11,7 @@ KMCOMPILEONLY="kscd
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE CD ripper and audio encoder frontend"
 IUSE="encode flac mp3 vorbis"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="
 =kde-base/libkcddb-${PV}:${SLOT}

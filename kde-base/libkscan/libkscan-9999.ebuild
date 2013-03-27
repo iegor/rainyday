@@ -8,6 +8,7 @@ inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE scanner library"
 LICENSE="LGPL-2"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="media-gfx/sane-backends"
 RDEPEND="${DEPEND}"

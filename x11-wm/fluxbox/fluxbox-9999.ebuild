@@ -34,7 +34,7 @@ DEPEND="bidi? ( virtual/pkgconfig )
 
 SLOT="0"
 LICENSE="MIT"
-KEYWORDS=""
+KEYWORDS="~x86 ~amd64"
 
 src_prepare() {
 	./autogen.sh

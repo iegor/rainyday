@@ -7,3 +7,4 @@ KMNAME=kdenetwork
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE rss library"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"

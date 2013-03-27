@@ -9,6 +9,7 @@ KMEXTRACTONLY="kdm/kfrontend/sessions/kde.desktop.in startkde"
 inherit multilib kde-meta eutils
 DESCRIPTION="[GIT] startkde script, which starts a complete KDE session, and associated scripts"
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 # The kde apps called from the startkde script.
 # kdesktop, kicker etc are started because they put files in $KDEDIR/share/autostart

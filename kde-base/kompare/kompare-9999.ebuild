@@ -7,3 +7,4 @@ KMNAME=kdesdk
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE: A program to view the differences between files and optionally generate a diff"
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"

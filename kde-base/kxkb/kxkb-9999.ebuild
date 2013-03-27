@@ -9,6 +9,7 @@ KMEXTRACTONLY="${KMEXTRACTONLY}
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KControl module for the X11 keyboard extension to configure and switch between keyboard mappings."
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="x11-libs/libXtst"
 RDEPEND="x11-libs/libXtst

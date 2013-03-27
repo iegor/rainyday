@@ -7,6 +7,8 @@ KMNAME=kdepim
 inherit kde-meta eutils
 DESCRIPTION="[GIT] A Personal Organizer for KDE. Trunk build."
 IUSE=""
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+
 DEPEND="=kde-base/libkpimexchange-${PV}:${SLOT}
 =kde-base/libkdepim-${PV}:${SLOT}
 =kde-base/libkcal-${PV}:${SLOT}

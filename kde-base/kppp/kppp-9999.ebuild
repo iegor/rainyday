@@ -7,6 +7,7 @@ KMNAME=kdenetwork
 inherit kde-meta eutils flag-o-matic
 DESCRIPTION="[GIT] KDE: A dialer and front-end to pppd."
 IUSE="kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="net-dialup/ppp"
 

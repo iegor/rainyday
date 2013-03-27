@@ -7,6 +7,7 @@ KMNAME=kdesdk
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KBugBuster - A tool for checking and reporting KDE apps' bugs"
 IUSE="kcal kdehiddenvisibility"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="kcal? ( || ( =kde-base/libkcal-${PV}:${SLOT} =kde-base/kdepim-${PV}:${SLOT} ) )"
 
