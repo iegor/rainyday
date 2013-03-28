@@ -19,7 +19,7 @@ DEPEND="static? ( sys-libs/ncurses )
 	!static? (
 		gtk? ( x11-libs/gtk+:2 )
 		ncurses? ( sys-libs/ncurses )
-		qt3? ( x11-libs/qt-meta:3 )
+		qt3? ( dev-qt/qt-meta:3 )
 		qt4? ( >=dev-qt/qtgui-4.4.1 )
 		!gtk? ( !qt4? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) ) )
 	)
