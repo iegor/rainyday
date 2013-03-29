@@ -46,6 +46,7 @@ sci-electronics
 sci-mathematics
 sci-misc
 sys-power
+sys-utils
 virtual
 www-client
 x11-libs
