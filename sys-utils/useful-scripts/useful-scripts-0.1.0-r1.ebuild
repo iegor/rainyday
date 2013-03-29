@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=2
 
 DESCRIPTION="This installs some useful day to day scripts into /usr/bin/scripts"
 HOMEPAGE="github.com/iegor/rainyday"
@@ -12,7 +12,7 @@ FEATURES="sandbox collision-protect strict"
 CATEGORY="sys-utils"
 
 LICENSE="BEERWARE"
-SLOT="0"
+SLOT=0
 KEYWORDS="~x86"
 IUSE=""
 
