@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/tork/tork-0.27.ebuild,v 1.4 2008/12/07 00:31:06 patrick Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde multilib

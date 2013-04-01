@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/yakuake/yakuake-2.8.ebuild,v 1.6 2008/02/18 23:08:03 ingmar Exp $
+EAPI=2
 
 USE_KEG_PACKAGING=1
 

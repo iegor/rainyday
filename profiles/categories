@@ -19,6 +19,7 @@ dev-perl
 dev-python
 dev-util
 dev-vcs
+dev-qt
 games-emulation
 games-puzzle
 games-util
@@ -55,4 +56,3 @@ x11-plugins
 x11-terms
 x11-themes
 games-indie
-dev-qt

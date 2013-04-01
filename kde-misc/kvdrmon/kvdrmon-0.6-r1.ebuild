@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kvdrmon/kvdrmon-0.6-r1.ebuild,v 1.4 2008/12/17 21:04:39 zzam Exp $
+EAPI=2
 
 inherit kde
 

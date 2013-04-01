@@ -1,6 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/kde-misc/knetdockapp/knetdockapp-0.67.5.3.ebuild,v 1.3 2007/06/16 19:01:18 philantrop Exp $
+# $Header: $
+EAPI=2
 
 inherit kde
 need-kde 3

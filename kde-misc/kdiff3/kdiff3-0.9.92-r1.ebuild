@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdiff3/kdiff3-0.9.92-r1.ebuild,v 1.2 2008/06/21 14:05:05 mr_bones_ Exp $
+EAPI=2
 
 ARTS_REQUIRED="never"
 

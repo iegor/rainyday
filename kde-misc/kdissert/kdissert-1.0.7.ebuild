@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdissert/kdissert-1.0.7.ebuild,v 1.8 2009/10/13 22:35:17 ssuominen Exp $
+EAPI=2
 
 inherit kde
 

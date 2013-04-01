@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/rsibreak/rsibreak-0.8.0-r1.ebuild,v 1.1 2009/10/14 14:41:46 ssuominen Exp $
+EAPI=2
 
 USE_KEG_PACKAGING="1"
 

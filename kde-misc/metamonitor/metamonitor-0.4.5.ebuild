@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/metamonitor/metamonitor-0.4.5.ebuild,v 1.3 2008/08/10 15:12:30 jokey Exp $
+EAPI=2
 
 inherit kde
 

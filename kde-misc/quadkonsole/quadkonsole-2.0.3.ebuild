@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/quadkonsole/quadkonsole-2.0.3.ebuild,v 1.1 2009/03/29 13:56:21 patrick Exp $
+EAPI=2
 
 inherit kde
 

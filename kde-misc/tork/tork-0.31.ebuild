@@ -1,8 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/tork/tork-0.31.ebuild,v 1.1 2009/04/24 22:03:04 patrick Exp $
-
-EAPI="0"
+EAPI=2
 
 ARTS_REQUIRED="never"
 

@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kopete-ktts/kopete-ktts-1.3.0.ebuild,v 1.4 2009/02/16 07:24:23 tampakrap Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

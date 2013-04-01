@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/krd/krd-1.6.ebuild,v 1.2 2009/01/21 20:06:17 halcy0n Exp $
+EAPI=2
 
 inherit kde eutils
 

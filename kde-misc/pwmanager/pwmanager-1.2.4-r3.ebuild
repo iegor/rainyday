@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/pwmanager/pwmanager-1.2.4-r3.ebuild,v 1.5 2009/02/25 12:34:48 josejx Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

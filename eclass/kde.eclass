@@ -16,7 +16,7 @@
 ################################ SOME BASIC GIT SETTINGS ##################################
 
 # One repo for whole kde
-EGIT_KDE_REPO_DIR="/home/rainman/projects/kde/.git" #"git://github.com/iegor/kde.git"
+EGIT_KDE_REPO_DIR="git://github.com/iegor/kde.git"
 # Default location check and set, if wasn't set in ebuild
 [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 # Default branch check and set, if wasn't set in ebuild
@@ -140,7 +140,7 @@ kde_pkg_setup() {
 	fi
 
 	if [[ "${PN}" = "kdelibs" ]]; then
-		use doc && if ! built_with_use =x11-libs/qt-meta-3* doc ; then
+		use doc && if ! built_with_use "dev-qt/qt-meta:3" doc ; then
 			eerror "Building kdelibs with the doc USE flag requires qt to be built with the doc USE flag."
 			eerror "Please re-emerge qt-3 with this USE flag enabled."
 		fi

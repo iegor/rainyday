@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kshutdown/kshutdown-0.8.2.ebuild,v 1.4 2008/02/18 23:13:29 ingmar Exp $
+EAPI=2
 
 inherit kde
 

@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kbeam/kbeam-0.61-r1.ebuild,v 1.4 2008/06/14 13:21:19 tgurr Exp $
+EAPI=2
 
 inherit kde autotools
 

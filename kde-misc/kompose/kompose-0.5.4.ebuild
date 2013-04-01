@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kompose/kompose-0.5.4.ebuild,v 1.8 2008/12/07 12:53:20 jmbsvicetto Exp $
+EAPI=2
 
 inherit kde
 

@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kisdnwatch/kisdnwatch-01.00.10.ebuild,v 1.4 2009/10/12 09:12:55 abcd Exp $
+EAPI=2
 
 inherit kde eutils
 
