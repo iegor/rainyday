@@ -6,7 +6,6 @@ inherit eutils cmake-utils git-2 gnome2-utils vcs-snapshot user games
 DESCRIPTION="An InfiniMiner/Minecraft inspired game"
 HOMEPAGE="http://c55.me/minetest/"
 EGIT_REPO_URI="git://github.com/minetest/minetest.git"
-EGIT_BRANCH="liquid"
 
 LICENSE="LGPL-2.1+ CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
