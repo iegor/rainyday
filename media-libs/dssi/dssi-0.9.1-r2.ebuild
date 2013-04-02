@@ -1,8 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/dssi/dssi-0.9.1-r2.ebuild,v 1.5 2009/05/20 16:31:45 nixnut Exp $
-
-EAPI=1
+EAPI=2
 
 inherit multilib qt3 libtool eutils
 
@@ -22,7 +21,7 @@ RDEPEND=">=media-libs/alsa-lib-1.0
 	>=media-libs/ladspa-sdk-1.12-r2
 	>=media-libs/libsndfile-1.0.11
 	>=media-libs/libsamplerate-0.1.1-r1
-	qt3? ( x11-libs/qt-meta:3 )"
+	qt3? ( dev-qt/qt-meta:3 )"
 DEPEND="${RDEPEND}
 	sys-apps/sed
 	dev-util/pkgconfig"

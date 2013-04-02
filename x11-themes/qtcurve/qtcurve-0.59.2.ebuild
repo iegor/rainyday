@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="alpha amd64 hppa ppc64 sparc x86"
 IUSE=""
 
-RDEPEND="x11-libs/qt-meta:3"
+RDEPEND="dev-qt/qt-meta:3"
 DEPEND="${RDEPEND}
 	>=dev-util/cmake-2.4"
 

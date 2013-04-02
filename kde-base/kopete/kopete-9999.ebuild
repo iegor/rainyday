@@ -67,7 +67,7 @@ BOTH_DEPEND="
 	sametime? ( =net-libs/meanwhile-1.0* )
 	sms? ( app-mobilephone/gsmlib )
 	xscreensaver? ( x11-libs/libXScrnSaver )
-	opengl? ( x11-libs/qt-meta[opengl] )
+	opengl? ( dev-qt/qt-meta[opengl] )
 "
 RDEPEND="
 	${BOTH_DEPEND}
@@ -91,11 +91,11 @@ DEPEND="
 "
 
 pkg_setup() {
-	if use v4l2 && use kernel_linux && ! built_with_use x11-libs/qt-meta:3 opengl; then
+	if use v4l2 && use kernel_linux && ! built_with_use dev-qt/qt-meta:3 opengl; then
 		eerror "To support Video4Linux webcams in this package is required to have"
-		eerror "x11-libs/qt-meta:3 compiled with OpenGL support."
-		eerror "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
-		die "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
+		eerror "dev-qt/qt-meta:3 compiled with OpenGL support."
+		eerror "Please reemerge dev-qt/qt-meta:3 with USE=\"opengl\"."
+		die "Please reemerge dev-qt/qt-meta:3 with USE=\"opengl\"."
 	fi
 
 	if use netmeeting && ! use msn; then

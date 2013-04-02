@@ -1,7 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/kipi-plugins/kipi-plugins-0.1.7.ebuild,v 1.8 2009/09/06 17:48:10 ssuominen Exp $
-
 EAPI=2
 
 ARTS_REQUIRED="never"
@@ -26,7 +25,7 @@ DEPEND="calendar? ( kde-base/libkcal:3.5 )
 		>=media-libs/libkdcraw-0.1.4
 		gphoto2? ( >=media-libs/libgphoto2-2.3.1 )
 		>=media-libs/imlib2-1.1.0[X]
-		opengl? ( x11-libs/qt-meta:3[opengl] )
+		opengl? ( dev-qt/qt-meta:3[opengl] )
 		tiff? ( >=media-libs/tiff-3.6 )
 		>=dev-libs/libxslt-1.1
 		ipod? ( >=media-libs/libgpod-0.7.0[gtk] )"

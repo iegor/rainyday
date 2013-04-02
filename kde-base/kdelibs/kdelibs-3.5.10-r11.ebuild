@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kdelibs/kdelibs-3.5.10-r6.ebuild,v 1.8 2009/08/01 07:12:04 ssuominen Exp $
+EAPI=2
 
-EAPI="1"
 inherit kde flag-o-matic eutils multilib
 set-kdedir 3.5
 
@@ -58,7 +58,7 @@ RDEPEND="
 	>=sys-apps/portage-2.1.2.11
 	app-text/ghostscript-gpl
 	x11-libs/libXext
-	>=x11-libs/qt-meta-3.3.3:3
+	>=dev-qt/qt-meta-3.3.3:3
 	acl? (
 		virtual/acl
 	)

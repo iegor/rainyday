@@ -1,7 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-client/mailody/mailody-0.4.0.ebuild,v 1.3 2007/06/24 15:34:11 armin76 Exp $
-
+EAPI=2
 inherit kde
 
 MY_P="${P/_/-}"

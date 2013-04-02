@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-laptop/khdapsmon/khdapsmon-0.1.2.ebuild,v 1.3 2009/11/11 01:56:08 ssuominen Exp $
+EAPI=2
 
 ARTS_REQUIRED=never
 inherit kde

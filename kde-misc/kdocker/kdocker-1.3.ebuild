@@ -1,8 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdocker/kdocker-1.3.ebuild,v 1.3 2008/07/27 20:52:18 carlo Exp $
-
-EAPI=1
+EAPI=2
 
 inherit eutils qt3
 
@@ -20,7 +19,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
-DEPEND="x11-libs/qt-meta:3"
+DEPEND="dev-qt/qt-meta:3"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"

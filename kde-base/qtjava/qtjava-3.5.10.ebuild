@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/qtjava/qtjava-3.5.10.ebuild,v 1.4 2009/06/06 08:44:25 maekke Exp $
-EAPI="1"
+
+EAPI=2
 KMNAME=kdebindings
 KM_MAKEFILESREV=1
 inherit java-pkg-2 kde-meta
@@ -19,9 +20,9 @@ PATCHES=( "${FILESDIR}/no-gtk-glib-check.diff"
 		"${FILESDIR}/no-libhpi.so-check.patch" )
 
 pkg_setup() {
-	if ! built_with_use x11-libs/qt-meta:3 opengl ; then
+	if ! built_with_use dev-qt/qt-meta:3 opengl ; then
 		eerror "${CATEGORY}/${PN} needs Qt 3 built with OpenGL support."
-		die "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
+		die "Please reemerge dev-qt/qt-meta:3 with USE=\"opengl\"."
 	fi
 
 	kde_pkg_setup

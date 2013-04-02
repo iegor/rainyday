@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/ksniffer/ksniffer-0.3.2.ebuild,v 1.2 2009/11/10 23:07:46 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
 USE_KEG_PACKAGING=1
 LANGS="ar bg br ca cs cy da de el en_GB es et fr ga gl it ka lt ms nl pa pt ru rw sk sr sr@Latn sv ta tr vi"

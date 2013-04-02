@@ -1,7 +1,7 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-firewall/knetfilter/knetfilter-3.5.0.ebuild,v 1.4 2006/05/31 04:39:43 tsunam Exp $
-
+EAPI=2
 inherit kde
 
 DESCRIPTION="Manage Iptables firewalls with this KDE app"

@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/kstreamripper/kstreamripper-0.3.4.ebuild,v 1.10 2009/05/29 14:54:40 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
+
 inherit eutils kde
 
 DESCRIPTION="KStreamripper - a nice KDE3 frontend to media-sound/streamripper"

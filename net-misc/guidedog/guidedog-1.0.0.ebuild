@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/guidedog/guidedog-1.0.0.ebuild,v 1.9 2009/11/12 16:40:18 ssuominen Exp $
 
+EAPI=2
 ARTS_REQUIRED=never
+
 inherit kde
 
 DESCRIPTION="A network/routing configuration utility for KDE 3"

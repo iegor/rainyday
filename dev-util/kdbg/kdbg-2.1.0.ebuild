@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdbg/kdbg-2.1.0.ebuild,v 1.7 2009/10/03 20:04:44 sping Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

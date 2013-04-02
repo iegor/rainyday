@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/baghira/baghira-0.8.ebuild,v 1.4 2009/09/04 08:24:10 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
+
 inherit kde git-2
 
 DESCRIPTION="Baghira - an OS-X like style for KDE"

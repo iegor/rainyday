@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/krita/krita-1.6.3_p20090204.ebuild,v 1.10 2009/09/27 12:35:29 ranger Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
-
 KMNAME=koffice
+
 inherit kde-meta eutils
 
 DESCRIPTION="KOffice image manipulation program."
@@ -46,8 +46,8 @@ need-kde 3.5
 
 pkg_setup() {
 	# use opengl &&
-		if ! built_with_use =x11-libs/qt-meta-3* opengl ; then
-			eerror "You need to build x11-libs/qt-meta with opengl use flag enabled."
+		if ! built_with_use dev-qt/qt-meta:3 opengl ; then
+			eerror "You need to build dev-qt/qt-meta with opengl use flag enabled."
 			die
 		fi
 }

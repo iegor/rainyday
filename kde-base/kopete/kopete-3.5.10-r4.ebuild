@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-base/kopete/kopete-3.5.10-r4.ebuild,v 1.11 2009/07/08 14:33:06 alexxy Exp $
-EAPI="1"
+
+EAPI=2
 KMNAME=kdenetwork
 inherit kde-meta eutils
 
@@ -65,11 +66,11 @@ DEPEND="
 "
 
 pkg_setup() {
-	if use v4l2 && use kernel_linux && ! built_with_use x11-libs/qt-meta:3 opengl; then
+	if use v4l2 && use kernel_linux && ! built_with_use dev-qt/qt-meta:3 opengl; then
 		eerror "To support Video4Linux webcams in this package is required to have"
-		eerror "x11-libs/qt-meta:3 compiled with OpenGL support."
-		eerror "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
-		die "Please reemerge x11-libs/qt-meta:3 with USE=\"opengl\"."
+		eerror "dev-qt/qt-meta:3 compiled with OpenGL support."
+		eerror "Please reemerge dev-qt/qt-meta:3 with USE=\"opengl\"."
+		die "Please reemerge dev-qt/qt-meta:3 with USE=\"opengl\"."
 	fi
 
 	if use netmeeting && ! use msn; then

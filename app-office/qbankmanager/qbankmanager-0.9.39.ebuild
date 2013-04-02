@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/qbankmanager/qbankmanager-0.9.39.ebuild,v 1.7 2008/04/28 11:32:43 hanno Exp $
+EAPI=2
 
 inherit eutils qt3
 
@@ -14,7 +15,7 @@ KEYWORDS="~amd64 ppc sparc x86"
 IUSE="debug"
 
 DEPEND=">=net-libs/aqbanking-2.2.5
-	=x11-libs/qt-meta-3*"
+	dev-qt/qt-meta:3"
 S="${WORKDIR}/${P}"
 
 pkg_setup() {

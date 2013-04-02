@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bouml/Attic/bouml-4.16.4.ebuild,v 1.1 2009/12/31 17:33:51 ssuominen Exp $
-
 EAPI=2
 SLOT="0"
+
 inherit multilib qt3
 DESCRIPTION="[GIT] Free UML 2 tool with code generation"
 HOMEPAGE="http://bouml.free.fr/"
@@ -12,7 +12,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="x11-libs/qt-meta:3"
+DEPEND="dev-qt/qt-meta:3"
 
 S=${WORKDIR}/${MY_P}
 

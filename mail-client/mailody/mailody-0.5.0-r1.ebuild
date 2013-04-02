@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-client/mailody/mailody-0.5.0-r1.ebuild,v 1.1 2008/01/18 16:52:22 ingmar Exp $
-
+EAPI=2
 LANGS="ar bg br da de el es ga it ja nl pt pt_BR sk sv"
 LANGS_DOC=""
 USE_KEG_PACKAGING=1

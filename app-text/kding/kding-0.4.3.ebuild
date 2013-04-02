@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/kding/kding-0.4.3.ebuild,v 1.5 2009/11/11 12:30:27 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
+
 inherit eutils kde
 
 DESCRIPTION="KDing is a KDE port of Ding, a dictionary lookup program."

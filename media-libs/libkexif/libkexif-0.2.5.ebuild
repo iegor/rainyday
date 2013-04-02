@@ -1,7 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libkexif/libkexif-0.2.5.ebuild,v 1.8 2007/07/25 21:51:38 armin76 Exp $
-
+EAPI=2
 inherit kde
 
 DESCRIPTION="A KDE library for loss-less EXIF operations."

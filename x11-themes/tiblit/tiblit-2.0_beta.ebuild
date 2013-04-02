@@ -1,6 +1,7 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/tiblit/tiblit-2.0_beta.ebuild,v 1.4 2006/11/28 01:03:31 flameeyes Exp $
+EAPI=2
 
 inherit kde
 need-kde 3.2

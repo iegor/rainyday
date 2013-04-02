@@ -1,8 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/PyQt/PyQt-3.18.1.ebuild,v 1.8 2009/10/18 14:41:15 armin76 Exp $
-
-EAPI="2"
+EAPI=2
 inherit distutils
 
 MY_P="PyQt-x11-gpl-${PV/*_pre/snapshot-}"
@@ -17,7 +16,7 @@ LICENSE="GPL-2"
 KEYWORDS="alpha amd64 hppa ia64 ppc ~ppc64 sparc x86 ~x86-fbsd"
 IUSE="debug doc examples"
 
-RDEPEND="x11-libs/qt-meta:3
+RDEPEND="dev-qt/qt-meta:3
 	>=dev-python/sip-4.8.1
 	>=x11-libs/qscintilla-2.3[python]"
 DEPEND="${RDEPEND}

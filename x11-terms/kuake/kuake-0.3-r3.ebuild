@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/kuake/kuake-0.3-r3.ebuild,v 1.10 2009/05/05 10:46:26 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde eutils

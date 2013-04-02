@@ -1,8 +1,7 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bouml/Attic/bouml-4.13.1.ebuild,v 1.1 2009/09/12 01:34:29 patrick Exp $
-
-EAPI=1
+EAPI=2
 
 inherit multilib qt3
 
@@ -17,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~x86-fbsd"
 IUSE=""
 
-DEPEND="x11-libs/qt-meta:3"
+DEPEND="dev-qt/qt-meta:3"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"

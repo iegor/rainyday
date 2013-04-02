@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/knetscan/knetscan-1.0-r1.ebuild,v 1.10 2009/11/10 23:05:16 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
 inherit kde eutils
 

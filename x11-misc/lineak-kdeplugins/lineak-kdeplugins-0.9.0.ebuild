@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/lineak-kdeplugins/lineak-kdeplugins-0.9.0.ebuild,v 1.7 2008/04/22 17:54:45 drac Exp $
+EAPI=2
 
 inherit eutils kde multilib
 

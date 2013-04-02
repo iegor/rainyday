@@ -1,6 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/vyqchat/vyqchat-0.2.8.ebuild,v 1.2 2007/02/22 22:20:17 armin76 Exp $
+EAPI=2
 
 inherit eutils
 
@@ -13,7 +14,7 @@ KEYWORDS="~ppc x86"
 
 IUSE="arts"
 
-DEPEND="=x11-libs/qt-meta-3*
+DEPEND="dev-qt/qt-meta:3
 	arts? ( media-libs/libsndfile
 		media-libs/libao
 		kde-base/arts )"

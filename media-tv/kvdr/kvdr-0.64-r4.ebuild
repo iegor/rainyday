@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-tv/kvdr/kvdr-0.64-r4.ebuild,v 1.1 2009/02/14 20:05:42 carlo Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

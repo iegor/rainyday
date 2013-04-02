@@ -1,6 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/kmymoney2/kmymoney2-0.8.8.ebuild,v 1.8 2009/09/07 12:21:05 scarabeus Exp $
+EAPI=2
 
 inherit kde
 

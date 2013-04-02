@@ -1,8 +1,7 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-tv/kdetv/kdetv-0.8.9-r2.ebuild,v 1.4 2009/06/01 16:27:02 nixnut Exp $
-
-EAPI="2"
+EAPI=2
 
 ARTS_REQUIRED="never"
 
@@ -26,7 +25,7 @@ RDEPEND="
 	!${CATEGORY}/${PN}:0
 	zvbi? ( >=media-libs/zvbi-0.2.4 )
 	lirc? ( app-misc/lirc )
-	opengl? ( virtual/opengl x11-libs/qt-meta[opengl] )
+	opengl? ( virtual/opengl dev-qt/qt-meta:3[opengl] )
 	media-libs/alsa-lib
 	x11-libs/libICE
 	x11-libs/libXxf86dga

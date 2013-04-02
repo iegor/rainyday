@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-
 EAPI=2
 KMNAME=kdelibs
+
 inherit kde flag-o-matic eutils multilib
 # Calling this here to ensure we install into git prefix directory
 set-kdedir 9999
@@ -49,7 +49,7 @@ RDEPEND="
 	>=sys-apps/portage-2.1.2.11
 	app-text/ghostscript-gpl
 	x11-libs/libXext
-	>=x11-libs/qt-meta-3.3.3:3
+	>=dev-qt/qt-meta-3.3.3:3
 	acl? (
 		virtual/acl
 	)

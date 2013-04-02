@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/kcdlabel/kcdlabel-2.13-r1.ebuild,v 1.6 2009/07/19 11:59:31 nixnut Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit flag-o-matic kde eutils

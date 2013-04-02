@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/kpresenter/kpresenter-1.6.3_p20090204.ebuild,v 1.9 2009/09/27 12:34:51 ranger Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 KMNAME=koffice

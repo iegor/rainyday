@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/liquid/liquid-0.9.7.ebuild,v 1.14 2008/12/07 13:30:06 jmbsvicetto Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

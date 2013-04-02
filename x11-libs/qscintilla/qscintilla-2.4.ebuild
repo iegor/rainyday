@@ -1,10 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qscintilla/qscintilla-2.4.ebuild,v 1.6 2009/10/18 14:48:05 armin76 Exp $
+EAPI=2
 
-EAPI="2"
-
-inherit eutils multilib qt3 qt4
+inherit eutils multilib qt3 qt4-r2
 
 MY_P="QScintilla-gpl-${PV/_pre/-snapshot-}"
 
@@ -17,8 +16,8 @@ SLOT="0"
 KEYWORDS="alpha ~amd64 hppa ia64 ppc ~ppc64 sparc ~x86 ~x86-fbsd"
 IUSE="doc python +qt4"
 
-RDEPEND="qt4? ( x11-libs/qt-gui:4 )
-	!qt4? ( x11-libs/qt-meta:3 )"
+RDEPEiND="qt4? ( dev-qt/qt-gui:4 )
+	!qt4? ( dev-qt/qt-meta:3 )"
 DEPEND="${RDEPEND}"
 # dev-python/PyQt needs qscintilla to build and qscintilla's python bindings
 # need dev-python/PyQt, bug 199543

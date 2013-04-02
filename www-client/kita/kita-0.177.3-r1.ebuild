@@ -1,6 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/kita/kita-0.177.3-r1.ebuild,v 1.5 2007/05/19 11:18:38 armin76 Exp $
+EAPI=2
 
 inherit kde
 

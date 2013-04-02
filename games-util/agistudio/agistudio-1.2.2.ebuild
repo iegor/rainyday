@@ -1,7 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-util/agistudio/agistudio-1.2.2.ebuild,v 1.7 2009/08/09 19:13:24 ssuominen Exp $
-
 EAPI=1
 
 inherit eutils toolchain-funcs qt3
@@ -15,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ppc x86"
 IUSE=""
 
-DEPEND="x11-libs/qt-meta:3"
+DEPEND="dev-qt/qt-meta:3"
 
 S=${WORKDIR}/${P}/src
 

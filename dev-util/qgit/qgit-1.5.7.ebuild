@@ -1,6 +1,7 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/qgit-1.5.7.ebuild,v 1.5 2007/09/20 21:00:06 ranger Exp $
+EAPI=2
 
 inherit qt3
 
@@ -16,7 +17,7 @@ SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86"
 IUSE=""
 
-DEPEND="=x11-libs/qt-meta-3*"
+DEPEND="dev-qt/qt-meta:3"
 RDEPEND="${DEPEND}
 	>=dev-vcs/git-1.5"
 

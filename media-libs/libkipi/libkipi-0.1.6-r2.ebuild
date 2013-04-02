@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libkipi/libkipi-0.1.6-r2.ebuild,v 1.1 2009/02/08 23:04:40 carlo Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
 
 inherit kde

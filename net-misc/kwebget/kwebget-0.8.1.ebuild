@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/kwebget/kwebget-0.8.1.ebuild,v 1.8 2009/11/10 23:12:22 cla Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
+
 inherit kde eutils
 
 DESCRIPTION="A KDE frontend for wget."

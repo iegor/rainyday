@@ -1,6 +1,7 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/unixODBC/unixODBC-2.2.12.ebuild,v 1.15 2008/06/15 17:33:57 hoffie Exp $
+EAPI=2
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -21,7 +22,7 @@ IUSE="qt3 gnome"
 
 RDEPEND=">=sys-libs/readline-4.1
 		>=sys-libs/ncurses-5.2
-		qt3? ( =x11-libs/qt-meta-3* )
+		qt3? ( dev-qt/qt-meta:3 )
 		gnome? ( gnome-base/libgnomeui )
 		sys-devel/libtool"
 DEPEND="${RDEPEND}

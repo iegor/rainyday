@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-util/agistudio/agistudio-1.2.4.ebuild,v 1.2 2009/10/20 13:01:44 maekke Exp $
-
 EAPI=2
+
 inherit qt3
 
 DESCRIPTION="QT AGI Studio allows you to view, create and edit AGI games"
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc x86"
 IUSE=""
 
-DEPEND="x11-libs/qt-meta:3"
+DEPEND="dev-qt/qt-meta:3"
 
 S=${WORKDIR}/${P}/src
 

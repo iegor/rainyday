@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-misc/kboincspy/kboincspy-0.9.1.ebuild,v 1.2 2009/11/11 11:48:36 ssuominen Exp $
-
+EAPI=2
 ARTS_REQUIRED=never
 inherit kde
 

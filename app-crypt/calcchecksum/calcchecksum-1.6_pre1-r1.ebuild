@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/calcchecksum/calcchecksum-1.6_pre1-r1.ebuild,v 1.4 2009/07/02 20:34:30 maekke Exp $
-
+EAPI=2
 ARTS_REQUIRED="never"
-
 WANT_AUTOMAKE="1.6"
 
 inherit kde

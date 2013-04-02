@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/knutclient/knutclient-0.9.4.ebuild,v 1.4 2009/10/25 12:39:30 ssuominen Exp $
 
+EAPI=2
 ARTS_REQUIRED=never
 
 inherit kde
