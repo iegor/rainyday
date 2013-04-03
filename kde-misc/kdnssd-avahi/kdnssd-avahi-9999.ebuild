@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdnssd-avahi/kdnssd-avahi-0.1.2-r1.ebuild,v 1.6 2009/10/12 07:09:16 abcd Exp $
-
 EAPI=2
 KMNAME=kdnssd-avahi
-inherit kde
 
+inherit kde
+SLOT="3.5"
 need-kde 9999
 
 DESCRIPTION="[GIT] DNS Service Discovery kioslave using Avahi (rather than mDNSResponder)"
