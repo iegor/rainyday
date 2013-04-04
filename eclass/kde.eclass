@@ -120,7 +120,7 @@ kde_pkg_setup() {
 	if [[ ${PN} != "arts" ]] && [[ ${PN} != "kdelibs" ]] ; then
 		if [[ ${ARTS_REQUIRED} == 'yes' ]] || \
 			( [[ ${ARTS_REQUIRED} != "never" ]] && use arts )  ; then
-			if ! built_with_use =kde-base/kdelibs-3.5* arts ; then
+			if ! built_with_use =kde-base/kdelibs-${PV}:${SLOT} arts ; then
 				if has arts ${IUSE} && use arts; then
 					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled."
 				else
