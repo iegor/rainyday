@@ -403,8 +403,8 @@ need-kde() {
 		# If we're a kde-base package, we need at least our own version of kdelibs.
 		# Note: we only set RDEPEND if it is already set, otherwise
 		# we break packages relying on portage copying RDEPEND from DEPEND.
-		DEPEND="${DEPEND} ~kde-base/kdelibs-$PVR"
-		RDEPEND="${x_DEPEND} ~kde-base/kdelibs-${PVR}"
+		DEPEND="${DEPEND} ~kde-base/kdelibs-$PVR:${SLOT}"
+		RDEPEND="${x_DEPEND} ~kde-base/kdelibs-${PVR}:${SLOT}"
 	else
 		# Things outside kde-base need a minimum version,
 		# but kde-base/kdelibs:kde-4 mustn't satisfy it.
