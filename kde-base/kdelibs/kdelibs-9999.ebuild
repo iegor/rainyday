@@ -17,8 +17,8 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 # Added aspell-en as dependency to work around bug 131512.
 # Made openssl and zeroconf mandatory dependencies, see bug #172972 and #175984
 RDEPEND="
-	!=kde-base/artsplugin-mpeglib-9999*
-	!=kde-base/artsplugin-mpg123-9999*
+	!=kde-base/artsplugin-mpeglib-${PV}:${SLOT}
+	!=kde-base/artsplugin-mpg123-${PV}:${SLOT}
 	!kde-base/kdeaccessibility
 	!kde-base/kdeaddons
 	!kde-base/kdeadmin
@@ -36,7 +36,7 @@ RDEPEND="
 	!kde-base/kdeutils
 	!kde-base/kdewebdev
 	!kde-base/ksync
-	!=kde-base/mpeglib-9999*
+	!=kde-base/mpeglib-${PV}:${SLOT}
 	app-arch/bzip2
 	>=dev-libs/libxslt-1.1.16
 	>=dev-libs/libxml2-2.6.6
@@ -79,14 +79,14 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 "
 RDEPEND="${RDEPEND}
-	!<kde-base/kdebase-startkde-9999
+	=kde-base/kdebase-startkde-${PV}:${SLOT}
 	x11-apps/rgb
 	x11-apps/iceauth
 	>=x11-misc/xdg-utils-1.0.2-r3
 "
 PDEPEND="
-	avahi? ( kde-misc/kdnssd-avahi )
-	bindist? ( =kde-misc/kdnssd-avahi-9999 )
+	avahi? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
+	bindist? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
 "
 
 # Testing code is rather broken and merely for developer purposes, so disable it.
