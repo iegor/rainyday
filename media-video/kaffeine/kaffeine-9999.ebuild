@@ -16,6 +16,7 @@ HOMEPAGE="http://kaffeine.sourceforge.net/"
 LICENSE="GPL-2"
 SLOT="3.5"
 IUSE="dvb gstreamer xinerama vorbis encode xcb"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 # kdehiddenvisibility removed due to bug 207002.
 
 RDEPEND=">=media-libs/xine-lib-1.1.9[xcb?]
