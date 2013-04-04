@@ -22,9 +22,7 @@ SLOT="3.5"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="mp4 mysql +amazon opengl postgres visualization ipod ifp real njb mtp musicbrainz daap python"
 
-# Blocking previous amarok-1.4:0 versions
 RDEPEND="
-	!<media-sound/amarok-1.4.10_p20090130-r2
 	=dev-lang/ruby-1.8*
 	>=media-libs/taglib-1.4
 	>=media-libs/xine-lib-1.1.2_pre20060328-r8

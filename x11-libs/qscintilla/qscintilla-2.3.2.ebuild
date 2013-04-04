@@ -25,7 +25,8 @@ DEPEND="${RDEPEND}"
 PDEPEND="
 python? (
 			qt4? ( dev-python/qscintilla-python[qt4=] )
-			qt3? ( dev-python/qscintilla-python[qt3=] ) )
+			qt3? ( || ( dev-python/qscintilla-python[qt3=]
+						dev-python/qscintilla-python[qt4-] ) ) )
 "
 
 src_configure() {
