@@ -8,14 +8,13 @@ DESCRIPTION="[GIT] kdeadmin - merge this to pull in all kdeadmin-derived package
 HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2"
 SLOT="3.5"
-IUSE=""
+IUSE="lilo"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="=kde-base/kcron-${PV}:${SLOT}
 	=kde-base/kdeadmin-kfile-plugins-${PV}:${SLOT}
 	=kde-base/kuser-${PV}:${SLOT}
-	x86? ( =kde-base/lilo-config-${PV}:${SLOT} )
-	amd64? ( =kde-base/lilo-config-${PV}:${SLOT} )
+	lilo? ( =kde-base/lilo-config-${PV}:${SLOT} )
 	=kde-base/secpolicy-${PV}:${SLOT}
 	=kde-base/knetworkconf-${PV}:${SLOT}"
 
