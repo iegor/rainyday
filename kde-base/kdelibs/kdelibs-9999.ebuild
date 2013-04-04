@@ -19,23 +19,23 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 RDEPEND="
 	!=kde-base/artsplugin-mpeglib-${PV}:${SLOT}
 	!=kde-base/artsplugin-mpg123-${PV}:${SLOT}
-	!kde-base/kdeaccessibility
-	!kde-base/kdeaddons
-	!kde-base/kdeadmin
-	!kde-base/kdeartwork
-	!kde-base/kdebase
-	!kde-base/kdeedu
-	!kde-base/kdegames
-	!kde-base/kdegraphics
-	!kde-base/kde
-	!kde-base/kdemultimedia
-	!kde-base/kdenetwork
-	!kde-base/kdepim
-	!kde-base/kdesdk
-	!kde-base/kdetoys
-	!kde-base/kdeutils
-	!kde-base/kdewebdev
-	!kde-base/ksync
+	!=kde-base/kdeaccessibility-${PV}:${SLOT}
+	!=kde-base/kdeaddons-${PV}:${SLOT}
+	!=kde-base/kdeadmin-${PV}:${SLOT}
+	!=kde-base/kdeartwork-${PV}:${SLOT}
+	!=kde-base/kdebase-${PV}:${SLOT}
+	!=kde-base/kdeedu-${PV}:${SLOT}
+	!=kde-base/kdegames-${PV}:${SLOT}
+	!=kde-base/kdegraphics-${PV}:${SLOT}
+	!=kde-base/kde-${PV}:${SLOT}
+	!=kde-base/kdemultimedia-${PV}:${SLOT}
+	!=kde-base/kdenetwork-${PV}:${SLOT}
+	!=kde-base/kdepim-${PV}:${SLOT}
+	!=kde-base/kdesdk-${PV}:${SLOT}
+	!=kde-base/kdetoys-${PV}:${SLOT}
+	!=kde-base/kdeutils-${PV}:${SLOT}
+	!=kde-base/kdewebdev-${PV}:${SLOT}
+	!=kde-base/ksync-${PV}:${SLOT}
 	!=kde-base/mpeglib-${PV}:${SLOT}
 	app-arch/bzip2
 	>=dev-libs/libxslt-1.1.16
