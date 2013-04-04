@@ -3,8 +3,8 @@
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kdnssd-avahi/kdnssd-avahi-0.1.2-r1.ebuild,v 1.6 2009/10/12 07:09:16 abcd Exp $
 EAPI=2
 KMNAME=kdnssd-avahi
-
 inherit kde
+
 SLOT="3.5"
 need-kde 9999
 

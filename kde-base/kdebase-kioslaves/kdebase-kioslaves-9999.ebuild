@@ -18,7 +18,7 @@ DEPEND="x11-libs/libXcursor
 	hal? (	dev-libs/dbus-qt3-old
 					=sys-apps/hal-0.5* )
 	openexr? ( >=media-libs/openexr-1.2.2-r2 )
-	=kde-base/kdesktop-${PV}:${SLOT}"
+	!<kde-base/kdesktop-${PV}:${SLOT}"
 RDEPEND="${DEPEND}
 	virtual/ssh
 	=kde-base/kdialog-${PV}:${SLOT}"	# for the kdeeject script used by the devices/mounthelper ioslave
