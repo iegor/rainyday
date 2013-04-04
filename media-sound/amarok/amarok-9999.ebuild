@@ -50,7 +50,7 @@ DEPEND="${RDEPEND}"
 RDEPEND="${RDEPEND}
 	app-arch/unzip
 	daap? ( www-servers/mongrel )
-	python? ( dev-python/PyQt4 )
+	python? ( dev-python/PyQt )
 "
 
 need-kde 9999
