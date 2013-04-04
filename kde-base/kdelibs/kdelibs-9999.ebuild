@@ -79,7 +79,7 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 "
 RDEPEND="${RDEPEND}
-	=kde-base/kdebase-startkde-${PV}:${SLOT}
+	!=kde-base/kdebase-startkde-${PV}:${SLOT}
 	x11-apps/rgb
 	x11-apps/iceauth
 	>=x11-misc/xdg-utils-1.0.2-r3
