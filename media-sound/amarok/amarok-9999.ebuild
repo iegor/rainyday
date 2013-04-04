@@ -51,7 +51,7 @@ RDEPEND="${RDEPEND}
 	python? ( dev-python/PyQt )
 "
 
-need-kde 9999
+need-kde ${PV}
 
 src_configure() {
 	# Extra, unsupported engines are forcefully disabled.

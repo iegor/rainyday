@@ -179,7 +179,13 @@ kde_src_unpack() {
 		debug-print "PV: $PV"
 		debug-print "DISTDIR: ${DISTDIR}"
 		debug-print "D: ${D}"
-		debug-print "WORKDIR: $WORKDIR"; [[ -d ${WORKDIR} ]] && ( einfo "exist."; ls -la ${WORKDIR} )
+		debug-print "WORKDIR: $WORKDIR";
+		if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+			if [ -d ${WORKDIR} ]; then
+				einfo "workdir exist."
+				ls -la ${WORKDIR}
+			fi
+		fi
 		debug-print "pwd: $(pwd)"
 		debug-print "T: $T"
 		debug-print "KMNAME: ${KMNAME}"
