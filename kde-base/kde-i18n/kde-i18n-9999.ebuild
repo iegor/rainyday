@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-
 EAPI=2
 KMNAME="kde-i18n"
 LICENSE="GPL-2"
 WANT_AUTOMAKE="1.11"
+
 inherit eutils kde
 DESCRIPTION="[GIT] KDE internationalization package"
 HOMEPAGE="http://www.kde.org/"
