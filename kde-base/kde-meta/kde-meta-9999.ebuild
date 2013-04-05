@@ -22,6 +22,7 @@ RDEPEND="~kde-base/kdelibs-${PV}
 =kde-base/kdenetwork-meta-${PV}:${SLOT}
 =kde-base/kdepim-meta-${PV}:${SLOT}
 =kde-base/kdetoys-meta-${PV}:${SLOT}
+=kde-base/kdesdk-meta-${PV}:${SLOT}
 =kde-base/kdeutils-meta-${PV}:${SLOT}
 =kde-base/kdeartwork-meta-${PV}:${SLOT}
 =kde-base/kdewebdev-meta-${PV}:${SLOT}
