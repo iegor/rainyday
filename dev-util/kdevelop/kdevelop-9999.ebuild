@@ -13,8 +13,7 @@ SLOT="3.5"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python ruby sql subversion git"
 
-DEPEND="!<dev-util/kdevelop-3.5.4-r1
-	sys-devel/gdb
+DEPEND="	sys-devel/gdb
 	>=sys-libs/db-4.1
 	cvs? ( =kde-base/cervisia-${PV}:${SLOT} )"
 RDEPEND="${DEPEND}
