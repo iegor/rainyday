@@ -11,7 +11,8 @@ HOMEPAGE="http://www.kdevelop.org"
 LICENSE="GPL-2"
 SLOT="3.5"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python ruby sql subversion git"
+IUSE="ada clearcase cvs fortran haskell java pascal perforce perl php python
+ruby sql subversion git vstudio"
 
 DEPEND="	sys-devel/gdb
 	>=sys-libs/db-4.1
@@ -50,7 +51,7 @@ src_configure() {
 	myconf="${myconf} $(use_enable java) $(use_enable python)
 			$(use_enable ruby) $(use_enable ada) $(use_enable fortran)
 			$(use_enable haskell) $(use_enable pascal) $(use_enable perl)
-			$(use_enable php) $(use_enable sql)"
+			$(use_enable php) $(use_enable sql) $(use_enable vstudio)"
 
 	# build tools
 	myconf="${myconf} $(use_enable java antproject)"
