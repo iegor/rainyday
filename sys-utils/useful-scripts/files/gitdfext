@@ -1,0 +1,15 @@
+#!/bin/sh
+# Script is used to get working GUI diff tool for git
+
+# echo file "[ ${1} ]"
+# echo old_file "[ ${2} ]"
+# echo old_hex "[ ${3} ]"
+# echo new_mode "[ ${4} ]"
+# echo new_file "[ ${5} ]"
+# echo new_hex "[ ${6} ]"
+# echo new_mode "[ ${7} ]"
+
+/usr/bin/meld ${2} ${5}
+# /usr/bin/kdiff3 ${5} ${2}
+# kompare ${5} ${2}
+

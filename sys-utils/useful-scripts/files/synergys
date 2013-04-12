@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "<Network configuration>================================"
+ifconfig -a
+echo "======================================================="
+exec synergys -f --config ~/.config/synergy.conf -d INFO --log ~/.synergys.log --address :8100
+#--no-restart --no-tray

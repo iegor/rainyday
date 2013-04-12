@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+#zenity --progress --text="mounting $*" --percentage=0 --auto-close
+source_file_name=${1##*/}
+source_file_name=${source_file_name%%.*}
+image_mount_point="/media/${source_file_name}"
+[[ ! -d ${image_mount_point} ]] && mkdir ${image_mount_point}
+if mount -o loop,ro,suid -t iso9660 $* ${image_mount_point}; then
+#	notify-send "${1} is mounted"
+	#if zenity --question --title "ISO Mounter" --text "$* is mounted, open it?"; then
+	#    nautilus ${image_mount_point} --no-desktop
+	#fi
+	echo "mounted..."
+	exit 0
+else
+	sudo rmdir "/media/$source_file_name"
+#	zenity --error --title "ISO Mounter" --text "Cannot mount $* into ${image_mount_point}"
+	exit 1
+fi

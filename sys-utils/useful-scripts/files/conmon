@@ -1,0 +1,38 @@
+#!/bin/bash
+
+case ${1} in
+"-h")
+#	pos_h=0 #280
+#	pos_v=1200
+#	xrandr --output 'LVDS' --auto --pos ${pos_h}x${pos_v} --primary --output VGA-0 --auto --mode 1920x1200 --pos 0x0
+	xrandr --output 'LVDS' --off
+	xrandr --output 'HDMI-0' --primary --auto
+	xrandr --output 'VGA-0' --auto --right-of 'HDMI-0'
+;;
+"-v") # Or vertical mode (good for reading books)
+	xrandr --output LVDS --auto --pos 0x1920 --primary --output VGA-0 --auto --rotate left --mode 1920x1200 --pos 0x0
+;;
+"-i")
+	xrandr --verbose|less
+;;
+"-r")
+	xrandr --output 'VGA-0' --off
+	xrandr --output 'HDMI-0' --off
+	xrandr --output 'LVDS' --auto
+#	xrandr --output VGA-0 --off
+#	xrandr --output LVDS --auto --panning 0x0 --pos 0x0 --rotate normal --primary
+;;
+esac
+
+# here I will reset wallpaper
+# for KDE 3.5
+if [ -z ${KDE_FULL_SESSION} ]; then
+	if [ "${KDE_FULL_SESSION}" == "true" ]; then
+		dcop kdesktop KDesktopIface unselectAll
+		dcop kdesktop KBackgroundIface configure
+		dcop kdesktop KDesktopIface refresh
+		dcop kdesktop KDesktopIface refreshIcons true
+
+		dcop kwin KWinInterface refresh
+	fi
+fi

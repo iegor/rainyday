@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+#zenity --progress --text="mounting $*" --percentage=0 --auto-close
+source_file_name=${1##*/}
+source_file_name=${source_file_name%%.*}
+image_mount_point="/media/${source_file_name}"
+if sudo umount ${image_mount_point}; then
+	rm -rf ${image_mount_point}
+#	zenity --info --title "ISO Mounter" --text "$* is unmounted."
+	exit 0
+else
+#	zenity --error --title "ISO Mounter" --text "Cannot unmount $*"
+	exit 1
+fi
