@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 EAPI=2
-KMNAME="kde-i18n"
+KMNAME="kdei18n"
+KMBRANCH="develop"
 LICENSE="GPL-2"
-WANT_AUTOMAKE="1.11"
 
 LANGS="af ar az bg bn br bs ca cs csb cy da de el en_GB eo es et
 eu fa fi fr fy ga gl he hi hr hu is it ja kk km ko lt lv mk
@@ -34,7 +34,7 @@ done
 
 # echo "IUSE: ${IUSE}"
 # echo "KMEXTRA: ${KMEXTRA}"
-echo "LINGUAS: ${LINGUAS}"
+# echo "LINGUAS: ${LINGUAS}"
 
 src_unpack() {
 	if [[ -z ${LINGUAS} ]] || [[ -z ${A} && "${LINGUAS}" != "en" ]]; then
@@ -55,11 +55,10 @@ src_unpack() {
 	kde_src_unpack
 
 	# Work around KDE bug 126311.
-	for dir in ${LANGS}; do
-		KDE_S="${EGIT_SOURCEDIR}/${dir}"
-
-		# Check path for existance
-		[[ ! -d ${KDE_S} ]] && continue
+	for dir in ${KMEXTRA}; do
+#   echo "src_unpack: >> \"${EGIT_SOURCEDIR}/${dir}\""
+#     KDE_S="${EGIT_SOURCEDIR}/${dir}"
+# 		[[ ! -d ${KDE_S} ]] && continue
 
 		lang=$(echo ${dir} | cut -f3 -d-)
 
@@ -69,51 +68,46 @@ src_unpack() {
 			-i "${EGIT_SOURCEDIR}/${dir}/docs/common/Makefile.in" || die "Failed to fix ${lang}."
 		eend ${?}
 	done
-
-  die "debug"
 }
 
 src_configure() {
-	for dir in ${LANGS}; do
+	for dir in ${KMEXTRA}; do
 		KDE_S="${EGIT_SOURCEDIR}/${dir}"
-
-		# Check path for existance
-		[[ ! -d ${KDE_S} ]] && continue
-
-		ebegin "Linking admin dir to: ${KDE_S}/admin"
-			[[ ! -d "${KDE_S}/admin" || ! -h "${KDE_S}/admin" ]] && ln -s "${WORKDIR}/kdecommon/admin" "${KDE_S}/admin"
-		eend ${?}
+    einfo ">> src_configure: \"${KDE_S}\""
+# 		[[ ! -d ${KDE_S} ]] && continue
 
 		kde_src_configure myconf
 		myconf="${myconf} --prefix=${KDEDIR}"
 		kde_src_configure configure
+
+    myconf=""
 	done
 }
 
 src_compile() {
-	for dir in ${LANGS}; do
-		KDE_S="${EGIT_SOURCEDIR}/${dir}"
+	for dir in ${KMEXTRA}; do
+    KDE_S="${EGIT_SOURCEDIR}/${dir}"
+    einfo ">> src_compile: \"${KDE_S}\""
+# 		[[ ! -d ${KDE_S} ]] && continue
 
-		# Check path for existance
-		[[ ! -d ${KDE_S} ]] && continue
-
+#     cd "${EGIT_SOURCEDIR}/${dir}"
+#     emake || die "died running emake, $FUNCNAME:make"
 # 		kde_src_compile myconf
 # 		myconf="${myconf} --prefix=${KDEDIR}"
 # 		kde_src_compile configure
 		kde_src_compile make
+#     myconf=""
 	done
 }
 
 src_install() {
-	for dir in ${LANGS}; do
+	for dir in ${KMEXTRA}; do
 		KDE_S="${EGIT_SOURCEDIR}/${dir}"
+    einfo ">> src_install: \"${KDE_S}\""
+# 		[[ ! -d ${KDE_S} ]] && continue
 
-		# Check path for existance
-		[[ ! -d ${KDE_S} ]] && continue
-
-# 		cd "${EGIT_SOURCEDIR}/${dir}"
-# 		emake DESTDIR="${D}" install || die
-
+#     cd "${EGIT_SOURCEDIR}/${dir}"
+#     emake DESTDIR="${D}" destdir="${D}" install || die "installation failed"
 		kde_src_install make
 	done
 }

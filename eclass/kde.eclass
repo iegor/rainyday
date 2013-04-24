@@ -15,15 +15,8 @@
 
 ################################ SOME BASIC GIT SETTINGS ##################################
 
-# One repo for whole kde
-EGIT_KDE_REPO_DIR="git://github.com/iegor/kdesktop.git"
-# Default location check and set, if wasn't set in ebuild
-[[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
-# Default branch check and set, if wasn't set in ebuild
-[[ -z "${EGIT_BRANCH}" ]] && EGIT_BRANCH="live"
 # Source directory to clone repo into it
 EGIT_SOURCEDIR=${S}
-# ECLASS_DEBUG_OUTPUT=on
 
 # Set some debugging options to see what was moved
 if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
@@ -34,9 +27,11 @@ fi
 
 ###########################################################################################
 
-[[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.9"
+[[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.11"
 
 inherit base eutils kde-functions flag-o-matic libtool autotools git-2
+
+ECLASS_DEBUG_OUTPUT=on
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
@@ -158,147 +153,149 @@ kde_pkg_setup() {
 kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
-	case "${PV}" in
-	9999)
-		einfo "Your package is in git repo, it will fetched via git routines."
+  # One repo for whole kde
+  EGIT_KDE_REPO_DIR="git://github.com/iegor/${KMNAME}.git"
+  EGIT_BRANCH="${KMBRANCH}"
+  # Default location check and set, if wasn't set in ebuild
+#   [[ -z "${EGIT_REPO_URI}" ]] && EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 
-		if [ -z ${EGIT_REPO_URI} ]; then
-			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
-			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
-		fi
+  # Default branch check and set, if wasn't set in ebuild
+  if [ -z "${EGIT_BRANCH}" ]; then
+    ewarn "branch is undefined, using default"
+    EGIT_BRANCH="develop"
+  fi
 
-		# Short debug messaging, log
-		debug-print "S: $S"
-		debug-print "A: $A"
-		debug-print "P: $P"
-		debug-print "PN: $PN"
-		debug-print "PV: $PV"
-		debug-print "DISTDIR: ${DISTDIR}"
-		debug-print "D: ${D}"
-		debug-print "WORKDIR: $WORKDIR";
-		if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
-			if [ -d ${WORKDIR} ]; then
-				einfo "workdir exist."
-				ls -la ${WORKDIR}
-			fi
-		fi
-		debug-print "pwd: $(pwd)"
-		debug-print "T: $T"
-		debug-print "KMNAME: ${KMNAME}"
-		debug-print "KMMODULE: ${KMMODULE}"
-# 		debug-print "files list: ${extractlist}"
-		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
-		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
+#   einfo "using GIT :)"
 
-		# We will not need to checkout everything, just specified files and folders
-		# so using "git-2_src_unpack" won't help us, use instead
-		ebegin "Gitting sources from ${EGIT_REPO_URI} repo."
-			git-2_init_variables
-			git-2_prepare_storedir
-			git-2_migrate_repository
-			git-2_fetch
-			git-2_gc
-			git-2_submodules
-			git-2_move_source
-		eend ${?}
+  if [ -z ${EGIT_REPO_URI} ]; then
+    ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
+    EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
+  fi
 
-		# To make sure we are checking out into workdir
-		#S="${WORKDIR}"/${P}
-		mkdir -p ${S}
+  # Short debug messaging, log
+  debug-print "S: $S"
+  debug-print "A: $A"
+  debug-print "P: $P"
+  debug-print "PN: $PN"
+  debug-print "PV: $PV"
+  debug-print "DISTDIR: ${DISTDIR}"
+  debug-print "D: ${D}"
+  debug-print "WORKDIR: $WORKDIR";
+  if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+    if [ -d ${WORKDIR} ]; then
+      einfo "workdir exist."
+      ls -la ${WORKDIR}
+    fi
+  fi
+  debug-print "pwd: $(pwd)"
+  debug-print "T: $T"
+  debug-print "KMNAME: ${KMNAME}"
+  debug-print "KMMODULE: ${KMMODULE}"
+#   debug-print "files list: ${extractlist}"
+  debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
+  debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
 
-		cd $EGIT_SOURCEDIR
+  # We will not need to checkout everything, just specified files and folders
+  # so using "git-2_src_unpack" won't help us, use instead
+#   ebegin "Gitting sources from ${EGIT_REPO_URI} repo."
+    git-2_init_variables
+    git-2_prepare_storedir
+    git-2_migrate_repository
+    git-2_fetch
+    git-2_gc
+#     git-2_submodules
+    git-2_move_source
+#   eend ${?}
 
-		ebegin "Checking out '${KMNAME}' module files from ${EGIT_BRANCH}."
-			# Check out assets required for build to be conducted
-			git checkout origin/${EGIT_BRANCH} kdecommon
-			mv ./kdecommon ${WORKDIR}/
+  # To make sure we are checking out into workdir
+  #S="${WORKDIR}"/${P}
+  mkdir -p ${S}
+  cd $EGIT_SOURCEDIR
 
-			case "${KMNAME}" in
-			# KDE Libs needs to be extracted fully to build it.
-			"kdelibs"|\
-			"amarok"|\
-			"kdevelop"|\
-			"kaffeine"|\
-			"kdnssd-avahi")
-				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
-				git checkout origin/${EGIT_BRANCH} "./${KMNAME}"
+#   ebegin "Checking out '${KMNAME}' module files from ${EGIT_BRANCH}."
 
-				# rename and move KMNAME to WORKDIR
-				mv ${TRANSPORT_DEBUG_OPTS} "./${KMNAME}" "./${KMNAME}_TMP"
-				mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP/* ./
-				rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP
-			;;
-			# Everything else must be handled in the same way
-			*)
-				# Create final list of stuff to extract
-# 				extractlist=""
-				for item in admin \
-										Makefile.am \
-										Makefile.am.in \
-										configure.in.in \
-										configure.in.mid \
-										configure.in.bot \
-										acinclude.m4 \
-										aclocal.m4 \
-										AUTHORS \
-										COPYING \
-										INSTALL \
-										README \
-										NEWS \
-										ChangeLog \
-										${KMMODULE} \
-										${KMEXTRA} \
-										${KMCOMPILEONLY} \
-										${KMEXTRACTONLY} \
-										${DOCS}
-				do
-# 					extractlist="${extractlist} ${KMNAME}/${item%/}"
-					ebegin "Checkout:  ${EGIT_BRANCH}:${KMNAME}/${item%/}"
-						git checkout origin/${EGIT_BRANCH} "${KMNAME}/${item%/}" &> /dev/null
-					eend ${?}
-				done
+  # Check out assets required for build
+#   git checkout origin/${EGIT_BRANCH} kdecommon
+#   mv ./kdecommon ${WORKDIR}/
+  # Create final list of stuff to extract
+#   extractlist=""
+  for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
+              configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
+              README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
+              ${KMEXTRACTONLY} ${DOCS}
+  do
+#     extractlist="${extractlist} ${KMNAME}/${item%/}"
+    ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
+      git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
+    eend ${?}
+  done
 
-				# Read program will ignore last item, so add a dummy item.
-# 				extractlist="${extractlist} none"
-# 				echo ${extractlist}|while read -d ' ' line; do
-# 					einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
-# 					git checkout ${EGIT_BRANCH} "./${line}"
-# 				done
+  ebegin "<co>: submodule files"
+    git checkout origin/${EGIT_BRANCH} ".gitmodules" &> /dev/null
+  eend ${?}
 
-				debug-print "mv -v ./${KMNAME}/* ./"
-				mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}/* ./
-				debug-print "rm -rfv ./${KMNAME}"
-				rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}
+  ebegin "<co>: \"admin\" submodule"
+    git checkout origin/${EGIT_BRANCH} "admin" &> /dev/null
+  eend ${?}
 
-# 				ebegin "Linking admin dir to module: ${KMNAME}"
-# 					[[ ! -d "./admin" || ! -h "./admin" ]] && ln -s "../kdecommon/admin" "admin"
-# 				eend ${?}
-			;;
-			esac
+  git submodule init || die "Failed to init submodule"
+  git submodule update || die "Failed to update submodule"
 
-			# Let's create a subdirs file in ${S} to keep configure happy
-# 			cat <<EOF > ./subdirs
-#${KMMODULE}
-#EOF
+  # Read program will ignore last item, so add a dummy item.
+#   extractlist="${extractlist} none"
+#   echo ${extractlist}|while read -d ' ' line; do
+#     einfo "Checkout: ${line} into '${EGIT_SOURCEDIR}'"
+#     git checkout ${EGIT_BRANCH} "./${line}"
+#   done
 
-      # After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
-      if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
-          einfo "========================================="
-          einfo "We are in:  $(pwd)"
-          einfo "Let's see what is in here..."
-          ls -la ./
-          einfo "========================================="
-      fi
+#   debug-print "mv -v ./${KMNAME}/* ./"
+#   mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}/* ./
+#   debug-print "rm -rfv ./${KMNAME}"
+#   rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}
 
-# 			git config --list
+#   ebegin "Linking admin dir to module: ${KMNAME}"
+#     [[ ! -d "./admin" || ! -h "./admin" ]] && ln -s "../kdecommon/admin" "admin"
+#   eend ${?}
 
-			git-2_cleanup
-		eend ${?}
-	;; # Acquiring sources for 9999 ebuild
-	*) # The rest
-		einfo "Your package is not in git repo, it will fetched via SRC_URI var."
-	;;
-	esac
+#   eend ${?}
+
+# 	case "${PV}" in
+# 	9999)
+# 			case "${KMNAME}" in
+# 			# KDE Libs needs to be extracted fully to build it.
+# 			"kdelibs"|\
+# 			"amarok"|\
+# 			"kdevelop"|\
+# 			"kaffeine"|\
+# 			"kdnssd-avahi")
+# 				einfo "Checkout: ${KMNAME} into '${EGIT_SOURCEDIR}'"
+# 				git checkout origin/${EGIT_BRANCH} "./${KMNAME}"
+#
+# 				# rename and move KMNAME to WORKDIR
+# 				mv ${TRANSPORT_DEBUG_OPTS} "./${KMNAME}" "./${KMNAME}_TMP"
+# 				mv ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP/* ./
+# 				rm -rf ${TRANSPORT_DEBUG_OPTS} ./${KMNAME}_TMP
+# 			;;
+# 			# Everything else must be handled in the same way
+# 			*)
+# 			;;
+# 			esac
+# 	;; # Acquiring sources for 9999 ebuild
+# 	*) # The rest
+# 		einfo "Your package is not in git repo, it will fetched via SRC_URI var."
+# 	;;
+# 	esac
+
+  # After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
+  if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+    einfo "========================================="
+    einfo "We are in:  $(pwd)"
+    einfo "Let's see what is in here..."
+    ls -la ./
+    einfo "========================================="
+  fi
+
+  git-2_cleanup
 
 	[[ -z "$*" ]] || die "$FUNCNAME no longer supports stages."
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
@@ -605,31 +602,31 @@ EOF
 kde_src_compile() {
 	debug-print-function $FUNCNAME "$@"
 
-	[[ -z "$1" ]] && kde_src_compile all
+# 	[[ -z "$1" ]] && kde_src_compile all
 
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
 	cd "${KDE_S}"
-	while [[ "$1" ]]; do
-		case $1 in
-			make)
+# 	while [[ "$1" ]]; do
+# 		case $1 in
+# 			make)
 				debug-print-section make
 				emake || die "died running emake, $FUNCNAME:make"
-				;;
-			all)
-				case ${EAPI:-0} in
-					0|1) kde_src_configure all ;;
-				esac
-				kde_src_compile make
-				;;
-			*)
-				case ${EAPI:-0} in
-					0|1) kde_src_configure $1 ;;
-				esac
-			;;
-		esac
-
-		shift
-	done
+# 				;;
+# 			all)
+# 				case ${EAPI:-0} in
+# 					0|2) kde_src_configure all ;;
+# 				esac
+# 				kde_src_compile make
+# 				;;
+# 			*)
+# 				case ${EAPI:-0} in
+# 					0|2) kde_src_configure $1 ;;
+# 				esac
+# 			;;
+# 		esac
+#
+# 		shift
+# 	done
 }
 
 # @FUNCTION: kde_src_install
@@ -656,7 +653,7 @@ kde_src_install() {
 		case $1 in
 			make)
 				debug-print-section make
-				emake install DESTDIR="${D}" destdir="${D}" || die "died running make install, $FUNCNAME:make"
+				DESTDIR="${D}" destdir="${D}" emake install || die "died running make install, $FUNCNAME:make"
 				;;
 			dodoc)
 				debug-print-section dodoc
