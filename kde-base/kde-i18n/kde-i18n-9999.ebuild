@@ -6,34 +6,35 @@ KMNAME="kde-i18n"
 LICENSE="GPL-2"
 WANT_AUTOMAKE="1.11"
 
+LANGS="af ar az bg bn br bs ca cs csb cy da de el en_GB eo es et
+eu fa fi fr fy ga gl he hi hr hu is it ja kk km ko lt lv mk
+mn ms nb nds nl nn pa pl pt pt_BR ro ru rw se sk sl sr
+sr@Latn ss sv ta te tg th tr uk uz uz@cyrillic vi wa zh_CN zh_TW"
+
 inherit eutils kde
 DESCRIPTION="[GIT] KDE internationalization package"
 HOMEPAGE="http://www.kde.org/"
 SLOT="3.5"
 IUSE=""
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
-# DEPEND="sys-devel/automake"
-# RDEPEND="${DEPEND}"
+
+DEPEND="sys-devel/automake"
+RDEPEND="${DEPEND}"
 
 need-kde 9999
-
-LANGS="af ar az bg bn br bs ca cs csb cy da de el en_GB eo es et
-eu fa fi fr fy ga gl he hi hr hu is it ja kk km ko lt lv mk
-mn ms nb nds nl nn pa pl pt pt_BR ro ru rw se sk sl sr
-sr@Latn ss sv ta te tg th tr uk uz uz@cyrillic vi wa zh_CN zh_TW"
 
 for X in ${LANGS} ; do
 # 	SRC_URI="${SRC_URI} linguas_${X}? ( mirror://kde/stable/${PV}/src/kde-i18n/kde-i18n-${X}-${PV}.tar.bz2 )"
 	IUSE="${IUSE} linguas_${X}"
 done
 
-# echo "IUSE: ${IUSE}"
-
 for  X in ${LANGS} ; do
 		use linguas_${X} && KMEXTRA="${KMEXTRA} ${X}"
-done 
+done
 
+# echo "IUSE: ${IUSE}"
 # echo "KMEXTRA: ${KMEXTRA}"
+echo "LINGUAS: ${LINGUAS}"
 
 src_unpack() {
 	if [[ -z ${LINGUAS} ]] || [[ -z ${A} && "${LINGUAS}" != "en" ]]; then
@@ -53,8 +54,6 @@ src_unpack() {
 # 	[[ -n ${A} ]] && unpack ${A}
 	kde_src_unpack
 
-# 	die "debug"
-
 	# Work around KDE bug 126311.
 	for dir in ${LANGS}; do
 		KDE_S="${EGIT_SOURCEDIR}/${dir}"
@@ -70,6 +69,8 @@ src_unpack() {
 			-i "${EGIT_SOURCEDIR}/${dir}/docs/common/Makefile.in" || die "Failed to fix ${lang}."
 		eend ${?}
 	done
+
+  die "debug"
 }
 
 src_configure() {

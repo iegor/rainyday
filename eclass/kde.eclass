@@ -157,12 +157,8 @@ kde_pkg_setup() {
 # For EAPI 0 and 1 it allso runs kde_src_prepare.
 kde_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
-	
-	# Working with git repositories now !
 
 	case "${PV}" in
-	# Check if user ebuild wants to download from git repo
-	# That should be behaviour by fefault, to centralise  all work with sources
 	9999)
 		einfo "Your package is in git repo, it will fetched via git routines."
 
@@ -285,16 +281,16 @@ kde_src_unpack() {
 #${KMMODULE}
 #EOF
 
-		    # After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
-            if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
-                einfo "========================================="
-                einfo "We are in:  $(pwd)"
-                einfo "Let's see what is in here..."
-                ls -la ./
-                einfo "========================================="
-            fi
+      # After checking out files move them into ${WORKDIR}/${P} (${S}) dir for build
+      if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+          einfo "========================================="
+          einfo "We are in:  $(pwd)"
+          einfo "Let's see what is in here..."
+          ls -la ./
+          einfo "========================================="
+      fi
 
-#			git config --list
+# 			git config --list
 
 			git-2_cleanup
 		eend ${?}

@@ -1,25 +1,35 @@
 #!/bin/sh
 
-dcopref=$(kdialog --progressbar "Hibernate in..." 5)
-dcop $dcopref setProgress 5
-# echo "new kdialog is created: ${dcopref}"
-dcop $dcopref showCancelButton true
+function actual_sleep() {
+  echo 'disk' > '/sys/power/state'
+}
 
-i=5
-while [[ $i -gt 0 ]]; do
-	if [[ $(dcop $dcopref wasCancelled) == true ]]; then
-		dcop $dcopref close
-#		echo "will not hibernate now"
-		exit 0
-	fi
-	let --i
-#	echo $i
-	dcop $dcopref setProgress $i
-	sleep 1
-done
+if [ -z ${KDE_FULL_SESSION} ]; then
+  if [ "${KDE_FULL_SESSION}" == "true" ]; then
+    dcopref=$(kdialog --progressbar "Hibernate in..." 5)
+    dcop $dcopref setProgress 5
+#     echo "new kdialog is created: ${dcopref}"
+    dcop $dcopref showCancelButton true
 
-if [[ $(dcop $dcopref wasCancelled) == true ]]; then
-	dcop $dcopref close
-#	echo "will hibernate now"
-	echo -n "disk" >/sys/power/state
+    i=5
+    while [[ $i -gt 0 ]]; do
+      if [[ $(dcop $dcopref wasCancelled) == true ]]; then
+		  dcop $dcopref close
+#   		echo "will not hibernate now"
+	   	exit 0
+      fi
+      let --i
+#       echo $i
+      dcop $dcopref setProgress $i
+      sleep 1
+    done
+
+    if [[ $(dcop $dcopref wasCancelled) == true ]]; then
+      dcop $dcopref close
+#       echo "will hibernate now"
+      actual_sleep
+    fi
+  fi
+else
+  actual_sleep
 fi
