@@ -31,7 +31,7 @@ fi
 
 inherit base eutils kde-functions flag-o-matic libtool autotools git-2
 
-ECLASS_DEBUG_OUTPUT=on
+# ECLASS_DEBUG_OUTPUT=on
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
@@ -219,16 +219,15 @@ kde_src_unpack() {
 #   mv ./kdecommon ${WORKDIR}/
   # Create final list of stuff to extract
 #   extractlist=""
-  for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
-              configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
-              README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
-              ${KMEXTRACTONLY} ${DOCS}
-  do
-#     extractlist="${extractlist} ${KMNAME}/${item%/}"
-    ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
-      git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
-    eend ${?}
-  done
+#  for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
+#              configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
+#              README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
+#              ${KMEXTRACTONLY} ${DOCS}
+#  do
+#    ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
+      git checkout origin/${EGIT_BRANCH} . &> /dev/null
+#    eend ${?}
+#  done
 
   ebegin "<co>: submodule files"
     git checkout origin/${EGIT_BRANCH} ".gitmodules" &> /dev/null

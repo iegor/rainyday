@@ -327,8 +327,58 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
+		# One repo for whole kde
+		EGIT_KDE_REPO_DIR="git://github.com/iegor/${KMNAME}.git"
+		EGIT_BRANCH="${KMBRANCH}"
+
+		# Default branch check and set, if wasn't set in ebuild
+		if [ -z "${EGIT_BRANCH}" ]; then
+			ewarn "branch is undefined, using default"
+			EGIT_BRANCH="develop"
+		fi
+
+		if [ -z ${EGIT_REPO_URI} ]; then
+			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
+			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
+		fi
+
+		git-2_init_variables
+		git-2_prepare_storedir
+		git-2_migrate_repository
+		git-2_fetch
+		git-2_gc
+#		git-2_submodules
+		git-2_move_source
+
+		# To make sure we are checking out into workdir
+		#S="${WORKDIR}"/${P}
+		mkdir -p ${S}
+		cd $EGIT_SOURCEDIR
+
+		for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
+			configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
+			README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
+			${KMEXTRACTONLY} ${DOCS}
+		do
+#			extractlist="${extractlist} ${KMNAME}/${item%/}"
+			ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
+				git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
+			eend ${?}
+		done
+
+		ebegin "<co>: submodule files"
+			git checkout origin/${EGIT_BRANCH} ".gitmodules" &> /dev/null
+		eend ${?}
+
+		ebegin "<co>: \"admin\" submodule"
+			git checkout origin/${EGIT_BRANCH} "admin" &> /dev/null
+		eend ${?}
+
+		git submodule init || die "Failed to init submodule"
+		git submodule update || die "Failed to update submodule"
+
 		# Don't add a param here without looking at its implementation.
-		kde_src_unpack
+#		kde_src_unpack
 
 		# Copy over KMCOPYLIB items
 		libname=""
