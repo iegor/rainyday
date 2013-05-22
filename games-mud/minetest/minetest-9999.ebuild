@@ -14,7 +14,7 @@ IUSE="dedicated nls +server"
 
 RDEPEND="dev-db/sqlite:3
 	sys-libs/zlib
-	=dev-libs/jthread-1.2.1-r1
+	dev-libs/jthread
 	!dedicated? (
 		app-arch/bzip2
 		media-libs/libogg
