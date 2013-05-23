@@ -13,25 +13,9 @@
 # @DESCRIPTION:
 # This eclass is inherited by all kde-* eclasses. Few ebuilds inherit straight from here.
 
-################################ SOME BASIC GIT SETTINGS ##################################
-
-# Source directory to clone repo into it
-EGIT_SOURCEDIR=${S}
-
-# Set some debugging options to see what was moved
-if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
-    TRANSPORT_DEBUG_OPTS="-v"
-else
-    TRANSPORT_DEBUG_OPTS=""
-fi
-
-###########################################################################################
-
 [[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="1.11"
 
-inherit base eutils kde-functions flag-o-matic libtool autotools git-2
-
-# ECLASS_DEBUG_OUTPUT=on
+inherit base eutils kde-functions flag-o-matic libtool autotools
 
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
@@ -54,6 +38,8 @@ if [[ ${CATEGORY} == "kde-base" ]]; then
 			*) ARTS_REQUIRED="never" ;;
 		esac
 	fi
+else
+	SRC_URI="${SRCURI} https://github.com/iegor/kde-common-admin/archive/develop.zip"
 fi
 
 if [[ ${ARTS_REQUIRED} != "yes" && ${ARTS_REQUIRED} != "never" && ${PN} != "arts" ]]; then
