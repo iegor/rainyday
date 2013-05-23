@@ -341,6 +341,29 @@ kde-meta_src_unpack() {
 			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
 			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
 		fi
+		# Short debug messaging, log
+		debug-print "S: $S"
+		debug-print "A: $A"
+		debug-print "P: $P"
+		debug-print "PN: $PN"
+		debug-print "PV: $PV"
+		debug-print "DISTDIR: ${DISTDIR}"
+		debug-print "D: ${D}"
+		debug-print "WORKDIR: $WORKDIR";
+		if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+			if [ -d ${WORKDIR} ]; then
+				einfo "workdir exist."
+				ls -la ${WORKDIR}
+			fi
+		fi
+		debug-print "pwd: $(pwd)"
+		debug-print "T: $T"
+		debug-print "KMNAME: ${KMNAME}"
+		debug-print "KMMODULE: ${KMMODULE}"
+#		debug-print "files list: ${extractlist}"
+		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
+		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
+
 
 		git-2_init_variables
 		git-2_prepare_storedir
