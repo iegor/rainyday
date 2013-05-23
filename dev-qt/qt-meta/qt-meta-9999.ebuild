@@ -3,7 +3,7 @@
 # $Header: $
 
 # *** Please remember to update qt3.eclass when revbumping this ***
-
+EAPI=2
 inherit eutils flag-o-matic toolchain-funcs git-2
 
 SRCTYPE="free"
@@ -14,8 +14,6 @@ IMMQT_P="qt-x11-immodule-unified-qt3-9999-gentoo"
 
 SRC_URI="immqt? ( mirror://gentoo/${IMMQT_P}.diff.bz2 )
 	immqt-bc? ( mirror://gentoo/${IMMQT_P}.diff.bz2 )"
-EGIT_REPO_URI="git://github.com/iegor/qt.git"
-EGIT_SOURCEDIR="${S}"
 
 LICENSE="|| ( QPL-1.0 GPL-2 GPL-3 )"
 
@@ -52,6 +50,9 @@ PDEPEND="odbc? ( ~dev-db/qt-unixODBC-$PV )"
 S="${WORKDIR}/qt-x11-${SRCTYPE}-${PV}"
 
 QTBASE="/usr/qt/3"
+
+EGIT_REPO_URI="git://github.com/iegor/qt.git"
+EGIT_SOURCEDIR="${S}"
 
 pkg_setup() {
 	if use immqt && use immqt-bc ; then
@@ -100,7 +101,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack ${A}
+	git-2_src_unpack
 	cd "${S}"
 
 	sed -i -e 's:read acceptance:acceptance=yes:' configure
