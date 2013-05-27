@@ -4,6 +4,5 @@ Content-Type: text/plain
 Posted: 2013-02-20
 Revision: 1
 News-Item-Format: 1.0
-# Display-If-Installed:
 
 All live (9999) ebuilds are now feed in "live" branch, not master.
