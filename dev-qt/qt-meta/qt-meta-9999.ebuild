@@ -3,14 +3,13 @@
 # $Header: $
 
 # *** Please remember to update qt3.eclass when revbumping this ***
-EAPI=2
-inherit eutils flag-o-matic toolchain-funcs git-2
+inherit eutils git-2 flag-o-matic toolchain-funcs
 
 SRCTYPE="free"
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework."
 HOMEPAGE="http://qt.nokia.com/"
 
-IMMQT_P="qt-x11-immodule-unified-qt3-9999-gentoo"
+IMMQT_P="qt-x11-immodule-unified-qt3.3.8-20070321-gentoo"
 
 SRC_URI="immqt? ( mirror://gentoo/${IMMQT_P}.diff.bz2 )
 	immqt-bc? ( mirror://gentoo/${IMMQT_P}.diff.bz2 )"
@@ -53,6 +52,7 @@ QTBASE="/usr/qt/3"
 
 EGIT_REPO_URI="git://github.com/iegor/qt.git"
 EGIT_SOURCEDIR="${S}"
+EGIT_BRANCH="develop"
 
 pkg_setup() {
 	if use immqt && use immqt-bc ; then
@@ -252,7 +252,7 @@ src_install() {
 	# libraries
 	dolib.so lib/lib{editor,qassistantclient,designercore}.a
 	dolib.so lib/libqt-mt.la
-	dolib.so lib/libqt-mt.so.${PV/b} lib/libqui.so.1.0.0
+	dolib.so lib/libqt-mt.so.${PV} lib/libqui.so.1.0.0
 	cd "${D}"/${QTBASE}/$(get_libdir)
 
 	for x in libqui.so ; do
@@ -262,12 +262,12 @@ src_install() {
 	done
 
 	# version symlinks - 3.3.5->3.3->3->.so
-	ln -s libqt-mt.so.${PV/b} libqt-mt.so.3.3
+	ln -s libqt-mt.so.${PV} libqt-mt.so.3.3
 	ln -s libqt-mt.so.3.3 libqt-mt.so.3
 	ln -s libqt-mt.so.3 libqt-mt.so
 
 	# libqt -> libqt-mt symlinks
-	ln -s libqt-mt.so.${PV/b} libqt.so.${PV/b}
+	ln -s libqt-mt.so.${PV} libqt.so.${PV}
 	ln -s libqt-mt.so.3.3 libqt.so.3.3
 	ln -s libqt-mt.so.3 libqt.so.3
 	ln -s libqt-mt.so libqt.so
