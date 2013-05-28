@@ -127,15 +127,17 @@ pkg_setup() {
 
 src_prepare()
 {
-	epatch "${FILESDIR}"/${PN}-desktop.patch
-	epatch "${FILESDIR}"/${PN}-${SLOT}-doxygen.patch
+	#epatch "${FILESDIR}"/${PN}-desktop.patch
+	#epatch "${FILESDIR}"/${PN}-${SLOT}-doxygen.patch
 	# Eigen2
-	einfo "Removing bundled Eigen2 ..."
-	test -d extern/Eigen2 && rm -r extern/Eigen2
-	epatch "${FILESDIR}"/${PN}-${SLOT}-eigen.patch
-	if use libav; then
-		epatch "${FILESDIR}"/${PN}-libav.patch
-	fi
+	#einfo "Removing bundled Eigen2 ..."
+	#test -d extern/Eigen2 && rm -r extern/Eigen2
+	#epatch "${FILESDIR}"/${PN}-${SLOT}-eigen.patch
+	#if use libav; then
+	#	epatch "${FILESDIR}"/${PN}-libav.patch
+	#fi
+
+	einfo "No patching, it's live atom!"
 }
 
 src_configure() {
