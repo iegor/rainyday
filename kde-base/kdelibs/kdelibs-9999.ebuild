@@ -4,7 +4,7 @@
 EAPI=2
 KMNAME=kdelibs
 
-inherit kde flag-o-matic eutils multilib
+inherit kde-meta flag-o-matic eutils multilib
 # Calling this here to ensure we install into git prefix directory
 set-kdedir 9999
 DESCRIPTION="[GIT] KDE libraries needed by all KDE programs."
@@ -92,6 +92,10 @@ PDEPEND="
 # Testing code is rather broken and merely for developer purposes, so disable it.
 RESTRICT="test"
 
+#EGIT_REPO_URI="git://github.com/iegor/kdelibs.git"
+#EGIT_BRANCH="develop"
+#EGIT_SOURCEDIR="${S}"
+
 pkg_setup() {
 	if use legacyssl ; then
 		echo ""
@@ -116,7 +120,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	kde_src_unpack
+	kde-meta_src_unpack
 
 	# remove this symlink, bug 264767
 	rm -f "${WORKDIR}/${P}"/kdeprint/kdeprint
@@ -135,7 +139,7 @@ src_unpack() {
 	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.{am,in}
 }
 
-src_compile() {
+src_configure() {
 	rm -f "${S}/configure"
 
 	myconf="--with-distribution=Gentoo --disable-fast-malloc
@@ -170,7 +174,11 @@ src_compile() {
 
 	replace-flags "-O3" "-O2" # see bug #148180
 
-	kde_src_compile
+	kde_src_configure myconf configure
+}
+
+src_compile() {
+	kde_src_compile make
 
 	if use doc; then
 		emake apidox || die
@@ -178,7 +186,7 @@ src_compile() {
 }
 
 src_install() {
-	kde_src_install
+	kde-meta_src_install
 
 	if use doc; then
 		emake DESTDIR="${D}" install-apidox || die

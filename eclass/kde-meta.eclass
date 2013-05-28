@@ -378,16 +378,21 @@ kde-meta_src_unpack() {
 		mkdir -p ${S}
 		cd $EGIT_SOURCEDIR
 
-		for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
-			configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
-			README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
-			${KMEXTRACTONLY} ${DOCS}
-		do
-#			extractlist="${extractlist} ${KMNAME}/${item%/}"
-			ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
-				git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
+		if [ "${KMNAME}" == "${PN}" ]; then
+			ebegin "Checking out whole module"
+				git checkout origin/${EGIT_BRANCH} . &> /dev/null
 			eend ${?}
-		done
+		else
+			for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
+				configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
+				README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
+				${KMEXTRACTONLY} ${DOCS}
+			do
+				ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
+					git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
+				eend ${?}
+			done
+		fi
 
 		ebegin "<co>: submodule files"
 			git checkout origin/${EGIT_BRANCH} ".gitmodules" &> /dev/null

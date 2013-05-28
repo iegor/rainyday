@@ -58,6 +58,7 @@ kde-base/kdeartwork kde-base/kdeartwork-kworldwatch
 kde-base/kdeartwork kde-base/kdeartwork-sounds
 kde-base/kdeartwork kde-base/kdeartwork-styles
 kde-base/kdeartwork kde-base/kdeartwork-wallpapers
+kde-base/kdebase kde-base/kdelibs
 kde-base/kdebase kde-base/drkonqi
 kde-base/kdebase kde-base/kappfinder
 kde-base/kdebase kde-base/kate
