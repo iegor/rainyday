@@ -17,7 +17,7 @@ SRC_URI="immqt? ( mirror://gentoo/${IMMQT_P}.diff.bz2 )
 LICENSE="|| ( QPL-1.0 GPL-2 GPL-3 )"
 
 SLOT="3"
-KEYWORDS="alpha amd64 hppa ia64 ~mips ppc ~ppc64 sparc x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 IUSE="cups debug doc examples firebird ipv6 mysql nas nis odbc opengl postgres sqlite xinerama immqt immqt-bc"
 
 RDEPEND="
@@ -53,6 +53,12 @@ QTBASE="/usr/qt/3"
 EGIT_REPO_URI="git://github.com/iegor/qt.git"
 EGIT_SOURCEDIR="${S}"
 EGIT_BRANCH="develop"
+
+QTVER_MAJOR=3
+QTVER_MINOR=3
+QTVER_RELEASE=8
+
+QTVER_STRING="${QTVER_MAJOR}.${QTVER_MINOR}.${QTVER_RELEASE}"
 
 pkg_setup() {
 	if use immqt && use immqt-bc ; then
@@ -252,7 +258,7 @@ src_install() {
 	# libraries
 	dolib.so lib/lib{editor,qassistantclient,designercore}.a
 	dolib.so lib/libqt-mt.la
-	dolib.so lib/libqt-mt.so.${PV} lib/libqui.so.1.0.0
+	dolib.so lib/libqt-mt.so.${QTVER_STRING} lib/libqui.so.1.0.0
 	cd "${D}"/${QTBASE}/$(get_libdir)
 
 	for x in libqui.so ; do
@@ -262,14 +268,15 @@ src_install() {
 	done
 
 	# version symlinks - 3.3.5->3.3->3->.so
-	ln -s libqt-mt.so.${PV} libqt-mt.so.3.3
-	ln -s libqt-mt.so.3.3 libqt-mt.so.3
-	ln -s libqt-mt.so.3 libqt-mt.so
+	ln -s libqt-mt.so.${QTVER_STRING} libqt-mt.so
+	ln -s libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR} libqt-mt.so.${QTVER_MAJOR}
+	ln -s libqt-mt.so.${QTVER_MAJOR} libqt-mt.so
 
 	# libqt -> libqt-mt symlinks
-	ln -s libqt-mt.so.${PV} libqt.so.${PV}
-	ln -s libqt-mt.so.3.3 libqt.so.3.3
-	ln -s libqt-mt.so.3 libqt.so.3
+	ln -s libqt-mt.so.${QTVER_STRING} libqt.so.${QTVER_STRING}
+	ln -s libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR}
+	libqt.so.${QTVER_MAJOR}.${QTVER_MINOR}
+	ln -s libqt-mt.so.${QTVER_MAJOR} libqt.so.${QTVER_MAJOR}
 	ln -s libqt-mt.so libqt.so
 
 	# plugins
