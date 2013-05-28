@@ -38,8 +38,8 @@ if [[ ${CATEGORY} == "kde-base" ]]; then
 			*) ARTS_REQUIRED="never" ;;
 		esac
 	fi
-else
-	SRC_URI="${SRCURI} https://github.com/iegor/kde-common-admin/archive/develop.zip"
+#else
+#	SRC_URI="${SRCURI} https://github.com/iegor/kde-common-admin/archive/develop.zip"
 fi
 
 if [[ ${ARTS_REQUIRED} != "yes" && ${ARTS_REQUIRED} != "never" && ${PN} != "arts" ]]; then

@@ -226,6 +226,7 @@ kde-base/kdenetwork kde-base/ktalkd
 kde-base/kdenetwork kde-base/kwifimanager
 kde-base/kdenetwork kde-base/librss
 kde-base/kdenetwork kde-base/lisa
+kde-base/kdenetwork kde-base/kdnssd-avahi
 kde-base/kdepim kde-base/akregator
 kde-base/kdepim kde-base/certmanager
 kde-base/kdepim kde-base/kaddressbook
