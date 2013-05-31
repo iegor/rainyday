@@ -186,7 +186,7 @@ src_compile() {
 }
 
 src_install() {
-	kde-meta_src_install
+	kde_src_install
 
 	if use doc; then
 		emake DESTDIR="${D}" install-apidox || die
