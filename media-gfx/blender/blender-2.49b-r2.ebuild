@@ -4,7 +4,7 @@
 
 EAPI=2
 
-PYTHON_DEPEND="2:2.6"
+PYTHON_DEPEND="2:2.7"
 
 inherit scons-utils multilib eutils python
 
@@ -66,8 +66,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.49b-linux-3.patch  # Bug #381099
 	epatch "${FILESDIR}"/${PN}-2.49b-subversion-1.7.patch
 	epatch "${FILESDIR}"/${P}-libav-0.7.patch
-	epatch "${FILESDIR}"/${P}-gcc46.patch
 	rm -f "${S}/release/scripts/bpymodules/"*.pyc
+#	epatch "${FILESDIR}"/${P}-gcc46.patch
 
 	# Fix building with >=media-libs/openjpeg-1.5.0 (bug #409283)
 	sed -i \
