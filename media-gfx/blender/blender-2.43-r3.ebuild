@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/blender/Attic/blender-2.43-r3.ebuild,v 1.5 2008/12/21 15:04:19 ssuominen dead $
 
+PYTHON_DEPEND="2:2.7"
+
 inherit multilib flag-o-matic eutils python
 
 #IUSE="jpeg mozilla png sdl static truetype"
@@ -16,8 +18,7 @@ SLOT="0"
 LICENSE="|| ( GPL-2 BL )"
 KEYWORDS="~amd64 ppc ppc64 ~sparc x86"
 
-RDEPEND="=dev-lang/python-2.4*
-	>=dev-libs/openssl-0.9.6
+RDEPEND=">=dev-libs/openssl-0.9.6
 	ffmpeg? ( >=media-video/ffmpeg-${FFMPEG_SNAP/-/_}
 			media-libs/x264 )
 	jpeg? ( media-libs/jpeg )

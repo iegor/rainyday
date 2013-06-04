@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/blender/Attic/blender-2.43-r2.ebuild,v 1.6 2008/11/16 22:01:43 lu_zero dead $
 
+PYTHON_DEPEND="2:2.7"
+
 inherit multilib flag-o-matic eutils python
 
 #IUSE="jpeg mozilla png sdl static truetype"
