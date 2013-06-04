@@ -16,7 +16,7 @@ SRC_URI="http://download.blender.org/source/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="|| ( GPL-2 BL BSD )"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 
 RDEPEND="ffmpeg? ( virtual/ffmpeg[encode,theora] )
 	>=media-libs/openjpeg-1.5.0
