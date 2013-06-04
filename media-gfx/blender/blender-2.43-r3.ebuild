@@ -65,6 +65,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/blender-2.45-cve-2008-1102.patch
 	epatch "${FILESDIR}"/blender-2.45-cve-2008-1103-1.patch
 	epatch "${FILESDIR}"/blender-2.45-cve-2008-1103-2.patch
+	epatch "${FILESDIR}"/blender-2.45-missing_includes.patch
 	epatch "${FILESDIR}"/${P}-CVE-2008-4863.patch
 
 	if use ffmpeg ; then
