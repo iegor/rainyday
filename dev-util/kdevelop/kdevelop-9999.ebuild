@@ -5,7 +5,7 @@
 EAPI=2
 ARTS_REQUIRED="never"
 KMNAME=kdevelop
-inherit kde eutils db-use
+inherit kde-meta eutils db-use git-2
 DESCRIPTION="[GIT] Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
 HOMEPAGE="http://www.kdevelop.org"
 LICENSE="GPL-2"
@@ -22,6 +22,10 @@ RDEPEND="${DEPEND}
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
+EGIT_REPO_URI="git://github.com/iegor/kdevelop.git"
+EGIT_SOURCE_DIR="${S}"
+EGIT_BRANCH="develop"
+
 need-kde 9999
 
 pkg_setup() {
@@ -29,6 +33,10 @@ pkg_setup() {
 	elog "If you get build failure similar as bug 237304"
 	elog "please build with MAKEOPTS=\"-j1\""
 	elog
+}
+
+src_unpack() {
+	kde-meta_src_unpack
 }
 
 src_prepare() {

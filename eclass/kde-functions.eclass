@@ -277,6 +277,7 @@ kde-base/kdesdk kde-base/kspy
 kde-base/kdesdk kde-base/kuiviewer
 kde-base/kdesdk kde-base/umbrello
 kde-base/kdesdk kde-misc/kdiff3
+kde-base/kdesdk dev-util/kdevelop
 kde-base/kdetoys kde-base/amor
 kde-base/kdetoys kde-base/eyesapplet
 kde-base/kdetoys kde-base/fifteenapplet
