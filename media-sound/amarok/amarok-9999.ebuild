@@ -13,7 +13,7 @@ pl pt pt_BR ro ru rw se sk sl sq sr sr@Latn ss sv ta tg th tr uk uz
 zh_CN zh_TW"
 LANGS_DOC="da de es et fr it nl pl pt pt_BR ru sv"
 USE_KEG_PACKAGING="1"
-inherit kde
+inherit kde-meta
 PKG_SUFFIX=""
 DESCRIPTION="[GIT] Advanced audio player based on KDE framework."
 HOMEPAGE="http://amarok.kde.org/"
@@ -73,11 +73,11 @@ src_configure() {
 		--without-nmm
 	"
 
-	kde_src_configure
+	kde-meta_src_configure
 }
 
 src_install() {
-	kde_src_install
+	kde-meta_src_install
 
 	# As much as I respect Ian, I'd rather leave Amarok to use mongrel
 	# from Portage, for security and policy reasons.
