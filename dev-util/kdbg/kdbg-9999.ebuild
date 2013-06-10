@@ -6,7 +6,7 @@ EAPI=2
 KMNAME=kdesdk
 KMMODULE=kdbg
 ARTS_REQUIRED="never"
-inherit eutils kde
+inherit eutils kde-meta
 SLOT="3.5"
 LICENSE="GPL-2"
 DESCRIPTION="[GIT] A Graphical Debugger Interface to gdb."
