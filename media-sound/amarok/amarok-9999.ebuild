@@ -53,6 +53,7 @@ RDEPEND="${RDEPEND}
 
 need-kde ${PV}
 
+KDE_S=${S}
 src_configure() {
 	# Extra, unsupported engines are forcefully disabled.
 	local myconf="
@@ -74,6 +75,7 @@ src_configure() {
 	"
 
 	kde-meta_src_configure
+	kde_src_configure all
 }
 
 src_install() {
