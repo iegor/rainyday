@@ -211,6 +211,7 @@ kde-base/kdemultimedia kde-base/libkcddb
 kde-base/kdemultimedia kde-base/mpeglib
 kde-base/kdemultimedia kde-base/noatun
 kde-base/kdemultimedia media-sound/amarok
+kde-base/kdemultimedia media-video/kaffeine
 kde-base/kdenetwork kde-base/dcoprss
 kde-base/kdenetwork kde-base/kdenetwork-filesharing
 kde-base/kdenetwork kde-base/kdenetwork-kfile-plugins

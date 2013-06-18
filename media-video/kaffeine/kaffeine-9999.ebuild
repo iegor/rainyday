@@ -3,14 +3,14 @@
 # $Header: /var/cvsroot/gentoo-x86/media-video/kaffeine/kaffeine-0.8.8.ebuild,v 1.4 2009/06/09 14:16:40 tampakrap Exp $
 
 EAPI=2
-KMNAME=kaffeine
+KMNAME=kdemultimedia
 ARTS_REQUIRED="never"
-USE_KEG_PACKAGING="1"
+# USE_KEG_PACKAGING="1"
 LANGS="ar bg bn br ca cs da de el es et fi fr ga gl he hu it ja ka \
 	km lt mk nb nl nn pa pl pt_BR pt ru se sk sr@Latn sr sv tg tr \
 	uk uz zh_CN zh_TW"
 LANGS_DOC=""
-inherit eutils kde flag-o-matic
+inherit eutils kde-meta flag-o-matic
 DESCRIPTION="[GIT] Media player for KDE using xine and gstreamer backends."
 HOMEPAGE="http://kaffeine.sourceforge.net/"
 LICENSE="GPL-2"
@@ -35,6 +35,8 @@ DEPEND="${RDEPEND}
 
 need-kde 9999
 
+#KDE_S=${S}
+#KEG_PO_DIR=kaffeine
 src_configure() {
 	# see bug #143168
 	replace-flags -O3 -O2
@@ -52,7 +54,7 @@ src_configure() {
 		$(use_with xcb)
 		$(use_with encode lame)"
 
-	kde_src_configure
+	kde_src_configure all
 }
 
 src_install() {
