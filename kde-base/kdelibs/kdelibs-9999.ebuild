@@ -56,7 +56,7 @@ RDEPEND="
 	arts? ( ~kde-base/arts-9999 )
 	!avahi? (
 		!bindist? (
-			!kde-base/kdnssd-avahi
+			!kde-misc/kdnssd-avahi
 			net-misc/mDNSResponder
 		)
 	)
@@ -85,8 +85,8 @@ RDEPEND="${RDEPEND}
 	>=x11-misc/xdg-utils-1.0.2-r3
 "
 PDEPEND="
-	avahi? ( =kde-base/kdnssd-avahi-${PV}:${SLOT} )
-	bindist? ( =kde-base/kdnssd-avahi-${PV}:${SLOT} )
+	avahi? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
+	bindist? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
 "
 
 # Testing code is rather broken and merely for developer purposes, so disable it.
