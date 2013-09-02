@@ -171,7 +171,7 @@ start() {
 	# Try to enable nvidia card
 	# Try to start bumblebee X instance
 	ebegin "Starting X instance"
-		export LD_PRELOAD="/usr/lib/opengl/nvidia/lib/libGL.so:/usr/lib/opengl/nvidia/lib/libnvidia-tls.so"
+		export LD_PRELOAD="/usr/lib/opengl/nvidia/lib/libGL.so"
 		start-stop-daemon -v -S -q -b -p ${PIDFILE} -x ${DAEMON} -P -- ${DAEMON_ARGS} || eend 1
 		sleep ${DAEMON_WAIT_INTERVAL}
 	eend 0
