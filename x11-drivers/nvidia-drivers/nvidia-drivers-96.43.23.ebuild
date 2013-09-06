@@ -1,11 +1,9 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-96.43.23.ebuild,v 1.6 2012/12/19 16:52:01 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-96.43.23.ebuild,v 1.16 2013/07/22 13:52:21 jer Exp $
 
-EAPI="2"
-
-inherit eutils flag-o-matic linux-mod multilib nvidia-driver portability \
-	unpacker user versionator
+EAPI=5
+inherit eutils flag-o-matic linux-mod multilib nvidia-driver portability unpacker user versionator
 
 X86_NV_PACKAGE="NVIDIA-Linux-x86-${PV}"
 AMD64_NV_PACKAGE="NVIDIA-Linux-x86_64-${PV}"
@@ -17,14 +15,14 @@ SRC_URI="x86? ( ftp://download.nvidia.com/XFree86/Linux-x86/${PV}/${X86_NV_PACKA
 	 amd64? ( ftp://download.nvidia.com/XFree86/Linux-x86_64/${PV}/${AMD64_NV_PACKAGE}-pkg2.run )
 	 x86-fbsd? ( ftp://download.nvidia.com/freebsd/${PV}/${X86_FBSD_NV_PACKAGE}.tar.gz )"
 
-LICENSE="NVIDIA"
+LICENSE="GPL-2 NVIDIA-r1"
 SLOT="0"
 KEYWORDS="-* amd64 x86 ~x86-fbsd"
 IUSE="acpi custom-cflags gtk multilib kernel_linux"
-RESTRICT="strip"
+RESTRICT="bindist mirror strip"
 EMULTILIB_PKG="true"
 
-COMMON="<x11-base/xorg-server-1.12.99
+COMMON="
 	gtk? (
 		!media-video/nvidia-settings
 		dev-libs/atk
@@ -37,12 +35,24 @@ COMMON="<x11-base/xorg-server-1.12.99
 		|| ( x11-libs/pangox-compat <x11-libs/pango-1.31[X] )
 	)
 	kernel_linux? ( >=sys-libs/glibc-2.6.1 )
-	multilib? ( app-emulation/emul-linux-x86-opengl )
-	>=app-admin/eselect-opengl-1.0.9"
+	>=app-admin/eselect-opengl-1.0.9
+"
 DEPEND="${COMMON}
-	kernel_linux? ( virtual/linux-sources )"
+	kernel_linux? ( virtual/linux-sources )
+"
 RDEPEND="${COMMON}
-	acpi? ( sys-power/acpid )"
+	<x11-base/xorg-server-1.12.99
+	acpi? ( sys-power/acpid )
+	multilib? (
+		|| (
+			(
+				x11-libs/libX11[abi_x86_32]
+				x11-libs/libXext[abi_x86_32]
+			)
+			app-emulation/emul-linux-x86-opengl
+		)
+	)
+"
 
 QA_TEXTRELS_x86="usr/lib/opengl/nvidia/lib/libnvidia-tls.so.${PV}
 	usr/lib/opengl/nvidia/lib/libGL.so.${PV}
@@ -189,6 +199,19 @@ pkg_setup() {
 
 	export _POSIX2_VERSION="199209"
 
+	if use kernel_linux && kernel_is ge 3 7 ; then
+		ewarn "Gentoo supports kernels which are supported by NVIDIA"
+		ewarn "which are limited to the following kernels:"
+		ewarn "<sys-kernel/gentoo-sources-3.7"
+		ewarn "<sys-kernel/vanilla-sources-3.7"
+		ewarn ""
+		ewarn "You are free to utilize epatch_user to provide whatever"
+		ewarn "support you feel is appropriate, but will not receive"
+		ewarn "support as a result of those changes."
+		ewarn ""
+		ewarn "Do not file a bug report about this."
+	fi
+
 	# Since Nvidia ships 3 different series of drivers, we need to give the user
 	# some kind of guidance as to what version they should install. This tries
 	# to point the user in the right direction but can't be perfect. check
@@ -276,6 +299,7 @@ src_compile() {
 		MAKE="$(get_bmake)" CFLAGS="-Wno-sign-compare" emake CC="$(tc-getCC)" \
 			LD="$(tc-getLD)" LDFLAGS="$(raw-ldflags)" || die
 	elif use kernel_linux; then
+		BUILD_PARAMS+=" PATCHLEVEL=not4"
 		linux-mod_src_compile
 	fi
 }
@@ -296,51 +320,45 @@ src_install() {
 			-e 's:VIDEOGID:'${VIDEOGROUP}':' "${FILESDIR}"/nvidia-169.07 > \
 			"${WORKDIR}"/nvidia
 		insinto /etc/modprobe.d
-		newins "${WORKDIR}"/nvidia nvidia.conf || die
+		newins "${WORKDIR}"/nvidia nvidia.conf
 	elif use x86-fbsd; then
 		insinto /boot/modules
-		doins "${WORKDIR}/${NV_PACKAGE}/src/nvidia.kld" || die
+		doins "${WORKDIR}/${NV_PACKAGE}/src/nvidia.kld"
 
 		exeinto /boot/modules
-		doexe "${WORKDIR}/${NV_PACKAGE}/src/nvidia.ko" || die
+		doexe "${WORKDIR}/${NV_PACKAGE}/src/nvidia.ko"
 	fi
 
 	# NVIDIA kernel <-> userspace driver config lib
-	dolib.so ${NV_LIB}/libnvidia-cfg.so.${NV_SOVER} || \
-		die "failed to install libnvidia-cfg"
+	dolib.so ${NV_LIB}/libnvidia-cfg.so.${NV_SOVER}
 
 	# Xorg DDX driver
 	insinto /usr/$(get_libdir)/xorg/modules/drivers
-	doins ${NV_X11_DRV}/nvidia_drv.so || die "failed to install nvidia_drv.so"
+	doins ${NV_X11_DRV}/nvidia_drv.so
 
 	# Xorg GLX driver
 	insinto /usr/$(get_libdir)/opengl/nvidia/extensions
-	doins ${NV_X11_EXT}/libglx.so.${NV_SOVER} || \
-		die "failed to install libglx.so"
+	doins ${NV_X11_EXT}/libglx.so.${NV_SOVER}
 	dosym /usr/$(get_libdir)/opengl/nvidia/extensions/libglx.so.${NV_SOVER} \
-		/usr/$(get_libdir)/opengl/nvidia/extensions/libglx.so || \
-		die "failed to create libglx.so symlink"
+		/usr/$(get_libdir)/opengl/nvidia/extensions/libglx.so
 
 	# XvMC driver
-	dolib.a ${NV_X11}/libXvMCNVIDIA.a || \
-		die "failed to install libXvMCNVIDIA.so"
-	dolib.so ${NV_X11}/libXvMCNVIDIA.so.${NV_SOVER} || \
-		die "failed to install libXvMCNVIDIA.so"
-	dosym libXvMCNVIDIA.so.${NV_SOVER} /usr/$(get_libdir)/libXvMCNVIDIA.so || \
-		die "failed to create libXvMCNVIDIA.so symlink"
+	dolib.a ${NV_X11}/libXvMCNVIDIA.a
+	dolib.so ${NV_X11}/libXvMCNVIDIA.so.${NV_SOVER}
+	dosym libXvMCNVIDIA.so.${NV_SOVER} /usr/$(get_libdir)/libXvMCNVIDIA.so
 
 	# CUDA headers (driver to come)
 	if [[ -d ${S}/usr/include/cuda ]]; then
 		dodir /usr/include/cuda
 		insinto /usr/include/cuda
-		doins usr/include/cuda/*.h || die "failed to install cuda headers"
+		doins usr/include/cuda/*.h
 	fi
 
 	# OpenCL headers (driver to come)
 	if [[ -d ${S}/usr/include/CL ]]; then
 		dodir /usr/include/CL
 		insinto /usr/include/CL
-		doins usr/include/CL/*.h || die "failed to install OpenCL headers"
+		doins usr/include/CL/*.h
 	fi
 
 	# Documentation
@@ -358,10 +376,10 @@ src_install() {
 	fi
 
 	# Helper Apps
-	dobin ${NV_EXEC}/nvidia-xconfig || die
-	dobin ${NV_EXEC}/nvidia-bug-report.sh || die
+	dobin ${NV_EXEC}/nvidia-xconfig
+	dobin ${NV_EXEC}/nvidia-bug-report.sh
 	if use gtk; then
-		dobin usr/bin/nvidia-settings || die
+		dobin usr/bin/nvidia-settings
 	fi
 #	if use kernel_linux; then
 #		dobin ${NV_EXEC}/nvidia-smi || die
@@ -391,8 +409,8 @@ donvidia() {
 
 	libname=$(basename $2)
 
-	doexe $2.$3 || die "failed to install $2"
-	dosym ${libname}.$3 $1/${libname} || die "failed to symlink $2"
+	doexe $2.$3
+	dosym ${libname}.$3 $1/${libname}
 	[[ $3 != "1" ]] && dosym ${libname}.$3 $1/${libname}.1
 }
 
@@ -485,7 +503,7 @@ pkg_postinst() {
 	elog "To use the NVIDIA GLX, run \"eselect opengl set nvidia\""
 	elog
 	elog "NVIDIA has requested that any bug reports submitted have the"
-	elog "output of /usr/bin/nvidia-bug-report.sh included."
+	elog "output of nvidia-bug-report.sh included."
 	elog
 }
 

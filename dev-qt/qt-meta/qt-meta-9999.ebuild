@@ -268,14 +268,13 @@ src_install() {
 	done
 
 	# version symlinks - 3.3.5->3.3->3->.so
-	ln -s libqt-mt.so.${QTVER_STRING} libqt-mt.so
+	ln -s libqt-mt.so.${QTVER_STRING} libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR}
 	ln -s libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR} libqt-mt.so.${QTVER_MAJOR}
 	ln -s libqt-mt.so.${QTVER_MAJOR} libqt-mt.so
 
 	# libqt -> libqt-mt symlinks
 	ln -s libqt-mt.so.${QTVER_STRING} libqt.so.${QTVER_STRING}
-	ln -s libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR}
-	libqt.so.${QTVER_MAJOR}.${QTVER_MINOR}
+	ln -s libqt-mt.so.${QTVER_MAJOR}.${QTVER_MINOR} libqt.so.${QTVER_MAJOR}.${QTVER_MINOR}
 	ln -s libqt-mt.so.${QTVER_MAJOR} libqt.so.${QTVER_MAJOR}
 	ln -s libqt-mt.so libqt.so
 

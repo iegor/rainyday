@@ -27,8 +27,6 @@ arts? ( =kde-base/artsplugin-akode-${PV}:${SLOT}
 =kde-base/kmix-${PV}:${SLOT}
 =kde-base/kscd-${PV}:${SLOT}
 =kde-base/libkcddb-${PV}:${SLOT}
-=media-sound/amarok-${PV}:${SLOT}
-=media-video/kaffeine-${PV}:${SLOT}
 "
 
 # Not really useful, these are scheduled for being removed from KDE soon.

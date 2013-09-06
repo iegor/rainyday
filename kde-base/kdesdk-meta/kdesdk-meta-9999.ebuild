@@ -8,7 +8,7 @@ DESCRIPTION="[GIT] kdesdk - merge this to pull in all kdesdk-derived packages"
 HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2"
 SLOT="3.5"
-IUSE="develop subversion elibc_glibc"
+IUSE="subversion elibc_glibc"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 RDEPEND="
@@ -23,11 +23,6 @@ RDEPEND="
 	=kde-base/kdesdk-scripts-${PV}:${SLOT}
 	elibc_glibc? ( =kde-base/kmtrace-${PV}:${SLOT} )
 	=kde-base/kompare-${PV}:${SLOT}
-	>=kde-misc/kdiff3-0.9.92
 	=kde-base/kspy-${PV}:${SLOT}
 	=kde-base/kuiviewer-${PV}:${SLOT}
-	=kde-base/umbrello-${PV}:${SLOT}
-	develop? (
-		=dev-util/kdevelop-${PV}:${SLOT}
-		=dev-util/kdbg-${PV}:${SLOT}
-	)"
+	=kde-base/umbrello-${PV}:${SLOT}"

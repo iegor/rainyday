@@ -16,7 +16,6 @@ RDEPEND="=kde-base/dcoprss-${PVR}:${SLOT}
 	=kde-base/kdict-${PVR}:${SLOT}
 	=kde-base/kget-${PVR}:${SLOT}
 	=kde-base/knewsticker-${PVR}:${SLOT}
-	=kde-base/kopete-${PVR}:${SLOT}
 	=kde-base/kpf-${PVR}:${SLOT}
 	=kde-base/kppp-${PVR}:${SLOT}
 	=kde-base/krdc-${PVR}:${SLOT}
