@@ -15,7 +15,7 @@ EGIT_BRANCH="development"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
-IUSE="xinerama"
+IUSE="xinerama savedconfig"
 
 DEPEND="x11-libs/libX11
 	xinerama? (
@@ -39,7 +39,9 @@ src_prepare() {
 		-e 's|@${CC}|$(CC)|g' \
 		Makefile || die
 
-	restore_config config.h
+	restore_config config.def.h
+
+	[ -f "${S}/config.h" ] rm "${S}/config.h"
 	epatch_user
 }
 
