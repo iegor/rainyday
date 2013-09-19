@@ -9,7 +9,7 @@ inherit eutils savedconfig toolchain-funcs git-2
 DESCRIPTION="a dynamic window manager for X11"
 HOMEPAGE="http://dwm.suckless.org/"
 SRC_URI=""
-EGIT_REPO_URI="https://github.com/iegor/dwm.git"
+EGIT_REPO_URI="file:///home/rainman/projects/dwm/.git"
 EGIT_BRANCH="development"
 
 LICENSE="MIT"
@@ -40,6 +40,7 @@ src_prepare() {
 		Makefile || die
 
 	restore_config config.def.h
+	einfo "restored into config.def.h"
 
 	[ -f "${S}/config.h" ] rm "${S}/config.h"
 	epatch_user
