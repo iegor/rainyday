@@ -11,7 +11,7 @@ eu fa fi fr fy ga gl he hi hr hu is it ja kk km ko lt lv mk
 mn ms nb nds nl nn pa pl pt pt_BR ro ru rw se sk sl sr
 sr@Latn ss sv ta te tg th tr uk uz uz@cyrillic vi wa zh_CN zh_TW"
 
-inherit eutils kde
+inherit kde-meta
 DESCRIPTION="[GIT] KDE internationalization package"
 HOMEPAGE="http://www.kde.org/"
 SLOT="3.5"
@@ -52,7 +52,7 @@ src_unpack() {
 
 	# Override kde_src_unpack.
 # 	[[ -n ${A} ]] && unpack ${A}
-	kde_src_unpack
+	kde-meta_src_unpack
 
 	# Work around KDE bug 126311.
 	for dir in ${KMEXTRA}; do

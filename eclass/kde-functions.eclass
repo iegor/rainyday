@@ -99,6 +99,7 @@ kde-base/kdebase kde-base/kwin
 kde-base/kdebase kde-base/kxkb
 kde-base/kdebase kde-base/libkonq
 kde-base/kdebase kde-base/nsplugins
+kde-base/kdebase kde-base/kde-i18n
 kde-base/kdebindings kde-base/dcopc
 kde-base/kdebindings kde-base/dcopjava
 kde-base/kdebindings kde-base/dcopperl
