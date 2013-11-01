@@ -1,15 +1,15 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-9999.ebuild,v 1.13 2013/01/08 21:32:50 lack Exp $
-
 EAPI=4
+
 inherit eutils flag-o-matic toolchain-funcs git-2 prefix
 
-IUSE="nls xinerama bidi +truetype +imlib +slit +toolbar vim-syntax"
+IUSE="nls xinerama bidi +truetype +imlib +slit +toolbar vim-syntax xcomposite"
 
 DESCRIPTION="Fluxbox is an X11 window manager featuring tabs and an iconbar"
 
-EGIT_REPO_URI="git://git.fluxbox.org/fluxbox.git"
+EGIT_REPO_URI="http://www.github.com/iegor/fluxbox.git"
 SRC_URI=""
 HOMEPAGE="http://www.fluxbox.org"
 
@@ -35,6 +35,9 @@ DEPEND="bidi? ( virtual/pkgconfig )
 SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~x86 ~amd64"
+
+EGIT_BRANCH="
+xcomposite? ( develop_compositor )"
 
 src_prepare() {
 	./autogen.sh
