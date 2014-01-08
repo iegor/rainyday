@@ -113,10 +113,11 @@ pkg_setup() {
 		echo ""
 	fi
 
-	ebegin "moving kde file from ${FILESDIR} to ${WORKDIR}"
-		mkdir -p "${WORKDIR}/patches"
-		cp -L "${FILESDIR}/kde3" "${WORKDIR}/patches"
-	eend $?
+	# einfo "moving kde file from ${FILESDIR} to ${WORKDIR}"
+	# dodir "${WORKDIR}" || eerror "dodir ${WORKDIR}"
+	# [[ -x "${WORKDIR}" ]] && einfo "workdir exists"
+	# dodir "${WORKDIR}/patches" || eerror "dodir patches"
+	# cp -L "${FILESDIR}/kde3" "${WORKDIR}/patches" || eerror "moving files"
 }
 
 src_unpack() {
@@ -154,11 +155,11 @@ src_configure() {
 			$(use_enable kernel_linux sendfile) --enable-mitshm
 			$(use_with spell aspell)"
 
-	if use avahi || use bindist ; then
-		myconf="${myconf} --disable-dnssd"
-	else
-		myconf="${myconf} --enable-dnssd"
-	fi
+#	if use avahi || use bindist ; then
+#		myconf="${myconf} --disable-dnssd"
+#	else
+#		myconf="${myconf} --enable-dnssd"
+#	fi
 
 	if has_version x11-apps/rgb; then
 		myconf="${myconf} --with-rgbfile=/usr/share/X11/rgb.txt"
@@ -238,10 +239,22 @@ EOF
 	_libdirs=${_libdirs#:}
 
 	# Merge KDE prefix and LDPATH
-	sed -e "s#@REPLACE_PREFIX@#${PREFIX}#" \
-		-e  "s#@REPLACE_LIBS@#${_libdirs}#" \
-		-i "${WORKDIR}/patches/kde3" || die "sed failed"
-	dobin "${WORKDIR}/patches/kde3"
+	# sed -e "s#@REPLACE_PREFIX@#${PREFIX}#" \
+	# 	-e  "s#@REPLACE_LIBS@#${_libdirs}#" \
+	# 	-i "${WORKDIR}/patches/kde3" || die "sed failed"
+	cat <<EOF > "${S}/kde3"
+#!/bin/sh
+#  Script for launching KDE3 applications from outside of the KDE3 desktop
+#  Modify this to match your specific needs, such as setting up needed env. variables,
+#  and make sure this script is in $PATH (e.g. make a symlink if necessary).
+_KDEDIR=${PREFIX}
+export KDEDIRS=${_KDEDIR}:/usr:/usr/local
+export PATH=${_KDEDIR}/bin:$(echo ${PATH} | sed 's#/usr/kde/[^/]*/s\?bin:##g')
+export ROOTPATH=${_KDEDIR}/sbin:${_KDEDIR}/bin:$(echo ${PATH} | sed 's#/usr/kde/[^/]*/s\?bin:##g')
+export LDPATH=${_libdirs}:${LDPATH}
+exec "$@"
+EOF
+	dobin "${S}/kde3"
 
 	# Make sure the target for the revdep-rebuild stuff exists. Fixes bug 184441.
 	dodir /etc/revdep-rebuild
