@@ -36,8 +36,7 @@ SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~x86 ~amd64"
 
-EGIT_BRANCH="
-xcomposite? ( develop_compositor )"
+# use xcomposite && EGIT_BRANCH="develop_compositor"
 
 src_prepare() {
 	./autogen.sh
