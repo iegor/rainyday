@@ -1,77 +1,105 @@
-# ChangeLog for x11-wm/selectwm
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/selectwm/ChangeLog,v 1.25 2012/05/04 08:58:58 jdhore Exp $
+# ChangeLog for x11-wm/spectrwm
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/spectrwm/ChangeLog,v 1.13 2013/10/19 15:30:46 pacho Exp $
 
-  04 May 2012; Jeff Horelick <jdhore@gentoo.org> selectwm-0.4.1.ebuild:
-  dev-util/pkgconfig -> virtual/pkgconfig
+  19 Oct 2013; Pacho Ramos <pacho@gentoo.org> metadata.xml:
+  Cleanup due desktop-wm removal
 
-  29 Mar 2011; Christoph Mende <angelos@gentoo.org> selectwm-0.4.1.ebuild:
-  Fix gtk+ slot deps
+*spectrwm-2.3.0 (06 May 2013)
 
-  01 Jun 2010; Kacper Kowalik <xarthisius@gentoo.org> selectwm-0.4.1.ebuild,
-  +files/selectwm-0.4.1-nostrip.patch:
-  Don't strip binaries wrt bug 252124. Thanks Diego for report
+  06 May 2013; Michael Weber <xmw@gentoo.org>
+  +files/spectrwm-2.3.0-Makefile.patch, +spectrwm-2.3.0.ebuild:
+  Version bump
 
-  26 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> selectwm-0.4.1.ebuild,
-  +files/selectwm-0.4.1-glibc-2.10.patch:
-  Fix building with glibc-2.10 (bug #273994).
+*spectrwm-2.2.0 (25 Mar 2013)
 
-  19 Jul 2008; Alexis Ballier <aballier@gentoo.org> selectwm-0.4.1.ebuild:
-  keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
-  #232265
+  25 Mar 2013; Michael Weber <xmw@gentoo.org> +spectrwm-2.2.0.ebuild,
+  -spectrwm-2.0.2.ebuild, -spectrwm-2.1.0.ebuild:
+  Version bump, drop old
 
-  30 Sep 2007; Santiago M. Mola <coldwind@gentoo.org>
-  +files/selectwm-0.4.1-enable-deprecated-gtk.patch, selectwm-0.4.1.ebuild:
-  Enable deprecated GTK+ functions and a bit of clean up.
+  14 Feb 2013; Agostino Sarubbo <ago@gentoo.org> spectrwm-2.1.1.ebuild:
+  Stable for x86, wrt bug #457044
 
-  21 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
-  Redigest for Manifest2
+  14 Feb 2013; Agostino Sarubbo <ago@gentoo.org> spectrwm-2.1.1.ebuild:
+  Stable for amd64, wrt bug #457044
 
-  08 Dec 2006; Charlie Shepherd <masterdriverz@gentoo.org>
-  -selectwm-0.4.ebuild, selectwm-0.4.1.ebuild:
-  Add pkgconfig dep, thanks to Patrick Lauer for reporting; bug 150276
+*spectrwm-2.1.1 (01 Dec 2012)
 
-  08 May 2005; Herbie Hopkins <herbs@gentoo.org> selectwm-0.4.1.ebuild:
-  Stable on amd64.
+  01 Dec 2012; Michael Weber <xmw@gentoo.org> +spectrwm-2.1.1.ebuild:
+  Version bump (bug 445290 by elvis4526@gmail.com)
 
-  12 Feb 2005; Jan Brinkmann <luckyduck@gentoo.org> selectwm-0.4.1.ebuild:
-  added ~amd64 to KEYWORDS. fixes #81447
+*spectrwm-2.1.0 (05 Nov 2012)
 
-  07 Nov 2004; Jason Wever <weeve@gentoo.org> selectwm-0.4.1.ebuild:
-  Stable on sparc.
+  05 Nov 2012; Michael Weber <xmw@gentoo.org> -spectrwm-1.2.0.ebuild,
+  -files/spectrwm-1.2.0-makefile.patch, +spectrwm-2.1.0.ebuild,
+  +files/spectrwm-2.1.0-makefile.patch:
+  Version bump (thanks euscan), drop old.
 
-  06 Nov 2004; <pyrania@gentoo.org> selectwm-0.4.1.ebuild:
-  Marked stable on x86.
+  25 Sep 2012; Jeroen Roovers <jer@gentoo.org> spectrwm-1.2.0.ebuild,
+  spectrwm-2.0.2.ebuild:
+  Fix quoting issues.
 
-  30 Aug 2004; Pieter Van den Abeele <pvdabeel@gentoo.org>
-  selectwm-0.4.1.ebuild:
-  Masked selectwm-0.4.1.ebuild stable for ppc
+*spectrwm-2.0.2 (18 Sep 2012)
 
-*selectwm-0.4.1 (17 Jul 2004)
+  18 Sep 2012; Michael Weber <xmw@gentoo.org>
+  +files/spectrwm-2.0.2-makefile.patch, +spectrwm-2.0.2.ebuild,
+  -files/spectrwm-1.0.0-makefile.patch, -files/spectrwm-1.1.1-makefile.patch,
+  -spectrwm-1.0.0.ebuild, -spectrwm-1.1.1.ebuild, spectrwm-1.2.0.ebuild:
+  Version bump (thanks Levon 'noptrix' Kayan), drop old.
 
-  17 Jul 2004; Mamoru KOMACHI <usata@gentoo.org> +selectwm-0.4.1.ebuild:
-  Version bumped, closing bug #56837
+*spectrwm-1.2.0 (01 Aug 2012)
 
-  30 Mar 2004; Michael Sterrett <mr_bones_@gentoo.org> selectwm-0.3-r1.ebuild,
-  selectwm-0.4.ebuild:
-  don't assign default to S
+  01 Aug 2012; Michael Weber <xmw@gentoo.org>
+  +files/spectrwm-1.2.0-makefile.patch, +spectrwm-1.2.0.ebuild:
+  Version bump (thanks noptrix for the hint)
 
-  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
-*selectwm-0.3-r1 (01 Sep 2002)
-*selectwm-0.4 (01 Sep 2002)
+*spectrwm-1.1.1 (09 Jul 2012)
 
-  17 Oct 2002; Daniel Ahlberg <aliz@gentoo.org> selectvm-0.3-r1.ebuild, selectwm-0.4.ebuild :
-  Added IUSE.
+  09 Jul 2012; Michael Weber <xmw@gentoo.org>
+  +files/spectrwm-1.1.1-makefile.patch, +spectrwm-1.1.1.ebuild:
+  Version bump (bug 425510 by Timothy Messier)
 
-  01 Sep 2002; Seemant Kulleen <seemant@gentoo.org> selectwm-0.3-r1.ebuild 
-  selectwm-0.4.ebuild :
+  18 Feb 2012; Michael Weber <xmw@gentoo.org> spectrwm-1.0.0.ebuild:
+  Fix PREFIX parameter.
 
-  USE dependednt NLS checking and ebuild cleanup.  Also, added new version
-  for GTK2 and SLOTified.  Thanks to: christian-neumair@web.de (Christian -
-  Manny Calavera - Neumair) in bug #5638.
+*spectrwm-1.0.0 (18 Feb 2012)
 
-*selectwm-0.3 (08 Jul 2002)
+  18 Feb 2012; Michael Weber <xmw@gentoo.org> +spectrwm-1.0.0.ebuild,
+  +files/spectrwm-1.0.0-makefile.patch, +metadata.xml:
+  Project got renamed (fka x11-wm/scrotwm), version bump
 
-  08 Jul 2002; Daniel Ahlberg (aliz@gentoo.org> ChangeLog: 
-  Add missing ChangeLog.
+*scrotwm-0.11.0 (14 Feb 2012)
+
+  14 Feb 2012; Michael Weber <xmw@gentoo.org> scrotwm-0.10.0-r1.ebuild,
+  +scrotwm-0.11.0.ebuild:
+  Version bump, thanks Timothy Messier (bug 403497)
+
+*scrotwm-0.10.0-r1 (14 Feb 2012)
+
+  14 Feb 2012; Michael Weber <xmw@gentoo.org> +scrotwm-0.10.0-r1.ebuild:
+  Install documentation and configs (thanks Timothy Messier for the report, bug
+  403499)
+
+*scrotwm-0.10.0 (27 Jan 2012)
+
+  27 Jan 2012; Michael Weber <xmw@gentoo.org> +scrotwm-0.10.0.ebuild,
+  +files/scrotwm-0.10.0-makefile.patch:
+  Version bump (bug 398831, thanks elvis4526 for the hint)
+
+  11 Nov 2011; Michael Weber <xmw@gentoo.org> -scrotwm-0.9.28.ebuild,
+  -files/scrotwm-0.9.28-makefile.patch:
+  Remove old versions
+
+*scrotwm-0.9.34 (15 Oct 2011)
+
+  15 Oct 2011; Michael Weber <xmw@gentoo.org> +scrotwm-0.9.34.ebuild,
+  +files/scrotwm-0.9.34-makefile.patch:
+  Version bump thanks to elvis4526 for the hint and Agostino Sarubbo for the
+  patch (bug 386159)
+
+*scrotwm-0.9.28 (11 Jun 2011)
+
+  11 Jun 2011; Michael Weber <xmw@gentoo.org> +scrotwm-0.9.28.ebuild,
+  +files/scrotwm-0.9.28-makefile.patch, +metadata.xml:
+  Initial import, thanks to Massimo Gengarelli, Nikolay Ostanen and Toffanin
+  for the initial ebuilds (bug 284350)
