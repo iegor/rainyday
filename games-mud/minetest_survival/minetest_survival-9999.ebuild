@@ -3,11 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/games-action/minetest_survival/minetest_survival-0.4.6.ebuild,v 1.3 2013/10/27 10:36:22 hasufell Exp $
 
 EAPI=5
-inherit vcs-snapshot games git-2
+inherit games git-2
 
 DESCRIPTION="Survival game for the Minetest game engine"
 HOMEPAGE="https://github.com/minetest/survival"
-SRC_URI="https://github.com/minetest/survival.git"
+EGIT_REPO_URI="https://github.com/minetest/survival.git"
 
 LICENSE="GPL-2 CC-BY-SA-3.0"
 SLOT="0"

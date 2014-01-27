@@ -3,11 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/games-action/minetest_game/minetest_game-0.4.7.ebuild,v 1.4 2013/10/27 10:36:10 hasufell Exp $
 
 EAPI=5
-inherit vcs-snapshot games git-2
+inherit games git-2
 
 DESCRIPTION="The main game for the Minetest game engine"
 HOMEPAGE="http://github.com/minetest/minetest_game"
-SRC_URI="http://github.com/minetest/minetest_game.git"
+EGIT_REPO_URI="http://github.com/minetest/minetest_game.git"
 
 LICENSE="GPL-2 CC-BY-SA-3.0"
 SLOT="0"
