@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~ppc"
 IUSE=""
 
-RDEPEND="=games-action/minetest-${PV}[-dedicated]"
+RDEPEND="=games-mud/minetest-${PV}[-dedicated]"
 
 src_unpack() {
 	git-2_src_unpack
