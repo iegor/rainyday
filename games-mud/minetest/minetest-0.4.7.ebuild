@@ -1,15 +1,17 @@
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/games-action/minetest/minetest-0.4.7.ebuild,v 1.4 2013/10/27 10:34:39 hasufell Exp $
 
 EAPI=5
-inherit eutils cmake-utils git-2 gnome2-utils vcs-snapshot user games
+inherit eutils cmake-utils gnome2-utils vcs-snapshot user games
 
 DESCRIPTION="An InfiniMiner/Minecraft inspired game"
 HOMEPAGE="http://minetest.net/"
-EGIT_REPO_URI="git://github.com/minetest/minetest.git"
+SRC_URI="http://github.com/minetest/minetest/tarball/${PV} -> ${P}.tar.gz"
 
-LICENSE="LGPL-2.1+ CCPL-Attribution-ShareAlike-3.0"
+LICENSE="LGPL-2.1+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="~x86 ~amd64 ~ppc"
+KEYWORDS="amd64 x86"
 IUSE="+curl dedicated luajit nls +server +sound +truetype"
 
 RDEPEND="dev-db/sqlite:3
@@ -45,16 +47,15 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git-2_src_unpack
+	vcs-snapshot_src_unpack
 }
 
 src_prepare() {
-	# Apply latest patches that are outthere
 	epatch \
-		"${FILESDIR}"/${PN}-0.4.7-lua-luajit-option.patch \
-		"${FILESDIR}"/${PN}-0.4.7-jthread-option-and-pkgconfig.patch \
-		"${FILESDIR}"/${PN}-0.4.7-shared-irrlicht.patch \
-		"${FILESDIR}"/${PN}-0.4.7-as-needed.patch
+		"${FILESDIR}"/${P}-lua-luajit-option.patch \
+		"${FILESDIR}"/${P}-jthread-option-and-pkgconfig.patch \
+		"${FILESDIR}"/${P}-shared-irrlicht.patch \
+		"${FILESDIR}"/${P}-as-needed.patch
 
 	# correct gettext behavior
 	if [[ -n "${LINGUAS+x}" ]] ; then
@@ -122,10 +123,10 @@ pkg_postinst() {
 	if ! use dedicated ; then
 		elog
 		elog "optional dependencies:"
-		elog "	games-mud/minetest-mod (official mod)"
-		elog "	games-mud/minetest-common (official mod)"
-		elog "	games-mud/minetest-build (official mod)"
-		elog "	games-mud/minetest-survival (official mod)"
+		elog "	games-action/minetest_game (official mod)"
+		elog "	games-action/minetest_common (official mod)"
+		elog "	games-action/minetest_build (official mod)"
+		elog "	games-action/minetest_survival (official mod)"
 		elog
 	fi
 
