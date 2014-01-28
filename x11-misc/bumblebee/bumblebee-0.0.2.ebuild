@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI=5
 
-inherit git rpm
+inherit git-2 rpm
 
 # EGIT_REPO_URI="git://github.com/MrMEEE/bumblebee.git"
 # https://github.com/MrMEEE/bumblebee.git

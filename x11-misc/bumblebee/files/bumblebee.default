@@ -7,11 +7,11 @@ STOP_SERVICE_ON_EXIT=YES
 
 # Display for the nVidia X Server, choose a higher display (e.g. :5) if you
 # use Fast User Switching which starts incrementing from :0 (:0, :1, :2, ...)
-VGL_DISPLAY=:2
+VGL_DISPLAY=:1
 
 # Image transport
 # proxy, jpeg, rgb, xv or yuv
-VGL_COMPRESS=xv
+VGL_COMPRESS=proxy
 
 # Readback mode
 # none, pbo, sync
