@@ -1,16 +1,25 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git-2.eclass,v 1.29 2012/04/03 10:32:09 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git-2.eclass,v 1.33 2013/10/08 11:19:48 mgorny Exp $
 
-# @ECLASS: git-3.eclass
+# @ECLASS: git-2.eclass
 # @MAINTAINER:
 # Michał Górny <mgorny@gentoo.org>
 # Donnie Berkholz <dberkholz@gentoo.org>
-# Iegor Danylchenko <rmtdev@gmail.com>
 # @BLURB: Eclass for fetching and unpacking git repositories.
 # @DESCRIPTION:
 # Eclass for easing maitenance of live ebuilds using git as remote repository.
 # Eclass support working with git submodules and branching.
+
+# @ECLASS-VARIABLE: EGIT_USE_GIT_R3
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Use git-r3 backend instead of classic git-2 behavior. This is intended
+# for early testing of git-r3 and is to be set in make.conf.
+
+# (since we override src_unpack this doesn't hurt)
+_INHERITED_BY_GIT_2=1 \
+inherit git-r3
 
 # This eclass support all EAPIs
 EXPORT_FUNCTIONS src_unpack
@@ -69,6 +78,9 @@ DEPEND="dev-vcs/git"
 # @DESCRIPTION:
 # URI for the repository
 # e.g. http://foo, git://bar
+#
+# It can be overriden via env using packagename_LIVE_REPO
+# variable.
 #
 # Support multiple values:
 # EGIT_REPO_URI="git://a/b.git http://c/d.git"
@@ -147,7 +159,15 @@ git-2_init_variables() {
 	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI}}
 	[[ ${EGIT_REPO_URI} ]] || die "EGIT_REPO_URI must have some value"
 
+	# Assume we are online
 	: ${EVCS_OFFLINE:=}
+
+	ping 8.8.8.8 -c 1 -i 1 > /dev/null
+	local ping_res=$?
+	if [[ ping_res == 2 ]]; then
+		ewarn "offline mode: network is unreachable"
+		EVCS_OFFLINE=1
+	fi
 
 	livebranch=${esc_pn}_LIVE_BRANCH
 	[[ ${!livebranch} ]] && ewarn "QA: using \"${esc_pn}_LIVE_BRANCH\" variable, you won't get any support"
@@ -303,7 +323,7 @@ git-2_move_source() {
 
 	debug-print "${FUNCNAME}: ${MOVE_COMMAND} \"${EGIT_DIR}\" \"${EGIT_SOURCEDIR}\""
 	pushd "${EGIT_DIR}" > /dev/null
-	mkdir -p "${EGIT_SOURCEDIR}" \
+	dodir "${EGIT_SOURCEDIR}" \
 		|| die "${FUNCNAME}: failed to create ${EGIT_SOURCEDIR}"
 	${MOVE_COMMAND} "${EGIT_SOURCEDIR}" \
 		|| die "${FUNCNAME}: sync to \"${EGIT_SOURCEDIR}\" failed"
@@ -570,23 +590,66 @@ git-2_cleanup() {
 	unset EGIT_LOCAL_NONBARE
 }
 
+git-2_r3_wrapper() {
+	ewarn "Using git-r3 backend in git-2. Not everything is supported."
+	ewarn "Expect random failures and have fun testing."
+
+	if [[ ${EGIT_SOURCEDIR} ]]; then
+		EGIT_CHECKOUT_DIR=${EGIT_SOURCEDIR}
+		unset EGIT_SOURCEDIR
+	fi
+
+	if [[ ${EGIT_MASTER} ]]; then
+		: ${EGIT_BRANCH:=${EGIT_MASTER}}
+		unset EGIT_MASTER
+	fi
+
+	if [[ ${EGIT_HAS_SUBMODULES} ]]; then
+		unset EGIT_HAS_SUBMODULES
+	fi
+
+	if [[ ${EGIT_PROJECT} ]]; then
+		unset EGIT_PROJECT
+	fi
+
+	local boots unp
+	if [[ ${EGIT_NOUNPACK} ]]; then
+		unp=1
+		unset EGIT_NOUNPACK
+	fi
+
+	if [[ ${EGIT_BOOTSTRAP} ]]; then
+		boots=1
+		unset EGIT_BOOTSTRAP
+	fi
+
+	git-r3_src_unpack
+
+	[[ ${boots} ]] && EGIT_BOOTSTRAP=${boots} git-2_bootstrap
+	[[ ${unp} ]] && EGIT_NOUNPACK=1
+}
+
 # @FUNCTION: git-2_src_unpack
 # @DESCRIPTION:
 # Default git src_unpack function.
 git-2_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	git-2_init_variables
-	git-2_prepare_storedir
-	git-2_migrate_repository
-	git-2_fetch "$@"
-	git-2_gc
-	git-2_submodules
-	git-2_move_source
-	git-2_branch
-	git-2_bootstrap
-	git-2_cleanup
-	echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
+	if [[ ${EGIT_USE_GIT_R3} ]]; then
+		git-2_r3_wrapper
+	else
+		git-2_init_variables
+		git-2_prepare_storedir
+		git-2_migrate_repository
+		git-2_fetch "$@"
+		git-2_gc
+		git-2_submodules
+		git-2_move_source
+		git-2_branch
+		git-2_bootstrap
+		git-2_cleanup
+		echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
+	fi
 
 	# Users can specify some SRC_URI and we should
 	# unpack the files too.
