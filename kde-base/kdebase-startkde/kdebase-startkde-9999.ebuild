@@ -66,18 +66,18 @@ EOF
 	doexe "${T}/xdg.sh"
 
 	# x11 session script
-	cat <<EOF > "${T}/kde-${SLOT}"
+	cat <<EOF > "${T}/kde"
 #!/bin/sh
 exec ${KDEDIR}/bin/startkde
 EOF
 	exeinto /etc/X11/Sessions
-	doexe "${T}/kde-${SLOT}"
+	doexe "${T}/kde"
 
 	# (not really) freedesktop compliant session script
-	sed -e "s:@KDE_BINDIR@:${KDEDIR}/bin:g;s:Name=KDE:Name=KDE ${SLOT}:" \
-		"${S}/kdm/kfrontend/sessions/kde.desktop.in" > "${T}/kde-${SLOT}.desktop"
+	sed -e "s:@KDE_BINDIR@:${KDEDIR}/bin:g;s:Name=KDE:Name=KDE-LIVE:" \
+		"${S}/kdm/kfrontend/sessions/kde.desktop.in" > "${T}/kde.desktop"
 	insinto /usr/share/xsessions
-	doins "${T}/kde-${SLOT}.desktop"
+	doins "${T}/kde.desktop"
 }
 
 pkg_postinst () {
