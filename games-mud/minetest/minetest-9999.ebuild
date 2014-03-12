@@ -50,11 +50,10 @@ src_unpack() {
 
 src_prepare() {
 	# Apply latest patches that are outthere
-	epatch \
-		"${FILESDIR}"/${PN}-0.4.7-lua-luajit-option.patch \
-		"${FILESDIR}"/${PN}-0.4.7-jthread-option-and-pkgconfig.patch \
-		"${FILESDIR}"/${PN}-0.4.7-shared-irrlicht.patch \
-		"${FILESDIR}"/${PN}-0.4.7-as-needed.patch
+	# epatch "${FILESDIR}"/${PN}-0.4.7-lua-luajit-option.patch
+	# epatch "${FILESDIR}"/${PN}-0.4.7-jthread-option-and-pkgconfig.patch
+	# epatch "${FILESDIR}"/${PN}-0.4.7-shared-irrlicht.patch
+	# epatch "${FILESDIR}"/${PN}-0.4.7-as-needed.patch
 
 	# correct gettext behavior
 	if [[ -n "${LINGUAS+x}" ]] ; then
