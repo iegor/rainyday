@@ -11,7 +11,7 @@ DESCRIPTION="[GIT] KDE libraries needed by all KDE programs."
 HOMEPAGE="http://www.kde.org/"
 LICENSE="GPL-2 LGPL-2"
 SLOT="3.5"
-IUSE="acl alsa arts bindist branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff avahi kernel_linux fam lua kdehiddenvisibility"
+IUSE="acl alsa arts branding cups doc jpeg2k kerberos legacyssl utempter openexr spell tiff kernel_linux fam lua kdehiddenvisibility"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 # Added aspell-en as dependency to work around bug 131512.
@@ -54,12 +54,6 @@ RDEPEND="
 	)
 	alsa? ( media-libs/alsa-lib )
 	arts? ( ~kde-base/arts-9999 )
-	!avahi? (
-		!bindist? (
-			!kde-misc/kdnssd-avahi
-			net-misc/mDNSResponder
-		)
-	)
 	cups? ( >=net-print/cups-1.1.19 )
 	fam? ( virtual/fam )
 	jpeg2k? ( media-libs/jasper )
@@ -84,10 +78,7 @@ RDEPEND="${RDEPEND}
 	x11-apps/iceauth
 	>=x11-misc/xdg-utils-1.0.2-r3
 "
-PDEPEND="
-	avahi? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
-	bindist? ( =kde-misc/kdnssd-avahi-${PV}:${SLOT} )
-"
+PDEPEND=""
 
 # Testing code is rather broken and merely for developer purposes, so disable it.
 RESTRICT="test"
@@ -137,7 +128,7 @@ src_unpack() {
 	fi
 
 	# bug 267018
-	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.{am,in}
+	sed -i '/^SUBDIRS/s/ hicolor / /' pics/Makefile.am
 }
 
 src_configure() {
@@ -154,12 +145,6 @@ src_configure() {
 			$(use_with utempter) $(use_with lua)
 			$(use_enable kernel_linux sendfile) --enable-mitshm
 			$(use_with spell aspell)"
-
-#	if use avahi || use bindist ; then
-#		myconf="${myconf} --disable-dnssd"
-#	else
-#		myconf="${myconf} --enable-dnssd"
-#	fi
 
 	if has_version x11-apps/rgb; then
 		myconf="${myconf} --with-rgbfile=/usr/share/X11/rgb.txt"
@@ -196,11 +181,6 @@ src_install() {
 	# Needed to create lib -> lib64 symlink for amd64 2005.0 profile
 	if [ "${SYMLINK_LIB}" = "yes" ]; then
 		dosym $(get_abi_LIBDIR ${DEFAULT_ABI}) ${KDEDIR}/lib
-	fi
-
-	# Get rid of the disabled version of the kdnsd libraries
-	if use avahi || use bindist ; then
-		rm -rf "${D}/${PREFIX}"/$(get_libdir)/libkdnssd.*
 	fi
 
 	dodir /etc/env.d
