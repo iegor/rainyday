@@ -5,7 +5,7 @@
 EAPI=2
 ARTS_REQUIRED="never"
 KMNAME=kdevelop
-inherit kde-meta eutils db-use git-2
+inherit kde-meta eutils db-use
 DESCRIPTION="[GIT] Integrated Development Environment for Unix, supporting KDE/Qt, C/C++ and many other languages."
 HOMEPAGE="http://www.kdevelop.org"
 LICENSE="GPL-2"
