@@ -1,8 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git-2.eclass,v 1.33 2013/10/08 11:19:48 mgorny Exp $
-
-# @ECLASS: git-2.eclass
+# @ECLASS: git-support.eclass
 # @MAINTAINER:
 # Michał Górny <mgorny@gentoo.org>
 # Donnie Berkholz <dberkholz@gentoo.org>
@@ -14,7 +10,7 @@
 # @ECLASS-VARIABLE: EGIT_USE_GIT_R3
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# Use git-r3 backend instead of classic git-2 behavior. This is intended
+# Use git-r3 backend instead of classic git-support behavior. This is intended
 # for early testing of git-r3 and is to be set in make.conf.
 
 # (since we override src_unpack this doesn't hurt)
@@ -133,13 +129,13 @@ DEPEND="dev-vcs/git"
 # If non-empty this variable bans unpacking of ${A} content into the srcdir.
 # Default behaviour is to unpack ${A} content.
 
-# @FUNCTION: git-2_init_variables
+# @FUNCTION: git-support_init_variables
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function initializing all git variables.
 # We define it in function scope so user can define
 # all the variables before and after inherit.
-git-2_init_variables() {
+git-support_init_variables() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local esc_pn liverepo livebranch livecommit
@@ -162,12 +158,15 @@ git-2_init_variables() {
 	# Assume we are online
 	: ${EVCS_OFFLINE:=}
 
-	ping 8.8.8.8 -c 1 -i 1 > /dev/null
-	local ping_res=$?
-	if [[ ping_res == 2 ]]; then
-		ewarn "offline mode: network is unreachable"
-		EVCS_OFFLINE=1
-	fi
+	# einfo "test mode"
+	# ping 8.8.8.8 -c 1 -i 1 -w 2 > /dev/null
+	# local ping_res=$?
+	# if [[ ping_res -ne 0 ]]; then
+	# 	ewarn "offline mode: network is unreachable"
+	# 	EVCS_OFFLINE=1
+	# 	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI_LOCAL}}
+	# 	einfo "URI: ${EGIT_REPO_URI}"
+	# fi
 
 	livebranch=${esc_pn}_LIVE_BRANCH
 	[[ ${!livebranch} ]] && ewarn "QA: using \"${esc_pn}_LIVE_BRANCH\" variable, you won't get any support"
@@ -182,11 +181,11 @@ git-2_init_variables() {
 	: ${EGIT_PRUNE:=}
 }
 
-# @FUNCTION: git-2_submodules
+# @FUNCTION: git-support_submodules
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function wrapping the submodule initialisation and update.
-git-2_submodules() {
+git-support_submodules() {
 	debug-print-function ${FUNCNAME} "$@"
 	if [[ ${EGIT_HAS_SUBMODULES} ]]; then
 		if [[ ${EVCS_OFFLINE} ]]; then
@@ -209,12 +208,12 @@ git-2_submodules() {
 	fi
 }
 
-# @FUNCTION: git-2_branch
+# @FUNCTION: git-support_branch
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function that changes branch for the repo based on EGIT_COMMIT and
 # EGIT_BRANCH variables.
-git-2_branch() {
+git-support_branch() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local branchname src
@@ -234,11 +233,11 @@ git-2_branch() {
 	popd > /dev/null
 }
 
-# @FUNCTION: git-2_gc
+# @FUNCTION: git-support_gc
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function running garbage collector on checked out tree.
-git-2_gc() {
+git-support_gc() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local args
@@ -254,12 +253,12 @@ git-2_gc() {
 	fi
 }
 
-# @FUNCTION: git-2_prepare_storedir
+# @FUNCTION: git-support_prepare_storedir
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function preparing directory where we are going to store SCM
 # repository.
-git-2_prepare_storedir() {
+git-support_prepare_storedir() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local clone_dir
@@ -314,11 +313,11 @@ git-2_prepare_storedir() {
 	debug-print "${FUNCNAME}: Storing the repo into \"${EGIT_DIR}\"."
 }
 
-# @FUNCTION: git-2_move_source
+# @FUNCTION: git-support_move_source
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function moving sources from the EGIT_DIR to EGIT_SOURCEDIR dir.
-git-2_move_source() {
+git-support_move_source() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	debug-print "${FUNCNAME}: ${MOVE_COMMAND} \"${EGIT_DIR}\" \"${EGIT_SOURCEDIR}\""
@@ -330,11 +329,11 @@ git-2_move_source() {
 	popd > /dev/null
 }
 
-# @FUNCTION: git-2_initial_clone
+# @FUNCTION: git-support_initial_clone
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function running initial clone on specified repo_uri.
-git-2_initial_clone() {
+git-support_initial_clone() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local repo_uri
@@ -343,6 +342,7 @@ git-2_initial_clone() {
 	for repo_uri in ${EGIT_REPO_URI}; do
 		debug-print "${FUNCNAME}: git clone ${EGIT_LOCAL_OPTIONS} \"${repo_uri}\" \"${EGIT_DIR}\""
 		if git clone ${EGIT_LOCAL_OPTIONS} "${repo_uri}" "${EGIT_DIR}"; then
+			einfo "updating repo from: ${repo_uri}"
 			# global variable containing the repo_name we will be using
 			debug-print "${FUNCNAME}: EGIT_REPO_URI_SELECTED=\"${repo_uri}\""
 			EGIT_REPO_URI_SELECTED="${repo_uri}"
@@ -350,15 +350,16 @@ git-2_initial_clone() {
 		fi
 	done
 
+	ewarn "problems with updating from: ${EGIT_REPO_URI_SELECTED}"
 	[[ ${EGIT_REPO_URI_SELECTED} ]] \
 		|| die "${FUNCNAME}: can't fetch from ${EGIT_REPO_URI}"
 }
 
-# @FUNCTION: git-2_update_repo
+# @FUNCTION: git-support_update_repo
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function running update command on specified repo_uri.
-git-2_update_repo() {
+git-support_update_repo() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local repo_uri
@@ -390,12 +391,12 @@ git-2_update_repo() {
 		|| die "${FUNCNAME}: can't update from ${EGIT_REPO_URI}"
 }
 
-# @FUNCTION: git-2_fetch
+# @FUNCTION: git-support_fetch
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function fetching repository from EGIT_REPO_URI and storing it in
 # specified EGIT_STORE_DIR.
-git-2_fetch() {
+git-support_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local oldsha cursha repo_type
@@ -403,7 +404,7 @@ git-2_fetch() {
 	[[ ${EGIT_LOCAL_NONBARE} ]] && repo_type="non-bare repository" || repo_type="bare repository"
 
 	if [[ ! -d ${EGIT_DIR} ]]; then
-		git-2_initial_clone
+		git-support_initial_clone
 		pushd "${EGIT_DIR}" > /dev/null
 		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
 		echo "GIT NEW clone -->"
@@ -421,7 +422,7 @@ git-2_fetch() {
 	else
 		pushd "${EGIT_DIR}" > /dev/null
 		oldsha=$(git rev-parse ${UPSTREAM_BRANCH})
-		git-2_update_repo
+		git-support_update_repo
 		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
 
 		# fetch updates
@@ -459,7 +460,7 @@ git-2_fetch() {
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function that runs bootstrap command on unpacked source.
-git-2_bootstrap() {
+git-support_bootstrap() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# @ECLASS-VARIABLE: EGIT_BOOTSTRAP
@@ -498,7 +499,7 @@ git-2_bootstrap() {
 	fi
 }
 
-# @FUNCTION: git-2_migrate_repository
+# @FUNCTION: git-support_migrate_repository
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function migrating between bare and normal checkout repository.
@@ -506,7 +507,7 @@ git-2_bootstrap() {
 # start to work with bare checkouts sanely.
 # This function also set some global variables that differ between
 # bare and non-bare checkout.
-git-2_migrate_repository() {
+git-support_migrate_repository() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local bare returnstate
@@ -569,12 +570,12 @@ git-2_migrate_repository() {
 	fi
 }
 
-# @FUNCTION: git-2_cleanup
+# @FUNCTION: git-support_cleanup
 # @INTERNAL
 # @DESCRIPTION:
 # Internal function cleaning up all the global variables
 # that are not required after the unpack has been done.
-git-2_cleanup() {
+git-support_cleanup() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Here we can unset only variables that are GLOBAL
@@ -590,8 +591,8 @@ git-2_cleanup() {
 	unset EGIT_LOCAL_NONBARE
 }
 
-git-2_r3_wrapper() {
-	ewarn "Using git-r3 backend in git-2. Not everything is supported."
+git-support_r3_wrapper() {
+	ewarn "Using git-r3 backend in git-support. Not everything is supported."
 	ewarn "Expect random failures and have fun testing."
 
 	if [[ ${EGIT_SOURCEDIR} ]]; then
@@ -625,29 +626,29 @@ git-2_r3_wrapper() {
 
 	git-r3_src_unpack
 
-	[[ ${boots} ]] && EGIT_BOOTSTRAP=${boots} git-2_bootstrap
+	[[ ${boots} ]] && EGIT_BOOTSTRAP=${boots} git-support_bootstrap
 	[[ ${unp} ]] && EGIT_NOUNPACK=1
 }
 
-# @FUNCTION: git-2_src_unpack
+# @FUNCTION: git-support_src_unpack
 # @DESCRIPTION:
 # Default git src_unpack function.
-git-2_src_unpack() {
+git-support_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ ${EGIT_USE_GIT_R3} ]]; then
-		git-2_r3_wrapper
+		git-support_r3_wrapper
 	else
-		git-2_init_variables
-		git-2_prepare_storedir
-		git-2_migrate_repository
-		git-2_fetch "$@"
-		git-2_gc
-		git-2_submodules
-		git-2_move_source
-		git-2_branch
-		git-2_bootstrap
-		git-2_cleanup
+		git-support_init_variables
+		git-support_prepare_storedir
+		git-support_migrate_repository
+		git-support_fetch "$@"
+		git-support_gc
+		git-support_submodules
+		git-support_move_source
+		git-support_branch
+		git-support_bootstrap
+		git-support_cleanup
 		echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
 	fi
 
