@@ -88,6 +88,7 @@ kde-base/kdebase kde-base/konsole
 kde-base/kdebase kde-base/kpager
 kde-base/kdebase kde-base/kpersonalizer
 kde-base/kdebase kde-base/kreadconfig
+kde-base/kdebase kde/krusader
 kde-base/kdebase kde-base/kscreensaver
 kde-base/kdebase kde-base/ksmserver
 kde-base/kdebase kde-base/ksplashml
