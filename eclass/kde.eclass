@@ -289,7 +289,7 @@ kde_src_configure() {
 				if use debug ; then
 					myconf="$myconf --enable-debug=full --with-debug"
 				else
-					myconf="$myconf --disable-debug --without-debug"
+					myconf="$myconf --disable-debug"
 				fi
 				if has kdeenablefinal ${IUSE}; then
 					myconf="$myconf $(use_enable kdeenablefinal final)"

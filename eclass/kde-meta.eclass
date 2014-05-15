@@ -13,7 +13,7 @@
 # @DESCRIPTION:
 # This is the kde-meta eclass which supports broken-up kde-base packages.
 
-inherit kde multilib git-2
+inherit kde multilib git-support
 
 # only broken-up ebuilds can use this eclass
 if [[ -z "$KMNAME" ]]; then
@@ -52,7 +52,7 @@ if [[ "$KDEBASE" = "true" ]]; then
 
 	# Main tarball for normal downloading style
 	# Note that we set SRC_PATH, and add it to SRC_URI later on
- 	case "$PV" in
+	case "$PV" in
 		3.5.0_*)
 			SRC_PATH="mirror://kde/unstable/${PV/.0_/-}/src/$TARBALL"
 			SRC_URI="$SRC_URI $SRC_PATH"
@@ -77,7 +77,7 @@ if [[ "$KDEBASE" = "true" ]]; then
 		*)
 			die "$ECLASS: Error: unrecognized version $PV, could not set SRC_URI"
 		;;
- 	esac
+	esac
 elif [[ "$KMNAME" == "koffice" ]]; then
 	SRC_PATH="mirror://kde/stable/koffice-$PV/src/koffice-$PV.tar.bz2"
 
@@ -327,9 +327,9 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
-		# One repo for whole kde
 		EGIT_KDE_REPO_DIR="git://github.com/iegor/${KMNAME}.git"
 		EGIT_BRANCH="${KMBRANCH}"
+		EGIT_PROJECT="${KMNAME}.git"
 
 		# Default branch check and set, if wasn't set in ebuild
 		if [ -z "${EGIT_BRANCH}" ]; then
@@ -364,18 +364,31 @@ kde-meta_src_unpack() {
 		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
 		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
 
+		git-support_init_variables
 
-		git-2_init_variables
-		git-2_prepare_storedir
-		git-2_migrate_repository
-		git-2_fetch
-		git-2_gc
-#		git-2_submodules
-		git-2_move_source
+		if [[ ${EVCS_OFLINE} ]]; then
+			ewarn "No network connection!!!"
+			einfo "we can't fetch sources from online git repo."
+			einfo "No worries though! If you are on development machine"
+			einfo "or set up git service on this machine and did placed"
+			einfo "repositories with kde data there, you can update from there"
+			rc-service git-daemon status > /dev/null
+			if [[ ${?} == 3 ]]; then
+				einfo "Please run the git service and restart emerge process"
+			fi
+		fi
+
+		git-support_prepare_storedir
+		git-support_migrate_repository
+		git-support_fetch
+		git-support_gc
+#		git-support_submodules
 
 		# To make sure we are checking out into workdir
 		#S="${WORKDIR}"/${P}
-		mkdir -p ${S}
+		#dodir ${S}
+		#dodir ${EGIT_SOURCEDIR}
+		git-support_move_source
 		cd $EGIT_SOURCEDIR
 
 		if [ "${KMNAME}" == "${PN}" ]; then
@@ -388,7 +401,7 @@ kde-meta_src_unpack() {
 				README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
 				${KMEXTRACTONLY} ${DOCS}
 			do
-				ebegin "<co>: ${EGIT_BRANCH}:${item%/}"
+				ebegin "<co>: ${KMNAME}@${EGIT_BRANCH} - ${item%/}"
 					git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
 				eend ${?}
 			done
@@ -421,7 +434,7 @@ kde-meta_src_unpack() {
 				search_path=$(echo "${PREFIX}"/$(get_libdir)/{,kde3/{,plugins/{designer,styles}}})
 				if [[ ! "$(find ${search_path} -maxdepth 1 -name "${libname}*" 2>/dev/null)" == "" ]]; then
                     if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
-					    einfo "Symlinking library: \"${PREFIX}/$(get_libdir)/${libname}\" -> ./"
+						einfo "Symlinking library: \"${PREFIX}/$(get_libdir)/${libname}\" -> ./"
                     fi
 					ln -s "${PREFIX}"/$(get_libdir)/${libname}* .
 				else
@@ -559,7 +572,7 @@ kde-meta_pkg_postinst() {
     # Remove dir with KMNAME module info
     #rm -rf ${EGIT_REPO_KMNAME_POOL}
     #unset EGIT_REPO_KMNAME_POOL
-    
+
     # Call kde method
     kde_pkg_postinst
 }
@@ -571,7 +584,7 @@ kde-meta_pkg_postrm() {
     # Remove dir with KMNAME module info
     #rm -rf ${EGIT_REPO_KMNAME_POOL}
     #unset EGIT_REPO_KMNAME_POOL
-    
+
     # Call kde method
     kde_pkg_postrm
 }
