@@ -1,12 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.24.20.ebuild,v 1.2 2013/07/23 20:10:49 grobian Exp $
-
-EAPI="5"
-inherit eutils flag-o-matic gnome2-utils multilib virtualx autotools readme.gentoo git-2
+EAPI=5
+inherit eutils flag-o-matic gnome2-utils multilib virtualx autotools readme.gentoo git-support
 
 DESCRIPTION="Gimp ToolKit +"
-HOMEPAGE="http://www.gtk.org/"
+HOMEPAGE="http://www.gtk.org"
 
 LICENSE="LGPL-2+"
 SLOT="2"
@@ -182,7 +178,7 @@ src_configure() {
 		$(use_enable cups cups auto) \
 		$(use_enable introspection) \
 		$(use_enable xinerama) \
-		--disable-papi \
+		--disable-papi
 }
 
 src_test() {
