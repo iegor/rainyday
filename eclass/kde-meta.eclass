@@ -327,7 +327,8 @@ kde-meta_src_unpack() {
 			KMEXTRACTONLY="$KMEXTRACTONLY libkdepim/kdepimmacros.h doc/api"
 		fi
 
-		EGIT_KDE_REPO_DIR="git://github.com/iegor/${KMNAME}.git"
+		EGIT_KDE_REPO_URI_BASE="git://github.com/iegor"
+		EGIT_KDE_REPO_DIR="${EGIT_KDE_REPO_URI_BASE}/${KMNAME}.git"
 		EGIT_BRANCH="${KMBRANCH}"
 		EGIT_PROJECT="${KMNAME}.git"
 
@@ -412,6 +413,8 @@ kde-meta_src_unpack() {
 		eend ${?}
 
 		ebegin "<co>: \"admin\" submodule"
+			# Set url to admin module depending on our {offline|online} behaviour
+			git config --local submodule.admin.url "${EGIT_KDE_REPO_URI_BASE}/kde-common-admin.git"
 			git checkout origin/${EGIT_BRANCH} "admin" &> /dev/null
 		eend ${?}
 
