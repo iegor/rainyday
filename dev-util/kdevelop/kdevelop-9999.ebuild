@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
-EGIT_REPO_URI="git://github.com/iegor/kdevelop.git"
+[ -z "${EGIT_REPO_URI}" ] && EGIT_REPO_URI="git://github.com/iegor/kdevelop.git"
 EGIT_SOURCE_DIR="${S}"
 EGIT_BRANCH="develop"
 
