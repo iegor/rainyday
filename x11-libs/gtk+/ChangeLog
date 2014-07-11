@@ -1,6 +1,250 @@
 # ChangeLog for x11-libs/gtk+
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.672 2013/07/24 21:32:44 eva Exp $
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.725 2014/06/26 11:20:22 pacho Exp $
+
+*gtk+-2.24.24 (26 Jun 2014)
+
+  26 Jun 2014; Pacho Ramos <pacho@gentoo.org>
+  +files/gtk+-2.24.24-out-of-source.patch, +gtk+-2.24.24.ebuild:
+  Version bump, fix tests when compiling out of sources directory (#510596 by
+  mgorny)
+
+  24 Jun 2014; Michał Górny <mgorny@gentoo.org> gtk+-2.24.23-r2.ebuild:
+  Lower dev-libs/glib dep to first known EAPI=5 version, requested by Funtoo for
+  GNOME 3.6.
+
+  18 Jun 2014; Michał Górny <mgorny@gentoo.org> gtk+-2.24.23-r2.ebuild:
+  Update dependencies to require guaranteed EAPI=5 or multilib ebuilds, bug
+  #513718.
+
+*gtk+-2.24.23-r2 (17 Jun 2014)
+
+  17 Jun 2014; Michał Górny <mgorny@gentoo.org> +gtk+-2.24.23-r2.ebuild,
+  -gtk+-2.24.23-r1.ebuild:
+  Fix gtk-doc hack, reported by galtgendo.
+
+  12 Jun 2014; Michał Górny <mgorny@gentoo.org> gtk+-2.24.23-r1.ebuild:
+  Force ${CHOST}-cups-config to obtain proper paths for multilib cups.
+
+  01 Jun 2014; Pacho Ramos <pacho@gentoo.org> -gtk+-3.12.1.ebuild:
+  drop old
+
+*gtk+-3.12.2 (31 May 2014)
+
+  31 May 2014; Pacho Ramos <pacho@gentoo.org> +gtk+-3.12.2.ebuild:
+  Version bump
+
+*gtk+-2.24.23-r1 (14 May 2014)
+
+  14 May 2014; Michał Górny <mgorny@gentoo.org> +gtk+-2.24.23-r1.ebuild:
+  Enable multilib support, bug #489000.
+
+  02 May 2014; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Fix gtk-doc dep (#509118 by Chris Williams)
+
+  27 Apr 2014; Alexandre Rostovtsev <tetromino@gentoo.org> gtk+-3.10.8.ebuild:
+  colord now has subslots
+
+*gtk+-3.12.1 (27 Apr 2014)
+
+  27 Apr 2014; Gilles Dartiguelongue <eva@gentoo.org> +gtk+-3.12.1.ebuild,
+  metadata.xml:
+  Version bump for Gnome 3.12.
+
+  27 Apr 2014; Pacho Ramos <pacho@gentoo.org> gtk+-3.4.4.ebuild:
+  Redigest
+
+*gtk+-3.4.4 (27 Apr 2014)
+
+  27 Apr 2014; Pacho Ramos <pacho@gentoo.org>
+  +files/gtk+-3.3.18-fallback-theme.patch,
+  +files/gtk+-3.3.20-wayland-xkbcommon-headers.patch,
+  +files/gtk+-3.4.4-isnan.patch, +gtk+-3.4.4.ebuild:
+  Recover this old version as looks like old slot of clearlooks-phenix rdepends
+  on it
+
+  27 Apr 2014; Pacho Ramos <pacho@gentoo.org>
+  -files/gtk+-2.14.3-limit-gtksignal-includes.patch,
+  -files/gtk+-2.21.3-multilib.patch,
+  -files/gtk+-2.24.7-darwin-quartz-introspection.patch,
+  -files/gtk+-3.10.7-clang.patch, -files/gtk+-3.3.18-fallback-theme.patch,
+  -files/gtk+-3.3.20-wayland-xkbcommon-headers.patch,
+  -files/gtk+-3.4.4-isnan.patch, -files/gtk+-3.6.3-darwin-gtksettings.patch,
+  -files/gtk+-3.6.3-librsvg-2.39.patch,
+  -files/gtk+-3.6.3-revert-recompute-font.patch,
+  -files/gtk+-3.6.3-stylecontext-font-crash.patch,
+  -files/gtk+-3.8.6-skip-filechooser-test.patch, -gtk+-2.24.17.ebuild,
+  -gtk+-2.24.22.ebuild, -gtk+-3.10.7.ebuild, -gtk+-3.4.4.ebuild,
+  -gtk+-3.6.3-r3.ebuild, metadata.xml:
+  drop old
+
+  21 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for arm, wrt bug #507568
+
+  20 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for x86, wrt bug #507568
+
+  19 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for sparc, wrt bug #507568
+
+  18 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for alpha, wrt bug #507568
+
+  18 Apr 2014; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Add missing DEPEND on gettext (#507958 by Nikoli)
+
+  17 Apr 2014; Jeroen Roovers <jer@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for HPPA (bug #507568).
+
+  17 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for ia64, wrt bug #507568
+
+  16 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for ppc64, wrt bug #507568
+
+  14 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for ppc, wrt bug #507568
+
+  13 Apr 2014; Agostino Sarubbo <ago@gentoo.org> gtk+-2.24.23.ebuild,
+  gtk+-3.10.8.ebuild:
+  Stable for amd64, wrt bug #507568
+
+*gtk+-3.10.8 (06 Apr 2014)
+
+  06 Apr 2014; Pacho Ramos <pacho@gentoo.org> +gtk+-3.10.8.ebuild:
+  Version bump
+
+*gtk+-2.24.23 (29 Mar 2014)
+
+  29 Mar 2014; Pacho Ramos <pacho@gentoo.org> +gtk+-2.24.23.ebuild,
+  -gtk+-2.24.16.ebuild, -gtk+-3.10.6.ebuild, -gtk+-3.8.7.ebuild:
+  Version bump, drop old
+
+  28 Mar 2014; Jeroen Roovers <jer@gentoo.org> gtk+-3.10.7.ebuild:
+  Stable for HPPA (bug #499954).
+
+  17 Mar 2014; Julian Ospald <hasufell@gentoo.org> gtk+-3.10.7.ebuild,
+  +files/gtk+-3.10.7-clang.patch:
+  fix build with clang wrt #504228
+
+  09 Mar 2014; Pacho Ramos <pacho@gentoo.org> gtk+-3.10.7.ebuild:
+  x86 stable, bug 499954
+
+  09 Mar 2014; Pacho Ramos <pacho@gentoo.org> gtk+-3.10.7.ebuild:
+  amd64 stable, bug 499954
+
+  22 Feb 2014; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.22.ebuild,
+  gtk+-3.10.7.ebuild:
+  Fix wrong commit, bug 502160
+
+*gtk+-3.10.7 (06 Feb 2014)
+
+  06 Feb 2014; Gilles Dartiguelongue <eva@gentoo.org> +gtk+-3.10.7.ebuild:
+  Version bump. Add more examples behing USE=examples.
+
+  20 Jan 2014; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.22.ebuild,
+  gtk+-3.10.6.ebuild:
+  Rekeyword now that depending packages were keyworded (#469722)
+
+*gtk+-3.10.6 (24 Dec 2013)
+
+  24 Dec 2013; Pacho Ramos <pacho@gentoo.org> +gtk+-3.10.6.ebuild:
+  Version bump for Gnome 3.10
+
+  22 Dec 2013; Jeroen Roovers <jer@gentoo.org> gtk+-2.24.22.ebuild,
+  gtk+-3.8.7.ebuild:
+  Stable for HPPA (bug #478252).
+
+  17 Dec 2013; Pacho Ramos <pacho@gentoo.org> gtk+-3.8.7.ebuild:
+  Add epatch_user (#494476 by pingoo)
+
+  08 Dec 2013; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.22.ebuild,
+  gtk+-3.8.7.ebuild:
+  x86 stable, bug #478252
+
+  03 Dec 2013; Pacho Ramos <pacho@gentoo.org> -gtk+-3.8.6.ebuild,
+  gtk+-3.8.7.ebuild:
+  Add a reference explaining at-spi2-atk dependency (#493242 by Luis Ressel),
+  drop old.
+
+  30 Nov 2013; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.22.ebuild,
+  gtk+-3.8.7.ebuild:
+  amd64 stable, bug #478252
+
+*gtk+-3.8.7 (21 Nov 2013)
+
+  21 Nov 2013; Pacho Ramos <pacho@gentoo.org> +gtk+-3.8.7.ebuild,
+  -gtk+-3.8.4.ebuild:
+  Version bump, drop old
+
+  14 Nov 2013; Matt Turner <mattst88@gentoo.org> gtk+-3.6.3-r3.ebuild:
+  alpha stable, bug 476364.
+
+  24 Oct 2013; Jeroen Roovers <jer@gentoo.org> gtk+-3.6.3-r3.ebuild:
+  Stable for HPPA (bug #476364).
+
+  19 Oct 2013; Pacho Ramos <pacho@gentoo.org> gtk+-3.8.6.ebuild:
+  Add missing DEPEND on gdbus-codegen (#488514 by Xavier Miller)
+
+*gtk+-3.8.6 (18 Oct 2013)
+
+  18 Oct 2013; Pacho Ramos <pacho@gentoo.org>
+  +files/gtk+-3.8.6-skip-filechooser-test.patch, +gtk+-3.8.6.ebuild,
+  -gtk+-2.24.21.ebuild:
+  Version bump, drop old
+
+  17 Oct 2013; Markus Meier <maekke@gentoo.org> gtk+-3.6.3-r3.ebuild:
+  arm stable, bug #476364
+
+  14 Oct 2013; Pacho Ramos <pacho@gentoo.org> gtk+-2.24.22.ebuild:
+  Drop unneeded gobject-introspection-common dep (#488026 by wojtek)
+
+*gtk+-2.24.22 (12 Oct 2013)
+
+  12 Oct 2013; Pacho Ramos <pacho@gentoo.org> +gtk+-2.24.22.ebuild,
+  -gtk+-2.24.20.ebuild, -gtk+-3.6.3-r2.ebuild:
+  Version bump, remove old
+
+*gtk+-3.6.3-r3 (07 Oct 2013)
+
+  07 Oct 2013; Alexandre Rostovtsev <tetromino@gentoo.org>
+  +gtk+-3.6.3-r3.ebuild, +files/gtk+-3.6.3-librsvg-2.39.patch:
+  Fix symbolic icon loading with librsvg-2.36.4-r1 and 2.39.0 (bug #487110,
+  thanks to pingoo).
+
+  07 Oct 2013; Alexandre Rostovtsev <tetromino@gentoo.org> gtk+-2.24.21.ebuild:
+  2.24.21 tarball doesn't have introspection.m4 (bug #487220, thanks to
+  wojtek).
+
+*gtk+-2.24.21 (28 Sep 2013)
+
+  28 Sep 2013; Pacho Ramos <pacho@gentoo.org> +gtk+-2.24.21.ebuild:
+  Version bump
+
+  26 Sep 2013; Alexandre Rostovtsev <tetromino@gentoo.org> gtk+-2.24.20.ebuild:
+  Require glib-2.34 due to g_clear_pointer (bug #486006, thanks to Thomas
+  Bettler).
+
+  08 Sep 2013; Gilles Dartiguelongue <eva@gentoo.org> gtk+-2.24.16.ebuild,
+  gtk+-2.24.17.ebuild, -gtk+-2.24.19.ebuild, gtk+-2.24.20.ebuild,
+  gtk+-3.4.4.ebuild, gtk+-3.6.3-r2.ebuild, -gtk+-3.8.2.ebuild,
+  gtk+-3.8.4.ebuild:
+  Drop libXt dependency, bug #483256. Drop old revisions.
+
+*gtk+-3.8.4 (01 Sep 2013)
+
+  01 Sep 2013; Gilles Dartiguelongue <eva@gentoo.org> +gtk+-3.8.4.ebuild:
+  Version bump.
 
   24 Jul 2013; Gilles Dartiguelongue <eva@gentoo.org> gtk+-3.8.2.ebuild:
   Move configure options to econf call direclty.
