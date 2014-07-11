@@ -45,6 +45,7 @@ RDEPEND="
 	media-libs/fontconfig
 	>=media-libs/freetype-2
 	media-libs/libart_lgpl
+	net-dns/avahi[qt3]
 	net-dns/libidn
 	app-text/ghostscript-gpl
 	x11-libs/libXext
