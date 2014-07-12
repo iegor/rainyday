@@ -100,6 +100,8 @@ src_prepare() {
 
 	# Make gtk utils optional
 	epatch "${FILESDIR}/${PN}-0.6.30-optional-gtk-utils.patch"
+	epatch "${FILESDIR}/automake-1.14.patch"
+	epatch "${FILESDIR}/install_dir_create.patch"
 
 	eautoreconf
 }
