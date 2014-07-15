@@ -8,7 +8,7 @@ KMCOPYLIB="libkonq libkonq"
 KMEXTRACTONLY=kdesktop/KDesktopIface.h
 inherit kde-meta eutils
 DESCRIPTION="[GIT] KDE: Web browser, file manager, ..."
-IUSE="branding java kdehiddenvisibility"
+IUSE="branding java kdehiddenvisibility proxy"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
 
 DEPEND="=kde-base/libkonq-${PV}:${SLOT}"
@@ -16,7 +16,8 @@ RDEPEND="${DEPEND}
 	=kde-base/kcontrol-${PV}:${SLOT}
 	=kde-base/kdebase-kioslaves-${PV}:${SLOT}
 	=kde-base/kfind-${PV}:${SLOT}
-	java? ( virtual/jre )"
+	java? ( virtual/jre )
+	proxy? ( >=net-proxy/dante-1.4.0-r1 )"
 
 pkg_preinst() {
 	kde_pkg_preinst
