@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdevelop/kdevelop-3.5.4-r1.ebuild,v 1.9 2009/09/27 14:57:18 ranger Exp $
 
-EAPI=2
+EAPI=5
 ARTS_REQUIRED="never"
 KMNAME=kdevelop
 inherit kde-meta eutils db-use
@@ -21,9 +21,10 @@ RDEPEND="${DEPEND}
 DEPEND="${DEPEND}
 	>=sys-devel/flex-2.5.33"
 
-[ -z "${EGIT_REPO_URI}" ] && EGIT_REPO_URI="git://github.com/iegor/kdevelop.git"
+REQUIRED_USE="
+	vstudio? ( boost )"
+
 EGIT_SOURCE_DIR="${S}"
-EGIT_BRANCH="develop"
 
 need-kde 9999
 
