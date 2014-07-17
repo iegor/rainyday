@@ -47,7 +47,7 @@ pkg_postinst() {
 		elog "- gb           Gentoo Bugzilla searching"
 		elog "- gf           Gentoo Forums searching"
 #		elog "- gp           Gentoo Package searching"
-		elog "- yyt						youtube secure searching"
+		elog "- yys						youtube secure searching"
 		elog "- ggs						google secure searching"
 		elog "- exua					ex.ua searching"
 		echo
