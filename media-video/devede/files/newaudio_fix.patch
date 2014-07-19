@@ -1,0 +1,40 @@
+--- ./devede_avconv_convert.py
++++ ./devede_avconv_convert.py
+@@ -543,7 +543,6 @@
+ 			if (volume!=100):
+ 				command_var.append("-vol")
+ 				command_var.append(str((256*volume)/100))
+-			command_var.append("-newaudio")
+ 			at-=1
+ 			
+ 
+--- build/lib.linux-x86_64-2.7/devede_avconv_convert.py
++++ build/lib.linux-x86_64-2.7/devede_avconv_convert.py
+@@ -543,7 +543,6 @@
+ 			if (volume!=100):
+ 				command_var.append("-vol")
+ 				command_var.append(str((256*volume)/100))
+-			command_var.append("-newaudio")
+ 			at-=1
+ 			
+ 
+--- build/lib.linux-x86_64-2.7/devede_ffmpeg_convert.py
++++ build/lib.linux-x86_64-2.7/devede_ffmpeg_convert.py
+@@ -543,7 +543,6 @@
+ 			if (volume!=100):
+ 				command_var.append("-vol")
+ 				command_var.append(str((256*volume)/100))
+-			command_var.append("-newaudio")
+ 			at-=1
+ 			
+ 
+--- devede_ffmpeg_convert.py
++++ devede_ffmpeg_convert.py
+@@ -543,7 +543,6 @@
+ 			if (volume!=100):
+ 				command_var.append("-vol")
+ 				command_var.append(str((256*volume)/100))
+-			command_var.append("-newaudio")
+ 			at-=1
+ 			
+ 
