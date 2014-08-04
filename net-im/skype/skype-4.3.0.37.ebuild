@@ -1,47 +1,50 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/skype/skype-4.0.0.8-r1.ebuild,v 1.7 2014/06/18 20:33:44 mgorny Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/skype/skype-4.3.0.37.ebuild,v 1.2 2014/06/19 19:20:13 jauhien Exp $
 
-EAPI=4
+EAPI=5
+
 inherit eutils gnome2-utils pax-utils
 
-DESCRIPTION="An P2P Internet Telephony (VoiceIP) client"
+DESCRIPTION="P2P Internet Telephony (VoiceIP) client"
 HOMEPAGE="http://www.skype.com/"
-SKYPE_URI="http://download.${PN}.com/linux"
-SRC_URI="!qt-static? ( ${SKYPE_URI}/${P}.tar.bz2 )
-	qt-static? ( ${SKYPE_URI}/${PN}_static-${PV}.tar.bz2 )"
+SRC_URI="http://download.${PN}.com/linux/${P}.tar.bz2"
 
 LICENSE="${PN}-4.0.0.7-copyright ${PN}-4.0.0.7-third-party_attributions.txt"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="pax_kernel selinux qt-static"
+IUSE="pax_kernel +pulseaudio selinux"
 
 QA_PREBUILT=opt/bin/${PN}
 RESTRICT="mirror strip" #299368
 
 EMUL_X86_VER=20120520
 
-RDEPEND="virtual/ttf-fonts
+RDEPEND="
+	virtual/ttf-fonts
 	amd64? (
-		>=app-emulation/emul-linux-x86-baselibs-${EMUL_X86_VER}
-		>=app-emulation/emul-linux-x86-soundlibs-${EMUL_X86_VER}
 		|| (
 			(
-				>=x11-libs/libX11-1.6.2[abi_x86_32]
-				>=x11-libs/libXext-1.3.2[abi_x86_32]
-				>=x11-libs/libXScrnSaver-1.2.2-r1[abi_x86_32]
-				>=x11-libs/libXv-1.0.10[abi_x86_32]
-				qt-static? (
-					>=x11-libs/libICE-1.0.8-r1[abi_x86_32]
-					>=x11-libs/libSM-1.2.1-r1[abi_x86_32]
-					>=x11-libs/libXrender-0.9.8[abi_x86_32]
-					>=media-libs/fontconfig-2.10.92[abi_x86_32]
-					>=media-libs/freetype-2.5.0.1[abi_x86_32]
-				)
+				dev-qt/qtcore:4[abi_x86_32(-)]
+				dev-qt/qtdbus:4[abi_x86_32(-)]
+				dev-qt/qtgui:4[accessibility,abi_x86_32(-)]
+				dev-qt/qtwebkit:4[abi_x86_32(-)]
+			)
+			>=app-emulation/emul-linux-x86-qtlibs-${EMUL_X86_VER}
+		)
+		|| (
+			media-libs/alsa-lib[abi_x86_32(-)]
+			>=app-emulation/emul-linux-x86-soundlibs-${EMUL_X86_VER}
+		)
+		|| (
+			(
+				x11-libs/libX11[abi_x86_32(-)]
+				x11-libs/libXext[abi_x86_32(-)]
+				x11-libs/libXScrnSaver[abi_x86_32(-)]
+				x11-libs/libXv[abi_x86_32(-)]
 			)
 			>=app-emulation/emul-linux-x86-xlibs-${EMUL_X86_VER}
 		)
-		!qt-static? ( >=app-emulation/emul-linux-x86-qtlibs-${EMUL_X86_VER} )
 	)
 	x86? (
 		media-libs/alsa-lib
@@ -49,32 +52,23 @@ RDEPEND="virtual/ttf-fonts
 		x11-libs/libXext
 		x11-libs/libXScrnSaver
 		x11-libs/libXv
-		qt-static? (
-			>=dev-libs/glib-2.28
-			media-libs/fontconfig
-			>=media-libs/freetype-2
-			>=media-libs/tiff-3.9.5-r3:3
-			sys-libs/zlib
-			x11-libs/libICE
-			x11-libs/libSM
-			x11-libs/libXrender
-		)
-		!qt-static? (
-			dev-qt/qtcore:4
-			dev-qt/qtdbus:4
-			dev-qt/qtgui:4[accessibility]
-		)
+		dev-qt/qtcore:4
+		dev-qt/qtdbus:4
+		dev-qt/qtgui:4[accessibility]
+		dev-qt/qtwebkit:4
 	)
+	pulseaudio? ( media-sound/pulseaudio )
 	selinux? ( sec-policy/selinux-skype )"
 
-src_unpack() {
-	unpack ${A}
-	[[ -d ${S} ]] || { mv skype* "${S}" || die; }
+src_prepare() {
+	epatch "${FILESDIR}/${P}-desktop.patch"
 }
 
 src_compile() {
-	type -P lrelease >/dev/null && lrelease lang/*.ts
-	rm -f lang/*.ts
+	if type -P lrelease >/dev/null; then
+		lrelease lang/*.ts || die
+	fi
+	rm -f lang/*.ts || die
 }
 
 src_install() {
@@ -91,11 +85,11 @@ src_install() {
 	dodoc README
 
 	local res
-	for res in 16 32 48; do
+	for res in 16 32 48 64 96 128 256; do
 		newicon -s ${res} icons/SkypeBlue_${res}x${res}.png ${PN}.png
 	done
 
-	make_desktop_entry ${PN} 'Skype VoIP' ${PN} 'Network;InstantMessaging;Telephony'
+	domenu skype.desktop
 
 	if use pax_kernel; then
 		pax-mark Cm "${ED}"/opt/bin/${PN} || die
@@ -125,6 +119,12 @@ pkg_postinst() {
 	if use amd64; then
 		elog "You can install app-emulation/emul-linux-x86-medialibs package for the 32bit"
 		elog "libraries from the media-libs/libv4l package."
+	fi
+
+	if ! use pulseaudio; then
+		ewarn "ALSA support was removed from Skype"
+		ewarn "consider installing media-sound/pulseaudio"
+		ewarn "otherwise sound will not work for you."
 	fi
 }
 
