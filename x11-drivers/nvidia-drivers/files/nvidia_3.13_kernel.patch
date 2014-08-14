@@ -1,0 +1,463 @@
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- ViewVC :: http://www.viewvc.org/ -->
+<head>
+<title>[ViewVC] Log of: nonfree/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch</title>
+<meta name="generator" content="ViewVC 1.1.13" />
+<link rel="stylesheet" href="/viewvc/*docroot*/styles.css" type="text/css" />
+<script src="/viewvc/*docroot*/scripts.js"></script>
+
+</head>
+<body>
+<div id="vc_header">
+<div id="vc_topmatter">
+
+<a href="/viewvc/*docroot*/help_log.html">ViewVC Help</a>
+</div>
+<div id="vc_logo">
+<a href="http://www.viewvc.org/"><img src="/viewvc/*docroot*/images/viewvc-logo.png" alt="ViewVC logotype" width="240" height="70" /></a>
+</div>
+<div id="vc_view_selection_group">
+
+
+
+<a class="vc_view_link" href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;view=markup">View File</a> |
+
+<a class="vc_view_link_this" href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;view=log">Revision Log</a>
+
+| <a class="vc_view_link" href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=annotate&amp;root=nonfree">Show Annotations</a>
+
+
+
+| <a class="vc_view_link" href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree">Download File</a>
+
+
+
+
+| <a class="vc_view_link" href="/viewvc">Root Listing</a>
+
+</div>
+<div id="vc_current_path">
+<a href="/viewvc">root</a><span class="pathdiv">/</span><a href="/viewvc/?root=nonfree">nonfree</a><span class="pathdiv">/</span><a href="/viewvc/rpms/?root=nonfree">rpms</a><span class="pathdiv">/</span><a href="/viewvc/rpms/nvidia-kmod/?root=nonfree">nvidia-kmod</a><span class="pathdiv">/</span><a href="/viewvc/rpms/nvidia-kmod/devel/?root=nonfree">devel</a><span class="pathdiv">/</span><span class="thisitem">nvidia_3.13_kernel.patch</span>
+</div>
+</div> <!-- vc_header -->
+<div id="vc_view_main">
+
+<table class="auto">
+
+
+
+<tr>
+<td>Links to HEAD:</td>
+<td>
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;view=markup">view</a>)
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree">download</a>)
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;content-type=text%2Fplain">as text</a>)
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=annotate&amp;root=nonfree">annotate</a>)
+</td>
+</tr>
+
+
+
+<tr>
+<td>Sticky Tag:</td>
+<td><form method="get" action="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch" style="display: inline">
+<div style="display: inline">
+<input type="hidden" name="view" value="log"/><input type="hidden" name="root" value="nonfree"/>
+
+
+<select name="pathrev" onchange="submit()">
+<option value=""></option>
+
+<optgroup label="Branches">
+
+
+<option>MAIN</option>
+
+
+</optgroup>
+
+<optgroup label="Non-branch tags">
+
+
+<option>nvidia-kmod-331_38-5_fc21</option>
+
+
+
+<option>nvidia-kmod-331_38-4_fc21</option>
+
+
+
+<option>nvidia-kmod-331_38-3_fc21</option>
+
+
+
+<option>nvidia-kmod-331_38-2_fc21</option>
+
+
+
+<option>nvidia-kmod-331_38-1_fc21</option>
+
+
+
+<option>HEAD</option>
+
+
+</optgroup>
+
+</select>
+
+<input type="submit" value="Set Sticky Tag" />
+</div>
+</form>
+
+</td>
+</tr>
+
+<tr>
+<td>Sort logs by:</td>
+<td><form method="get" action="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch">
+<div>
+<a name="logsort"></a>
+<input type="hidden" name="root" value="nonfree"/><input type="hidden" name="view" value="log"/>
+<select name="logsort" onchange="submit()">
+<option value="cvs" >Not sorted</option>
+<option value="date" selected="selected">Commit date</option>
+<option value="rev" >Revision</option>
+</select>
+<input type="submit" value=" Sort " />
+</div>
+</form>
+</td>
+</tr>
+</table>
+<div id="vc_main_body">
+<!-- ************************************************************** -->
+
+
+
+
+
+<div style="border-bottom: 1px dotted black">
+
+
+<a name="rev1.3"></a>
+<a name="nvidia-kmod-331_38-4_fc21"></a>
+<a name="nvidia-kmod-331_38-5_fc21"></a>
+<a name="HEAD"></a>
+
+
+Revision <strong>1.3</strong> -
+
+
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.3&amp;root=nonfree&amp;view=markup">view</a>)
+
+
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.3&amp;root=nonfree">download</a>)
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;revision=1.3&amp;content-type=text%2Fplain">as text</a>)
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?annotate=1.3&amp;root=nonfree">annotate</a>)
+
+
+
+- <a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;r1=1.3&amp;view=log">[select for diffs]</a>
+
+
+
+
+<br />
+
+<em>Tue Jan 21 21:02:13 2014 UTC</em>
+(6 days, 15 hours ago)
+by <em>leigh123linux</em>
+
+
+<br />Branch:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=MAIN"><strong>MAIN</strong></a>
+
+
+
+<br />CVS Tags:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=HEAD"><strong>HEAD</strong></a>,
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=nvidia-kmod-331_38-4_fc21"><strong>nvidia-kmod-331_38-4_fc21</strong></a>,
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=nvidia-kmod-331_38-5_fc21"><strong>nvidia-kmod-331_38-5_fc21</strong></a>
+
+
+
+
+
+
+<br />Changes since <strong>1.2: +0 -11 lines</strong>
+
+
+
+
+
+
+
+
+<br />Diff to <a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;r1=1.2&amp;r2=1.3">previous 1.2</a>
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">* Tue Jan 21 2014 Leigh Scott &lt;<a href="mailto:leigh123linux%40googlemail.com">&#108;&#101;&#105;&#103;&#104;&#49;&#50;&#51;&#108;&#105;&#110;&#117;&#120;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>&gt; - 1:331.38-4
+- make more changes to 3.13 kernel patch
+
+</pre>
+</div>
+
+
+
+<div style="border-bottom: 1px dotted black">
+
+
+<a name="rev1.2"></a>
+<a name="nvidia-kmod-331_38-3_fc21"></a>
+
+
+Revision <strong>1.2</strong> -
+
+
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.2&amp;root=nonfree&amp;view=markup">view</a>)
+
+
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.2&amp;root=nonfree">download</a>)
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;revision=1.2&amp;content-type=text%2Fplain">as text</a>)
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?annotate=1.2&amp;root=nonfree">annotate</a>)
+
+
+
+- <a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;r1=1.2&amp;view=log">[select for diffs]</a>
+
+
+
+
+<br />
+
+<em>Mon Jan 13 17:37:48 2014 UTC</em>
+(2 weeks ago)
+by <em>leigh123linux</em>
+
+
+<br />Branch:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=MAIN"><strong>MAIN</strong></a>
+
+
+
+<br />CVS Tags:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=nvidia-kmod-331_38-3_fc21"><strong>nvidia-kmod-331_38-3_fc21</strong></a>
+
+
+
+
+
+
+<br />Changes since <strong>1.1: +22 -0 lines</strong>
+
+
+
+
+
+
+
+
+<br />Diff to <a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;r1=1.1&amp;r2=1.2">previous 1.1</a>
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">* Mon Jan 13 2014 Leigh Scott &lt;<a href="mailto:leigh123linux%40googlemail.com">&#108;&#101;&#105;&#103;&#104;&#49;&#50;&#51;&#108;&#105;&#110;&#117;&#120;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>&gt; - 1:331.38-3
+- fix patch for 3.13 kernel
+
+</pre>
+</div>
+
+
+
+
+<div>
+
+
+<a name="rev1.1"></a>
+<a name="nvidia-kmod-331_38-1_fc21"></a>
+<a name="nvidia-kmod-331_38-2_fc21"></a>
+
+
+Revision <strong>1.1</strong> -
+
+
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.1&amp;root=nonfree&amp;view=markup">view</a>)
+
+
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?revision=1.1&amp;root=nonfree">download</a>)
+(<a href="/viewvc/*checkout*/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;revision=1.1&amp;content-type=text%2Fplain">as text</a>)
+(<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?annotate=1.1&amp;root=nonfree">annotate</a>)
+
+
+
+- <a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?root=nonfree&amp;r1=1.1&amp;view=log">[select for diffs]</a>
+
+
+
+
+<br />
+
+<em>Mon Jan 13 16:05:08 2014 UTC</em>
+(2 weeks ago)
+by <em>leigh123linux</em>
+
+
+<br />Branch:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=MAIN"><strong>MAIN</strong></a>
+
+
+
+<br />CVS Tags:
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=nvidia-kmod-331_38-1_fc21"><strong>nvidia-kmod-331_38-1_fc21</strong></a>,
+
+<a href="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch?view=log&amp;root=nonfree&amp;pathrev=nvidia-kmod-331_38-2_fc21"><strong>nvidia-kmod-331_38-2_fc21</strong></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">* Mon Jan 13 2014 Leigh Scott &lt;<a href="mailto:leigh123linux%40googlemail.com">&#108;&#101;&#105;&#103;&#104;&#49;&#50;&#51;&#108;&#105;&#110;&#117;&#120;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>&gt; - 1:331.38-1
+- Update to 331.38 release
+- Patch for 3.13 kernel
+
+</pre>
+</div>
+
+<!-- ************************************************************** -->
+</div>
+
+
+<div style="border-bottom: solid 1px black;">
+<p id="diff">This form allows you to request diffs between any two
+revisions of this file.
+For each of the two "sides" of the diff,
+
+select a symbolic revision name using the selection box, or choose
+'Use Text Field' and enter a numeric revision.
+
+</p>
+<form method="get" action="/viewvc/rpms/nvidia-kmod/devel/nvidia_3.13_kernel.patch" id="diff_select">
+<table cellpadding="2" cellspacing="0" class="auto">
+<tr>
+<td>&nbsp;</td>
+<td>
+<input type="hidden" name="root" value="nonfree"/><input type="hidden" name="view" value="diff"/>
+Diffs between
+
+<select name="r1">
+<option value="text" selected="selected">Use Text Field</option>
+
+<option value="1.3:nvidia-kmod-331_38-5_fc21">nvidia-kmod-331_38-5_fc21</option>
+
+<option value="1.3:nvidia-kmod-331_38-4_fc21">nvidia-kmod-331_38-4_fc21</option>
+
+<option value="1.2:nvidia-kmod-331_38-3_fc21">nvidia-kmod-331_38-3_fc21</option>
+
+<option value="1.1:nvidia-kmod-331_38-2_fc21">nvidia-kmod-331_38-2_fc21</option>
+
+<option value="1.1:nvidia-kmod-331_38-1_fc21">nvidia-kmod-331_38-1_fc21</option>
+
+<option value="1.3:MAIN">MAIN</option>
+
+<option value="1.3:HEAD">HEAD</option>
+
+</select>
+<input type="text" size="12" name="tr1"
+value="1.3"
+onchange="document.getElementById('diff_select').r1.selectedIndex=0" />
+
+and
+
+<select name="r2">
+<option value="text" selected="selected">Use Text Field</option>
+
+<option value="1.3:nvidia-kmod-331_38-5_fc21">nvidia-kmod-331_38-5_fc21</option>
+
+<option value="1.3:nvidia-kmod-331_38-4_fc21">nvidia-kmod-331_38-4_fc21</option>
+
+<option value="1.2:nvidia-kmod-331_38-3_fc21">nvidia-kmod-331_38-3_fc21</option>
+
+<option value="1.1:nvidia-kmod-331_38-2_fc21">nvidia-kmod-331_38-2_fc21</option>
+
+<option value="1.1:nvidia-kmod-331_38-1_fc21">nvidia-kmod-331_38-1_fc21</option>
+
+<option value="1.3:MAIN">MAIN</option>
+
+<option value="1.3:HEAD">HEAD</option>
+
+</select>
+<input type="text" size="12" name="tr2"
+value="1.1"
+onchange="document.getElementById('diff_select').r2.selectedIndex=0" />
+
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+Type of Diff should be a
+<select name="diff_format" onchange="submit()">
+<option value="h" selected="selected">Colored Diff</option>
+<option value="l" >Long Colored Diff</option>
+<option value="f" >Full Colored Diff</option>
+<option value="u" >Unidiff</option>
+<option value="c" >Context Diff</option>
+<option value="s" >Side by Side</option>
+</select>
+<input type="submit" value=" Get Diffs " />
+</td>
+</tr>
+</table>
+</form>
+</div>
+
+
+</div> <!-- vc_view_main -->
+<div id="vc_footer">
+Administered by <address><a href="mailto:rpmfusion-cvsadmin@lists.rpmfusion.org">rpmfusion-cvsadmin@lists.rpmfusion.org</a></address><br/>
+Powered by <a href="http://viewvc.tigris.org/">ViewVC 1.1.13</a>
+&nbsp;
+</div>
+</body>
+</html>
+

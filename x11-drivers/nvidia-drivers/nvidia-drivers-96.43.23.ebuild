@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-96.43.23.ebuild,v 1.16 2013/07/22 13:52:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-drivers/nvidia-drivers/nvidia-drivers-96.43.23.ebuild,v 1.21 2014/06/18 20:58:34 mgorny Exp $
 
 EAPI=5
 inherit eutils flag-o-matic linux-mod multilib nvidia-driver portability unpacker user versionator
@@ -9,11 +9,11 @@ X86_NV_PACKAGE="NVIDIA-Linux-x86-${PV}"
 AMD64_NV_PACKAGE="NVIDIA-Linux-x86_64-${PV}"
 X86_FBSD_NV_PACKAGE="NVIDIA-FreeBSD-x86-${PV}"
 
-DESCRIPTION="NVIDIA X11 driver and GLX libraries"
+DESCRIPTION="NVIDIA Accelerated Graphics Driver"
 HOMEPAGE="http://www.nvidia.com/"
-SRC_URI="x86? ( ftp://download.nvidia.com/XFree86/Linux-x86/${PV}/${X86_NV_PACKAGE}-pkg0.run )
-	 amd64? ( ftp://download.nvidia.com/XFree86/Linux-x86_64/${PV}/${AMD64_NV_PACKAGE}-pkg2.run )
-	 x86-fbsd? ( ftp://download.nvidia.com/freebsd/${PV}/${X86_FBSD_NV_PACKAGE}.tar.gz )"
+SRC_URI="x86? ( http://us.download.nvidia.com/XFree86/Linux-x86/${PV}/${X86_NV_PACKAGE}-pkg0.run )
+	 amd64? ( http://us.download.nvidia.com/XFree86/Linux-x86_64/${PV}/${AMD64_NV_PACKAGE}-pkg2.run )
+	 x86-fbsd? ( http://us.download.nvidia.com/freebsd/${PV}/${X86_FBSD_NV_PACKAGE}.tar.gz )"
 
 LICENSE="GPL-2 NVIDIA-r1"
 SLOT="0"
@@ -46,8 +46,8 @@ RDEPEND="${COMMON}
 	multilib? (
 		|| (
 			(
-				x11-libs/libX11[abi_x86_32]
-				x11-libs/libXext[abi_x86_32]
+				>=x11-libs/libX11-1.6.2[abi_x86_32]
+				>=x11-libs/libXext-1.3.2[abi_x86_32]
 			)
 			app-emulation/emul-linux-x86-opengl
 		)
@@ -315,10 +315,9 @@ src_install() {
 		fi
 
 		# Add the aliases
-		[ -f "${FILESDIR}/nvidia-169.07" ] || die "nvidia missing in FILESDIR"
 		sed -e 's:PACKAGE:'${PF}':g' \
 			-e 's:VIDEOGID:'${VIDEOGROUP}':' "${FILESDIR}"/nvidia-169.07 > \
-			"${WORKDIR}"/nvidia
+			"${WORKDIR}"/nvidia || die
 		insinto /etc/modprobe.d
 		newins "${WORKDIR}"/nvidia nvidia.conf
 	elif use x86-fbsd; then
@@ -397,6 +396,8 @@ src_install() {
 	fi
 
 	is_final_abi || die "failed to iterate through all ABIs"
+
+	readme.gentoo_create_doc
 }
 
 # Install nvidia library:
@@ -492,19 +493,7 @@ pkg_postinst() {
 	# Switch to the nvidia implementation
 	eselect opengl set --use-old nvidia
 
-	elog "You must be in the video group to use the NVIDIA device"
-	elog "For more info, read the docs at"
-	elog "http://www.gentoo.org/doc/en/nvidia-guide.xml#doc_chap3_sect6"
-	elog
-	elog "This ebuild installs a kernel module and X driver. Both must"
-	elog "match explicitly in their version. This means, if you restart"
-	elog "X, you must modprobe -r nvidia before starting it back up"
-	elog
-	elog "To use the NVIDIA GLX, run \"eselect opengl set nvidia\""
-	elog
-	elog "NVIDIA has requested that any bug reports submitted have the"
-	elog "output of nvidia-bug-report.sh included."
-	elog
+	readme.gentoo_print_elog
 }
 
 pkg_postrm() {
