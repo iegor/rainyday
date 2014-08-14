@@ -6,7 +6,7 @@ EAPI=4
 
 PYTHON_DEPEND="2:2.7"
 
-inherit multilib python
+inherit multilib python eutils
 
 DESCRIPTION="Program to create video CDs and DVDs, suitable to be played in home DVD players."
 HOMEPAGE="http://www.rastersoft.com/programas/devede.html"
@@ -33,8 +33,8 @@ pkg_setup() {
 	python_set_active_version 2
 	python_pkg_setup
 }
-
 src_prepare() {
+	epatch ${FILESDIR}/newaudio_fix.patch
 	python_convert_shebangs -r 2 .
 }
 
