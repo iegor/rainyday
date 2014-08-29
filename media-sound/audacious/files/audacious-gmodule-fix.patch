@@ -1,0 +1,19 @@
+--- src/audacious/Makefile
++++ src/audacious/Makefile
+@@ -133,7 +133,8 @@
+ 		${LIBMCS_LIBS}					\
+ 		${REGEX_LIBS}					\
+ 		${PTHREAD_LIBS}					\
+-		${LIBGUESS_LIBS}
++		${LIBGUESS_LIBS} \
++		${GMODULE_LIBS}
+ 
+ LDFLAGS += ${PROG_IMPLIB_LDFLAGS} ${AUDLDFLAGS}
+ 
+--- extra.mk.in
++++ extra.mk.in
+@@ -181,3 +181,4 @@
+ AUDACIOUS_PATH ?= @AUDACIOUS_PATH@
+ ARCH_X86 ?= @ARCH_X86@
+ VERSION ?= @VERSION@
++GMODULE_LIBS ?= -lgmodule-2.0
