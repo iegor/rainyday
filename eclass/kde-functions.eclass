@@ -310,6 +310,7 @@ kde-base/kdeutils kde-base/ksim
 kde-base/kdeutils kde-base/ktimer
 kde-base/kdeutils kde-base/kwalletmanager
 kde-base/kdeutils kde-base/superkaramba
+kde-base/kdeutils kde-base/k3b
 kde-base/kdewebdev kde-base/kfilereplace
 kde-base/kdewebdev kde-base/kimagemapeditor
 kde-base/kdewebdev kde-base/klinkstatus
