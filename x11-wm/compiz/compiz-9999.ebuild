@@ -9,8 +9,8 @@ inherit autotools eutils gnome2-utils git-support
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="http://www.compiz.org/"
 # SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
-EGIT_REPO_URI="git://localhost//compiz.git"
-EGIT_BRANCH="develop"
+EGIT_REPO_URI="git://localhost/compiz.git"
+EGIT_BRANCH="compiz-0.8"
 
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
@@ -84,16 +84,13 @@ src_prepare() {
 	# Patch for compatibility with gcc 4.7
 	epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
 
-	if ! use gnome || ! use gconf; then
-		epatch "${FILESDIR}"/${PN}-no-gconf.patch
-	fi
 	if use kde; then
 		# patch for KDE 4.8 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.8" && epatch "${FILESDIR}"/${PN}-kde-4.8.patch
+		has_version ">=kde-base/kwin-4.8:4" && epatch "${FILESDIR}"/${PN}-kde-4.8.patch
 		# patch for KDE 4.9 compatibility. Picked up from http://cgit.compiz.org
-		has_version ">=kde-base/kwin-4.9" && epatch "${FILESDIR}"/${PN}-kde-4.9.patch
+		has_version ">=kde-base/kwin-4.9:4" && epatch "${FILESDIR}"/${PN}-kde-4.9.patch
 		# patch for KDE 4.10 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.10" && epatch "${FILESDIR}"/${PN}-kde-4.10.patch
+		has_version ">=kde-base/kwin-4.10:4" && epatch "${FILESDIR}"/${PN}-kde-4.10.patch
 	fi
 	eautoreconf
 }
