@@ -280,7 +280,7 @@ kde-base/kdesdk kde-base/kompare
 kde-base/kdesdk kde-base/kspy
 kde-base/kdesdk kde-base/kuiviewer
 kde-base/kdesdk kde-base/umbrello
-kde-base/kdesdk kde-misc/kdiff3
+kde-base/kdesdk kde-base/kdiff3
 kde-base/kdesdk dev-util/kdevelop
 kde-base/kdesdk dev-util/kdbg
 kde-base/kdetoys kde-base/amor
