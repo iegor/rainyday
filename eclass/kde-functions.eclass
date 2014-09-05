@@ -502,8 +502,7 @@ set-kdedir() {
 #		else
 			case $KDEMAJORVER.$KDEMINORVER in
 				3*) export PREFIX="/usr/kde/3.5";;
-				5.0) export PREFIX="/usr/kde/svn";;
-				9999.0) export PREFIX="/usr/kde/git";;
+				9999*) export PREFIX="/usr/kde/git";;
 				*) die "failed to set PREFIX";;
 			esac
 #		fi
@@ -706,7 +705,7 @@ postprocess_desktop_entries() {
 }
 
 # is this a kde-base ebuid?
-if [[ "${CATEGORY}" == "kde-base" ]]; then
+if [[ "${CATEGORY}" == "kde-base" || "${CATEGORY}" == "kde" ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	export KDEBASE="true"
 	export KDEREVISION

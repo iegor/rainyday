@@ -258,7 +258,7 @@ kde_src_configure() {
 
 	export kde_widgetdir="$KDEDIR/$(get_libdir)/kde3/plugins/designer"
 
-	# fix the sandbox errors "can't writ to .kde or .qt" problems.
+	#TODO: fix the sandbox errors "can't write to .kde or .qt" problems.
 	# this is a fake homedir that is writeable under the sandbox, so that the build process
 	# can do anything it wants with it.
 	REALHOME="$HOME"
@@ -289,7 +289,7 @@ kde_src_configure() {
 				if use debug ; then
 					myconf="$myconf --enable-debug=full --with-debug"
 				else
-					myconf="$myconf --disable-debug"
+					myconf="$myconf --enable-debug=no --disable-debug"
 				fi
 				if has kdeenablefinal ${IUSE}; then
 					myconf="$myconf $(use_enable kdeenablefinal final)"
@@ -313,7 +313,7 @@ kde_src_configure() {
 				# rebuild configure script, etc
 				# This can happen with e.g. a cvs snapshot
 				if [[ ! -f "./configure" ]]; then
-# 					die "no conf script $(pwd)"
+					# die "no conf script $(pwd)"
 
 					# This is needed to fix building with autoconf 2.60.
 					# Many thanks to who preferred such a stupid check rather

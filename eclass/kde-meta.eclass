@@ -332,16 +332,16 @@ kde-meta_src_unpack() {
 		EGIT_BRANCH="${KMBRANCH}"
 		EGIT_PROJECT="${KMNAME}.git"
 
-		# Default branch check and set, if wasn't set in ebuild
+		# Default uri and branch check and set, if wasn't set in ebuild
+		if [ -z ${EGIT_REPO_URI} ]; then
+			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
+			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
+		fi
 		if [ -z "${EGIT_BRANCH}" ]; then
 			ewarn "branch is undefined, using default"
 			EGIT_BRANCH="develop"
 		fi
 
-		if [ -z ${EGIT_REPO_URI} ]; then
-			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
-			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
-		fi
 		# Short debug messaging, log
 		debug-print "S: $S"
 		debug-print "A: $A"
@@ -361,7 +361,7 @@ kde-meta_src_unpack() {
 		debug-print "T: $T"
 		debug-print "KMNAME: ${KMNAME}"
 		debug-print "KMMODULE: ${KMMODULE}"
-#		debug-print "files list: ${extractlist}"
+		# debug-print "files list: ${extractlist}"
 		debug-print "EGIT_SOURCEDIR: ${EGIT_SOURCEDIR}"
 		debug-print "EGIT_BRANCH: ${EGIT_BRANCH}"
 
@@ -372,7 +372,7 @@ kde-meta_src_unpack() {
 			einfo "we can't fetch sources from online git repo."
 			einfo "No worries though! If you are on development machine"
 			einfo "or set up git service on this machine and did placed"
-			einfo "repositories with kde data there, you can update from there"
+			einfo "kde modules there, you can clone/fetch from there"
 			rc-service git-daemon status > /dev/null
 			if [[ ${?} == 3 ]]; then
 				einfo "Please run the git service and restart emerge process"
@@ -383,16 +383,17 @@ kde-meta_src_unpack() {
 		git-support_migrate_repository
 		git-support_fetch
 		git-support_gc
-#		git-support_submodules
+		# git-support_submodules
 
 		# To make sure we are checking out into workdir
-		#S="${WORKDIR}"/${P}
-		#dodir ${S}
-		#dodir ${EGIT_SOURCEDIR}
+		# S="${WORKDIR}"/${P}
+		# dodir ${S}
+		# dodir ${EGIT_SOURCEDIR}
 		git-support_move_source
-		cd $EGIT_SOURCEDIR
+		cd ${EGIT_SOURCEDIR}
 
 		if [ "${KMNAME}" == "${PN}" ]; then
+			# For modules sized projecs (like amarok, etc)
 			ebegin "Checking out whole module"
 				git checkout origin/${EGIT_BRANCH} . &> /dev/null
 			eend ${?}
@@ -422,7 +423,7 @@ kde-meta_src_unpack() {
 		git submodule update || die "Failed to update submodule"
 
 		# Don't add a param here without looking at its implementation.
-#		kde_src_unpack
+		# kde_src_unpack
 
 		# Copy over KMCOPYLIB items
 		libname=""
@@ -436,9 +437,9 @@ kde-meta_src_unpack() {
 				cd ${dirname}
 				search_path=$(echo "${PREFIX}"/$(get_libdir)/{,kde3/{,plugins/{designer,styles}}})
 				if [[ ! "$(find ${search_path} -maxdepth 1 -name "${libname}*" 2>/dev/null)" == "" ]]; then
-                    if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+					if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
 						einfo "Symlinking library: \"${PREFIX}/$(get_libdir)/${libname}\" -> ./"
-                    fi
+					fi
 					ln -s "${PREFIX}"/$(get_libdir)/${libname}* .
 				else
 					die "Can't find library ${libname} under ${PREFIX}/$(get_libdir)/"
@@ -572,24 +573,24 @@ kde-meta_src_install() {
 # @DESCRIPTION:
 # Calls kde_pkg_postinst
 kde-meta_pkg_postinst() {
-    # Remove dir with KMNAME module info
-    #rm -rf ${EGIT_REPO_KMNAME_POOL}
-    #unset EGIT_REPO_KMNAME_POOL
+	# Remove dir with KMNAME module info
+	#rm -rf ${EGIT_REPO_KMNAME_POOL}
+	#unset EGIT_REPO_KMNAME_POOL
 
-    # Call kde method
-    kde_pkg_postinst
+	# Call kde method
+	kde_pkg_postinst
 }
 
 # @FUNCTION: kde-meta_pkg_postrm
 # @DESCRIPTION:
 # Calls kde_pkg_postrm
 kde-meta_pkg_postrm() {
-    # Remove dir with KMNAME module info
-    #rm -rf ${EGIT_REPO_KMNAME_POOL}
-    #unset EGIT_REPO_KMNAME_POOL
+	# Remove dir with KMNAME module info
+	#rm -rf ${EGIT_REPO_KMNAME_POOL}
+	#unset EGIT_REPO_KMNAME_POOL
 
-    # Call kde method
-    kde_pkg_postrm
+	# Call kde method
+	kde_pkg_postrm
 }
 
 case ${EAPI:-0} in
