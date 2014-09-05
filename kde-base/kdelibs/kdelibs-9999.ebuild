@@ -71,7 +71,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	sys-devel/gettext
-	doc? ( app-doc/doxygen )
+	doc? ( <app-doc/doxygen-1.8.0 )
 "
 RDEPEND="${RDEPEND}
 	!<kde-base/kdebase-startkde-${PV}:${SLOT}
