@@ -1,6 +1,6 @@
 diff -ur k3b-1.0.5.orig/configure.in k3b-1.0.5/configure.in
---- k3b-1.0.5.orig/configure.in	2008-05-27 11:34:23.000000000 +0300
-+++ k3b-1.0.5/configure.in	2009-07-26 18:07:39.000000000 +0300
+--- configure.in	2008-05-27 11:34:23.000000000 +0300
++++ configure.in	2009-07-26 18:07:39.000000000 +0300
 @@ -770,13 +770,13 @@
  
    dnl - search for both the new and the old naming -
@@ -20,8 +20,8 @@ diff -ur k3b-1.0.5.orig/configure.in k3b-1.0.5/configure.in
  		],
  		[], [], [])
 diff -ur k3b-1.0.5.orig/plugins/decoder/musepack/configure.in.in k3b-1.0.5/plugins/decoder/musepack/configure.in.in
---- k3b-1.0.5.orig/plugins/decoder/musepack/configure.in.in	2008-05-27 11:23:36.000000000 +0300
-+++ k3b-1.0.5/plugins/decoder/musepack/configure.in.in	2009-07-26 18:00:10.000000000 +0300
+--- plugins/decoder/musepack/configure.in.in	2008-05-27 11:23:36.000000000 +0300
++++ plugins/decoder/musepack/configure.in.in	2009-07-26 18:00:10.000000000 +0300
 @@ -14,13 +14,13 @@
  
    dnl - search for both the new and the old naming -

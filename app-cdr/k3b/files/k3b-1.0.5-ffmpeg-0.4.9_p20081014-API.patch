@@ -1,7 +1,7 @@
 Index: k3b-1.0.5/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
 ===================================================================
---- k3b-1.0.5.orig/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
-+++ k3b-1.0.5/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
+--- plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
++++ plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp
 @@ -194,7 +194,7 @@ QString K3bFFMpegFile::typeComment() con
      return i18n("Windows Media v1");
    case CODEC_ID_WMAV2:
