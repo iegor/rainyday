@@ -2,8 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-9999.ebuild,v 1.13 2013/01/08 21:32:50 lack Exp $
 EAPI=4
-
-inherit eutils flag-o-matic toolchain-funcs git-2 prefix
+inherit eutils flag-o-matic toolchain-funcs git-support prefix
 
 IUSE="nls xinerama bidi +truetype +imlib +slit +toolbar vim-syntax xcomposite"
 
@@ -81,7 +80,7 @@ src_compile() {
 	mkdir -p "${T}/home/.fluxbox" || die "mkdir home failed"
 	MENUFILENAME="${S}/data/menu" MENUTITLE="Fluxbox ${PV}" \
 		CHECKINIT="no. go away." HOME="${T}/home" \
-		"${S}/util/fluxbox-generate_menu" -is -ds \
+		bash "${S}/util/fluxbox-generate_menu" -is -ds \
 		|| die "menu generation failed"
 	eend $?
 }
