@@ -142,18 +142,14 @@ git-support_init_variables() {
 	esc_pn=${PN//[-+]/_}
 
 	: ${EGIT_SOURCEDIR="${S}"}
-
 	: ${EGIT_STORE_DIR:="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/egit-src"}
-
 	: ${EGIT_HAS_SUBMODULES:=}
-
 	: ${EGIT_OPTIONS:=}
-
 	: ${EGIT_MASTER:=master}
 
 	liverepo=${esc_pn}_LIVE_REPO
 	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI}}
-	[[ ${EGIT_REPO_URI} ]] || die "EGIT_REPO_URI must have some value"
+	[[ ${EGIT_REPO_URI} ]] || die "${ECLASS}: EGIT_REPO_URI must have some value"
 
 	# Assume we are online
 	: ${EVCS_OFFLINE:=}
@@ -162,10 +158,10 @@ git-support_init_variables() {
 	# ping 8.8.8.8 -c 1 -i 1 -w 2 > /dev/null
 	# local ping_res=$?
 	# if [[ ping_res -ne 0 ]]; then
-	# 	ewarn "offline mode: network is unreachable"
-	# 	EVCS_OFFLINE=1
-	# 	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI_LOCAL}}
-	# 	einfo "URI: ${EGIT_REPO_URI}"
+	#	ewarn "offline mode: network is unreachable"
+	#	EVCS_OFFLINE=1
+	#	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI_LOCAL}}
+	#	einfo "URI: ${EGIT_REPO_URI}"
 	# fi
 
 	livebranch=${esc_pn}_LIVE_BRANCH
