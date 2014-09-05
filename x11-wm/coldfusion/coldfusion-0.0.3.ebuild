@@ -17,8 +17,7 @@ DEPEND="
 	x11-wm/compiz[-gconf]
 	x11-plugins/compiz-plugins-main[-gconf]
 	extras? (
-		x11-plugins/compiz-plugins-extra[-gconf]
-		x11-plugins/compiz-plugins-unsupported )
+		x11-plugins/compiz-plugins-extra[-gconf] )
 	x11-apps/ccsm
 	decorations? ( x11-wm/emerald )
 	docky? ( gnome-extra/docky )
