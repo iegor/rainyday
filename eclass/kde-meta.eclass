@@ -328,19 +328,9 @@ kde-meta_src_unpack() {
 		fi
 
 		EGIT_KDE_REPO_URI_BASE=${EGIT_KDE_REPO_URI_BASE:="git://github.com/iegor"}
-		EGIT_KDE_REPO_DIR="${EGIT_KDE_REPO_URI_BASE}/${KMNAME}.git"
-		EGIT_BRANCH="${KMBRANCH}"
+		EGIT_REPO_URI="${EGIT_KDE_REPO_URI_BASE}/${KMNAME}.git"
+		EGIT_BRANCH="${KMBRANCH:=${EGIT_BRANCH:=develop}}"
 		EGIT_PROJECT="${KMNAME}.git"
-
-		# Default uri and branch check and set, if wasn't set in ebuild
-		if [ -z ${EGIT_REPO_URI} ]; then
-			ewarn "Empty EGIT_REPO_URI: setting to default: ${EGIT_KDE_REPO_DIR}"
-			EGIT_REPO_URI=${EGIT_KDE_REPO_DIR}
-		fi
-		if [ -z "${EGIT_BRANCH}" ]; then
-			ewarn "branch is undefined, using default"
-			EGIT_BRANCH="develop"
-		fi
 
 		# Short debug messaging, log
 		debug-print "S: $S"
