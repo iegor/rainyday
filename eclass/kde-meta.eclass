@@ -390,13 +390,22 @@ kde-meta_src_unpack() {
 		else
 			for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
 				configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
-				README NEWS ChangeLog ${KMMODULE} ${KMEXTRA} ${KMCOMPILEONLY} \
+				README NEWS ChangeLog ${KMEXTRA} ${KMCOMPILEONLY} \
 				${KMEXTRACTONLY} ${DOCS}
 			do
 				ebegin "<co>: ${KMNAME}@${EGIT_BRANCH} - ${item%/}"
 					git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
 				eend ${?}
 			done
+		fi
+
+		ebegin "<co>: ${KMNAME}@${EGIT_BRANCH} - ${KMMODULE}"
+			git checkout origin/${EGIT_BRANCH} "${KMMODULE}" &> /dev/null
+			kmmodule_co_ok=${?}
+		eend ${kmmodule_co_ok}
+		
+		if [ ${kmmodule_co_ok} -ne 0 ]; then
+			die "KMMODULE [${KMMODULE}] is not found in ${EGIT_REPO_URI} branch ${EGIT_BRANCH}"
 		fi
 
 		ebegin "<co>: submodule files"
