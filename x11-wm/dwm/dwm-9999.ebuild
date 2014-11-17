@@ -10,7 +10,7 @@ DESCRIPTION="a dynamic window manager for X11"
 HOMEPAGE="http://dwm.suckless.org/"
 SRC_URI=""
 EGIT_REPO_URI=${EGIT_REPO_URI:="http://www.github.com/iegor/dwm.git"}
-EGIT_BRANCH="development"
+EGIT_BRANCH="develop"
 
 LICENSE="MIT"
 SLOT="0"
