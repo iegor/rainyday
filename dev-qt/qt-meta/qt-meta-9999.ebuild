@@ -50,9 +50,9 @@ S="${WORKDIR}/qt-x11-${SRCTYPE}-${PV}"
 
 QTBASE="/usr/qt/3"
 
-EGIT_REPO_URI="git://github.com/iegor/qt.git"
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://github.com/iegor/qt.git"}
 EGIT_SOURCEDIR="${S}"
-EGIT_BRANCH="develop"
+EGIT_BRANCH=${EGIT_BRANCH:="develop"}
 
 QTVER_MAJOR=3
 QTVER_MINOR=3
