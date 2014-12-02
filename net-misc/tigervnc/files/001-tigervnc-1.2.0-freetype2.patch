@@ -1,0 +1,11 @@
+--- common/fltk/CMakeLists.txt	2014-11-27 07:33:09.619255576 +0200
++++ common/fltk/CMakeLists.txt	2014-11-27 07:31:14.036258102 +0200
+@@ -114,7 +114,7 @@
+ mark_as_advanced(HAVE_SYS_STDTYPES_H)
+ 
+ # where to find freetype headers
+-find_path(FREETYPE_PATH freetype/config/ftheader.h PATH_SUFFIXES freetype2)
++find_path(FREETYPE_PATH config/ftheader.h PATH_SUFFIXES freetype2)
+ if(FREETYPE_PATH)
+    include_directories(${FREETYPE_PATH})
+ endif(FREETYPE_PATH)
