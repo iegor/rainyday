@@ -386,7 +386,12 @@ kde-meta_src_unpack() {
 			# For modules sized projecs (like amarok, etc)
 			ebegin "Checking out whole module"
 				git checkout origin/${EGIT_BRANCH} . &> /dev/null
+				kmmodule_co_ok=${?}
 			eend ${?}
+
+			if [ ${kmmodule_co_ok} -ne 0 ]; then
+				die "KMMODULE [${KMMODULE}] is not found in ${EGIT_REPO_URI} branch ${EGIT_BRANCH}"
+			fi
 		else
 			for item in Makefile.am Makefile.am.in configure.in.in configure.in.mid \
 				configure.in.bot acinclude.m4 aclocal.m4 AUTHORS COPYING INSTALL \
@@ -397,15 +402,20 @@ kde-meta_src_unpack() {
 					git checkout origin/${EGIT_BRANCH} "${item%/}" &> /dev/null
 				eend ${?}
 			done
-		fi
+			# einfo "getting \".in.in\" file so configure atempt would be much more precise"
+			# for km_exo in ${KMEXTRACTONLY}; do
+			#	einfo "[ ${km_exo} ]"
+			#	# ebegin "[git: co] "
+			# done
 
-		ebegin "<co>: ${KMNAME}@${EGIT_BRANCH} - ${KMMODULE}"
-			git checkout origin/${EGIT_BRANCH} "${KMMODULE}" &> /dev/null
-			kmmodule_co_ok=${?}
-		eend ${kmmodule_co_ok}
-		
-		if [ ${kmmodule_co_ok} -ne 0 ]; then
-			die "KMMODULE [${KMMODULE}] is not found in ${EGIT_REPO_URI} branch ${EGIT_BRANCH}"
+			ebegin "<co>: ${KMNAME}@${EGIT_BRANCH} - ${KMMODULE}"
+				git checkout origin/${EGIT_BRANCH} "${KMMODULE}" &> /dev/null
+				kmmodule_co_ok=${?}
+			eend ${kmmodule_co_ok}
+
+			if [ ${kmmodule_co_ok} -ne 0 ]; then
+				die "KMMODULE [${KMMODULE}] is not found in ${EGIT_REPO_URI} branch ${EGIT_BRANCH}"
+			fi
 		fi
 
 		ebegin "<co>: submodule files"
