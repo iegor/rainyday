@@ -8,7 +8,8 @@ IUSE="nls xinerama bidi +truetype +imlib +slit +toolbar vim-syntax xcomposite"
 
 DESCRIPTION="Fluxbox is an X11 window manager featuring tabs and an iconbar"
 
-EGIT_REPO_URI="http://www.github.com/iegor/fluxbox.git"
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.fluxbox.org/fluxbox.git"}
+EGIT_BRANCH=${EGIT_BRANCH:=develop}
 SRC_URI=""
 HOMEPAGE="http://www.fluxbox.org"
 

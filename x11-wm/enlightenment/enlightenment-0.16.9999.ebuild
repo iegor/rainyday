@@ -2,27 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/enlightenment-0.16.9999.ebuild,v 1.40 2012/11/08 07:56:38 vapier Exp $
 
-EAPI="4"
-if [[ ${PV} == *9999 ]] ; then
-#	ESVN_REPO_URI="http://svn.enlightenment.org/svn/e/trunk/E16/e"
-	EGIT_REPO_URI="git://git.enlightenment.org/e16/e16.git"
-	inherit git-2 autotools
-	SRC_URI=""
-	#KEYWORDS=""
-	S=${WORKDIR}/e16/e
-else
-	SRC_URI="mirror://sourceforge/enlightenment/e16-${PV/_/-}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd"
-	S=${WORKDIR}/e16-${PV/_pre?}
-fi
-
-inherit eutils
-
+EAPI=5
+SRC_URI=""
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.enlightenment.org/e16/e16.git"}
+EGIT_BRANCH=${EGIT_BRANCH:="master"}
+inherit git-support autotools
 DESCRIPTION="Enlightenment Window Manager (e16)"
 HOMEPAGE="http://www.enlightenment.org/"
-
 LICENSE="BSD"
-SLOT="0"
+SLOT=0
 IUSE="dbus doc nls pango pulseaudio xcomposite xinerama xrandr"
 
 RDEPEND="pulseaudio? ( media-sound/pulseaudio )
@@ -55,6 +43,7 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 PDEPEND="doc? ( app-doc/edox-data )"
 
+S=${WORKDIR}/e16/e
 src_prepare() {
 	if [[ ! -e configure ]] ; then
 		eautopoint
@@ -72,7 +61,7 @@ src_configure() {
 		$(use_enable xinerama) \
 		$(use_enable xrandr) \
 		$(use_enable xcomposite composite) \
-		--disable-docs \
+		--enable-docs \
 		--enable-zoom
 }
 

@@ -9,8 +9,8 @@ inherit autotools eutils gnome2-utils git-support
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="http://www.compiz.org/"
 # SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
-EGIT_REPO_URI="git://localhost/compiz.git"
-EGIT_BRANCH="compiz-0.8"
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://localhost/compiz.git"}
+EGIT_BRANCH=${EGIT_BRANCH:="develop"}
 
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
