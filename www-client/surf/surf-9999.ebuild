@@ -3,11 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/www-client/surf/surf-9999.ebuild,v 1.2 2013/10/04 14:52:10 jer Exp $
 
 EAPI=5
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.suckless.org/surf"}
 inherit eutils git-2 savedconfig toolchain-funcs
-
 DESCRIPTION="a simple web browser based on WebKit/GTK+"
 HOMEPAGE="http://surf.suckless.org/"
-EGIT_REPO_URI="git://git.suckless.org/surf"
 
 LICENSE="MIT"
 SLOT="0"
