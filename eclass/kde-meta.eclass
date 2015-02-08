@@ -431,6 +431,13 @@ kde-meta_src_unpack() {
 		git submodule init || die "Failed to init submodule"
 		git submodule update || die "Failed to update submodule"
 
+		if [ "${ECLASS_DEBUG_OUTPUT}" == "on" ]; then
+			echo "##################################### DEBUG: git log"
+			git --no-pager log --all -n25 --oneline --abbrev=8 --graph --topo-order --color=always \
+				--pretty="> %h (%Cred%t%Creset) (%Cgreen%p%Creset) - %Cblue%an(%cn)%Creset \"%s\" %C(bold green)%d%Creset"
+			echo "####################################################"
+		fi
+
 		# Don't add a param here without looking at its implementation.
 		# kde_src_unpack
 
