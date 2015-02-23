@@ -17,9 +17,17 @@ media_dir=/media
 device=$1
 mount_point=${media_dir}/$2
 
-# Unmount volume
-/bin/umount -l ${device}
+if [ ! -d ${mount_point} ]; then
+    exit 1;
+fi
+
+if ! $(grep ${mount_point} /proc/mounts &> /dev/null); then
+    # Unmount volume
+    /bin/umount -l ${device}
+fi
+
 # Remove mount_point and clean after ourselves (all links, etc.)
 /bin/rmdir ${mount_point}
+
 # Erase string from fstab
-/bin/sed -i "\/dev\/${device}.*/d" /etc/fstab
+#/bin/sed -i "\/dev\/${device}.*/d" /etc/fstab
