@@ -4,7 +4,8 @@
 
 EAPI=5
 EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.suckless.org/surf"}
-inherit eutils git-2 savedconfig toolchain-funcs
+EGIT_BRANCH=${EGIT_BRANCH:=master}
+inherit eutils git-support savedconfig toolchain-funcs
 DESCRIPTION="a simple web browser based on WebKit/GTK+"
 HOMEPAGE="http://surf.suckless.org/"
 
@@ -45,12 +46,19 @@ pkg_setup() {
 		elog "1) Installing these packages, or"
 		elog "2) Setting USE=savedconfig and changing config.h accordingly."
 	fi
+
+	if [ -f "${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${P}" ]; then
+		ebegin "Backing up old saved_config file"
+			mv "${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/${P}" \
+			"${PORTAGE_CONFIGROOT}/etc/portage/savedconfig/${CATEGORY}/bup.${P}"
+		eend ${?}
+	fi
 }
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-gentoo.patch
 	epatch_user
-	restore_config config.h
+	restore_config config.def.h
 	tc-export CC PKG_CONFIG
 }
 
