@@ -2,6 +2,7 @@
 # @MAINTAINER:
 # Michał Górny <mgorny@gentoo.org>
 # Donnie Berkholz <dberkholz@gentoo.org>
+# Iegor Danylchenko <rmtdev@gmail.com>
 # @BLURB: Eclass for fetching and unpacking git repositories.
 # @DESCRIPTION:
 # Eclass for easing maitenance of live ebuilds using git as remote repository.
@@ -129,6 +130,12 @@ DEPEND="dev-vcs/git"
 # If non-empty this variable bans unpacking of ${A} content into the srcdir.
 # Default behaviour is to unpack ${A} content.
 
+# @ECLASS-VARIABLE: EGIT_UPSTREAM_MOVED
+# @DEFAULT_FALSE
+# @DESCRIPTION:
+# If upstream branch was updated and contains fresh commits this will be
+# set to true on fetch.
+
 # @FUNCTION: git-support_init_variables
 # @INTERNAL
 # @DESCRIPTION:
@@ -175,6 +182,8 @@ git-support_init_variables() {
 	: ${EGIT_REPACK:=}
 
 	: ${EGIT_PRUNE:=}
+
+	EGIT_UPSTREAM_MOVED=false
 }
 
 # @FUNCTION: git-support_submodules
@@ -420,6 +429,10 @@ git-support_fetch() {
 		oldsha=$(git rev-parse ${UPSTREAM_BRANCH})
 		git-support_update_repo
 		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
+
+		if [ "${cursha}" != "${oldsha}" ]; then
+			EGIT_UPSTREAM_MOVED=true
+		fi
 
 		# fetch updates
 		echo "GIT update -->"
