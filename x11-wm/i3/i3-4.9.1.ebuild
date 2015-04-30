@@ -1,24 +1,21 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/i3/i3-9999.ebuild,v 1.9 2015/03/26 14:14:23 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/i3/i3-4.9.1.ebuild,v 1.3 2015/03/26 14:14:23 xarthisius Exp $
 
 EAPI=5
-EGIT_REPO_URI=${EGIT_REPO_URI:="git://github.com/i3/i3"}
-EGIT_BRANCH=${EGIT_BRANCH:="next"}
 
-inherit eutils toolchain-funcs git-support
+inherit eutils toolchain-funcs
 
 DESCRIPTION="An improved dynamic tiling window manager"
 HOMEPAGE="http://i3wm.org/"
-SRC_URI=""
+SRC_URI="http://i3wm.org/downloads/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~arm ~x86"
 IUSE="+pango"
 
-CDEPEND="dev-lang/perl
-	dev-libs/libev
+CDEPEND="dev-libs/libev
 	dev-libs/libpcre
 	>=dev-libs/yajl-2.0.3
 	x11-libs/libxcb[xkb]
@@ -33,11 +30,13 @@ CDEPEND="dev-lang/perl
 		>=x11-libs/cairo-1.12.2[X,xcb]
 	)"
 DEPEND="${CDEPEND}
-	app-text/asciidoc
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}
+	dev-lang/perl
 	dev-perl/AnyEvent-I3
 	dev-perl/JSON-XS"
+
+DOCS=( RELEASE-NOTES-${PV} )
 
 src_prepare() {
 	if ! use pango; then
@@ -54,7 +53,6 @@ src_prepare() {
 
 src_compile() {
 	emake V=1 CC="$(tc-getCC)" AR="$(tc-getAR)"
-	emake mans
 }
 
 src_install() {

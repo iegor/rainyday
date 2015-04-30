@@ -1,6 +1,47 @@
 # ChangeLog for x11-wm/i3
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/i3/ChangeLog,v 1.57 2014/09/24 19:43:35 maekke Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/i3/ChangeLog,v 1.66 2015/03/29 18:38:20 xarthisius Exp $
+
+*i3-4.10.1 (29 Mar 2015)
+
+  29 Mar 2015; Kacper Kowalik <xarthisius@gentoo.org> +i3-4.10.1.ebuild:
+  Version bump
+
+  26 Mar 2015; Kacper Kowalik <xarthisius@gentoo.org> i3-4.8.ebuild,
+  i3-4.9.1.ebuild, i3-9999.ebuild:
+  Add proper x11-libs/libxkbcommon[X] dependency. Thanks to Yuri Numerov
+  <achi@hush.ai> for the report
+
+  23 Mar 2015; Kacper Kowalik <xarthisius@gentoo.org> i3-4.8.ebuild,
+  i3-4.9.1.ebuild, i3-9999.ebuild:
+  Add proper x11-libs/libxcb[xkb] dependency. Fixes bug #544200 by Evgenij Badin
+  <badineu@gmail.com>
+
+*i3-4.9.1 (07 Mar 2015)
+
+  07 Mar 2015; Kacper Kowalik <xarthisius@gentoo.org> +i3-4.9.1.ebuild,
+  -i3-4.9.ebuild:
+  Version bump, drop old
+
+  01 Mar 2015; Kacper Kowalik <xarthisius@gentoo.org> i3-4.9.ebuild:
+  Add explicit dependency on libxkbcommon. Fixes bug #541684 Thanks to dan724
+  <dan724@gmail.com>
+
+*i3-4.9 (28 Feb 2015)
+
+  28 Feb 2015; Kacper Kowalik <xarthisius@gentoo.org> +i3-4.9.ebuild,
+  i3-9999.ebuild:
+  Version bump, drop dependency on libX11
+
+  15 Feb 2015; Ultrabug <ultrabug@gentoo.org> i3-9999.ebuild:
+  i3 git repo moved to github
+
+  23 Dec 2014; Kacper Kowalik <xarthisius@gentoo.org> -i3-4.6.ebuild,
+  -i3-4.7.2-r1.ebuild, -i3-4.7.2.ebuild, -i3-4.7.ebuild:
+  Drop old
+
+  21 Dec 2014; Mikle Kolyada <zlogene@gentoo.org> i3-4.8.ebuild:
+  amd64/x86 stable wrt bug #521070
 
   24 Sep 2014; Markus Meier <maekke@gentoo.org> i3-4.8.ebuild:
   add ~arm, bug #521374
