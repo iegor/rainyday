@@ -2,24 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/luakit/luakit-9999.ebuild,v 1.24 2014/12/11 15:01:11 perfinion Exp $
 
-EAPI=4
+EAPI=5
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://github.com/mason-larobina/${PN}.git"}
+EGIT_BRANCH=${EGIT_BRANCH:=develop}
 
-inherit toolchain-funcs
+inherit toolchain-funcs git-support
 IUSE="luajit pax_kernel vim-syntax"
-
-if [[ ${PV} == *9999* ]]; then
-	inherit git-2
-	EGIT_REPO_URI="git://github.com/mason-larobina/${PN}.git
-		https://github.com/mason-larobina/${PN}.git"
-	EGIT_BRANCH="develop"
-	KEYWORDS=""
-	SRC_URI=""
-else
-	inherit vcs-snapshot
-	MY_PV="${PV/_p/-r}"
-	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://github.com/mason-larobina/${PN}/tarball/${MY_PV} -> ${P}.tar.gz"
-fi
+KEYWORDS="~amd64 ~x86"
+SRC_URI=""
 
 DESCRIPTION="fast, small, webkit-gtk based micro-browser extensible by lua"
 HOMEPAGE="http://mason-larobina.github.com/luakit/"
