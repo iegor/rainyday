@@ -1,6 +1,94 @@
 # ChangeLog for dev-java/icedtea
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea/ChangeLog,v 1.116 2014/02/03 08:49:54 sera Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea/ChangeLog,v 1.130 2014/11/21 09:52:17 vapier Exp $
+
+  21 Nov 2014; Mike Frysinger <vapier@gentoo.org> icedtea-6.1.12.7.ebuild,
+  icedtea-6.1.13.3.ebuild, icedtea-6.1.13.4.ebuild, icedtea-7.2.4.3.ebuild,
+  icedtea-7.2.4.7.ebuild, icedtea-7.2.4.8.ebuild, icedtea-7.2.5.3.ebuild:
+  Backport makeopts_jobs to older ebuilds to stop parsing MAKEOPTS directly.
+
+  02 Nov 2014; Sven Vermeulen <swift@gentoo.org> icedtea-6.1.12.7.ebuild,
+  icedtea-6.1.13.3.ebuild, icedtea-6.1.13.4.ebuild, icedtea-6.1.13.5-r1.ebuild,
+  icedtea-6.1.13.5.ebuild, icedtea-7.2.4.3.ebuild, icedtea-7.2.4.7.ebuild,
+  icedtea-7.2.4.8.ebuild, icedtea-7.2.5.3.ebuild:
+  Remove sec-policy/selinux-* dependency from DEPEND but keep in RDEPEND (bug
+  #527698)
+
+*icedtea-7.2.5.3 (01 Nov 2014)
+
+  01 Nov 2014; Vlastimil Babka <caster@gentoo.org> +icedtea-7.2.5.3.ebuild,
+  metadata.xml:
+  Version bump, security bug #524560. Includes new useflags, see descriptions.
+  Switch to icedtea-web:0 unconditionally and block icedtea-web:6, which allows
+  creating missing javaws/itweb-setting symlinks for bug #504678 without file
+  conflicts. Had to drop ia64 keyword temporarily.
+
+*icedtea-6.1.13.5-r1 (01 Nov 2014)
+
+  01 Nov 2014; Vlastimil Babka <caster@gentoo.org> +icedtea-6.1.13.5-r1.ebuild:
+  Bump the openjdk tarball; switch to icedtea-web:0 unconditionally and block
+  icedtea-web:6, which allows creating missing javaws/itweb-setting symlinks
+  for bug #504678 without file conflicts. Had to drop keywords temporarily.
+
+*icedtea-6.1.13.5 (18 Oct 2014)
+
+  18 Oct 2014; Vlastimil Babka <caster@gentoo.org> +icedtea-6.1.13.5.ebuild,
+  icedtea-7.2.4.8.ebuild:
+  Version bump, security bug #524560. Use check-reqs for disk space, bug
+  #508728, also use multiprocessing.eclass for passing the number of jobs to
+  build system and some more cleanups - thanks to Arfrever Frehtes Taifersar
+  Arahesis <arfrever.fta@gmail.com> for the patch. Use the HotSpot ARM32 JIT on
+  arm rather than CACAO in 6.1.13.5.
+
+*icedtea-7.2.4.8 (06 Oct 2014)
+*icedtea-6.1.13.4 (06 Oct 2014)
+
+  06 Oct 2014; Vlastimil Babka <caster@gentoo.org> +icedtea-6.1.13.4.ebuild,
+  +icedtea-7.2.4.8.ebuild:
+  Version bump, bug #524560.
+
+  05 Oct 2014; Vlastimil Babka <caster@gentoo.org> icedtea-7.2.4.3.ebuild,
+  icedtea-7.2.4.7.ebuild:
+  USE depend on icedtea7 flag for icedtea-web:0, thanks arfrever.
+
+  05 Oct 2014; Vlastimil Babka <caster@gentoo.org> icedtea-6.1.13.3.ebuild,
+  icedtea-7.2.4.7.ebuild:
+  Depend on >=ant-core-1.8.2 as it needs no extra tasks
+
+  05 Oct 2014; Vlastimil Babka <caster@gentoo.org> -icedtea-6.1.13.1.ebuild,
+  -icedtea-6.1.13.2.ebuild, icedtea-6.1.13.3.ebuild, -icedtea-7.2.4.5.ebuild,
+  -icedtea-7.2.4.6.ebuild, icedtea-7.2.4.7.ebuild:
+  Fix icedtea-web dependencies, bug #500264.
+
+  17 May 2014; Sven Vermeulen <swift@gentoo.org> icedtea-6.1.12.7.ebuild,
+  icedtea-6.1.13.1.ebuild, icedtea-6.1.13.2.ebuild, icedtea-6.1.13.3.ebuild,
+  icedtea-7.2.4.3.ebuild, icedtea-7.2.4.5.ebuild, icedtea-7.2.4.6.ebuild,
+  icedtea-7.2.4.7.ebuild:
+  Add USE=selinux dependency to sec-policy/selinux-java
+
+  17 Apr 2014; Agostino Sarubbo <ago@gentoo.org> icedtea-6.1.13.3.ebuild:
+  readd dev-java/ant-core as DEPEND
+
+*icedtea-7.2.4.7 (17 Apr 2014)
+*icedtea-6.1.13.3 (17 Apr 2014)
+
+  17 Apr 2014; Agostino Sarubbo <ago@gentoo.org> +icedtea-6.1.13.3.ebuild,
+  +icedtea-7.2.4.7.ebuild:
+  Version bump to 6.1.13.3 and 7.2.4.7
+
+*icedtea-7.2.4.6 (06 Apr 2014)
+
+  06 Apr 2014; Agostino Sarubbo <ago@gentoo.org> +files/icedtea-7-ecj_jar.patch,
+  +icedtea-7.2.4.6.ebuild, metadata.xml:
+  Version bump requested by Andrew, fix bug #500176 readding dev-java/ant-core
+  as DEPEND
+
+*icedtea-6.1.13.2 (06 Apr 2014)
+
+  06 Apr 2014; Agostino Sarubbo <ago@gentoo.org> +icedtea-6.1.13.2.ebuild,
+  icedtea-6.1.12.7.ebuild, icedtea-6.1.13.1.ebuild, icedtea-7.2.4.5.ebuild:
+  Version bump requested by Andrew, fix bug #500176 readding dev-java/ant-core
+  as DEPEND
 
 *icedtea-7.2.4.5 (03 Feb 2014)
 
