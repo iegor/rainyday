@@ -11,10 +11,10 @@ DESCRIPTION="Enlightenment Window Manager (e16)"
 HOMEPAGE="http://www.enlightenment.org/"
 LICENSE="BSD"
 SLOT=0
-IUSE="dbus doc nls pango pulseaudio xcomposite xinerama xrandr"
+IUSE="dbus doc nls pango sound xcomposite xinerama xrandr xsync xpresent xft xi2 glx pseudotrans"
+E16_SOUND_MODE=${E16_SOUND_MODE:='pulseaudio'}
 
-RDEPEND="pulseaudio? ( media-sound/pulseaudio )
-	dbus? ( sys-apps/dbus )
+RDEPEND="dbus? ( sys-apps/dbus )
 	pango? ( x11-libs/pango )
 	=media-libs/freetype-2*
 	>=media-libs/imlib2-1.3.0[X]
@@ -33,6 +33,17 @@ RDEPEND="pulseaudio? ( media-sound/pulseaudio )
 	xcomposite? ( x11-libs/libXcomposite )
 	nls? ( virtual/libintl )
 	virtual/libiconv"
+if use sound; then
+	case "${E16_SOUND_MODE}" in
+		pulseaudio)
+			RDEPEND+="media-sound/pulseaudio"
+			;;
+		esound)
+			;;
+		no)
+			;;
+	esac
+fi
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	x11-proto/xextproto
@@ -52,16 +63,27 @@ src_prepare() {
 }
 
 src_configure() {
+	if use sound; then
+		e16sound_cfg="--enable-sound=${E16_SOUND_MODE}"
+	else
+		e16sound_cfg="--disable-sound"
+	fi
 	econf \
+		--enable-sm \
+		$(use_enable xft) \
+		$(use_enable xi2) \
+		$(use_enable glx) \
 		$(use_enable nls) \
 		$(use_enable dbus) \
-		$(use_enable pulseaudio sound-pulse) \
-		--disable-sound-esound \
 		$(use_enable pango) \
 		$(use_enable xinerama) \
 		$(use_enable xrandr) \
+		$(use_enable xsync) \
+		$(use_enable xpresent) \
 		$(use_enable xcomposite composite) \
-		--enable-docs \
+		$(use_enable doc docs) \
+		$(use_enable pseudotrans ) \
+		${e16sound_cfg} \
 		--enable-zoom
 }
 
