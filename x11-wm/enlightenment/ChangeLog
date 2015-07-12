@@ -1,6 +1,132 @@
 # ChangeLog for x11-wm/enlightenment
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/ChangeLog,v 1.181 2013/01/31 19:19:06 tommy Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/enlightenment/ChangeLog,v 1.207 2015/04/19 09:47:14 pacho Exp $
+
+  19 Apr 2015; Pacho Ramos <pacho@gentoo.org> enlightenment-0.18.8.ebuild:
+  x86 stable wrt bug #538724
+
+  03 Apr 2015; Mikle Kolyada <zlogene@gentoo.org> enlightenment-0.18.8.ebuild:
+  amd64 stable wrt bug #538724
+
+  03 Apr 2015; Markus Meier <maekke@gentoo.org> enlightenment-0.18.8.ebuild:
+  arm stable, bug #538724
+
+*enlightenment-1.0.16 (26 Mar 2015)
+
+  26 Mar 2015; Mike Frysinger <vapier@gentoo.org> +enlightenment-1.0.16.ebuild:
+  Version bump #544256 by Trinine.
+
+*enlightenment-0.17.9999 (17 Mar 2015)
+*enlightenment-0.19.4 (17 Mar 2015)
+
+  17 Mar 2015; Mike Frysinger <vapier@gentoo.org>
+  +enlightenment-0.17.9999.ebuild, +enlightenment-0.19.4.ebuild:
+  Version bump #522904 by Harold Naparst. Import live git ebuild from overlay.
+
+*enlightenment-1.0.15 (14 Feb 2015)
+
+  14 Feb 2015; Mike Frysinger <vapier@gentoo.org> +enlightenment-1.0.15.ebuild:
+  Version bump #532398 by Andrew Savchenko.
+
+  27 Dec 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  enlightenment-0.17.6.ebuild:
+  Adjust usedep for dev-libs/efl as new versions have jpeg support always
+  enabled
+
+*enlightenment-1.0.14 (28 Jul 2014)
+
+  28 Jul 2014; Mike Frysinger <vapier@gentoo.org> +enlightenment-1.0.14.ebuild:
+  Version bump.
+
+*enlightenment-0.18.8 (09 Jun 2014)
+
+  09 Jun 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.18.8.ebuild:
+  Version bump for e18
+
+*enlightenment-0.18.7 (11 May 2014)
+
+  11 May 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.18.7.ebuild, metadata.xml:
+  Import of e18 from the overlay, including version bump to 0.18.7
+
+  04 May 2014; Mikle Kolyada <zlogene@gentoo.org> enlightenment-0.17.6.ebuild:
+  x86 stable wrt bug #455548
+
+  21 Apr 2014;  <zlogene@gentoo.org> enlightenment-0.17.6.ebuild:
+  amd64 stable wrt bug #455548
+
+  17 Feb 2014; Patrick Lauer <patrick@gentoo.org> metadata.xml:
+  Remove unneded useflag description from metadata.xml
+
+  16 Feb 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -enlightenment-0.17.3.ebuild, -enlightenment-0.17.5.ebuild:
+  Drop older versions of e17, security bug 501470
+
+*enlightenment-0.17.6 (01 Feb 2014)
+
+  01 Feb 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.6.ebuild, -enlightenment-0.17.6_pre2.ebuild:
+  Version bump, drop pre-release
+
+  26 Jan 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  enlightenment-0.17.6_pre2.ebuild:
+  Add missing dep on dev-libs/e_dbus
+
+*enlightenment-0.17.6_pre2 (25 Jan 2014)
+
+  25 Jan 2014; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.6_pre2.ebuild:
+  Version bump for move to efl-1.8
+
+*enlightenment-0.17.5 (13 Nov 2013)
+
+  13 Nov 2013; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.5.ebuild, -enlightenment-0.17.4.ebuild,
+  -enlightenment-0.17.5_pre2.ebuild:
+  Version bump for enlightenment-0.17.5, drop 0.17.4 and pre-release
+
+*enlightenment-0.17.5_pre2 (04 Oct 2013)
+
+  04 Oct 2013; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.5_pre2.ebuild, -enlightenment-0.17.5_pre1.ebuild:
+  New pre-release, drop old
+
+  28 Sep 2013; Mike Frysinger <vapier@gentoo.org> enlightenment-0.17.3.ebuild,
+  enlightenment-0.17.4.ebuild, enlightenment-0.17.5_pre1.ebuild:
+  Update eina[mempool-chained-pool] USE flag after renaming #486390 by Patrick
+  Lauer.
+
+*enlightenment-0.17.5_pre1 (15 Sep 2013)
+
+  15 Sep 2013; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.5_pre1.ebuild, -enlightenment-0.17.2.1.ebuild:
+  Add pre-release for testing
+
+*enlightenment-1.0.13 (28 Aug 2013)
+
+  28 Aug 2013; Mike Frysinger <vapier@gentoo.org> +enlightenment-1.0.13.ebuild:
+  Version bump #466744 by pavel sanda.
+
+*enlightenment-0.17.4 (28 Aug 2013)
+
+  28 Aug 2013; Mike Frysinger <vapier@gentoo.org> +enlightenment-0.17.4.ebuild:
+  Version bump #479850 by Valery.
+
+*enlightenment-0.17.3 (20 May 2013)
+
+  20 May 2013; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -enlightenment-0.17.1.ebuild, +enlightenment-0.17.3.ebuild:
+  Version bump for enlightenment:0.17, drop old
+
+  11 May 2013; Markus Meier <maekke@gentoo.org> enlightenment-0.17.2.1.ebuild:
+  add ~arm, bug #456736
+
+*enlightenment-0.17.2.1 (11 Apr 2013)
+
+  11 Apr 2013; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +enlightenment-0.17.2.1.ebuild, -enlightenment-0.17.0.ebuild:
+  Version bump, drop old
 
 *enlightenment-0.17.1 (31 Jan 2013)
 
