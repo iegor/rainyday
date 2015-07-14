@@ -3,13 +3,13 @@
 # $Header: $
 
 EAPI=5
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://github.com/eranif/${PN}"}
+EGIT_BRANCH=${EGIT_BRANCH:=master}
+
 inherit git-support eutils cmake-utils
 
 DESCRIPTION="[GIT] CodeLite is an open source, free, cross platform IDE for the C/C++ programming languages"
 HOMEPAGE="http://www.codelite.org"
-
-EGIT_REPO_URI="git://github.com/eranif/${PN}"
-EGIT_BRANCH="master"
 
 LICENSE="GPLv2"
 SLOT="0"
