@@ -1,6 +1,292 @@
 # ChangeLog for www-client/firefox
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/ChangeLog,v 1.365 2014/11/05 23:18:28 axs Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox/ChangeLog,v 1.434 2015/07/30 19:48:10 axs Exp $
+
+  30 Jul 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-39.0.ebuild:
+  fixed typo made yesterday when adding the epatch line to fix hppa builds; bug
+  556276
+
+  29 Jul 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  +files/firefox-38-hppa-js-syntax-error.patch, firefox-38.1.0.ebuild,
+  firefox-39.0.ebuild:
+  Fix syntax errors causing hppa build failures (bug 556196)
+
+  29 Jul 2015; Mikle Kolyada <zlogene@gentoo.org> firefox-38.1.0.ebuild:
+  amd64 stable wrt bug #555416
+
+  29 Jul 2015; Jeroen Roovers <jer@gentoo.org> firefox-38.1.0.ebuild:
+  Stable for PPC64 (bug #555416).
+
+  21 Jul 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  -files/firefox-31.0-webm-disallow-negative-samples.patch,
+  -files/firefox-33.0-jemalloc-configure.patch,
+  -files/firefox-35.0-gmp-clearkey-sprintf.patch,
+  -files/firefox-36.0-depollute-CONST-from-dtoa.patch,
+  -files/firefox-36.0-disable-ion.patch,
+  -files/firefox-37.0-jemalloc_configure_unbashify.patch,
+  -firefox-31.5.3.ebuild, -firefox-31.7.0.ebuild:
+  removed old for security bug 554036, dropped stable ia64 keyword with
+  permission from zlogene
+
+  20 Jul 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.8.0.ebuild:
+  Stable for ppc, wrt bug #554036
+
+  18 Jul 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.8.0.ebuild:
+  Stable for x86, wrt bug #554036
+
+  18 Jul 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.8.0.ebuild:
+  Stable for amd64, wrt bug #554036
+
+  18 Jul 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.8.0.ebuild:
+  Stable for HPPA PPC64 (bug #554036).
+
+*firefox-39.0 (07 Jul 2015)
+*firefox-31.8.0 (07 Jul 2015)
+*firefox-38.1.0 (07 Jul 2015)
+
+  07 Jul 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> +firefox-31.8.0.ebuild,
+  +firefox-38.1.0.ebuild, +firefox-39.0.ebuild, -firefox-24.3.0.ebuild,
+  -firefox-31.6.0.ebuild, -firefox-38.0.5.ebuild, metadata.xml:
+  version bumps, removed old
+
+  24 Jun 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.7.0.ebuild:
+  Stable for ppc, wrt bug #549356
+
+*firefox-38.0.5 (13 Jun 2015)
+
+  13 Jun 2015;  <anarchy@gentoo.org> +firefox-38.0.5.ebuild,
+  -firefox-31.7.0-r1.ebuild, -firefox-37.0.2.ebuild, -firefox-38.0.1.ebuild,
+  metadata.xml:
+  Misc bug fixes, fix arm support and add egl support(nerdboy)
+
+*firefox-38.0.1 (27 May 2015)
+*firefox-31.7.0-r1 (27 May 2015)
+
+  27 May 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  +firefox-31.7.0-r1.ebuild, +firefox-38.0.1.ebuild, -firefox-36.0.4.ebuild,
+  -firefox-37.0.1.ebuild, metadata.xml:
+  revbump of 31.7 allows compatibility with libvpx newer than 1.3, bug 550002;
+  38.0.1 version bump committed (various bugs), test worked on non-hardened
+  system with jit disabled, so the use flag is back again for now
+
+  23 May 2015; Mikle Kolyada <zlogene@gentoo.org> firefox-31.7.0.ebuild:
+  x86 stable wrt bug #549356
+
+  19 May 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.7.0.ebuild:
+  Stable for HPPA (bug #549356).
+
+  18 May 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.7.0.ebuild:
+  Stable for amd64, wrt bug #549356
+
+  18 May 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.7.0.ebuild:
+  Stable for PPC64 (bug #549356).
+
+*firefox-31.7.0 (16 May 2015)
+
+  16 May 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> +firefox-31.7.0.ebuild:
+  version bump of firefox ESR for security bug 549356
+
+  29 Apr 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.6.0.ebuild:
+  Stable for ppc, wrt bug #545232
+
+  25 Apr 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.6.0.ebuild:
+  Stable for PPC64 (bug #545232).
+
+  24 Apr 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.6.0.ebuild:
+  Stable for x86, wrt bug #545232
+
+  24 Apr 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.6.0.ebuild:
+  Stable for amd64, wrt bug #545232
+
+  24 Apr 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.6.0.ebuild:
+  Stable for HPPA (bug #545232).
+
+*firefox-37.0.2 (23 Apr 2015)
+
+  23 Apr 2015; Lars Wendler <polynomial-c@gentoo.org> +firefox-37.0.2.ebuild:
+  Security bump.
+
+  06 Apr 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-37.0.1.ebuild,
+  +files/firefox-37.0-jemalloc_configure_unbashify.patch:
+  firefox-37 works now that jit is forced-on, removing mask
+
+  06 Apr 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-37.0.1.ebuild:
+  fixed configure option to enable jit, last time i promise
+
+  06 Apr 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-37.0.1.ebuild:
+  added missing configure option to enable jit
+
+  06 Apr 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-37.0.1.ebuild:
+  dropped USE=jit from firefox-37 as jit can not be disabled and provide a
+  functional firefox
+
+  06 Apr 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-37.0.1.ebuild:
+  fixed nss dependency version, bug 545744
+
+*firefox-31.6.0 (05 Apr 2015)
+
+  05 Apr 2015; Lars Wendler <polynomial-c@gentoo.org> -firefox-31.4.0.ebuild,
+  -firefox-31.5.0.ebuild, +firefox-31.6.0.ebuild:
+  Version bump. Removed old.
+
+*firefox-37.0.1 (05 Apr 2015)
+
+  05 Apr 2015; Lars Wendler <polynomial-c@gentoo.org> -firefox-36.0.1.ebuild,
+  +firefox-37.0.1.ebuild:
+  Version bump. Removed old.
+
+  31 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.0.ebuild:
+  Stable for ppc64, wrt bug #541316
+
+  27 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.3.ebuild:
+  Stable for ppc/ppc64, wrt bug #544056
+
+  27 Mar 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.5.3.ebuild:
+  Stable for HPPA (bug #544056).
+
+  26 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.3.ebuild:
+  Stable for x86, wrt bug #544056
+
+  26 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.3.ebuild:
+  Stable for amd64, wrt bug #544056
+
+  25 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.3.ebuild:
+  Stable for ia64, wrt bug #544056
+
+  25 Mar 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.0.ebuild:
+  Stable for ia64, wrt bug #541316
+
+*firefox-36.0.4 (24 Mar 2015)
+*firefox-31.5.3 (24 Mar 2015)
+
+  24 Mar 2015; Lars Wendler <polynomial-c@gentoo.org> -firefox-31.3.0.ebuild,
+  +firefox-31.5.3.ebuild, +firefox-36.0.4.ebuild:
+  Security bump (bug #544056). Removed old.
+
+  10 Mar 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-36.0.1.ebuild:
+  Stripped 'simulator' configure flags for arm and mips platforms as they do not
+  simulate jit, but rather simulate arm and mips on x86 to allow jit to be
+  tested; bug 542754
+
+*firefox-36.0.1 (08 Mar 2015)
+
+  08 Mar 2015;  <anarchy@gentoo.org> +firefox-36.0.1.ebuild,
+  -firefox-36.0-r1.ebuild:
+  Misc upstream fixes, bug #542046
+
+  07 Mar 2015; Mikle Kolyada <zlogene@gentoo.org> firefox-31.5.0.ebuild:
+  x86 stable wrt bug #541316
+
+*firefox-36.0-r1 (04 Mar 2015)
+
+  04 Mar 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  +files/firefox-36.0-depollute-CONST-from-dtoa.patch,
+  +files/firefox-36.0-disable-ion.patch, +firefox-36.0-r1.ebuild,
+  -firefox-36.0.ebuild:
+  Fixed -jit builds and re-added use flag to firefox-36, bug 541770
+
+  02 Mar 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.5.0.ebuild:
+  Stable for HPPA (bug #541316).
+
+  01 Mar 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-36.0.ebuild:
+  dropped USE=jit from firefox-36.0 as disabling jit is not supported according
+  to upstream, also added configure flags to enable the jit simulators for arm
+  and mips; works around bug 541534
+
+  27 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.5.0.ebuild:
+  Stable for amd64, wrt bug #541316
+
+  27 Feb 2015; Lars Wendler <polynomial-c@gentoo.org> firefox-36.0.ebuild:
+  Rolled out an intermediate patchset tarball until the one from _AxS_ is
+  available.
+
+  27 Feb 2015; Patrick Lauer <patrick@gentoo.org> firefox-36.0.ebuild:
+  De-keyword until missing patches are made available #541478
+
+*firefox-31.5.0 (26 Feb 2015)
+*firefox-36.0 (26 Feb 2015)
+
+  26 Feb 2015; Ian Stakenvicius (_AxS_) <axs@gentoo.org> +firefox-31.5.0.ebuild,
+  +firefox-36.0.ebuild, -firefox-10.0.11.ebuild, -firefox-24.8.0.ebuild,
+  -firefox-35.0.ebuild, firefox-24.3.0.ebuild, firefox-31.3.0.ebuild,
+  firefox-31.4.0.ebuild, metadata.xml:
+  version bump; removed old; fixed bug 541418
+
+  23 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.4.0.ebuild:
+  Stable for ia64, wrt bug #536564
+
+  23 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for ia64, wrt bug #531408
+
+  18 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.4.0.ebuild:
+  Stable for ppc, wrt bug #536564
+
+  18 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.4.0.ebuild:
+  Stable for ppc64, wrt bug #536564
+
+  15 Feb 2015; Agostino Sarubbo <ago@gentoo.org> firefox-31.4.0.ebuild:
+  Stable for x86, wrt bug #536564
+
+  08 Feb 2015; Jeroen Roovers <jer@gentoo.org> firefox-31.4.0.ebuild:
+  Stable for HPPA (bug #536564).
+
+  07 Feb 2015; Mikle Kolyada <zlogene@gentoo.org> firefox-31.4.0.ebuild:
+  amd64 stable wrt bug #536564
+
+  15 Jan 2015;  <anarchy@gentoo.org> firefox-35.0.ebuild:
+  Add back buildobj dir fix, bug #536516
+
+*firefox-35.0 (13 Jan 2015)
+*firefox-31.4.0 (13 Jan 2015)
+
+  13 Jan 2015;  <anarchy@gentoo.org>
+  +files/firefox-35.0-gmp-clearkey-sprintf.patch, +firefox-31.4.0.ebuild,
+  +firefox-35.0.ebuild, -firefox-34.0.5-r1.ebuild, files/icon/firefox.desktop:
+  Update esr/~arch channels, misc fixes
+
+  09 Jan 2015; Tobias Klausmann <klausman@gentoo.org> firefox-31.3.0.ebuild:
+  Stable on alpha, bug 531408
+
+  24 Dec 2014; Agostino Sarubbo <ago@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for ppc64, wrt bug #531408
+
+  24 Dec 2014; Agostino Sarubbo <ago@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for ppc, wrt bug #531408
+
+  10 Dec 2014; Agostino Sarubbo <ago@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for x86, wrt bug #531408
+
+  10 Dec 2014; Agostino Sarubbo <ago@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for amd64, wrt bug #531408
+
+  10 Dec 2014; Jeroen Roovers <jer@gentoo.org> firefox-31.3.0.ebuild:
+  Stable for HPPA (bug #531408).
+
+  05 Dec 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  firefox-34.0.5-r1.ebuild:
+  shorten objdir to support longer PORTAGE_TMPDIRs, bug 531696
+
+*firefox-34.0.5-r1 (04 Dec 2014)
+
+  04 Dec 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org>
+  +firefox-34.0.5-r1.ebuild, -firefox-34.0.5.ebuild:
+  fixed inverted logic on gmp-autoupdate flag, bug 531624
+
+  04 Dec 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org> firefox-31.3.0.ebuild:
+  bump minimum version of dev-libs/nss as per bug 531614
+
+*firefox-34.0.5 (04 Dec 2014)
+
+  04 Dec 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org> +firefox-34.0.5.ebuild,
+  -firefox-33.0-r1.ebuild, metadata.xml:
+  version bump, remove old; added USE flag to disable autoupdates of GMP plugins
+  by default
+
+*firefox-31.3.0 (04 Dec 2014)
+
+  04 Dec 2014; Ian Stakenvicius (_AxS_) <axs@gentoo.org> +firefox-31.3.0.ebuild,
+  -firefox-31.2.0-r1.ebuild:
+  version bump for ESR for security bug 531408
 
 *firefox-33.0-r1 (05 Nov 2014)
 *firefox-31.2.0-r1 (05 Nov 2014)
