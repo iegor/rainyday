@@ -1,6 +1,112 @@
 # ChangeLog for media-gfx/blender
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/blender/ChangeLog,v 1.269 2014/06/28 12:05:30 hasufell Exp $
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/blender/ChangeLog,v 1.285 2015/02/01 23:03:22 mgorny Exp $
+
+*blender-2.72b-r3 (01 Feb 2015)
+
+  01 Feb 2015; Michał Górny <mgorny@gentoo.org> +blender-2.72b-r3.ebuild:
+  Introduce USE=libav to control the preferred implementation. Add subslot op to
+  force rebuilds on ABI change.
+
+  29 Jan 2015; Michał Górny <mgorny@gentoo.org> blender-2.72b-r2.ebuild:
+  Convert to CPU_FLAGS_X86.
+
+*blender-2.72b-r2 (22 Dec 2014)
+
+  22 Dec 2014; Julian Ospald <hasufell@gentoo.org> -blender-2.72b.ebuild,
+  -blender-2.72b-r1.ebuild, +blender-2.72b-r2.ebuild,
+  -files/01-blender-2.68-doxyfile.patch,
+  -files/06-blender-2.68-fix-install-rules.patch,
+  -files/07-blender-2.70-sse2.patch, -files/08-blender-2.71-gflags.patch,
+  -files/02-blender-2.71-unbundle-colamd.patch,
+  -files/04-blender-2.71-unbundle-glog.patch,
+  -files/05-blender-2.72-unbundle-eigen3.patch,
+  -files/09-blender-2.72b-unbundle-minilzo.patch:
+  revbump for adding missing fix for T42797, rm old
+
+  22 Dec 2014; Julian Ospald <hasufell@gentoo.org>
+  +files/blender-2.68-doxyfile.patch,
+  +files/blender-2.68-fix-install-rules.patch, +files/blender-2.70-sse2.patch:
+  add missing patches
+
+  21 Dec 2014; Manuel Rüger <mrueg@gentoo.org> blender-2.72b-r1.ebuild:
+  Drop blank line.
+
+*blender-2.72b-r1 (21 Dec 2014)
+
+  21 Dec 2014; Julian Ospald <hasufell@gentoo.org> +blender-2.72b-r1.ebuild:
+  revbump, revert unbundling until it's supported upstream
+
+  17 Dec 2014; Julian Ospald <hasufell@gentoo.org> blender-2.72b.ebuild,
+  +files/blender-2.72-T42797.diff:
+  fix bug #532640
+
+  16 Dec 2014; Julian Ospald <hasufell@gentoo.org> blender-2.72b.ebuild:
+  add list of bundled deps
+
+  16 Dec 2014; Julian Ospald <hasufell@gentoo.org> -blender-2.69-r1.ebuild,
+  -blender-2.71-r2.ebuild, -blender-2.72-r1.ebuild,
+  -files/07-blender-2.68-sse2.patch,
+  -files/02-blender-2.68-unbundle-colamd.patch,
+  -files/05-blender-2.68-unbundle-eigen3.patch,
+  -files/04-blender-2.68-unbundle-glog.patch,
+  -files/04-blender-2.71-r2-unbundle-glog.patch,
+  -files/09-blender-2.72-unbundle-minilzo.patch:
+  rm old
+
+*blender-2.72b (27 Oct 2014)
+
+  27 Oct 2014; Julian Ospald <hasufell@gentoo.org> +blender-2.72b.ebuild,
+  +files/09-blender-2.72b-unbundle-minilzo.patch:
+  version bump wrt #525870
+
+  27 Sep 2014; Julian Ospald <hasufell@gentoo.org>
+  files/09-blender-2.72-unbundle-minilzo.patch:
+  make the patch more upstream compatible
+
+*blender-2.72-r1 (27 Sep 2014)
+
+  27 Sep 2014; Julian Ospald <hasufell@gentoo.org> -blender-2.72.ebuild,
+  +blender-2.72-r1.ebuild:
+  unbundle minilzo wrt #515266
+
+*blender-2.71-r2 (27 Sep 2014)
+
+  27 Sep 2014; Julian Ospald <hasufell@gentoo.org> +blender-2.71-r2.ebuild,
+  +files/04-blender-2.71-r2-unbundle-glog.patch,
+  +files/09-blender-2.72-unbundle-minilzo.patch:
+  re-add 2.71 with fixed Manifest wrt #523328 and unbundle minilzo wrt #515266
+
+  27 Sep 2014; Julian Ospald <hasufell@gentoo.org> -blender-2.66-r1.ebuild,
+  -blender-2.67b-r1.ebuild, -blender-2.68.ebuild, -blender-2.68a.ebuild,
+  -blender-2.69.ebuild, -blender-2.70.ebuild, -blender-2.70-r1.ebuild,
+  -blender-2.70a-r3.ebuild, -blender-2.71.ebuild, -blender-2.71-r1.ebuild,
+  -files/blender-2.66-cmake.patch, -files/blender-2.66-doxyfile.patch,
+  -files/blender-2.66-sse2.patch, -files/blender-2.66-unbundle.patch,
+  -files/01-blender-2.67b-doxyfile.patch,
+  -files/06-blender-2.67b-fix-install-rules.patch,
+  -files/03-blender-2.67b-remove-binreloc.patch,
+  -files/07-blender-2.67b-sse2.patch,
+  -files/02-blender-2.67b-unbundle-colamd.patch,
+  -files/05-blender-2.67b-unbundle-eigen3.patch,
+  -files/04-blender-2.67b-unbundle-glog.patch,
+  -files/03-blender-2.68-remove-binreloc.patch,
+  -files/04-blender-2.70-unbundle-glog.patch,
+  -files/blender-2.70a-openmp.patch:
+  rm old
+
+*blender-2.72 (27 Sep 2014)
+
+  27 Sep 2014; Julian Ospald <hasufell@gentoo.org> +blender-2.72.ebuild,
+  +files/05-blender-2.72-unbundle-eigen3.patch:
+  version bump
+
+*blender-2.71-r1 (16 Jul 2014)
+
+  16 Jul 2014; Julian Ospald <hasufell@gentoo.org> +blender-2.71-r1.ebuild,
+  +files/08-blender-2.71-gflags.patch:
+  fix opencolorio dep wrt #515606, fix building with gflags-2.1.1 and adjust
+  dep wrt #517134, add epatch_user
 
 *blender-2.71 (28 Jun 2014)
 

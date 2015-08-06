@@ -3,26 +3,13 @@
 # $Header: $
 
 EAPI=4
-
-if [ "${PV}" = "9999" ];then
-  ESVN_REPO_URI="https://svn.blender.org/svnroot/bf-blender/trunk/blender"
-  SCM="subversion"
-else
-  SRC_URI="http://download.blender.org/source/${P}.tar.gz"
-fi
-
-
-inherit cmake-utils eutils ${SCM}
+EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.blender.org/blender.git"}
+EGIT_BRANCH=${EGIT_BRANCH:=master}
+inherit cmake-utils eutils git-support
 PYTHON_DEPEND="3:3.2"
-
+SRC_URI=""
 DESCRIPTION="3D Creation/Animation/Publishing System"
 HOMEPAGE="http://www.blender.org/"
-
-if [ "${PV}" = "9999" ];then
-  SRC_URI=""
-else
-  SRC_URI="http://download.blender.org/source/${P}.tar.gz"
-fi
 LICENSE="GPL"
 SLOT="2.6"
 KEYWORDS="~x86 ~amd64"
@@ -34,7 +21,6 @@ LANGS="en ar bg ca cs de el es fi fr hr it ja ko nl pl pt_BR ro ru sr sv uk zh_C
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
 done
-
 
 DEPEND="virtual/jpeg
 	media-libs/libpng
@@ -85,18 +71,37 @@ for mylang in "${LINGUAS}" ; do
 	fi
 done
 
-# S="${WORKDIR}/${PN}"
+S="${WORKDIR}/${PN}"
 
-src_unpack(){
-if [ "${PV}" = "9999" ];then
-	subversion_fetch
-	if use contrib; then
-		S="${S}"/release/scripts/addons_contrib subversion_fetch \
-		"https://svn.blender.org/svnroot/bf-extensions/contrib/py/scripts/addons/"
-	fi
-else
-	unpack ${A}
-fi
+src_unpack() {
+	git-support_src_unpack
+
+	echo -e "\033[31;46m$(pwd)\033[0m"
+	pushd ${S}
+
+	ebegin "<co>: submodule file"
+		git checkout origin/${EGIT_BRANCH} ".gitmodules" &> /dev/null
+	eend ${?}
+
+	ebegin "submodules links"
+		git config --local submodule.release/datafiles/locale.url "${EGIT_REPO_HOST}${PN}-translations.git"
+		git config --local submodule.release/scripts/addons_contrib.url "${EGIT_REPO_HOST}${PN}-addons-contrib.git"
+		git config --local submodule.release/scripts/addons.url "${EGIT_REPO_HOST}${PN}-addons.git"
+		git config --local submodule.scons.url "${EGIT_REPO_HOST}${PN}-scons.git"
+		# git checkout origin/${EGIT_BRANCH} "scons" &> /dev/null
+		# git submodule init || die "Failed to init submodule"
+		# git submodule update || die "Failed to update submodule"
+	eend ${?}
+
+	cat .gitmodules
+
+	git submodule update --init --recursive || die "submodules update --init --recursive"
+	git submodule foreach --recursive git checkout master
+	git submodule foreach --recursive git pull --rebase origin master
+	# NOTE: For now ignore contrib use
+	# if use contrib; then
+	# fi
+	popd
 }
 
 pkg_setup() {
