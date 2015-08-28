@@ -653,7 +653,7 @@ git-support_src_unpack() {
 		git-support_migrate_repository
 		git-support_fetch "$@"
 		git-support_gc
-		git-support_submodules
+		[[ ${EGIT_HAS_SUBMODULES} ]] && git-support_submodules
 		git-support_move_source
 		git-support_branch
 		git-support_bootstrap
