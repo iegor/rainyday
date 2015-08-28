@@ -63,9 +63,23 @@ if [[ -n ${USE_KEG_PACKAGING} && -n "${LANGS}${LANGS_DOC}" ]]; then
 	done
 fi
 
-DEPEND="sys-devel/make
+DEPEND="
+	sys-devel/make
 	dev-util/pkgconfig
-	dev-lang/perl"
+	dev-lang/perl
+	|| (
+		=sys-devel/automake-1.6.1
+		=sys-devel/automake-1.7
+		=sys-devel/automake-1.8
+		=sys-devel/automake-1.9
+		=sys-devel/automake-1.10
+		=sys-devel/automake-1.11
+		=sys-devel/automake-1.12
+		=sys-devel/automake-1.13
+		=sys-devel/automake-1.14
+		=sys-devel/automake-1.15
+	)
+"
 
 if [[ ${CATEGORY} != "kde-base" ]] || [[ ${CATEGORY} == "kde-base" &&  ${PV##*.} -lt 10 ]] ; then
 	DEPEND="${DEPEND}
