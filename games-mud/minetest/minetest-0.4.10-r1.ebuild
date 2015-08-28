@@ -1,23 +1,25 @@
-# # Distributed under the terms of the GNU General Public License v2
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/games-action/minetest/minetest-0.4.10-r1.ebuild,v 1.3 2015/04/19 06:58:54 pacho Exp $
 
 EAPI=5
-inherit eutils cmake-utils git-2 gnome2-utils vcs-snapshot user games
+inherit eutils cmake-utils gnome2-utils vcs-snapshot user games
 
 DESCRIPTION="An InfiniMiner/Minecraft inspired game"
 HOMEPAGE="http://minetest.net/"
-EGIT_REPO_URI="git://github.com/minetest/minetest.git"
+SRC_URI="http://github.com/minetest/minetest/tarball/${PV} -> ${P}.tar.gz"
 
-LICENSE="LGPL-2.1+ CCPL-Attribution-ShareAlike-3.0"
+LICENSE="LGPL-2.1+ CC-BY-SA-3.0"
 SLOT="0"
-KEYWORDS="~x86 ~amd64 ~ppc"
-IUSE="+curl dedicated luajit nls +server +sound +truetype"
+KEYWORDS="amd64 x86"
+IUSE="+curl dedicated leveldb luajit nls redis +server +sound +truetype"
 
 RDEPEND="dev-db/sqlite:3
-	>=dev-games/irrlicht-1.8:=
 	sys-libs/zlib
 	curl? ( net-misc/curl )
 	!dedicated? (
 		app-arch/bzip2
+		>=dev-games/irrlicht-1.8-r2
 		media-libs/libpng:0
 		virtual/jpeg
 		virtual/opengl
@@ -30,10 +32,13 @@ RDEPEND="dev-db/sqlite:3
 		)
 		truetype? ( media-libs/freetype:2 )
 	)
+	leveldb? ( dev-libs/leveldb )
 	luajit? ( dev-lang/luajit:2 )
-	!luajit? ( >=dev-lang/lua-5.1.4 )
-	nls? ( virtual/libintl )"
+	!luajit? ( >=dev-lang/lua-5.1.4[deprecated] )
+	nls? ( virtual/libintl )
+	redis? ( dev-libs/hiredis )"
 DEPEND="${RDEPEND}
+	>=dev-games/irrlicht-1.8-r2
 	nls? ( sys-devel/gettext )"
 
 pkg_setup() {
@@ -45,15 +50,14 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git-2_src_unpack
+	vcs-snapshot_src_unpack
 }
 
 src_prepare() {
-	# Apply latest patches that are outthere
-	# epatch "${FILESDIR}"/${PN}-0.4.7-lua-luajit-option.patch
-	# epatch "${FILESDIR}"/${PN}-0.4.7-jthread-option-and-pkgconfig.patch
-	# epatch "${FILESDIR}"/${PN}-0.4.7-shared-irrlicht.patch
-	# epatch "${FILESDIR}"/${PN}-0.4.7-as-needed.patch
+	epatch \
+		"${FILESDIR}"/${P}-shared-irrlicht.patch \
+		"${FILESDIR}"/${P}-as-needed.patch \
+		"${FILESDIR}"/${P}-system-lua.patch
 
 	# correct gettext behavior
 	if [[ -n "${LINGUAS+x}" ]] ; then
@@ -66,7 +70,7 @@ src_prepare() {
 
 	# jthread is modified
 	# json is modified
-	# rm -r src/{lua,sqlite} || die "can't rm lua and sqlite dirs"
+	rm -r src/{lua,sqlite} || die
 
 	# set paths
 	sed \
@@ -77,19 +81,26 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DRUN_IN_PLACE=0
-		-DCUSTOM_SHAREDIR="${GAMES_DATADIR}/${PN}"
+		$(usex dedicated "-DBUILD_SERVER=ON -DBUILD_CLIENT=OFF" "$(cmake-utils_use_build server SERVER) -DBUILD_CLIENT=ON")
 		-DCUSTOM_BINDIR="${GAMES_BINDIR}"
 		-DCUSTOM_DOCDIR="/usr/share/doc/${PF}"
 		-DCUSTOM_LOCALEDIR="/usr/share/locale"
-		$(usex dedicated "-DBUILD_SERVER=ON -DBUILD_CLIENT=OFF" "$(cmake-utils_use_build server SERVER) -DBUILD_CLIENT=ON")
-		$(cmake-utils_use_enable nls GETTEXT)
+		-DCUSTOM_SHAREDIR="${GAMES_DATADIR}/${PN}"
 		$(cmake-utils_use_enable curl CURL)
-		$(cmake-utils_use_use luajit LUAJIT)
 		$(cmake-utils_use_enable truetype FREETYPE)
+		$(cmake-utils_use_enable nls GETTEXT)
+		-DENABLE_GLES=0
+		$(cmake-utils_use_enable leveldb LEVELDB)
+		$(cmake-utils_use_enable redis REDIS)
 		$(cmake-utils_use_enable sound SOUND)
-		-DWITH_SYSTEM_JTHREAD=OFF
-		)
+		$(cmake-utils_use !luajit DISABLE_LUAJIT)
+		-DRUN_IN_PLACE=0
+		-DWITH_BUNDLED_LUA=0
+		$(use dedicated && {
+			echo "-DIRRLICHT_SOURCE_DIR=/the/irrlicht/source"
+			echo "-DIRRLICHT_INCLUDE_DIR=/usr/include/irrlicht"
+		})
+	)
 
 	cmake-utils_src_configure
 }
@@ -121,10 +132,7 @@ pkg_postinst() {
 	if ! use dedicated ; then
 		elog
 		elog "optional dependencies:"
-		elog "	games-mud/minetest-mod (official mod)"
-		elog "	games-mud/minetest-common (official mod)"
-		elog "	games-mud/minetest-build (official mod)"
-		elog "	games-mud/minetest-survival (official mod)"
+		elog "	games-action/minetest_game (official mod)"
 		elog
 	fi
 
