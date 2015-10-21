@@ -8,13 +8,13 @@ EGIT_REPO_URI=${EGIT_REPO_URI:="git://git.fluxbox.org/fluxbox.git"}
 EGIT_BRANCH=${EGIT_BRANCH:=develop}
 inherit eutils flag-o-matic toolchain-funcs git-support prefix
 
-IUSE="nls xinerama bidi +truetype +imlib +slit +systray +toolbar vim-syntax xcomposite glcompositor xrdrcompositor"
+IUSE="nls xinerama bidi +truetype +imlib +slit +systray +toolbar vim-syntax xcomposite glcompositor xrdrcompositor glew"
 
 REQUIRED_USE="
 	systray? ( toolbar )
 	glcompositor? ( xcomposite )
 	xrdrcompositor? ( xcomposite )
-	xcomposite? ( || ( glcompositor xrdrcompositor ) )
+	xcomposite? ( || ( glcompositor xrdrcompositor ) glew )
 "
 
 DESCRIPTION="[GIT] Fluxbox is an X11 window manager featuring tabs and an iconbar"
@@ -45,6 +45,7 @@ DEPEND="
 	bidi? ( virtual/pkgconfig )
 	nls? ( sys-devel/gettext )
 	x11-proto/xextproto
+	glew? ( media-libs/glew )
 "
 
 # pkg_setup() {
