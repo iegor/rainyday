@@ -1,4 +1,5 @@
 # @ECLASS: git-support.eclass
+# vim: set fenc=utf-8 tw=73 sw=2 sts=2 foldmethod=marker :
 # @MAINTAINER:
 # Michał Górny <mgorny@gentoo.org>
 # Donnie Berkholz <dberkholz@gentoo.org>
@@ -8,39 +9,179 @@
 # Eclass for easing maitenance of live ebuilds using git as remote repository.
 # Eclass support working with git submodules and branching.
 
-# @ECLASS-VARIABLE: EGIT_USE_GIT_R3
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# Use git-r3 backend instead of classic git-support behavior. This is intended
-# for early testing of git-r3 and is to be set in make.conf.
+case "${EAPI:-0}" in
+	0|1|2|3|4|5|6)
+		;;
+	*)
+		die "Unsupported EAPI=${EAPI} (unknown) for ${ECLASS}"
+		;;
+esac
 
-# (since we override src_unpack this doesn't hurt)
-_INHERITED_BY_GIT_2=1 \
-inherit git-r3
+if [[ ! ${_EGIT_SUPPORT_DEFINED} ]]; then
+	inherit eutils
+fi
 
 # This eclass support all EAPIs
 EXPORT_FUNCTIONS src_unpack
 
-DEPEND="dev-vcs/git"
+if [[ ! ${_EGIT_SUPPORT_DEFINED} ]]; then
+	DEPEND=">=dev-vcs/git-1.8.2.1"
 
-# @ECLASS-VARIABLE: EGIT_SOURCEDIR
+# @ECLASS-VARIABLE: EGIT_VISUAL_MARKER
+# @DEFAULT: "[${ECLASS%.*}]"
 # @DESCRIPTION:
-# This variable specifies destination where the cloned
-# data are copied to.
+# Used to make output from this eclass's functions to be visible in total
+# ammount of text.
+# Using color codes is incouraged
+: ${EGIT_VISUAL_MARKER:="[\e[32m${ECLASS%.*}\e[0m]:"}
+
+# @ECLASS-VARIABLE: EGIT_CLONE_TYPE
+# @DESCRIPTION:
+# Type of clone that should be used against the remote repository.
+# This can be either of: 'mirror', 'single', 'shallow'.
 #
-# EGIT_SOURCEDIR="${S}"
+# This is intended to be set by user in make.conf. Ebuilds are supposed
+# to set EGIT_MIN_CLONE_TYPE if necessary instead.
+#
+# The 'mirror' type clones all remote branches and tags with complete
+# history and all notes. EGIT_COMMIT can specify any commit hash.
+# Upstream-removed branches and tags are purged from the local clone
+# while fetching. This mode is suitable for cloning the local copy
+# for development or hosting a local git mirror. However, clones
+# of repositories with large diverged branches may quickly grow large.
+#
+# The 'single+tags' type clones the requested branch and all tags
+# in the repository. All notes are fetched as well. EGIT_COMMIT
+# can safely specify hashes throughout the current branch and all tags.
+# No purging of old references is done (if you often switch branches,
+# you may need to remove stale branches yourself). This mode is intended
+# mostly for use with broken git servers such as Google Code that fail
+# to fetch tags along with the branch in 'single' mode.
+#
+# The 'single' type clones only the requested branch or tag. Tags
+# referencing commits throughout the branch history are fetched as well,
+# and all notes. EGIT_COMMIT can safely specify only hashes
+# in the current branch. No purging of old references is done (if you
+# often switch branches, you may need to remove stale branches
+# yourself). This mode is suitable for general use.
+#
+# The 'shallow' type clones only the newest commit on requested branch
+# or tag. EGIT_COMMIT can only specify tags, and since the history is
+# unavailable calls like 'git describe' will not reference prior tags.
+# No purging of old references is done. This mode is intended mostly for
+# embedded systems with limited disk space.
+: ${EGIT_CLONE_TYPE:=single}
+
+# @ECLASS-VARIABLE: EGIT_MIN_CLONE_TYPE
+# @DESCRIPTION:
+# 'Minimum' clone type supported by the ebuild. Takes same values
+# as EGIT_CLONE_TYPE. When user sets a type that's 'lower' (that is,
+# later on the list) than EGIT_MIN_CLONE_TYPE, the eclass uses
+# EGIT_MIN_CLONE_TYPE instead.
+#
+# This variable is intended to be used by ebuilds only. Users are
+# supposed to set EGIT_CLONE_TYPE instead.
+#
+# A common case is to use 'single' whenever the build system requires
+# access to full branch history, or 'single+tags' when Google Code
+# or a similar remote is used that does not support shallow clones
+# and fetching tags along with commits. Please use sparingly, and to fix
+# fatal errors rather than 'non-pretty versions'.
+: ${EGIT_MIN_CLONE_TYPE:=shallow}
 
 # @ECLASS-VARIABLE: EGIT_STORE_DIR
 # @DESCRIPTION:
 # Storage directory for git sources.
 #
+# This is intended to be set by user in make.conf. Ebuilds must not set
+# it.
+#
 # EGIT_STORE_DIR="${DISTDIR}/egit-src"
 
-# @ECLASS-VARIABLE: EGIT_HAS_SUBMODULES
+# @ECLASS-VARIABLE: EGIT_MIRROR_URI
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# If non-empty this variable enables support for git submodules in our
-# checkout. Also this makes the checkout to be non-bare for now.
+# 'Top' URI to a local git mirror. If specified, the eclass will try
+# to fetch from the local mirror instead of using the remote repository.
+#
+# The mirror needs to follow EGIT_STORE_DIR structure. The directory
+# created by eclass can be used for that purpose.
+#
+# Example:
+# @CODE
+# EGIT_MIRROR_URI="git://mirror.lan/"
+# @CODE
+
+# @ECLASS-VARIABLE: EGIT_REPO_URI
+# @REQUIRED
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# URIs to the repository, e.g. git://foo, https://foo. If multiple URIs
+# are provided, the eclass will consider them as fallback URIs to try
+# if the first URI does not work. For supported URI syntaxes, read up
+# the manpage for git-clone(1).
+#
+# It can be overriden via env using ${PN}_LIVE_REPO variable.
+#
+# Can be a whitespace-separated list or an array.
+#
+# Example:
+# @CODE
+# EGIT_REPO_URI="git://a/b.git https://c/d.git"
+# @CODE
+
+# @ECLASS-VARIABLE: EVCS_OFFLINE
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If non-empty, this variable prevents any online operations.
+
+# @ECLASS-VARIABLE: EVCS_UMASK
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# Set this variable to a custom umask. This is intended to be set by
+# users. By setting this to something like 002, it can make life easier
+# for people who do development as non-root (but are in the portage
+# group), and then switch over to building with FEATURES=userpriv.
+# Or vice-versa. Shouldn't be a security issue here as anyone who has
+# portage group write access already can screw the system over in more
+# creative ways.
+
+# @ECLASS-VARIABLE: EGIT_BRANCH
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The branch name to check out. If unset, the upstream default (HEAD)
+# will be used.
+#
+# It can be overriden via env using ${PN}_LIVE_BRANCH variable.
+# Example:
+# @CODE
+# EGIT_BRANCH="${EGIT_MASTER}"
+# @CODE
+
+# @ECLASS-VARIABLE: EGIT_COMMIT
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# The tag name or commit identifier to check out. If unset, newest
+# commit from the branch will be used. If set, EGIT_BRANCH will
+# be ignored.
+#
+# It can be overriden via env using ${PN}_LIVE_COMMIT variable.
+#
+# Example:
+# @CODE
+# EGIT_COMMIT="${EGIT_BRANCH}"
+# @CODE
+
+# @ECLASS-VARIABLE: EGIT_CHECKOUT_DIR
+# @DESCRIPTION:
+# The directory to check the git sources out to.
+# Replaces EGIT_SOURCEDIR variable, which was
+# EGIT_SOURCEDIR="${S}" by default
+#
+# Example:
+# @CODE
+# EGIT_CHECKOUT_DIR=${WORKDIR}/${P}
+# @CODE
 
 # @ECLASS-VARIABLE: EGIT_OPTIONS
 # @DEFAULT_UNSET
@@ -68,41 +209,6 @@ DEPEND="dev-vcs/git"
 # This variable should not be overriden.
 #
 # EGIT_DIR="${EGIT_STORE_DIR}/${EGIT_PROJECT}"
-
-# @ECLASS-VARIABLE: EGIT_REPO_URI
-# @REQUIRED
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# URI for the repository
-# e.g. http://foo, git://bar
-#
-# It can be overriden via env using packagename_LIVE_REPO
-# variable.
-#
-# Support multiple values:
-# EGIT_REPO_URI="git://a/b.git http://c/d.git"
-
-# @ECLASS-VARIABLE: EVCS_OFFLINE
-# @DEFAULT_UNSET
-# @DESCRIPTION:
-# If non-empty this variable prevents performance of any online
-# operations.
-
-# @ECLASS-VARIABLE: EGIT_BRANCH
-# @DESCRIPTION:
-# Variable containing branch name we want to check out.
-# It can be overriden via env using packagename_LIVE_BRANCH
-# variable.
-#
-# EGIT_BRANCH="${EGIT_MASTER}"
-
-# @ECLASS-VARIABLE: EGIT_COMMIT
-# @DESCRIPTION:
-# Variable containing commit hash/tag we want to check out.
-# It can be overriden via env using packagename_LIVE_COMMIT
-# variable.
-#
-# EGIT_COMMIT="${EGIT_BRANCH}"
 
 # @ECLASS-VARIABLE: EGIT_REPACK
 # @DEFAULT_UNSET
@@ -136,27 +242,121 @@ DEPEND="dev-vcs/git"
 # If upstream branch was updated and contains fresh commits this will be
 # set to true on fetch.
 
-# @FUNCTION: git-support_init_variables
+# @FUNCTION: _git-support_env_setup
 # @INTERNAL
 # @DESCRIPTION:
-# Internal function initializing all git variables.
+# Set the eclass variables as necessary for operation. This can involve
+# setting EGIT_* to defaults or ${PN}_LIVE_* variables.
 # We define it in function scope so user can define
 # all the variables before and after inherit.
-git-support_init_variables() {
+_git-support_env_setup() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local esc_pn liverepo livebranch livecommit
-	esc_pn=${PN//[-+]/_}
+	local esc_pn=${PN//[-+]/_}
+	local livevar
 
-	: ${EGIT_SOURCEDIR="${S}"}
-	: ${EGIT_STORE_DIR:="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/egit-src"}
-	: ${EGIT_HAS_SUBMODULES:=}
+	# check the clone type
+	case "${EGIT_CLONE_TYPE}" in
+		mirror|single+tags|single|shallow)
+			;;
+		*)
+			die "Invalid EGIT_CLONE_TYPE=${EGIT_CLONE_TYPE}"
+	esac
+	case "${EGIT_MIN_CLONE_TYPE}" in
+		shallow)
+			;;
+		single)
+			if [[ ${EGIT_CLONE_TYPE} == shallow ]]; then
+				einfo "${EGIT_VISUAL_MARKER} \
+ebuild needs to be cloned in '\e[1msingle\e[22m' mode, adjusting"
+				EGIT_CLONE_TYPE=single
+			fi
+			;;
+		single+tags)
+			if [[ ${EGIT_CLONE_TYPE} == shallow || ${EGIT_CLONE_TYPE} == single ]]; then
+				einfo "${EGIT_VISUAL_MARKER} \
+ebuild needs to be cloned in '\e[1msingle+tags\e[22m' mode, adjusting"
+				EGIT_CLONE_TYPE=single+tags
+			fi
+			;;
+		mirror)
+			if [[ ${EGIT_CLONE_TYPE} != mirror ]]; then
+				einfo "${EGIT_VISUAL_MARKER} \
+ebuild needs to be cloned in '\e[1mmirror\e[22m' mode, adjusting"
+				EGIT_CLONE_TYPE=mirror
+			fi
+			;;
+		*)
+			die "Invalid EGIT_MIN_CLONE_TYPE=${EGIT_MIN_CLONE_TYPE}"
+	esac
+
+
+	livevar=${esc_pn}_LIVE_REPO
+	[[ ${!livevar} ]] && \
+	  ewarn "Using ${livevar}, no support will be provided"
+	EGIT_REPO_URI=${!livevar:-${EGIT_REPO_URI}}
+
+	livevar=${esc_pn}_LIVE_BRANCH
+	[[ ${!livevar} ]] && \
+	  ewarn "Using ${livevar}, no support will be provided"
+	EGIT_BRANCH=${!livevar:-${EGIT_BRANCH}}
+
+	livevar=${esc_pn}_LIVE_COMMIT
+	[[ ${!livevar} ]] && \
+	  ewarn "Using ${livevar}, no support will be provided"
+	EGIT_COMMIT=${!livevar:-${EGIT_COMMIT}}
+
+	# Migration helpers. Remove them when git-2 is removed.
+
+	# : ${EGIT_SOURCEDIR="${S}"}
+	if [[ ${EGIT_SOURCEDIR} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_SOURCEDIR has been replaced by EGIT_CHECKOUT_DIR."
+		eerror "\tWhile updating your ebuild, please check whether the variable"
+		eerror "\tis necessary at all, since the default has been changed"
+		eerror "\tfrom \${S} to \${WORKDIR}/\${P}."
+		eerror "\tTherefore, proper setting of S may be sufficient."
+		die "EGIT_SOURCEDIR has been replaced by EGIT_CHECKOUT_DIR."
+	fi
+
+	# : ${EGIT_MASTER:=master}
+	if [[ ${EGIT_MASTER} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_MASTER has been removed."
+		eerror "\tInstead, the upstream default (HEAD) is used by the eclass."
+		eerror "\tPlease remove the assignment or use EGIT_BRANCH as necessary."
+		die "EGIT_MASTER has been removed."
+	fi
+
+	# : ${EGIT_HAS_SUBMODULES:=}
+	if [[ ${EGIT_HAS_SUBMODULES} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_HAS_SUBMODULES has been removed."
+		eerror "\tThe eclass no longer needs to switch the clone type"
+		eerror "\tin order to support submodules and therefore"
+		eerror "\tsubmodules are detected and fetched automatically."
+		die "EGIT_HAS_SUBMODULES is no longer necessary."
+	fi
+
+	if [[ ${EGIT_PROJECT} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_PROJECT has been removed."
+		eerror "\tInstead, the eclass determines"
+		eerror "\tthe local clone path using path in canonical EGIT_REPO_URI."
+		eerror "\tIf the current algorithm causes issues for you, please report a bug."
+		die "EGIT_PROJECT is no longer necessary."
+	fi
+
+	if [[ ${EGIT_BOOTSTRAP} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_BOOTSTRAP has been removed."
+		eerror "\tPlease create proper src_prepare() instead."
+		die "EGIT_BOOTSTRAP has been removed."
+	fi
+
+	if [[ ${EGIT_NOUNPACK} ]]; then
+		echo -e "${EGIT_VISUAL_MARKER} EGIT_NOUNPACK has been removed."
+		eerror "\tThe eclass no longer calls default unpack function."
+		eerror "\tIf necessary, please declare proper src_unpack()."
+		die "EGIT_NOUNPACK has been removed."
+	fi
+
 	: ${EGIT_OPTIONS:=}
-	: ${EGIT_MASTER:=master}
-
-	liverepo=${esc_pn}_LIVE_REPO
-	EGIT_REPO_URI=${!liverepo:-${EGIT_REPO_URI}}
-	[[ ${EGIT_REPO_URI} ]] || die "${ECLASS}: EGIT_REPO_URI must have some value"
 
 	# Assume we are online
 	: ${EVCS_OFFLINE:=}
@@ -171,472 +371,743 @@ git-support_init_variables() {
 	#	einfo "URI: ${EGIT_REPO_URI}"
 	# fi
 
-	livebranch=${esc_pn}_LIVE_BRANCH
-	[[ ${!livebranch} ]] && ewarn "QA: using \"${esc_pn}_LIVE_BRANCH\" variable, you won't get any support"
-	EGIT_BRANCH=${!livebranch:-${EGIT_BRANCH:-${EGIT_MASTER}}}
-
-	livecommit=${esc_pn}_LIVE_COMMIT
-	[[ ${!livecommit} ]] && ewarn "QA: using \"${esc_pn}_LIVE_COMMIT\" variable, you won't get any support"
-	EGIT_COMMIT=${!livecommit:-${EGIT_COMMIT:-${EGIT_BRANCH}}}
-
 	: ${EGIT_REPACK:=}
-
 	: ${EGIT_PRUNE:=}
 
 	EGIT_UPSTREAM_MOVED=false
 }
 
-# @FUNCTION: git-support_submodules
+# @FUNCTION: _git-support_set_gitdir
+# @USAGE: <repo-uri>
 # @INTERNAL
 # @DESCRIPTION:
-# Internal function wrapping the submodule initialisation and update.
-git-support_submodules() {
+# Obtain the local repository path and set it as GIT_DIR. Creates
+# a new repository if necessary.
+#
+# <repo-uri> may be used to compose the path. It should therefore be
+# a canonical URI to the repository.
+_git-support_set_gitdir() {
 	debug-print-function ${FUNCNAME} "$@"
-	if [[ ${EGIT_HAS_SUBMODULES} ]]; then
-		if [[ ${EVCS_OFFLINE} ]]; then
-			# for submodules operations we need to be online
-			debug-print "${FUNCNAME}: not updating submodules in offline mode"
-			return 1
+
+	local repo_name=${1#*://*/}
+
+	# strip the trailing slash
+	repo_name=${repo_name%/}
+
+	# strip common prefixes to make paths more likely to match
+	# e.g. git://X/Y.git vs https://X/git/Y.git
+	# (but just one of the prefixes)
+	case "${repo_name}" in
+		# gnome.org... who else?
+		browse/*) repo_name=${repo_name#browse/};;
+		# cgit can proxy requests to git
+		cgit/*) repo_name=${repo_name#cgit/};;
+		# pretty common
+		git/*) repo_name=${repo_name#git/};;
+		# gentoo.org
+		gitroot/*) repo_name=${repo_name#gitroot/};;
+		# google code, sourceforge
+		p/*) repo_name=${repo_name#p/};;
+		# kernel.org
+		pub/scm/*) repo_name=${repo_name#pub/scm/};;
+	esac
+	# ensure a .git suffix, same reason
+	repo_name=${repo_name%.git}.git
+	# now replace all the slashes
+	repo_name=${repo_name//\//_}
+
+	local distdir=${PORTAGE_ACTUAL_DISTDIR:-${DISTDIR}}
+	: ${EGIT_STORE_DIR:=${distdir}/egit-src}
+
+	GIT_DIR=${EGIT_STORE_DIR}/${repo_name}
+
+	if [[ ! -d ${EGIT_STORE_DIR} ]]; then
+		(
+			addwrite /
+			mkdir -p "${EGIT_STORE_DIR}"
+		) || die "Unable to create ${EGIT_STORE_DIR}"
+	fi
+
+	addwrite "${EGIT_STORE_DIR}"
+	if [[ ! -d ${GIT_DIR} ]]; then
+		local saved_umask
+		if [[ ${EVCS_UMASK} ]]; then
+			saved_umask=$(umask)
+			umask "${EVCS_UMASK}" || \
+			  die "Bad options to umask: ${EVCS_UMASK}"
 		fi
-
-		debug-print "${FUNCNAME}: working in \"${1}\""
-		pushd "${EGIT_DIR}" > /dev/null
-
-		debug-print "${FUNCNAME}: git submodule init"
-		git submodule init || die
-		debug-print "${FUNCNAME}: git submodule sync"
-		git submodule sync || die
-		debug-print "${FUNCNAME}: git submodule update"
-		git submodule update || die
-
-		popd > /dev/null
+		mkdir "${GIT_DIR}" || die
+		git init --bare || die
+		if [[ ${saved_umask} ]]; then
+			umask "${saved_umask}" || die
+		fi
 	fi
 }
 
-# @FUNCTION: git-support_branch
-# @INTERNAL
+# @FUNCTION: _git-support_cherry_pick
 # @DESCRIPTION:
-# Internal function that changes branch for the repo based on EGIT_COMMIT and
-# EGIT_BRANCH variables.
-git-support_branch() {
-	debug-print-function ${FUNCNAME} "$@"
+# Used to apply sort of a "patch" (commit) while constructing the chain
+# of commits that is preferable (required) by ebuild
+# Works sort-of as a replacement of epatch tool in the live (9999)
+# ebuilds. While not replacing epatch completely fits into the git usage
+# perspective of 9999 ebuild theme, also it is kind of useful to store
+# patches right in the tree (captain obvious left speechless ) )
+# While storing patchset in the commit introduces some workload in form
+# of rebase/update requirement for the contents of patch, this can be
+# done by simply storing one patchset/commit per branch and just drag it
+# along with progress by rebasing it on fresh master and adding necessary
+# changes, at least that seems like one of ways for now
+_git-support_cherry_pick() {
+	local cp_commit=${1}
+	local cp_output=""
+	local cp_result=9999
 
-	local branchname src
+	if [ -z ${cp_commit} ]; then
+		eerror "\t${EGIT_VISUAL_MARKER} no commit hash supplied"
+		return 2
+	fi
 
-	debug-print "${FUNCNAME}: working in \"${EGIT_SOURCEDIR}\""
 	pushd "${EGIT_SOURCEDIR}" > /dev/null
 
-	local branchname=branch-${EGIT_BRANCH} src=origin/${EGIT_BRANCH}
-	if [[ ${EGIT_COMMIT} != ${EGIT_BRANCH} ]]; then
-		branchname=tree-${EGIT_COMMIT}
-		src=${EGIT_COMMIT}
-	fi
-	debug-print "${FUNCNAME}: git checkout -b ${branchname} ${src}"
-	git checkout -b ${branchname} ${src} \
-		|| die "${FUNCNAME}: changing the branch failed"
-
+	cp_output="$(git cherry-pick ${cp_commit} 2>&1)"
+	cp_result=${?}
 	popd > /dev/null
-}
 
-# @FUNCTION: git-support_gc
-# @INTERNAL
-# @DESCRIPTION:
-# Internal function running garbage collector on checked out tree.
-git-support_gc() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	local args
-
-	if [[ ${EGIT_REPACK} || ${EGIT_PRUNE} ]]; then
-		pushd "${EGIT_DIR}" > /dev/null
-		ebegin "Garbage collecting the repository"
-		[[ ${EGIT_PRUNE} ]] && args='--prune'
-		debug-print "${FUNCNAME}: git gc ${args}"
-		git gc ${args}
-		eend $?
-		popd > /dev/null
-	fi
-}
-
-# @FUNCTION: git-support_prepare_storedir
-# @INTERNAL
-# @DESCRIPTION:
-# Internal function preparing directory where we are going to store SCM
-# repository.
-git-support_prepare_storedir() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	local clone_dir
-
-	# initial clone, we have to create master git storage directory and play
-	# nicely with sandbox
-	if [[ ! -d ${EGIT_STORE_DIR} ]]; then
-		debug-print "${FUNCNAME}: Creating git main storage directory"
-		addwrite /
-		mkdir -m 775 -p "${EGIT_STORE_DIR}" \
-			|| die "${FUNCNAME}: can't mkdir \"${EGIT_STORE_DIR}\""
+	if [ ${cp_result} -eq 0 ]; then
+		einfo "\t${EGIT_VISUAL_MARKER} applied ${cp_commit}"
+	else
+		eerror "\t${EGIT_VISUAL_MARKER} failed ${cp_commit}"
+		echo -e "\e[31m${cp_output}\e[0m"
+		return 2
 	fi
 
-	# allow writing into EGIT_STORE_DIR
-	addwrite "${EGIT_STORE_DIR}"
-
-	# calculate git.eclass store dir for data
-	# We will try to clone the old repository,
-	# and we will remove it if we don't need it anymore.
-	EGIT_OLD_CLONE=
-	if [[ ${EGIT_STORE_DIR} == */egit-src ]]; then
-		local old_store_dir=${EGIT_STORE_DIR/%egit-src/git-src}
-		local old_location=${old_store_dir}/${EGIT_PROJECT:-${PN}}
-
-		if [[ -d ${old_location} ]]; then
-			EGIT_OLD_CLONE=${old_location}
-			# required to remove the old clone
-			addwrite "${old_store_dir}"
-		fi
-	fi
-
-	# calculate the proper store dir for data
-	# If user didn't specify the EGIT_DIR, we check if he did specify
-	# the EGIT_PROJECT or get the folder name from EGIT_REPO_URI.
-	EGIT_REPO_URI=${EGIT_REPO_URI%/}
-	if [[ ! ${EGIT_DIR} ]]; then
-		if [[ ${EGIT_PROJECT} ]]; then
-			clone_dir=${EGIT_PROJECT}
-		else
-			local strippeduri=${EGIT_REPO_URI%/.git}
-			clone_dir=${strippeduri##*/}
-		fi
-		EGIT_DIR=${EGIT_STORE_DIR}/${clone_dir}
-
-		if [[ ${EGIT_OLD_CLONE} && ! -d ${EGIT_DIR} ]]; then
-			elog "${FUNCNAME}: ${CATEGORY}/${PF} will be cloned from old location."
-			elog "It will be necessary to rebuild the package to fetch updates."
-			EGIT_REPO_URI="${EGIT_OLD_CLONE} ${EGIT_REPO_URI}"
-		fi
-	fi
-	export EGIT_DIR=${EGIT_DIR}
-	debug-print "${FUNCNAME}: Storing the repo into \"${EGIT_DIR}\"."
+	return 0
 }
 
-# @FUNCTION: git-support_move_source
+# @FUNCTION: _git-support_set_submodules
+# @USAGE: <file-contents>
 # @INTERNAL
 # @DESCRIPTION:
-# Internal function moving sources from the EGIT_DIR to EGIT_SOURCEDIR dir.
-git-support_move_source() {
+# Parse .gitmodules contents passed as <file-contents>
+# as in "$(cat .gitmodules)"). Composes a 'submodules' array that
+# contains in order (name, URL, path) for each submodule.
+_git-support_set_submodules() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	debug-print "${FUNCNAME}: ${MOVE_COMMAND} \"${EGIT_DIR}\" \"${EGIT_SOURCEDIR}\""
-	pushd "${EGIT_DIR}" > /dev/null
-	dodir "${EGIT_SOURCEDIR}" \
-		|| die "${FUNCNAME}: failed to create ${EGIT_SOURCEDIR}"
-	${MOVE_COMMAND} "${EGIT_SOURCEDIR}" \
-		|| die "${FUNCNAME}: sync to \"${EGIT_SOURCEDIR}\" failed"
-	popd > /dev/null
+	local data=${1}
+
+	# ( name url path ... )
+	submodules=()
+
+	local l
+	while read l; do
+		# submodule.<path>.path=<path>
+		# submodule.<path>.url=<url>
+		[[ ${l} == submodule.*.url=* ]] || continue
+
+		l=${l#submodule.}
+		local subname=${l%%.url=*}
+
+		# skip modules that have 'update = none', bug #487262.
+		local upd=$(echo "${data}" | git config -f /dev/fd/0 \
+			submodule."${subname}".update)
+		[[ ${upd} == none ]] && continue
+
+		submodules+=(
+			"${subname}"
+			"$(echo "${data}" | git config -f /dev/fd/0 \
+				submodule."${subname}".url || die)"
+			"$(echo "${data}" | git config -f /dev/fd/0 \
+				submodule."${subname}".path || die)"
+		)
+	done < <(echo "${data}" | git config -f /dev/fd/0 -l || die)
 }
 
-# @FUNCTION: git-support_initial_clone
+# @FUNCTION: _git-support_set_subrepos
+# @USAGE: <submodule-uri> <parent-repo-uri>...
 # @INTERNAL
 # @DESCRIPTION:
-# Internal function running initial clone on specified repo_uri.
-git-support_initial_clone() {
+# Create 'subrepos' array containing absolute (canonical) submodule URIs
+# for the given <submodule-uri>. If the URI is relative, URIs will be
+# constructed using all <parent-repo-uri>s. Otherwise, this single URI
+# will be placed in the array.
+_git-support_set_subrepos() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local repo_uri
+	local suburl=${1}
+	subrepos=( "${@:2}" )
 
-	EGIT_REPO_URI_SELECTED=""
-	for repo_uri in ${EGIT_REPO_URI}; do
-		debug-print "${FUNCNAME}: git clone ${EGIT_LOCAL_OPTIONS} \"${repo_uri}\" \"${EGIT_DIR}\""
-		if git clone ${EGIT_LOCAL_OPTIONS} "${repo_uri}" "${EGIT_DIR}"; then
-			einfo "updating repo from: ${repo_uri}"
-			# global variable containing the repo_name we will be using
-			debug-print "${FUNCNAME}: EGIT_REPO_URI_SELECTED=\"${repo_uri}\""
-			EGIT_REPO_URI_SELECTED="${repo_uri}"
-			break
-		fi
-	done
+	if [[ ${suburl} == ./* || ${suburl} == ../* ]]; then
+		# drop all possible trailing slashes for consistency
+		subrepos=( "${subrepos[@]%%/}" )
 
-	ewarn "problems with updating from: ${EGIT_REPO_URI_SELECTED}"
-	[[ ${EGIT_REPO_URI_SELECTED} ]] \
-		|| die "${FUNCNAME}: can't fetch from ${EGIT_REPO_URI}"
-}
+		while true; do
+			if [[ ${suburl} == ./* ]]; then
+				suburl=${suburl:2}
+			elif [[ ${suburl} == ../* ]]; then
+				suburl=${suburl:3}
 
-# @FUNCTION: git-support_update_repo
-# @INTERNAL
-# @DESCRIPTION:
-# Internal function running update command on specified repo_uri.
-git-support_update_repo() {
-	debug-print-function ${FUNCNAME} "$@"
+				# XXX: correctness checking
 
-	local repo_uri
-
-	if [[ ${EGIT_LOCAL_NONBARE} ]]; then
-		# checkout master branch and drop all other local branches
-		git checkout ${EGIT_MASTER} || die "${FUNCNAME}: can't checkout master branch ${EGIT_MASTER}"
-		for x in $(git branch | grep -v "* ${EGIT_MASTER}" | tr '\n' ' '); do
-			debug-print "${FUNCNAME}: git branch -D ${x}"
-			git branch -D ${x} > /dev/null
+				# drop the last path component
+				subrepos=( "${subrepos[@]%/*}" )
+				# and then the trailing slashes, again
+				subrepos=( "${subrepos[@]%%/}" )
+			else
+				break
+			fi
 		done
+
+		# append the preprocessed path to the preprocessed URIs
+		subrepos=( "${subrepos[@]/%//${suburl}}")
+	else
+		subrepos=( "${suburl}" )
 	fi
+}
 
-	EGIT_REPO_URI_SELECTED=""
-	for repo_uri in ${EGIT_REPO_URI}; do
-		# git urls might change, so reset it
-		git config remote.origin.url "${repo_uri}"
+# @FUNCTION: _git-support_is_local_repo
+# @USAGE: <repo-uri>
+# @INTERNAL
+# @DESCRIPTION:
+# Determine whether the given URI specifies a local (on-disk)
+# repository.
+_git-support_is_local_repo() {
+	debug-print-function ${FUNCNAME} "$@"
 
-		debug-print "${EGIT_UPDATE_CMD}"
-		if ${EGIT_UPDATE_CMD} > /dev/null; then
-			# global variable containing the repo_name we will be using
-			debug-print "${FUNCNAME}: EGIT_REPO_URI_SELECTED=\"${repo_uri}\""
-			EGIT_REPO_URI_SELECTED="${repo_uri}"
-			break
+	local uri=${1}
+
+	[[ ${uri} == file://* || ${uri} == /* ]]
+}
+
+# @FUNCTION: _git-support_find_head
+# @USAGE: <head-ref>
+# @INTERNAL
+# @DESCRIPTION:
+# Given a ref to which remote HEAD was fetched, try to find
+# a branch matching the commit. Expects 'git show-ref'
+# or 'git ls-remote' output on stdin.
+_git-support_find_head() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local head_ref=${1}
+	local head_hash=$(git rev-parse --verify "${1}" || die)
+	local matching_ref
+
+	# TODO: some transports support peeking at symbolic remote refs
+	# find a way to use that rather than guessing
+
+	# (based on guess_remote_head() in git-1.9.0/remote.c)
+	local h ref
+	while read h ref; do
+		# look for matching head
+		if [[ ${h} == ${head_hash} ]]; then
+			# either take the first matching ref, or master if it is there
+			if [[ ! ${matching_ref} || ${ref} == refs/heads/master ]]; then
+				matching_ref=${ref}
+			fi
 		fi
 	done
 
-	[[ ${EGIT_REPO_URI_SELECTED} ]] \
-		|| die "${FUNCNAME}: can't update from ${EGIT_REPO_URI}"
+	if [[ ! ${matching_ref} ]]; then
+		die "Unable to find a matching branch for remote HEAD (${head_hash})"
+	fi
+
+	echo "${matching_ref}"
 }
 
 # @FUNCTION: git-support_fetch
-# @INTERNAL
+# @USAGE: [<repo-uri> [<remote-ref> [<local-id>]]]
 # @DESCRIPTION:
-# Internal function fetching repository from EGIT_REPO_URI and storing it in
-# specified EGIT_STORE_DIR.
+# Fetch new commits to the local clone of repository.
+#
+# <repo-uri> specifies the repository URIs to fetch from, as a space-
+# -separated list. The first URI will be used as repository group
+# identifier and therefore must be used consistently. When not
+# specified, defaults to ${EGIT_REPO_URI}.
+#
+# <remote-ref> specifies the remote ref or commit id to fetch.
+# It is preferred to use 'refs/heads/<branch-name>' for branches
+# and 'refs/tags/<tag-name>' for tags. Other options are 'HEAD'
+# for upstream default branch and hexadecimal commit SHA1. Defaults
+# to the first of EGIT_COMMIT, EGIT_BRANCH or literal 'HEAD' that
+# is set to a non-null value.
+#
+# <local-id> specifies the local branch identifier that will be used to
+# locally store the fetch result. It should be unique to multiple
+# fetches within the repository that can be performed at the same time
+# (including parallel merges). It defaults to ${CATEGORY}/${PN}/${SLOT%/*}.
+# This default should be fine unless you are fetching multiple trees
+# from the same repository in the same ebuild.
+#
+# The fetch operation will affect the EGIT_STORE only. It will not touch
+# the working copy, nor export any environment variables.
+# If the repository contains submodules, they will be fetched
+# recursively.
 git-support_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local oldsha cursha repo_type
+	[[ ${EVCS_OFFLINE} ]] && return
 
-	[[ ${EGIT_LOCAL_NONBARE} ]] && repo_type="non-bare repository" || repo_type="bare repository"
-
-	if [[ ! -d ${EGIT_DIR} ]]; then
-		git-support_initial_clone
-		pushd "${EGIT_DIR}" > /dev/null
-		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
-		echo "GIT NEW clone -->"
-		echo "   repository:               ${EGIT_REPO_URI_SELECTED}"
-		echo "   at the commit:            ${cursha}"
-
-		popd > /dev/null
-	elif [[ ${EVCS_OFFLINE} ]]; then
-		pushd "${EGIT_DIR}" > /dev/null
-		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
-		echo "GIT offline update -->"
-		echo "   repository:               $(git config remote.origin.url)"
-		echo "   at the commit:            ${cursha}"
-		popd > /dev/null
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
 	else
-		pushd "${EGIT_DIR}" > /dev/null
-		oldsha=$(git rev-parse ${UPSTREAM_BRANCH})
-		git-support_update_repo
-		cursha=$(git rev-parse ${UPSTREAM_BRANCH})
+		repos=( ${EGIT_REPO_URI} )
+	fi
 
-		if [ "${cursha}" != "${oldsha}" ]; then
-			EGIT_UPSTREAM_MOVED=true
+	[[ ${repos[@]} ]] || die "No URI provided and EGIT_REPO_URI unset"
+
+	local branch=${EGIT_BRANCH:+refs/heads/${EGIT_BRANCH}}
+	local remote_ref=${2:-${EGIT_COMMIT:-${branch:-HEAD}}}
+	local local_id=${3:-${CATEGORY}/${PN}/${SLOT%/*}}
+	local local_ref=refs/git-support/${local_id}/__main__
+
+	local -x GIT_DIR
+	_git-support_set_gitdir "${repos[0]}"
+
+	# prepend the local mirror if applicable
+	if [[ ${EGIT_MIRROR_URI} ]]; then
+		repos=(
+			"${EGIT_MIRROR_URI%/}/${GIT_DIR##*/}"
+			"${repos[@]}"
+		)
+	fi
+
+	# try to fetch from the remote
+	local r success saved_umask
+	if [[ ${EVCS_UMASK} ]]; then
+		saved_umask=$(umask)
+		umask "${EVCS_UMASK}" || die "Bad options to umask: ${EVCS_UMASK}"
+	fi
+	for r in "${repos[@]}"; do
+		einfo "Fetching \e[1m${r}\e[22m ..."
+
+		local fetch_command=( git fetch "${r}" )
+		local clone_type=${EGIT_CLONE_TYPE}
+
+		if [[ ${r} == https://* ]] && ! ROOT=/ has_version 'dev-vcs/git[curl]'; then
+			eerror "${EGIT_VISUAL_MARKER} fetching from https:// requested."
+			eerror" In order to support https, dev-vcs/git needs to be"
+			eerror "built with USE=curl. Example solution:"
+			eerror
+			eerror "	echo dev-vcs/git curl >> /etc/portage/package.use"
+			eerror "	emerge -1v dev-vcs/git"
+			die "dev-vcs/git built with USE=curl required."
 		fi
 
-		# fetch updates
-		echo "GIT update -->"
-		echo "   repository:               ${EGIT_REPO_URI_SELECTED}"
-		# write out message based on the revisions
-		if [[ "${oldsha}" != "${cursha}" ]]; then
-			echo "   updating from commit:     ${oldsha}"
-			echo "   to commit:                ${cursha}"
-		else
-			echo "   at the commit:            ${cursha}"
-		fi
-
-		# print nice statistic of what was changed
-		git --no-pager diff --stat ${oldsha}..${UPSTREAM_BRANCH}
-		popd > /dev/null
-	fi
-	# export the version the repository is at
-	export EGIT_VERSION="${cursha}"
-	# log the repo state
-	[[ ${EGIT_COMMIT} != ${EGIT_BRANCH} ]] \
-		&& echo "   commit:                   ${EGIT_COMMIT}"
-	echo "   branch:                   ${EGIT_BRANCH}"
-	echo "   storage directory:        \"${EGIT_DIR}\""
-	echo "   checkout type:            ${repo_type}"
-
-	# Cleanup after git.eclass
-	if [[ ${EGIT_OLD_CLONE} ]]; then
-		einfo "${FUNCNAME}: removing old clone in ${EGIT_OLD_CLONE}."
-		rm -rf "${EGIT_OLD_CLONE}"
-	fi
-}
-
-# @FUNCTION: git_bootstrap
-# @INTERNAL
-# @DESCRIPTION:
-# Internal function that runs bootstrap command on unpacked source.
-git-support_bootstrap() {
-	debug-print-function ${FUNCNAME} "$@"
-
-	# @ECLASS-VARIABLE: EGIT_BOOTSTRAP
-	# @DESCRIPTION:
-	# Command to be executed after checkout and clone of the specified
-	# repository.
-	# enviroment the package will fail if there is no update, thus in
-	# combination with --keep-going it would lead in not-updating
-	# pakcages that are up-to-date.
-	if [[ ${EGIT_BOOTSTRAP} ]]; then
-		pushd "${EGIT_SOURCEDIR}" > /dev/null
-		einfo "Starting bootstrap"
-
-		if [[ -f ${EGIT_BOOTSTRAP} ]]; then
-			# we have file in the repo which we should execute
-			debug-print "${FUNCNAME}: bootstraping with file \"${EGIT_BOOTSTRAP}\""
-
-			if [[ -x ${EGIT_BOOTSTRAP} ]]; then
-				eval "./${EGIT_BOOTSTRAP}" \
-					|| die "${FUNCNAME}: bootstrap script failed"
-			else
-				eerror "\"${EGIT_BOOTSTRAP}\" is not executable."
-				eerror "Report upstream, or bug ebuild maintainer to remove bootstrap command."
-				die "\"${EGIT_BOOTSTRAP}\" is not executable"
+		if [[ ${r} == https://code.google.com/* ]]; then
+			# Google Code has special magic on top of git that:
+			# 1) can't handle shallow clones at all,
+			# 2) fetches duplicately when tags are pulled in with branch
+			# so automatically switch to single+tags mode.
+			if [[ ${clone_type} == shallow ]]; then
+				einfo "${EGIT_VISUAL_MARKER} Google Code does not \
+support shallow clones"
+				einfo "  using \e[1mEGIT_CLONE_TYPE=single+tags\e[22m"
+				clone_type=single+tags
+			elif [[ ${clone_type} == single ]]; then
+				einfo "${EGIT_VISUAL_MARKER} Google Code does not send \
+tags properly in 'single' mode"
+				einfo "  using \e[1mEGIT_CLONE_TYPE=single+tags\e[22m"
+				clone_type=single+tags
 			fi
-		else
-			# we execute some system command
-			debug-print "${FUNCNAME}: bootstraping with commands \"${EGIT_BOOTSTRAP}\""
-
-			eval "${EGIT_BOOTSTRAP}" \
-				|| die "${FUNCNAME}: bootstrap commands failed"
 		fi
 
-		einfo "Bootstrap finished"
-		popd > /dev/null
+		if [[ ${clone_type} == mirror ]]; then
+			fetch_command+=(
+				--prune
+				# mirror the remote branches as local branches
+				"+refs/heads/*:refs/heads/*"
+				# pull tags explicitly in order to prune them properly
+				"+refs/tags/*:refs/tags/*"
+				# notes in case something needs them
+				"+refs/notes/*:refs/notes/*"
+				# and HEAD in case we need the default branch
+				# (we keep it in refs/git-support since otherwise --prune interferes)
+				"+HEAD:refs/git-support/HEAD"
+			)
+		else # single or shallow
+			local fetch_l fetch_r
+
+			if [[ ${remote_ref} == HEAD ]]; then
+				# HEAD
+				fetch_l=HEAD
+			elif [[ ${remote_ref} == refs/heads/* ]]; then
+				# regular branch
+				fetch_l=${remote_ref}
+			else
+				# tag or commit...
+				# let ls-remote figure it out
+				local tagref=$(git ls-remote "${r}" "refs/tags/${remote_ref}")
+
+				# if it was a tag, ls-remote obtained a hash
+				if [[ ${tagref} ]]; then
+					# tag
+					fetch_l=refs/tags/${remote_ref}
+				else
+					# commit
+					# so we need to fetch the branch
+					if [[ ${branch} ]]; then
+						fetch_l=${branch}
+					else
+						fetch_l=HEAD
+					fi
+
+					# fetching by commit in shallow mode? can't do.
+					if [[ ${clone_type} == shallow ]]; then
+						clone_type=single
+					fi
+				fi
+			fi
+
+			if [[ ${fetch_l} == HEAD ]]; then
+				fetch_r=refs/git-support/HEAD
+			else
+				fetch_r=${fetch_l}
+			fi
+
+			fetch_command+=(
+				"+${fetch_l}:${fetch_r}"
+			)
+
+			if [[ ${clone_type} == single+tags ]]; then
+				fetch_command+=(
+					# pull tags explicitly as requested
+					"+refs/tags/*:refs/tags/*"
+				)
+			fi
+		fi
+
+		if [[ ${clone_type} == shallow ]]; then
+			if _git-support_is_local_repo; then
+				# '--depth 1' causes sandbox violations with local repos
+				# bug #491260
+				clone_type=single
+			elif [[ ! $(git rev-parse --quiet --verify "${fetch_r}") ]]
+			then
+				# use '--depth 1' when fetching a new branch
+				fetch_command+=( --depth 1 )
+			fi
+		else # non-shallow mode
+			if [[ -f ${GIT_DIR}/shallow ]]; then
+				fetch_command+=( --unshallow )
+			fi
+		fi
+
+		set -- "${fetch_command[@]}"
+		echo "${@}" >&2
+		if "${@}"; then
+			if [[ ${clone_type} == mirror ]]; then
+				# find remote HEAD and update our HEAD properly
+				git symbolic-ref HEAD \
+					"$(_git-support_find_head refs/git-support/HEAD \
+						< <(git show-ref --heads || die))" \
+						|| die "Unable to update HEAD"
+			else # single or shallow
+				if [[ ${fetch_l} == HEAD ]]; then
+					# find out what branch we fetched as HEAD
+					local head_branch=$(_git-support_find_head \
+						refs/git-support/HEAD \
+						< <(git ls-remote --heads "${r}" || die))
+
+					# and move it to its regular place
+					git update-ref --no-deref "${head_branch}" \
+						refs/git-support/HEAD \
+						|| die "Unable to sync HEAD branch ${head_branch}"
+					git symbolic-ref HEAD "${head_branch}" \
+						|| die "Unable to update HEAD"
+				fi
+			fi
+
+			# now let's see what the user wants from us
+			local full_remote_ref=$(
+				git rev-parse --verify --symbolic-full-name "${remote_ref}"
+			)
+
+			if [[ ${full_remote_ref} ]]; then
+				# when we are given a ref, create a symbolic ref
+				# so that we preserve the actual argument
+				set -- git symbolic-ref "${local_ref}" "${full_remote_ref}"
+			else
+				# otherwise, we were likely given a commit id
+				set -- git update-ref --no-deref "${local_ref}" "${remote_ref}"
+			fi
+
+			echo "${@}" >&2
+			if ! "${@}"; then
+				die "Referencing ${remote_ref} failed (wrong ref?)."
+			fi
+
+			success=1
+			break
+		fi
+	done
+	if [[ ${saved_umask} ]]; then
+		umask "${saved_umask}" || die
+	fi
+	[[ ${success} ]] || die "Unable to fetch from any of EGIT_REPO_URI"
+
+	# submodules can reference commits in any branch
+	# always use the 'clone' mode to accomodate that, bug #503332
+	local EGIT_CLONE_TYPE=mirror
+
+	# recursively fetch submodules
+	if git cat-file -e "${local_ref}":.gitmodules &>/dev/null; then
+		local submodules
+		_git-support_set_submodules \
+			"$(git cat-file -p "${local_ref}":.gitmodules || die)"
+
+		while [[ ${submodules[@]} ]]; do
+			local subname=${submodules[0]}
+			local url=${submodules[1]}
+			local path=${submodules[2]}
+
+			# use only submodules for which path does exist
+			# (this is in par with 'git submodule'), bug #551100
+			# NOTE: git cat-file does not work for submodules
+			if [[ $(git ls-tree -d "${local_ref}" "${path}") ]]
+			then
+				local commit=$(git rev-parse "${local_ref}:${path}" || die)
+
+				if [[ ! ${commit} ]]; then
+					die "Unable to get commit id for submodule ${subname}"
+				fi
+
+				local subrepos
+				_git-support_set_subrepos "${url}" "${repos[@]}"
+
+				git-support_fetch "${subrepos[*]}" "${commit}" "${local_id}/${subname}"
+			fi
+
+			submodules=( "${submodules[@]:3}" ) # shift
+		done
 	fi
 }
 
-# @FUNCTION: git-support_migrate_repository
-# @INTERNAL
+# @FUNCTION: git-support_checkout
+# @USAGE: [<repo-uri> [<checkout-path> [<local-id>]]]
 # @DESCRIPTION:
-# Internal function migrating between bare and normal checkout repository.
-# This is based on usage of EGIT_SUBMODULES, at least until they
-# start to work with bare checkouts sanely.
-# This function also set some global variables that differ between
-# bare and non-bare checkout.
-git-support_migrate_repository() {
+# Check the previously fetched tree to the working copy.
+#
+# <repo-uri> specifies the repository URIs, as a space-separated list.
+# The first URI will be used as repository group identifier
+# and therefore must be used consistently with git-support_fetch.
+# The remaining URIs are not used and therefore may be omitted.
+# When not specified, defaults to ${EGIT_REPO_URI}.
+#
+# <checkout-path> specifies the path to place the checkout. It defaults
+# to ${EGIT_CHECKOUT_DIR} if set, otherwise to ${WORKDIR}/${P}.
+#
+# <local-id> needs to specify the local identifier that was used
+# for respective git-support_fetch.
+#
+# The checkout operation will write to the working copy, and export
+# the repository state into the environment. If the repository contains
+# submodules, they will be checked out recursively.
+git-support_checkout() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local bare returnstate
-
-	# first find out if we have submodules
-	# or user explicitly wants us to use non-bare clones
-	if ! [[ ${EGIT_HAS_SUBMODULES} || ${EGIT_NONBARE} ]]; then
-		bare=1
-	fi
-
-	# test if we already have some repo and if so find out if we have
-	# to migrate the data
-	if [[ -d ${EGIT_DIR} ]]; then
-		if [[ ${bare} && -d ${EGIT_DIR}/.git ]]; then
-			debug-print "${FUNCNAME}: converting \"${EGIT_DIR}\" to bare copy"
-
-			ebegin "Converting \"${EGIT_DIR}\" from non-bare to bare copy"
-			mv "${EGIT_DIR}/.git" "${EGIT_DIR}.bare"
-			export GIT_DIR="${EGIT_DIR}.bare"
-			git config core.bare true > /dev/null
-			returnstate=$?
-			unset GIT_DIR
-			rm -rf "${EGIT_DIR}"
-			mv "${EGIT_DIR}.bare" "${EGIT_DIR}"
-			eend ${returnstate}
-		elif [[ ! ${bare} && ! -d ${EGIT_DIR}/.git ]]; then
-			debug-print "${FUNCNAME}: converting \"${EGIT_DIR}\" to non-bare copy"
-
-			ebegin "Converting \"${EGIT_DIR}\" from bare to non-bare copy"
-			git clone -l "${EGIT_DIR}" "${EGIT_DIR}.nonbare" > /dev/null
-			returnstate=$?
-			rm -rf "${EGIT_DIR}"
-			mv "${EGIT_DIR}.nonbare" "${EGIT_DIR}"
-			eend ${returnstate}
-		fi
-	fi
-	if [[ ${returnstate} -ne 0 ]]; then
-		debug-print "${FUNCNAME}: converting \"${EGIT_DIR}\" failed, removing to start from scratch"
-
-		# migration failed, remove the EGIT_DIR to play it safe
-		einfo "Migration failed, removing \"${EGIT_DIR}\" to start from scratch."
-		rm -rf "${EGIT_DIR}"
-	fi
-
-	# set various options to work with both targets
-	if [[ ${bare} ]]; then
-		debug-print "${FUNCNAME}: working in bare repository for \"${EGIT_DIR}\""
-		EGIT_LOCAL_OPTIONS+="${EGIT_OPTIONS} --bare"
-		MOVE_COMMAND="git clone -l -s -n ${EGIT_DIR// /\\ }"
-		EGIT_UPDATE_CMD="git fetch -t -f -u origin ${EGIT_BRANCH}:${EGIT_BRANCH}"
-		UPSTREAM_BRANCH="${EGIT_BRANCH}"
-		EGIT_LOCAL_NONBARE=
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
 	else
-		debug-print "${FUNCNAME}: working in bare repository for non-bare \"${EGIT_DIR}\""
-		MOVE_COMMAND="cp -pPR ."
-		EGIT_LOCAL_OPTIONS="${EGIT_OPTIONS}"
-		EGIT_UPDATE_CMD="git pull -f -u ${EGIT_OPTIONS}"
-		UPSTREAM_BRANCH="origin/${EGIT_BRANCH}"
-		EGIT_LOCAL_NONBARE="true"
+		repos=( ${EGIT_REPO_URI} )
 	fi
+
+	local out_dir=${2:-${EGIT_CHECKOUT_DIR:-${WORKDIR}/${P}}}
+	local local_id=${3:-${CATEGORY}/${PN}/${SLOT%/*}}
+
+	local -x GIT_DIR
+	_git-support_set_gitdir "${repos[0]}"
+
+	einfo "Checking out \e[1m${repos[0]}\e[22m to \e[1m${out_dir}\e[22m ..."
+
+	if ! git cat-file -e refs/git-support/"${local_id}"/__main__; then
+		if [[ ${EVCS_OFFLINE} ]]; then
+			die "No local clone of ${repos[0]}. Unable to work with EVCS_OFFLINE."
+		else
+			die "Logic error: no local clone of ${repos[0]}. git-support_fetch not used?"
+		fi
+	fi
+	local remote_ref=$(
+		git symbolic-ref --quiet refs/git-support/"${local_id}"/__main__
+	)
+	local new_commit_id=$(
+		git rev-parse --verify refs/git-support/"${local_id}"/__main__
+	)
+
+	git-support_sub_checkout() {
+		local orig_repo=${GIT_DIR}
+		local -x GIT_DIR=${out_dir}/.git
+		local -x GIT_WORK_TREE=${out_dir}
+
+		mkdir -p "${out_dir}" || die
+
+		# use git init+fetch instead of clone since the latter doesn't like
+		# non-empty directories.
+
+		git init --quiet || die
+		# setup 'alternates' to avoid copying objects
+		echo "${orig_repo}/objects" > "${GIT_DIR}"/objects/info/alternates || die
+		# now copy the refs
+		# [htn]* safely catches heads, tags, notes without complaining
+		# on non-existing ones, and omits internal 'git-support' ref
+		cp -R "${orig_repo}"/refs/[htn]* "${GIT_DIR}"/refs/ || die
+
+		# (no need to copy HEAD, we will set it via checkout)
+
+		if [[ -f ${orig_repo}/shallow ]]; then
+			cp "${orig_repo}"/shallow "${GIT_DIR}"/ || die
+		fi
+
+		set -- git checkout --quiet
+		if [[ ${remote_ref} ]]; then
+			set -- "${@}" "${remote_ref#refs/heads/}"
+		else
+			set -- "${@}" "${new_commit_id}"
+		fi
+		echo "${@}" >&2
+		"${@}" || die "git checkout ${remote_ref:-${new_commit_id}} failed"
+	}
+	git-support_sub_checkout
+
+	local old_commit_id=$(
+		git rev-parse --quiet --verify refs/git-support/"${local_id}"/__old__
+	)
+	if [[ ! ${old_commit_id} ]]; then
+		echo "GIT NEW branch -->"
+		echo "   repository:               ${repos[0]}"
+		echo "   at the commit:            ${new_commit_id}"
+	else
+		# diff against previous revision
+		echo "GIT update -->"
+		echo "   repository:               ${repos[0]}"
+		# write out message based on the revisions
+		if [[ "${old_commit_id}" != "${new_commit_id}" ]]; then
+			echo "   updating from commit:     ${old_commit_id}"
+			echo "   to commit:                ${new_commit_id}"
+
+			git --no-pager diff --stat \
+				${old_commit_id}..${new_commit_id}
+		else
+			echo "   at the commit:            ${new_commit_id}"
+		fi
+	fi
+	git update-ref --no-deref refs/git-support/"${local_id}"/{__old__,__main__} || die
+
+	# recursively checkout submodules
+	if [[ -f ${out_dir}/.gitmodules ]]; then
+		local submodules
+		_git-support_set_submodules \
+			"$(<"${out_dir}"/.gitmodules)"
+
+		while [[ ${submodules[@]} ]]; do
+			local subname=${submodules[0]}
+			local url=${submodules[1]}
+			local path=${submodules[2]}
+
+			# use only submodules for which path does exist
+			# (this is in par with 'git submodule'), bug #551100
+			if [[ -d ${out_dir}/${path} ]]; then
+				local subrepos
+				_git-support_set_subrepos "${url}" "${repos[@]}"
+
+				git-support_checkout "${subrepos[*]}" "${out_dir}/${path}" \
+					"${local_id}/${subname}"
+			fi
+
+			submodules=( "${submodules[@]:3}" ) # shift
+		done
+	fi
+
+	# keep this *after* submodules
+	export EGIT_DIR=${GIT_DIR}
+	export EGIT_VERSION=${new_commit_id}
 }
 
-# @FUNCTION: git-support_cleanup
-# @INTERNAL
+# @FUNCTION: git-support_peek_remote_ref
+# @USAGE: [<repo-uri> [<remote-ref>]]
 # @DESCRIPTION:
-# Internal function cleaning up all the global variables
-# that are not required after the unpack has been done.
-git-support_cleanup() {
+# Peek the reference in the remote repository and print the matching
+# (newest) commit SHA1.
+#
+# <repo-uri> specifies the repository URIs to fetch from, as a space-
+# -separated list. When not specified, defaults to ${EGIT_REPO_URI}.
+#
+# <remote-ref> specifies the remote ref to peek.  It is preferred to use
+# 'refs/heads/<branch-name>' for branches and 'refs/tags/<tag-name>'
+# for tags. Alternatively, 'HEAD' may be used for upstream default
+# branch. Defaults to the first of EGIT_COMMIT, EGIT_BRANCH or literal
+# 'HEAD' that is set to a non-null value.
+#
+# The operation will be done purely on the remote, without using local
+# storage. If commit SHA1 is provided as <remote-ref>, the function will
+# fail due to limitations of git protocol.
+#
+# On success, the function returns 0 and writes hexadecimal commit SHA1
+# to stdout. On failure, the function returns 1.
+git-support_peek_remote_ref() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	# Here we can unset only variables that are GLOBAL
-	# defined by the eclass, BUT NOT subject to change
-	# by user (like EGIT_PROJECT).
-	# If ebuild writer polutes his environment it is
-	# his problem only.
-	unset EGIT_DIR
-	unset MOVE_COMMAND
-	unset EGIT_LOCAL_OPTIONS
-	unset EGIT_UPDATE_CMD
-	unset UPSTREAM_BRANCH
-	unset EGIT_LOCAL_NONBARE
+	local repos
+	if [[ ${1} ]]; then
+		repos=( ${1} )
+	elif [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+		repos=( "${EGIT_REPO_URI[@]}" )
+	else
+		repos=( ${EGIT_REPO_URI} )
+	fi
+
+	local branch=${EGIT_BRANCH:+refs/heads/${EGIT_BRANCH}}
+	local remote_ref=${2:-${EGIT_COMMIT:-${branch:-HEAD}}}
+
+	[[ ${repos[@]} ]] || die "No URI provided and EGIT_REPO_URI unset"
+
+	local r success
+	for r in "${repos[@]}"; do
+		einfo "Peeking \e[1m${remote_ref}\e[22m on \e[1m${r}\e[22m ..." >&2
+
+		local is_branch lookup_ref
+		if [[ ${remote_ref} == refs/heads/* || ${remote_ref} == HEAD ]]
+		then
+			is_branch=1
+			lookup_ref=${remote_ref}
+		else
+			# ls-remote by commit is going to fail anyway,
+			# so we may as well pass refs/tags/ABCDEF...
+			lookup_ref=refs/tags/${remote_ref}
+		fi
+
+		# split on whitespace
+		local ref=(
+			$(git ls-remote "${r}" "${lookup_ref}")
+		)
+
+		if [[ ${ref[0]} ]]; then
+			echo "${ref[0]}"
+			return 0
+		fi
+	done
+
+	return 1
 }
 
-git-support_r3_wrapper() {
-	ewarn "Using git-r3 backend in git-support. Not everything is supported."
-	ewarn "Expect random failures and have fun testing."
+git-support_src_fetch() {
+	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ ${EGIT_SOURCEDIR} ]]; then
-		EGIT_CHECKOUT_DIR=${EGIT_SOURCEDIR}
-		unset EGIT_SOURCEDIR
+	if [[ ! ${EGIT3_STORE_DIR} && ${EGIT_STORE_DIR} ]]; then
+		ewarn "You have set EGIT_STORE_DIR but not EGIT3_STORE_DIR. Please consider"
+		ewarn "setting EGIT3_STORE_DIR for git-support.eclass. It is recommended to use"
+		ewarn "a different directory than EGIT_STORE_DIR to ease removing old clones"
+		ewarn "when git-2 eclass becomes deprecated."
 	fi
 
-	if [[ ${EGIT_MASTER} ]]; then
-		: ${EGIT_BRANCH:=${EGIT_MASTER}}
-		unset EGIT_MASTER
-	fi
-
-	if [[ ${EGIT_HAS_SUBMODULES} ]]; then
-		unset EGIT_HAS_SUBMODULES
-	fi
-
-	if [[ ${EGIT_PROJECT} ]]; then
-		unset EGIT_PROJECT
-	fi
-
-	local boots unp
-	if [[ ${EGIT_NOUNPACK} ]]; then
-		unp=1
-		unset EGIT_NOUNPACK
-	fi
-
-	if [[ ${EGIT_BOOTSTRAP} ]]; then
-		boots=1
-		unset EGIT_BOOTSTRAP
-	fi
-
-	git-r3_src_unpack
-
-	[[ ${boots} ]] && EGIT_BOOTSTRAP=${boots} git-support_bootstrap
-	[[ ${unp} ]] && EGIT_NOUNPACK=1
+	_git-support_env_setup
+	git-support_fetch
 }
 
 # @FUNCTION: git-support_src_unpack
@@ -645,29 +1116,29 @@ git-support_r3_wrapper() {
 git-support_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ ${EGIT_USE_GIT_R3} ]]; then
-		git-support_r3_wrapper
+	_git-support_env_setup
+	git-support_src_fetch
+	git-support_checkout
+}
+
+# https://bugs.gentoo.org/show_bug.cgi?id=482666
+git-support_pkg_needrebuild() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local new_commit_id=$(git-support_peek_remote_ref)
+	[[ ${new_commit_id} && ${EGIT_VERSION} ]] || die "Lookup failed"
+
+	if [[ ${EGIT_VERSION} != ${new_commit_id} ]]; then
+		einfo "Update from \e[1m${EGIT_VERSION}\e[22m to \e[1m${new_commit_id}\e[22m"
 	else
-		git-support_init_variables
-		git-support_prepare_storedir
-		git-support_migrate_repository
-		git-support_fetch "$@"
-		git-support_gc
-		[[ ${EGIT_HAS_SUBMODULES} ]] && git-support_submodules
-		git-support_move_source
-		git-support_branch
-		git-support_bootstrap
-		git-support_cleanup
-		echo ">>> Unpacked to ${EGIT_SOURCEDIR}"
+		einfo "Local and remote at \e[1m${EGIT_VERSION}\e[22m"
 	fi
 
-	# Users can specify some SRC_URI and we should
-	# unpack the files too.
-	if [[ ! ${EGIT_NOUNPACK} ]]; then
-		if has ${EAPI:-0} 0 1; then
-			[[ ${A} ]] && unpack ${A}
-		else
-			default_src_unpack
-		fi
-	fi
+	[[ ${EGIT_VERSION} != ${new_commit_id} ]]
 }
+
+# 'export' locally until this gets into EAPI
+pkg_needrebuild() { git-support_pkg_needrebuild; }
+
+_EGIT_SUPPORT_DEFINED=1
+fi
