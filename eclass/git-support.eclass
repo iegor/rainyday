@@ -467,8 +467,7 @@ _git-support_cherry_pick() {
 		return 2
 	fi
 
-	pushd "${EGIT_SOURCEDIR}" > /dev/null
-
+	pushd "${EGIT_CHECKOUT_DIR}" > /dev/null
 	cp_output="$(git cherry-pick ${cp_commit} 2>&1)"
 	cp_result=${?}
 	popd > /dev/null
@@ -1119,6 +1118,13 @@ git-support_src_unpack() {
 	_git-support_env_setup
 	git-support_src_fetch
 	git-support_checkout
+
+	# Setting some opions:
+	pushd ${S} >& /dev/null
+	git config --local user.name egit
+	git config --local user.email egit@ebuild.eclass
+	git config --local --list
+	popd >& /dev/null
 }
 
 # https://bugs.gentoo.org/show_bug.cgi?id=482666
