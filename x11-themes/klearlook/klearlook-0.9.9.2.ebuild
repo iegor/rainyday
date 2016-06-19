@@ -8,7 +8,7 @@ inherit kde
 RESTRICT="nomirror"
 DESCRIPTION="second Clearlook-like KDE style. It is based on QtCurve"
 HOMEPAGE="http://www.kde-look.org/content/show.php?content=31717"
-SRC_URI="http://www.kde-look.org/content/files/31717-${P}.tar.bz2"
+SRC_URI="http://kde-look.org/CONTENT/content-files/31717-${P}.tar.bz2"
 
 SLOT="3.5"
 LICENSE="GPL-2"
